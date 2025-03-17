@@ -1,0 +1,11 @@
+title: Foreign Exiles Return
+subtitle: More revolutionaries returns from exile.
+new-page: true
+view-if: year = 1917 and month = 4 and week = 1 and (player_party = "m" or player_party = "sr")
+on-arrival: lenin_available = 1; lenin_advisor = 1; zinoviev_available = 1; chernov_available = 1; savinkov_available = 1; natanson_available = 1; kamkov_available = 1; plekhanov_available = 1;
+tags: event
+max-visits: 1
+
+= Foreign Exiles Return
+
+Also among the wave of returning exiles is Vladimir Lenin, leader of the Bolsheviks, and his close companion Grigory Zinoviev.

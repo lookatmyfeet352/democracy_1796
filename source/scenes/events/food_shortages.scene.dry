@@ -1,0 +1,8 @@
+title: Food Shortages
+subtitle: Hunger reigns in the cities...
+new-page: true
+view-if: hunger >= 25 and food_shortages_timer = 0
+on-arrival: food_shortages_timer += 4
+tags: event
+
+= Food Shortages

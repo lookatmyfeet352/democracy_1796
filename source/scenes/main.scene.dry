@@ -1,0 +1,100 @@
+title: Next month
+set-bg: img/map_2.jpg
+is-hand: true
+on-arrival: {!
+if (Q.advisor_action_timer <= 0) {
+    Q.pinnedCardsDescription = 'Advisors - an action is available.';
+} else if (Q.advisor_action_timer == 1) {
+    Q.pinnedCardsDescription = 'Advisors - next action available in 1 month.';
+} else {
+    Q.pinnedCardsDescription = 'Advisors - next action available in ' + Q.advisor_action_timer + ' months.';
+}
+!}
+max-cards: 3
+
+# TODO: should this really be a new page?
+
+#Here, the main deck will be displayed. Clicking on the deck draws a card into your hand. Clicking on a card activates that card.
+
+
+- @party_m
+- @party_b
+- @party_sr
+- @party_k
+- @prov_gov
+- @soviet_affairs
+- #advisor
+#- @shuffle_leadership_pinned
+
+@main_easy
+set-bg: img/map_2.jpg
+is-hand: true
+on-arrival: {!
+if (Q.advisor_action_timer <= 0) {
+    Q.pinnedCardsDescription = 'Advisors - an action is available.';
+} else if (Q.advisor_action_timer == 1) {
+    Q.pinnedCardsDescription = 'Advisors - next action available in 1 month.';
+} else {
+    Q.pinnedCardsDescription = 'Advisors - next action available in ' + Q.advisor_action_timer + ' months.';
+}
+!}
+max-cards: 4
+
+#Here, the main deck will be displayed. Clicking on the deck draws a card into your hand. Clicking on a card activates that card.
+
+- @party_m
+- @party_b
+- @party_sr
+- @party_k
+- @prov_gov
+- @soviet_affairs
+- #advisor
+#- @shuffle_leadership_pinned
+
+@party_m
+title: Party Affairs
+card-image: img/iskra.jpg
+is-deck: true
+view-if: player_party = "m"
+
+- #m_party
+
+@party_b
+title: Party Affairs
+card-image: img/pravda.jpg
+is-deck: true
+view-if: player_party = "b"
+
+- #b_party
+
+@party_sr
+title: Party Affairs
+card-image: img/sr.png
+is-deck: true
+view-if: player_party = "sr"
+
+- #sr_party
+
+@party_k
+title: Party Affairs
+card-image: img/kadet.png
+is-deck: true
+view-if: player_party = "k"
+
+- #k_party
+
+@prov_gov
+title: Provisional Government
+view-if: player_party = "k" or (player_party = "m" and m_in_prov_gov) or (player_party = "SR" and sr_in_prov_gov)
+card-image: img/prov_gov.jpg
+is-deck: true
+
+- #prov_gov
+
+@soviet_affairs
+title: Petrograd Soviet
+view-if: player_party == "m" or player_party == "SR" or player_party == "Bolshevik"
+card-image: img/soviet_1.jpg
+is-deck: true
+
+- #soviet

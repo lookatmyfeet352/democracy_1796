@@ -1,0 +1,11 @@
+title: Provisional Government Relations
+new-page: true
+view-if: prov_gov_relations_timer = 0 and ((player_party = "b" and b_in_exco) or (player_party = "m" and m_in_exco) or (player_party = "sr" and sr_in_exco) or (player_party = "k" and kadet_in_exco))
+on-arrival: week_activity += 1; prov_gov_relations_timer += 3
+tags: soviet
+is-card: true
+card-image: img/soviet_2.jpg
+
+= Provisional Government Relations
+
+# options: expand cooperation with the provisional government, reduce cooperation with the provisional government, call for the replacement of the provisional government by a socialist government (available if kadets are in the government)

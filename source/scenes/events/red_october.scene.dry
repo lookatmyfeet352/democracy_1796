@@ -1,0 +1,5 @@
+title: Bolshevik Uprising
+subtitle: A coup!
+view-if: player_party != "b" and month >= 10 and week >= 3
+
+# workers militias mostly support bolsheviks

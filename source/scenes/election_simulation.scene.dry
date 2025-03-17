@@ -1,0 +1,559 @@
+title: Election Simulation
+set-jump: post_election
+
+
+- @1917_1: Constituent Assembly (March 1917 support levels)
+- @1917_11: Constituent Assembly (November 1917)
+- @ps_1917_3: Petrograd Soviet (March 1917)
+- @ps_1917_8: Petrograd Soviet (August 1917)
+
+@1917_1
+on-arrival: {!
+Q.election_type = "ca";
+Q.workers = 20; // 
+Q.middle = 8; //
+Q.peasants = 60; // 
+Q.soldiers = 8; //
+Q.underclass = 6;
+Q.elites = 2;
+
+Q.russians = 50;
+Q.ukrainians = 20;
+Q.jews = 4.5;
+Q.kyrgyz_kazakh = 3.4;
+Q.tatar = 3.4;
+Q.other_turkic = 3;
+Q.latvians = 1;
+Q.estonians = 1;
+Q.georgians = 1;
+Q.armenians = 1;
+Q.germans = 1;
+Q.others= 5;
+Q.chinese = 0.1;
+
+Q.classes = ['workers', 'middle', 'elites', 'peasants', 'soldiers', 'underclass'];
+Q.minorities = ['ukrainians', 'kyrgyz_kazakh', 'tatar', 'other_turkic', 'jews', 'latvians', 'estonians', 'georgians', 'armenians', 'others'];
+Q.parties = ['b', 'm', 'sr', 'k', 'popular_socialist', 'conservative', 'other', 'anarchist', 'none'];
+Q.minority_parties = ['ukrainian_sr', 'alash', 'musavat', 'dashnak', 'jewish_socialists', 'jewish_national_list', 'muslim_socialists', 'turkic_muslim_parties', 'cossacks'];
+
+// Support for party by social group
+// they don't have to sum to 100 since the electoral calculations will be normalized.
+Q.workers_b = 10;
+Q.workers_m = 50;
+Q.workers_sr = 30;
+Q.workers_k = 5;
+Q.workers_conservative = 2;
+Q.workers_popular_socialist = 5;
+Q.workers_anarchist = 5;
+Q.workers_other = 5;
+Q.workers_none = 10;
+
+Q.middle_b = 5;
+Q.middle_m = 10;
+Q.middle_sr = 10;
+Q.middle_k = 40;
+Q.middle_conservative = 10;
+Q.middle_popular_socialist = 10;
+Q.middle_anarchist = 1;
+Q.middle_other = 15;
+Q.middle_none = 5;
+
+Q.peasants_b = 5;
+Q.peasants_m = 5;
+Q.peasants_sr = 55;
+Q.peasants_k= 5;
+Q.peasants_conservative = 10;
+Q.peasants_popular_socialist = 10;
+Q.peasants_anarchist = 5;
+Q.peasants_other = 10;
+Q.peasants_none = 10;
+
+Q.underclass_b = 15;
+Q.underclass_m = 5;
+Q.underclass_sr = 15;
+Q.underclass_k = 0;
+Q.underclass_conservative = 0;
+Q.underclass_popular_socialist = 5;
+Q.underclass_anarchist = 15;
+Q.underclass_other = 5;
+Q.underclass_none = 30;
+
+Q.soldiers_b = 10;
+Q.soldiers_m = 20;
+Q.soldiers_sr = 40;
+Q.soldiers_k = 5;
+Q.soldiers_conservative = 2;
+Q.soldiers_popular_socialist = 5;
+Q.soldiers_anarchist = 6;
+Q.soldiers_other = 10;
+Q.soldiers_none = 10;
+
+Q.elites_b = 0;
+Q.elites_m = 2;
+Q.elites_sr = 2;
+Q.elites_k = 40;
+Q.elites_conservative = 25;
+Q.elites_popular_socialist = 5;
+Q.elites_anarchist = 0;
+Q.elites_other = 12;
+Q.elites_none = 10;
+
+// minority party support:
+// based on the numbers
+Q.ukrainians_ukrainian_sr = 75;
+Q.georgians_m = 80;
+Q.latvians_b = 75;
+Q.armenians_m = 25;
+Q.armenians_dashnak = 50;
+Q.jews_jewish_national_list = 40;
+Q.jews_jewish_socialists = 25;
+Q.jews_m = 20;
+Q.kyrgyz_kazakh_alash = 50;
+Q.tatar_musavat = 30;
+Q.kyrgyz_kazakh_muslim_socialists = 20;
+Q.kyrgyz_kazakh_turkic_muslim_parties = 20;
+Q.tatar_muslim_socialists = 20;
+Q.tatar_turkic_muslim_parties = 20;
+Q.other_turkic_turkic_muslim_parties = 30;
+Q.other_turkic_muslim_socialists = 20;
+Q.other_cossacks = 20;
+!}
+go-to: election_algorithm
+set-jump: post_election
+
+@1917_11
+on-arrival: {!
+// historical results: sr = 47%, 
+Q.election_type = "ca";
+Q.workers = 20; // 
+Q.middle = 8; //
+Q.peasants = 60; // 
+Q.soldiers = 8; //
+Q.underclass = 6;
+Q.elites = 2;
+
+Q.russians = 50;
+Q.ukrainians = 20;
+Q.jews = 4.5;
+Q.kyrgyz_kazakh = 3.4;
+Q.tatar = 3.4;
+Q.other_turkic = 3;
+Q.latvians = 1;
+Q.estonians = 1;
+Q.georgians = 1;
+Q.armenians = 1;
+Q.germans = 1;
+Q.others= 5;
+Q.chinese = 0.1;
+
+Q.classes = ['workers', 'middle', 'elites', 'peasants', 'soldiers', 'underclass'];
+Q.minorities = ['ukrainians', 'kyrgyz_kazakh', 'tatar', 'other_turkic', 'jews', 'latvians', 'estonians', 'georgians', 'armenians', 'others'];
+Q.parties = ['b', 'm', 'sr', 'k', 'popular_socialist', 'conservative', 'other', 'anarchist', 'none'];
+Q.minority_parties = ['ukrainian_sr', 'alash', 'musavat', 'dashnak', 'jewish_socialists', 'jewish_national_list', 'muslim_socialists', 'turkic_muslim_parties', 'cossacks'];
+
+// Support for party by social group
+// they don't have to sum to 100 since the electoral calculations will be normalized.
+Q.workers_b = 10;
+Q.workers_m = 50;
+Q.workers_sr = 30;
+Q.workers_k = 5;
+Q.workers_conservative = 2;
+Q.workers_popular_socialist = 5;
+Q.workers_anarchist = 5;
+Q.workers_other = 5;
+Q.workers_none = 10;
+
+Q.middle_b = 5;
+Q.middle_m = 10;
+Q.middle_sr = 10;
+Q.middle_k = 40;
+Q.middle_conservative = 10;
+Q.middle_popular_socialist = 10;
+Q.middle_anarchist = 1;
+Q.middle_other = 15;
+Q.middle_none = 5;
+
+Q.peasants_b = 5;
+Q.peasants_m = 5;
+Q.peasants_sr = 55;
+Q.peasants_k= 5;
+Q.peasants_conservative = 10;
+Q.peasants_popular_socialist = 10;
+Q.peasants_anarchist = 5;
+Q.peasants_other = 10;
+Q.peasants_none = 10;
+
+Q.underclass_b = 15;
+Q.underclass_m = 5;
+Q.underclass_sr = 15;
+Q.underclass_k = 0;
+Q.underclass_conservative = 0;
+Q.underclass_popular_socialist = 5;
+Q.underclass_anarchist = 15;
+Q.underclass_other = 5;
+Q.underclass_none = 30;
+
+Q.soldiers_b = 10;
+Q.soldiers_m = 20;
+Q.soldiers_sr = 40;
+Q.soldiers_k = 5;
+Q.soldiers_conservative = 2;
+Q.soldiers_popular_socialist = 5;
+Q.soldiers_anarchist = 6;
+Q.soldiers_other = 10;
+Q.soldiers_none = 10;
+
+Q.elites_b = 0;
+Q.elites_m = 2;
+Q.elites_sr = 2;
+Q.elites_k = 40;
+Q.elites_conservative = 25;
+Q.elites_popular_socialist = 5;
+Q.elites_anarchist = 0;
+Q.elites_other = 12;
+Q.elites_none = 10;
+
+// minority party support:
+// based on the numbers
+Q.ukrainians_ukrainian_sr = 75;
+Q.georgians_m = 80;
+Q.latvians_b = 75;
+Q.armenians_m = 25;
+Q.armenians_dashnak = 50;
+Q.jews_jewish_national_list = 40;
+Q.jews_jewish_socialists = 25;
+Q.jews_m = 20;
+Q.kyrgyz_kazakh_alash = 50;
+Q.tatar_musavat = 30;
+Q.kyrgyz_kazakh_muslim_socialists = 20;
+Q.kyrgyz_kazakh_turkic_muslim_parties = 20;
+Q.tatar_muslim_socialists = 20;
+Q.tatar_turkic_muslim_parties = 20;
+Q.other_turkic_turkic_muslim_parties = 30;
+Q.other_turkic_muslim_socialists = 20;
+Q.other_cossacks = 20;
+!}
+go-to: election_algorithm
+set-jump: post_election
+
+@ps_1917_3
+on-arrival: {!
+Q.election_type = "soviet";
+Q.workers = 20; // 
+Q.middle = 8; //
+Q.peasants = 60; // 
+Q.soldiers = 8; //
+Q.underclass = 6;
+Q.elites = 2;
+
+Q.russians = 50;
+Q.ukrainians = 20;
+Q.jews = 4.5;
+Q.kyrgyz_kazakh = 3.4;
+Q.tatar = 3.4;
+Q.other_turkic = 3;
+Q.latvians = 1;
+Q.estonians = 1;
+Q.georgians = 1;
+Q.armenians = 1;
+Q.germans = 1;
+Q.others= 5;
+Q.chinese = 0.1;
+
+// social groups proportion in Petrograd
+Q.workers_petrograd = 55;
+Q.middle_petrograd = 20;
+Q.peasants_petrograd = 2;
+Q.soldiers_petrograd = 8;
+Q.underclass_petrograd = 10;
+Q.elites_petrograd = 5;
+
+
+Q.classes = ['workers', 'middle', 'elites', 'peasants', 'soldiers', 'underclass'];
+Q.minorities = ['ukrainians', 'kyrgyz_kazakh', 'tatar', 'other_turkic', 'jews', 'latvians', 'estonians', 'georgians', 'armenians', 'others'];
+Q.parties = ['b', 'm', 'sr', 'k', 'popular_socialist', 'conservative', 'other', 'anarchist', 'none'];
+Q.minority_parties = ['ukrainian_sr', 'alash', 'musavat', 'dashnak', 'jewish_socialists', 'jewish_national_list', 'muslim_socialists', 'turkic_muslim_parties', 'cossacks'];
+
+// Support for party by social group
+// they don't have to sum to 100 since the electoral calculations will be normalized.
+Q.workers_b = 10;
+Q.workers_m = 50;
+Q.workers_sr = 35;
+Q.workers_k = 2;
+Q.workers_conservative = 2;
+Q.workers_popular_socialist = 5;
+Q.workers_anarchist = 5;
+Q.workers_other = 5;
+Q.workers_none = 10;
+
+Q.middle_b = 5;
+Q.middle_m = 10;
+Q.middle_sr = 10;
+Q.middle_k = 40;
+Q.middle_conservative = 10;
+Q.middle_popular_socialist = 10;
+Q.middle_anarchist = 1;
+Q.middle_other = 15;
+Q.middle_none = 5;
+
+Q.peasants_b = 5;
+Q.peasants_m = 5;
+Q.peasants_sr = 60;
+Q.peasants_k = 5;
+Q.peasants_conservative = 10;
+Q.peasants_popular_socialist = 5;
+Q.peasants_anarchist = 5;
+Q.peasants_other = 10;
+Q.peasants_none = 10;
+
+Q.underclass_b = 15;
+Q.underclass_m = 5;
+Q.underclass_sr = 15;
+Q.underclass_k = 0;
+Q.underclass_conservative = 0;
+Q.underclass_popular_socialist = 5;
+Q.underclass_anarchist = 15;
+Q.underclass_other = 5;
+Q.underclass_none = 30;
+
+Q.soldiers_b = 10;
+Q.soldiers_m = 20;
+Q.soldiers_sr = 50;
+Q.soldiers_k = 5;
+Q.soldiers_conservative = 2;
+Q.soldiers_popular_socialist = 5;
+Q.soldiers_anarchist = 6;
+Q.soldiers_other = 10;
+Q.soldiers_none = 10;
+
+Q.elites_b = 0;
+Q.elites_m = 2;
+Q.elites_sr = 2;
+Q.elites_k = 40;
+Q.elites_conservative = 25;
+Q.elites_popular_socialist = 5;
+Q.elites_anarchist = 0;
+Q.elites_other = 12;
+Q.elites_none = 10;
+
+// minority party support:
+// based on the numbers
+Q.ukrainians_ukrainian_sr = 75;
+Q.georgians_m = 80;
+Q.latvians_b = 75;
+Q.armenians_m = 25;
+Q.armenians_dashnak = 50;
+Q.jews_jewish_national_list = 40;
+Q.jews_jewish_socialists = 25;
+Q.jews_m = 20;
+Q.kyrgyz_kazakh_alash = 50;
+Q.tatar_musavat = 30;
+Q.kyrgyz_kazakh_muslim_socialists = 20;
+Q.kyrgyz_kazakh_turkic_muslim_parties = 20;
+Q.tatar_muslim_socialists = 20;
+Q.tatar_turkic_muslim_parties = 20;
+Q.other_turkic_turkic_muslim_parties = 30;
+Q.other_turkic_muslim_socialists = 20;
+Q.other_cossacks = 20;
+!}
+go-to: election_algorithm.petrograd_soviet
+set-jump: post_election_soviet
+
+@ps_1917_8
+on-arrival: {!
+Q.election_type = "soviet";
+Q.workers = 20; // 
+Q.middle = 8; //
+Q.peasants = 60; // 
+Q.soldiers = 8; //
+Q.underclass = 6;
+Q.elites = 2;
+
+Q.russians = 50;
+Q.ukrainians = 20;
+Q.jews = 4.5;
+Q.kyrgyz_kazakh = 3.4;
+Q.tatar = 3.4;
+Q.other_turkic = 3;
+Q.latvians = 1;
+Q.estonians = 1;
+Q.georgians = 1;
+Q.armenians = 1;
+Q.germans = 1;
+Q.others= 5;
+Q.chinese = 0.1;
+
+// social groups proportion in Petrograd
+Q.workers_petrograd = 55;
+Q.middle_petrograd = 20;
+Q.peasants_petrograd = 2;
+Q.soldiers_petrograd = 8;
+Q.underclass_petrograd = 10;
+Q.elites_petrograd = 5;
+
+Q.classes = ['workers', 'middle', 'elites', 'peasants', 'soldiers', 'underclass'];
+Q.minorities = ['ukrainians', 'kyrgyz_kazakh', 'tatar', 'other_turkic', 'jews', 'latvians', 'estonians', 'georgians', 'armenians', 'others'];
+Q.parties = ['b', 'm', 'sr', 'k', 'popular_socialist', 'conservative', 'other', 'anarchist', 'none'];
+Q.minority_parties = ['ukrainian_sr', 'alash', 'musavat', 'dashnak', 'jewish_socialists', 'jewish_national_list', 'muslim_socialists', 'turkic_muslim_parties', 'cossacks'];
+
+// Support for party by social group
+// they don't have to sum to 100 since the electoral calculations will be normalized.
+Q.workers_b = 10;
+Q.workers_m = 50;
+Q.workers_sr = 30;
+Q.workers_k = 5;
+Q.workers_conservative = 2;
+Q.workers_popular_socialist = 5;
+Q.workers_anarchist = 5;
+Q.workers_other = 5;
+Q.workers_none = 10;
+
+Q.middle_b = 5;
+Q.middle_m = 10;
+Q.middle_sr = 10;
+Q.middle_k = 40;
+Q.middle_conservative = 10;
+Q.middle_popular_socialist = 10;
+Q.middle_anarchist = 1;
+Q.middle_other = 15;
+Q.middle_none = 5;
+
+Q.peasants_b = 5;
+Q.peasants_m = 5;
+Q.peasants_sr = 55;
+Q.peasants_k= 5;
+Q.peasants_conservative = 10;
+Q.peasants_popular_socialist = 10;
+Q.peasants_anarchist = 5;
+Q.peasants_other = 10;
+Q.peasants_none = 10;
+
+Q.underclass_b = 15;
+Q.underclass_m = 5;
+Q.underclass_sr = 15;
+Q.underclass_k = 0;
+Q.underclass_conservative = 0;
+Q.underclass_popular_socialist = 5;
+Q.underclass_anarchist = 15;
+Q.underclass_other = 5;
+Q.underclass_none = 30;
+
+Q.soldiers_b = 10;
+Q.soldiers_m = 20;
+Q.soldiers_sr = 40;
+Q.soldiers_k = 5;
+Q.soldiers_conservative = 2;
+Q.soldiers_popular_socialist = 5;
+Q.soldiers_anarchist = 6;
+Q.soldiers_other = 10;
+Q.soldiers_none = 10;
+
+Q.elites_b = 0;
+Q.elites_m = 2;
+Q.elites_sr = 2;
+Q.elites_k = 40;
+Q.elites_conservative = 25;
+Q.elites_popular_socialist = 5;
+Q.elites_anarchist = 0;
+Q.elites_other = 12;
+Q.elites_none = 10;
+
+// minority party support:
+// based on the numbers
+Q.ukrainians_ukrainian_sr = 75;
+Q.georgians_m = 80;
+Q.latvians_b = 75;
+Q.armenians_m = 25;
+Q.armenians_dashnak = 50;
+Q.jews_jewish_national_list = 40;
+Q.jews_jewish_socialists = 25;
+Q.jews_m = 20;
+Q.kyrgyz_kazakh_alash = 50;
+Q.tatar_musavat = 30;
+Q.kyrgyz_kazakh_muslim_socialists = 20;
+Q.kyrgyz_kazakh_turkic_muslim_parties = 20;
+Q.tatar_muslim_socialists = 20;
+Q.tatar_turkic_muslim_parties = 20;
+Q.other_turkic_turkic_muslim_parties = 30;
+Q.other_turkic_muslim_socialists = 20;
+Q.other_cossacks = 20;
+!}
+go-to: election_algorithm.petrograd_soviet
+set-jump: post_election_soviet
+
+
+
+@post_election
+on-arrival: {!
+// set congress proportion to votes
+Q.k_r = Q.k_assembly_votes;
+Q.b_r = Q.b_assembly_votes;
+Q.m_r = Q.m_assembly_votes;
+Q.sr_r = Q.sr_assembly_votes;
+Q.popular_socialist_r = Q.popular_socialist_assembly_votes;
+Q.anarchist_r = Q.anarchist_assembly_votes;
+Q.conservative_r = Q.conservative_assembly_votes;
+Q.other_r = Q.other_assembly_votes;
+// minority parties
+!}
+
+**Election results:**
+
+# 1928: 30, 1930: 25, 1932: 22
+SR: [+ sr_r +]
+
+Ukrainian SRs: [+ ukrainian_sr_assembly_votes +]
+
+# 1928: 15, 1930: 15, 1932: 
+Mensheviks: [+ m_r +]
+
+# 1928: 10, 1930: 13
+Bolsheviks: [+ b_r +]
+
+# 1928: 5, 1930: 4 (as DstP)
+Kadets: [+ k_r +]
+
+# 1928: 9, 1930: 5
+Conservatives: [+ conservative_r +]
+
+# 1928: 14, 1930: 7
+Popular Socialists: [+ popular_socialist_r +]
+
+# 1928: 3, 1930: 18
+Anarchists: [+ anarchist_r +]
+
+# 1928: 9, 1930: 10
+Other: [+ other_r +]
+
+
+@post_election_soviet
+on-arrival: {!
+// set congress proportion to votes
+Q.k_r = Q.k_soviet_votes;
+Q.b_r = Q.b_soviet_votes;
+Q.m_r = Q.m_soviet_votes;
+Q.sr_r = Q.sr_soviet_votes;
+Q.popular_socialist_r = Q.popular_socialist_soviet_votes;
+Q.anarchist_r = Q.anarchist_soviet_votes;
+Q.conservative_r = Q.conservative_soviet_votes;
+Q.other_r = Q.other_soviet_votes;
+// minority parties
+!}
+
+**Election results:**
+
+SR: [+ sr_r +]
+
+Mensheviks: [+ m_r +]
+
+Bolsheviks: [+ b_r +]
+
+Kadets: [+ k_r +]
+
+Popular Socialists: [+ popular_socialist_r +]
+
+Anarchists: [+ anarchist_r +]
+
+Other: [+ other_r +]
+
+

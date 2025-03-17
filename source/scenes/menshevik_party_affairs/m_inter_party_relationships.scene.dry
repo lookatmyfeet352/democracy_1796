@@ -1,0 +1,15 @@
+title: Inter-Party Relationships
+new-page: true
+view-if: m_inter_party_relationships_timer <= 0 and player_party = "m"
+is-card: true
+on-arrival: inter_party_relationships_timer += 4; week_actions += 1
+card-image: img/rsdlp.jpg
+max-visits: 12
+tags: m_party
+
+= Inter-Party Relationships
+
+We can improve our relations with the other democratic parties.
+
+@b
+title: Can we repair our relations with the Bolsheviks?

@@ -1,0 +1,12 @@
+title: Media and Propaganda
+new-page: true
+view-if: m_media_timer <= 0
+on-arrival: m_media_timer += 4; week_actions += 1
+frequency: 100
+is-card: true
+card-image: img/newspapers.jpg
+tags: m_party
+
+= Media and Propaganda
+
+# media strategies: support prov gov, support soviet policies, support Menshevik campaigning, support revolutionary defensism

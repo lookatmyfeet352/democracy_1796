@@ -1,0 +1,50 @@
+title: Military Policy
+new-page: true
+is-card: true
+on-arrival: military_policy_timer += 3; week_actions += 1
+view-if: military_policy_timer == 0 and ((player_party = "k" and k_in_prov_gov and (war_minister_party = "Kadet" or war_minister_party = "Independent" or war_minister_party = "Progressive" or war_minister_party = "Octobrist" or war_minister_party = "Trudovik" or war_minister_party = "Popular Socialist")) or (player_party = "sr" and sr_in_prov_gov and (war_minister_party = "SR" or war_minister_party = "Trudovik" or war_minister_party = "Popular Socialist")) or (player_party = "m" and m_in_prov_gov and war_minister_party = "Menshevik"))
+card-image: img/war.jpg
+tags: prov_gov
+
+= Military Policy
+
+The conduct of the war is the greatest concern of the government at this time. Millions of men are mobilized into the armies, and millions have already perished. The people are growing increasingly tired of the war; do we launch an offensive to end it all, or hold our position?
+
+**Distribution of forces:**
+
+Northern Front: [+ northern_front_soldiers +] divisions
+
+Western Front: [+ western_front_soldiers +] divisions
+
+Southwestern Front: [+ southwestern_front_soldiers +] divisions
+
+Romanian Front: [+ romanian_front_soldiers +] divisions
+
+Caucasus Front: [+ caucasus_front_soldiers +] divisions
+
+Garrisons and reserves: [+ reserve_soldiers +] divisions
+
+Military transport capacity:
+
+- @reallocate: Shift the distribution of forces among the fronts and garrisons.
+- @prepare: Prepare for an offensive!
+- @defense: Shift to a defensive posture.
+- @soldiers: Change our policies regarding the rights of soldiers.
+
+@reallocate
+
+How should we change our soldiers?
+
+# movement capacity depends on trains
+
+# demobilize
+
+@prepare
+
+Which front should prepare for an offensive?
+
+@defense
+
+Which fronts should shift to a defensive posture?
+
+@soldiers

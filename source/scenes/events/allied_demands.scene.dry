@@ -1,0 +1,19 @@
+title: Allied Demands, Domestic Demands
+subtitle: The Allies and the socialist parties have diverging goals regarding the war.
+new-page: true
+view-if: (player_party = "k" or (m_in_prov_gov and player_party = "m" and foreign_minister_party = "Menshevik") or (sr_in_prov_gov and player_party = "sr" and foreign_minister_party = "SR")) and month = 4 and allied_demands_seen = 0
+on-arrival: allied_demands_seen += 1
+tags: event
+
+= Allied Demands, Domestic Demands
+
+The Allies, Britain and France, have high expectations of post-revolutionary Russia. They expect us to continue persecuting the war against Germany and Austria, with hopefully greater effectiveness now that the incompetent Tsar and Tsarina are out of the way. 
+
+Meanwhile, we are pressured domestically by anti-war sentiment among the socialists. The "revolutionary defensists" are agitating for a renouncement of aggressive goals such as annexations and are calling us to support a general peace among all combatants. More radical socialists are even calling for a separate peace to take Russia out of the war.
+
+The Allies look upon these radical demands with alarm. They are looking for some written acknowledgment that we will continue the course of the war.
+
+# send a message calling for a general peace, while secretly reassuring allies that we will continue the war.
+# repudiate the anti-war demands in their entirety.
+# repudiate the allies; we must seek a general peace. (requires kadets to be social patriots or more anti-war, to repudiate milyukov.)
+

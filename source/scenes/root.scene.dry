@@ -1,0 +1,796 @@
+title: Root Scene
+new-page: true
+go-to: post_event if started = 1; start_menu if started = 0
+
+# TODO: do that thing that we did before...
+
+@start_menu
+new-page: true
+go-to: start_menu_2
+
+= Social Democracy: Petrograd 1917 - An Alternate History
+
+@start_menu_2
+
+- @start: Start game
+- @election_simulation: Election simulation
+- @credits: Credits
+- @game_over.achievements
+
+
+@start
+on-arrival: {!
+Q.started = 1;
+// time elapsed (in months)
+Q.time = 1;
+Q.year = 1917;
+Q.month = 3;
+Q.week = 1;
+// how many actions have been taken this week?
+Q.week_actions = 0;
+// how many actions have been taken this month?
+Q.month_actions = 0;
+
+// 0 = normal difficulty, 1 = hard mode, 2 = hard mode no saves
+Q.difficulty = 0;
+Q.historical_mode = 0;
+Q.player_party_name = "Menshevik";
+Q.player_party = "m";
+Q.party_name_map = {"m": "Menshevik",
+        "b": "Bolshevik",
+        "sr": "SR",
+        "k": "Kadet"};
+
+Q.m_is_player = 1;
+Q.sr_is_player = 0;
+Q.b_is_player = 0;
+Q.k_is_player = 0;
+
+// multiplayer stuff
+Q.current_player = 1;
+Q.n_players = 1;
+// the player ID of the next player
+Q.next_player = 0;
+
+Q.player1_party = "m";
+Q.player2_party = "";
+Q.player3_party = "";
+Q.player4_party = "";
+
+// party resources
+Q.b_resources = 2;
+Q.m_resources = 2;
+Q.kadet_resources = 3;
+Q.sr_resources = 2;
+// party dues
+Q.b_dues = 2;
+Q.m_dues = 2;
+Q.kadet_dues = 3;
+Q.sr_dues = 2;
+
+// the state of the party
+// overall dissent reduces every increase in party support.
+Q.b_dissent = 0.05;
+Q.b_dissent_percent = 5;
+Q.m_dissent = 0.1;
+Q.m_dissent_percent = 10;
+Q.kadet_dissent = 0.05;
+Q.kadet_dissent_percent = 5;
+Q.sr_dissent = 0.15;
+Q.sr_dissent_percent = 15;
+
+// factions
+// bolshevik internals
+Q.b_factions = ['leninist', 'center', 'moderate'];
+Q.leninist_strength = 20;
+Q.leninist_dissent = 10;
+Q.center_strength = 60;
+Q.center_dissent = 0;
+Q.moderate_strength = 20;
+Q.moderate_dissent = 10;
+Q.moderate_split = 0;
+Q.leninist_split = 0;
+// moderates can't split, but leninists can split to become the Communist Party.
+Q.b_war_policy = 0;
+
+// menshevik internals
+Q.m_factions = ['social_patriot', 'defensist', 'internationalist'];
+// unity is the group led by Plekhanov, the "social patriots"
+Q.social_patriot_strength = 20;
+Q.social_patriot_dissent = 30;
+Q.defensist_strength = 80;
+Q.defensist_dissent = 10;
+Q.internationalist_strength = 30;
+Q.internationalist_dissent = 35;
+Q.defensist_split = 0;
+Q.internationalist_split = 0;
+// 3 = expansionist, 2 = social patriot, 1 = revolutionary defensist, 0 = internationalist, -1 = revolutionary defeatist
+Q.m_war_policy = 1;
+Q.m_rural_policy = 0;
+Q.m_nationalities_policy = 0;
+Q.m_labor_policy = 0;
+
+// sr internals
+Q.sr_factions = ['left_sr', 'center_sr', 'right_sr'];
+Q.left_sr_strength = 20;
+Q.left_sr_dissent = 40;
+Q.center_sr_strength = 30;
+Q.center_sr_dissent = 20;
+Q.right_sr_strength = 50;
+Q.right_sr_dissent = 10;
+Q.left_sr_split = 0;
+Q.right_sr_split = 0;
+Q.sr_war_policy = 1;
+
+// kadet internals
+Q.k_factions = ['left_kadet', 'right_kadet'];
+Q.left_kadet_strength = 50;
+Q.left_kadet_dissent = 5;
+Q.right_kadet_strength = 50;
+Q.right_kadet_dissent = 5;
+// 3 = expansionist/annexationist
+Q.k_war_policy = 3;
+
+
+
+// inter-party relations
+// triangle:
+// m -> b -> sr -> k
+Q.m_b_relation = 40;
+Q.m_sr_relation = 55;
+Q.m_k_relation = 40;
+Q.b_sr_relation = 35;
+Q.b_k_relation = 20;
+Q.sr_k_relation = 40;
+
+// minor parties: popular_socialists, trudoviks, octobrists, 
+
+// The state of Russia/////////////////////////////////
+
+// government
+// Provisional government budget
+Q.budget = 3;
+
+
+
+// social and economic circumstances
+
+// Economic and social quality of life
+
+// 96% inflation 
+// source for inflation number: table 2 of https://warwick.ac.uk/fac/soc/economics/staff/mharrison/public/rgwr_postprint.pdf
+// annualized from a 5.8% montly inflation rate
+Q.monthly_inflation = 5.8;
+Q.inflation = 96;
+// availability of consumer goods (out of 100 - pre-war levels)
+Q.consumer_goods = 5;
+// I can't find hard statistics on the prevalence of undernourishment; just fudging things for now
+// source: https://encyclopedia.1914-1918-online.net/article/food-and-nutrition-russian-empire/
+// availability of food in urban areas
+// this is just fudged - Food production declined by 20% by 1917 from 1913 (as did real incomes)
+
+// hunger is the % of food consumption that isn't satisfied.
+Q.hunger = 20;
+// Income as a percent of 1913
+// source: https://warwick.ac.uk/fac/soc/economics/staff/mharrison/public/rgwr_postprint.pdf
+Q.income = 79;
+
+// given the massive labor shortages due to millions of people being conscripted for the war, there is effectively no unemployment.
+Q.unemployed = 2;
+
+// Industries
+// This is all fudged; I don't have actual stats
+// loosely based on https://warwick.ac.uk/fac/soc/economics/staff/mharrison/data/greatwar/appendix.pdf
+// percent allocated to military production
+Q.military_industry = 50;
+// percent allocated to civilian production
+Q.civilian_industry = 40;
+// percent allocated to production of agricultural equipment, etc. (can increase food production)
+Q.agricultural_industry = 1;
+// production of train locomotives, cars, and rails
+Q.transportation_industry = 1;
+// industrial capacity allocated to industrial expansion and replacing capital depreciation (if this is below 3% of total industrial capacity, then industry declines)
+Q.capital_industry = 3;
+// total industrial production (multiple of Jan 1917)
+Q.industry = 100;
+
+// agricultural production
+// source: https://encyclopedia.1914-1918-online.net/article/food-and-nutrition-russian-empire/ Table 3
+// See also: https://warwick.ac.uk/fac/soc/economics/staff/mharrison/data/greatwar/appendix.pdf Table A22, A11
+// according to A22: 80,912,000 tons of grain in 1917, 26,000,000 tons of potatoes
+// (some of this grain is probably feed but I don't have a sense of how much...)
+// = 80 million tons = 80000 million kg of grain
+// = 26000 million kg of potatoes
+// = 106000 million kg of grain + potatoes
+// extremely unrealistic but maybe we should divide it by 12 for gameplay's sake... or divide it by 52 for even more unrealistic gameplay's sake
+// 
+// grain: 51%, potatoes: 14%, cattle, sheep/goats, pigs: 7% each
+// 86% of agriculture goes to food crops..., 51% of all agriculture is grain
+// = 134,902 million kg
+// fudge factor for feed/meat conversions lol
+Q.food_production = 115000; // in millions of kg of grain-equivalent
+// source: https://encyclopedia.1914-1918-online.net/article/food-and-nutrition-russian-empire/ - "7.4%" of grain and fodder crops reached the market
+Q.food_sold = 0.08; // fraction of food production that reaches the civilian population in the cities
+// food consumed by the military
+Q.food_requisitioned = 0.08;
+// millions of kg consumed by civilians per year (TODO)
+// population: 145,449,000 (Table A8, Column M of https://warwick.ac.uk/fac/soc/economics/staff/mharrison/data/greatwar/appendix.pdf)
+// estimate: 1 urban civilian requires 1 kg of grain-equivalent/day (ration is 1 kg of bread according to various sources) - minimal sustenance
+// round up to 500 kg/year for "demand"
+// 500 jin/year for china (see sources for Shanxi People's War)
+// 20% urbanity estimate
+// 10% military estimate
+// if 1 urban civilian requires 500 kg/year: food required is 14500 million kg
+// assume higher demands for the military (active soldiering, also bc of horses and stuff) - let's say 700 kg/year
+// These are basic demands
+Q.food_demand_urban = 14500;// in million kg/year
+Q.food_demand_rural = 50750; // million kg/year - minimal demand; lower than this would provoke famine/violence
+Q.food_demand_military = 7000; // million kg/year
+// if food demand is higher than food_production*food_sold, then there will be an urban famine/urban hunger.
+// if 
+
+// military goods production = Q.industry * Q.military_industry/100
+
+
+/////////////////////// transportation
+// percentage of trains allocated to military, food, and all other civilian uses
+// source: https://encyclopedia.1914-1918-online.net/article/railways-russian-empire/ (for the 40% of railroad capacity for military)
+// preparing for the 1917 offensive, train usage would dlikely be higher for the military
+Q.military_trains = 40;
+Q.civilian_trains = 60;
+// total train capacity in 1916: 17.23 billion poods of cargo (cite: above)
+// 1 pood = 16.38 kg
+// = 282 billion kg = 0.282 billion tons of freight
+// = 282,000 million kg
+// compared to the food production...
+// but there's also waste?
+// 145.7 billion ton-km in 1916 (source: https://nyuad.nyu.edu/content/dam/nyuad/academics/divisions/social-science/working-papers/2017/0003.pdf table A17)
+// what's the average distance food has to travel???
+// 72 million km of rail
+
+// train capacity in million kg/year
+// I just halved the above number bc of round trips lol
+Q.train_capacity = 140000;
+
+// TODO: calculate food_distributed
+
+
+////////////////////// Provisional government
+// party names are shortened in these variables solely for convenience (bc they show up everywhere)
+Q.k_in_prov_gov = 1;
+Q.m_in_prov_gov = 0;
+Q.sr_in_prov_gov = 0;
+Q.b_in_prov_gov = 0;
+// splinter parties - Left-SR and Right-SR
+Q.left_sr_in_prov_gov = 0;
+Q.right_sr_in_prov_gov = 0;
+// Social-Democratic Internationalists (left-Menshevik/right-Bolshevik split)
+Q.internationalist_in_prov_gov = 0;
+// Menshevik-Defensists
+Q.defensist_in_prov_gov = 0;
+// right-kadet split - National-Liberals
+Q.conservative_in_prov_gov = 0;
+// left-kadet split - Union of Democrats
+Q.democrats_in_prov_gov = 0;
+
+Q.prime_minister = "Lvov";
+Q.prime_minister_party = "Independent"
+Q.agriculture_minister = "Shingarev";
+Q.agriculture_minister_party = "Kadet";
+Q.justice_minister = "Kerensky";
+Q.justice_minister_party = "Trudovik";
+Q.interior_minister = "Lvov";
+Q.interior_minister_party = "Independent";
+Q.finance_minister = "Tereshchenko";
+Q.finance_minister_party = "Independent";
+Q.war_minister = "Guchkov";
+Q.war_minister_party = "Octobrist";
+Q.foreign_minister = "Milyukov";
+Q.foreign_minister_party = "Kadet";
+Q.transport_minister = "Nekrasov";
+Q.transport_minister_party = "Kadet";
+// minister of trade and industry
+Q.trade_minister = "Konovalov";
+Q.trade_minister_party = "Progressive";
+// at the start, food and agriculture are the same, but there will be a separate food minister.
+Q.food_minister = "Shingarev";
+Q.food_minister_party = "Kadet";
+Q.education_minister = "Oldenburg";
+Q.education_minister_party = "Kadet";
+
+// government efficacy - affects efficacy of actions. 
+Q.prov_gov_efficacy = 0.7;
+
+// provisional government legitimacy
+Q.prov_gov_legitimacy = 80;
+
+//////////////////////// Petrograd Soviet
+// party names are shortened in these variables solely for convenience (bc they show up everywhere)
+Q.m_in_soviet = 1;
+Q.sr_in_soviet = 1;
+Q.b_in_soviet = 1;
+Q.k_in_soviet = 0;
+
+// executive committee
+Q.m_in_exco = 1;
+Q.sr_in_exco = 1;
+Q.b_in_exco = 0;
+Q.k_in_exco = 0;
+
+Q.soviet_chair = "Chkheidze";
+Q.soviet_chair_party = "Menshevik";
+
+// efficacy of petrograd soviet decisions
+Q.soviet_efficacy = 0.7;
+
+// cooperation between the soviet and the provisional government
+Q.soviet_cooperation = 0.8;
+
+
+
+//////////////////////// War and defense //////////////////////////
+
+// approximate count (in thousands - 10 million soldiers and sailors)
+// approx. 8 million in 1917
+Q.soldiers_count = 9000;
+// Materiel supply - 50 consumed per million soldiers per week, more during operations
+// this is kinda fudge; I don't have solid numbers
+Q.materiel = 200;
+// military discipline
+Q.discipline = 0.7;
+// military leadership
+Q.leadership = 0.6;
+// War weariness goes up to 1 (and beyond it)
+Q.war_weariness = 0.4;
+// between 0 and 1
+Q.morale = 0.7;
+
+// The war has 5 fronts, plus a bunch of reserves
+// numbers mostly from wikipedia, with some making stuff up
+// numbers are the number of divisions
+Q.northern_front_soldiers = 100;
+Q.western_front_soldiers = 100;
+Q.southwestern_front_soldiers = 200;
+Q.romanian_front_soldiers = 100;
+Q.caucasus_front_soldiers = 100;
+Q.reserve_soldiers = 100;
+
+
+// Militias
+
+// 100k
+Q.workers_militia_strength = 20;
+Q.workers_militia_militancy = 0.5;
+// soviet loyalty, prov gov loyalty, menshevik loyalty, bolshevik loyalty, sr loyalty, left-sr loyalty
+Q.workers_militia_m_loyalty = 25;
+Q.workers_militia_b_loyalty = 25;
+Q.workers_militia_sr_loyalty = 25;
+Q.workers_militia_soviet_loyalty = 50;
+Q.workers_militia_prov_gov_loyalty = 20;
+Q.workers_militia_independent = 25;
+
+// petrograd garrison
+Q.garrison_strength = 100;
+Q.garrison_militancy = 2;
+Q.garrison_m_loyalty = 20;
+Q.garrison_b_loyalty = 20;
+Q.garrison_k_loyalty = 0;
+Q.garrison_sr_loyalty = 20;
+Q.garrison_soviet_loyalty = 20;
+Q.garrison_prov_gov_loyalty = 20;
+Q.garrison_independent = 30;
+
+Q.city_militia_strength = 20;
+Q.city_militia_militancy = 0.5;
+Q.city_militia_m_loyalty = 20;
+Q.city_militia_k_loyalty = 30;
+Q.city_militia_sr_loyalty = 20;
+Q.city_militia_soviet_loyalty = 0;
+Q.city_militia_prov_gov_loyalty = 50;
+Q.city_militia_independent = 20;
+
+
+// Demographics ////////////////////////////////////
+
+
+// Proportion of different social groups nationally (based mostly on the 1897 Russian census with some fudging)
+Q.workers = 20; // 
+Q.middle = 8; //
+Q.peasants = 60; // 
+Q.soldiers = 8; //
+Q.underclass = 6;
+Q.elites = 2;
+
+// ethnic demographics nationally - loosely based on 1897 census, but most Polish are in German-occupied territories
+// sources: https://stat1897.histcensus.asu.ru/en/data/
+/*
+1897 (native language):
+Russian 44.31
+Ukrainian 17.81
+Polish 6.31
+Belarusian 4.68
+Jewish 4.03
+Kyrgyz-Kazakh 3.25
+Tatar 2.97
+German 1.43
+Latvian 1.14
+Bashkir 1.05
+Lithuanian 0.96
+Armenian 0.93
+Romanian 0.89
+Mordovian 0.81  (???)
+Estonian 0.80
+Sartic 0.77
+Chuvash 0.67
+Georgian 0.66
+Uzbek 0.58
+*/
+/*
+Updated with polish reduced:
+Russian 50
+Ukrainian 20
+Belarusian 5.7
+Jewish 4.5
+Kyrgyz-Kazakh 3.4
+Tatar 3.4
+German 1.6
+Latvian 1.14
+Bashkir 1.3
+Lithuanian 0.96
+Armenian 1.1
+Romanian 1
+Mordovian 1
+Estonian 1
+Sartic 1
+Chuvash 1
+Georgian 1
+Uzbek 1
+*/
+Q.russians = 50;
+Q.ukrainians = 20;
+Q.jews = 4.5;
+Q.kyrgyz_kazakh = 3.4;
+Q.tatar = 3.4;
+Q.other_turkic = 3;
+Q.latvians = 1;
+Q.estonians = 1;
+Q.georgians = 1;
+Q.armenians = 1;
+Q.germans = 1;
+Q.others= 5;
+Q.chinese = 0.1;
+
+// social groups proportion in Petrograd
+Q.workers_petrograd = 55;
+Q.middle_petrograd = 20;
+Q.peasants_petrograd = 2;
+Q.soldiers_petrograd = 8;
+Q.underclass_petrograd = 10;
+Q.elites_petrograd = 5;
+
+// quality of life
+Q.workers_qol = 100;
+Q.peasants = 100;
+
+Q.classes = ['workers', 'middle', 'elites', 'peasants', 'soldiers', 'underclass'];
+Q.minorities = ['ukrainians', 'kyrgyz_kazakh', 'tatar', 'other_turkic', 'jews', 'latvians', 'estonians', 'georgians', 'armenians', 'others'];
+Q.major_parties = ['m', 'b', 'sr', 'k'];
+Q.parties = ['m', 'b', 'sr', 'k', 'popular_socialist', 'conservative', 'other', 'anarchist', 'none'];
+Q.minority_parties = ['ukrainian_sr', 'alash', 'musavat', 'dashnak', 'jewish_socialists', 'jewish_national_list', 'muslim_socialists', 'turkic_muslim_parties', 'cossacks'];
+
+// Support for party by social group
+// they don't have to sum to 100 since the electoral calculations will be normalized.
+Q.workers_b = 10;
+Q.workers_m = 50;
+Q.workers_sr = 30;
+Q.workers_k = 5;
+Q.workers_conservative = 2;
+Q.workers_popular_socialist = 5;
+Q.workers_anarchist = 5;
+Q.workers_other = 5;
+Q.workers_none = 10;
+
+Q.workers_pro_prov_gov = 85;
+Q.workers_pro_soviet = 95;
+
+Q.middle_b = 5;
+Q.middle_m = 10;
+Q.middle_sr = 10;
+Q.middle_k = 40;
+Q.middle_conservative = 10;
+Q.middle_popular_socialist = 10;
+Q.middle_anarchist = 1;
+Q.middle_other = 15;
+Q.middle_none = 5;
+
+Q.middle_pro_prov_gov = 85;
+Q.middle_pro_soviet = 40;
+
+Q.peasants_b = 5;
+Q.peasants_m = 5;
+Q.peasants_sr = 55;
+Q.peasants_k= 5;
+Q.peasants_conservative = 10;
+Q.peasants_popular_socialist = 10;
+Q.peasants_anarchist = 5;
+Q.peasants_other = 10;
+Q.peasants_none = 10;
+
+Q.peasants_pro_prov_gov = 65;
+Q.peasants_pro_soviet = 70;
+
+Q.underclass_b = 15;
+Q.underclass_m = 5;
+Q.underclass_sr = 15;
+Q.underclass_k = 0;
+Q.underclass_conservative = 0;
+Q.underclass_popular_socialist = 5;
+Q.underclass_anarchist = 15;
+Q.underclass_other = 5;
+Q.underclass_none = 30;
+
+Q.underclass_pro_prov_gov = 60;
+Q.underclass_pro_soviet = 70;
+
+Q.soldiers_b = 10;
+Q.soldiers_m = 20;
+Q.soldiers_sr = 40;
+Q.soldiers_k = 5;
+Q.soldiers_conservative = 2;
+Q.soldiers_popular_socialist = 5;
+Q.soldiers_anarchist = 6;
+Q.soldiers_other = 10;
+Q.soldiers_none = 10;
+
+// this rises a lot due to Order Number 1
+Q.soldiers_pro_prov_gov = 50;
+Q.soldiers_pro_soviet = 60;
+
+Q.elites_b = 0;
+Q.elites_m = 2;
+Q.elites_sr = 2;
+Q.elites_k = 40;
+Q.elites_conservative = 25;
+Q.elites_popular_socialist = 5;
+Q.elites_anarchist = 0;
+Q.elites_other = 12;
+Q.elites_none = 10;
+
+Q.elites_pro_prov_gov = 70;
+Q.elites_pro_soviet = 10;
+
+// minority party support:
+// based on the numbers
+Q.ukrainians_ukrainian_sr = 75;
+Q.georgians_m = 80;
+Q.latvians_b = 75;
+Q.armenians_m = 25;
+Q.armenians_dashnak = 50;
+Q.jews_jewish_national_list = 40;
+Q.jews_jewish_socialists = 25;
+Q.jews_m = 20;
+Q.kyrgyz_kazakh_alash = 50;
+Q.tatar_musavat = 30;
+Q.kyrgyz_kazakh_muslim_socialists = 20;
+Q.kyrgyz_kazakh_turkic_muslim_parties = 20;
+Q.tatar_muslim_socialists = 20;
+Q.tatar_turkic_muslim_parties = 20;
+Q.other_turkic_turkic_muslim_parties = 30;
+Q.other_turkic_muslim_socialists = 20;
+Q.other_cossacks = 20;
+
+Q.minorities_pro_prov_gov = 80;
+Q.minorities_pro_soviet = 60;
+
+// Provisional government
+
+// Petrograd Soviet compositions
+// I can't find hard numbers
+Q.b_soviet = 20;
+Q.m_soviet = 40;
+Q.sr_soviet = 40;
+
+// Petrograd City Duma
+Q.b_petrograd = 10;
+Q.m_petrograd = 20;
+Q.sr_petrograd = 20;
+
+
+// Advisors/Leaders
+Q.n_advisors = 3;
+// timer - this decrements by 1 every turn, and is set to 5 whenever an advisor action is used, so that you can only use one advisor action every 5 months.
+// let's just put all of the timers here...
+// most party affairs and government affairs cards are on a timer.
+Q.timers = [//m_party
+            'advisor_action', 'confronting_nazis', 'crisis_program',
+            'fundraising', 'ideology',
+            //sr_party
+            'inter_party_relationships', 'international_relations',
+            'iron_front', 'media',
+            //b_party
+            'party_organizations', 'rally', 'reichsbanner',
+            //k_party
+            'shuffle_leadership', 'streetfighting', 'peoples_party',
+            // prov_gov
+            'agricultural_policy', 'food_policy', 'fiscal_policy',
+            'foreign_policy', 'judiciary', 'labor_affairs',
+            'military_policy',
+            'internal_security', 'transportation_policy',
+            'shuffle_cabinet', 'social_welfare',
+            'education_policy', 'economic_policy', 'coalition_affairs',
+            'womens_rights',
+            // soviet
+            // events
+            'emergency_cuts', 'unemployment_insurance',
+            'sa_ban', 'sh_ban',
+            'kpd_policy', 'kpd_ultimatum', 'popular_front_dispute'];
+Q.advisor_action_timer = 0;
+
+// constituent assembly election
+Q.election_type = "ca";
+Q.ca_election_progress = 0;
+Q.ca_election_scheduled = 0;
+Q.next_election_year = 1918;
+Q.next_election_month = 12;
+Q.next_election_time = 100;
+
+
+// menshevik advisors
+// defensists
+Q.chkheidze_advisor = 1; // Nikolai Chkheidze
+Q.tsereteli_advisor = 0; // Irakli Tsereteli - arrive March week 3
+Q.plekhanov_advisor = 0; // Georgi Plekhanov - arrive March week 3
+Q.dan_advisor = 0; // Fyodor Dan - Arrive March week 3
+Q.broido_advisor = 0; // Eva Broido
+Q.liber_advisor = 0; // Mikhail Liber (Bundist)
+Q.zasulich_advisor = 0; // Vera Zasulich
+// center/non-aligned
+Q.groman_advisor = 0; // Vladimir Groman - economist
+Q.skobelev_advisor = 1; // Matvei Skobelev
+Q.voitinsky_advisor = 0; // Vladimir Voitinsky - arrive March week 3 (defensist-leaning)
+// internationalists
+Q.martov_advisor = 0; // Julius Martov - arrive April week 4
+Q.axelrod_advisor = 0; // Pavel Axelrod
+Q.sukhanov_advisor = 1; // Nikolai Sukhanov
+
+
+// sr advisors
+// right-sr
+Q.avksentiev_advisor = 0; // Nikolai Avksentiev
+Q.savinkov_advisor = 0; // Boris Savinkov
+Q.kondratiev_advisor = 0; // Nikolai Kondratiev
+Q.breshkovskaya_advisor = 0; //Catherine Breshko-Breshkovskaya
+// center-sr
+Q.chernov_advisor = 0; // Viktor Chernov - April week 1
+Q.gots_advisor = 1; // Abram Gots
+Q.zenzinov_advisor = 1; // Vladimir Zenzinov
+// left-sr
+Q.spiridonova_advisor = 0; // Maria Spiridonova
+Q.natanson_advisor = 0; // Mark Natanson
+Q.kamkov_advisor = 0; // Boris Kamkov
+// popular socialists, trudoviks, and other right-SR-aligned figures
+Q.kerensky_advisor = 1;
+
+
+// kadet advisors
+// right-kadet
+Q.milyukov_advisor = 1; // Pavel Milyukov
+Q.panina_advisor = 0; // Sofia Panina
+Q.shingarev_advisor = 0; // Andrey Shingarev
+// left-kadet
+Q.nekrasov_advisor = 1; // Nikolai Nekrasov
+Q.oldenburg_advisor = 0; // Sergey Oldenburg
+// Kadet-aligned liberals
+Q.lvov_advisor = 1; // Prince Georgy Lvov
+Q.tereshchenko_advisor = 0; // Mikhail Tereshchenko
+// Kadet-aligned conservatives
+Q.rodzianko_advisor = 0; // Mikhail Rodzianko
+
+
+// bolshevik advisors
+Q.stasova_advisor = 1; // Elena Stasova
+Q.shliapnikov_advisor = 1; // Alexander Shliapnikov
+Q.lenin_advisor = 0; // Vladimir Lenin - April week 1
+Q.stalin_advisor = 0; // Josef Stalin - April week 1
+Q.kamenev_advisor = 0; // Lev Kamenev - April week 1
+Q.zinoviev_advisor = 0; // Grigory Zinoviev - April week 1
+Q.sverdlov_advisor = 0; // Yakov Sverdlov - April week 1
+Q.kollontai_advisor = 0; // Alexandra Kollontai - April week 1
+
+!}
+set-bg: img/map_2.jpg
+new-page: true
+
+> * In general, people do not see events concretely, solidly. They think more in words than in clearly-imagined pictures, and they have absolutely no idea what a revolution is, – of those many millions of causes which have gone to give it its present form, – and they are therefore inclined to exaggerate the importance in the progress of the revolution of their personality and of that attitude which they, their friends and co-thinkers will take up in this enormous upheaval. And of course they are absolutely incapable of understanding how powerless is any individual, whatever his intelligence and experience, in this whirlpool of hundreds of thousands of forces which have been put into motion by the upheaval.*
+
+> *They do not understand that once such a great natural phenomenon has begun, such as an earthquake, or, rather, such as a typhoon, separate individuals are powerless to exercise any kind of influence on the course of events. A party perhaps can do something, – far less than is usually thought, – and on the surface of the oncoming waves, its influence may, perhaps, be very slightly noticeable. But separate small aggregations not forming a fairly large mass are undoubtedly powerless – their Powers are certainly nil. *
+
+ - Peter Kropotkin, The Russian Revolution and the Soviet Government, 1919
+
+For more information on the politics of the Provisional Government, see the "Library" page on the top left. If this is your first time playing the game, it is strongly recommended that you read at least some of this information.
+
+- @single_player
+- @local_multiplayer
+- @online_multiplayer
+
+@single_player
+title: Single Player
+go-to: party_selection
+
+Select a party:
+
+@party_selection
+
+- @mensheviks
+- @sr
+- @kadets
+- @bolsheviks
+
+@local_multiplayer
+title: Local Multiplayer
+choose-if: 1 == 0
+unavailable-subtitle: Not yet implemented
+
+TODO
+
+@online_multiplayer
+title: Online Multiplayer
+choose-if: 1 == 0
+unavailable-subtitle: Not yet implemented
+
+TODO
+
+@bolsheviks
+title: Russian Social-Democratic Labor Party (Bolshevik)
+choose-if: achievement_game_completed
+unavailable-subtitle: Complete the game as one of the other parties first.
+
+- @bolsheviks_2: Yes, I am a Bolshevik!
+- @party_selection: No, select a different party.
+
+@bolsheviks_2
+on-arrival: player_party_name = "Bolshevik"; player_party = "b"; b_is_player = 1; m_is_player = 0;
+go-to: intros
+
+
+@mensheviks
+title: Russian Social-Democratic Labor Party (Menshevik)
+
+**Russian Social-Democratic Labor Party (Mensheviks)** - The "minority" faction of the RSDLP, the Mensheviks emerged from party splits, reunifications, and further splits in the 1900s. It is in fact the larger party, seeking to organize a mass party among the working class. A social-democratic party based on the teachings of Karl Marx, the party argues that the current revolution is the "bourgeois" revolution. The task of socialists is to achieve a democratic republic and gain political and economic rights for workers. The Mensheviks are deeply divided on their attitudes towards the war and participation in a bourgeois government.
+
+- @mensheviks_2: Yes, I am a Menshevik!
+- @party_selection: No, select a different party.
+
+
+@mensheviks_2
+on-arrival: player_party_name = "Menshevik"; player_party = "m"; m_is_player = 1
+go-to: intros
+
+
+
+@sr
+title: Party of Socialist-Revolutionaries (SRs)
+
+**Party of Socialist-Revolutionaries (SR)** - The SRs are based in the Russian ideology of *narodism*, or populism, which is an agrarian socialism that sees the traditional Russian village (the *mir*) as the basis of a future socialist society. Their support is strongest in the peasantry, but they have substantial support among workers as well. The SRs are deeply divided between left and right wings based on their attitudes towards the war and participation in government.
+
+- @sr_2: Yes, I am a Socialist-Revolutionary!
+- @party_selection: No, select a different party.
+
+
+@sr_2
+on-arrival: player_party_name = "SR"; player_party = "sr"; sr_is_player = 1; m_is_player = 0;
+go-to: intros
+
+@kadets
+title: Constitutional Democratic Party (Kadets)
+
+**Constitutional Democratic Party (Kadets)** - The Kadets were formerly on the left of the political spectrum, but they have moved to the center-right following the revolution. They are a liberal party whose goal is to establish a democratic republic or constitutional monarchy with moderate social reforms, while winning the war. They consider themselves a party representing all of Russian society, but are predominantly based in the middle class.
+
+- @kadets_2: Yes, I am a Kadet!
+- @party_selection: No, select a different party.
+
+
+@kadets_2
+on-arrival: player_party_name = "Kadet"; player_party = "k"; k_is_player = 1; m_is_player = 0;
+go-to: intros
+

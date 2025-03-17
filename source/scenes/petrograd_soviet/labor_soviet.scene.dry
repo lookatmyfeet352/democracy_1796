@@ -1,0 +1,30 @@
+title: Labor Affairs
+new-page: true
+view-if: labor_soviet_timer = 0 and ((player_party = "b" and b_in_exco) or (player_party = "m" and m_in_exco) or (player_party = "sr" and sr_in_exco) or (player_party = "k" and kadet_in_exco))
+on-arrival: week_activity += 1; labor_soviet_timer += 4
+tags: soviet
+is-card: true
+card-image: img/
+
+= Labor Affairs
+
+Workers across Petrograd and the cities of Russia are striking, calling for higher wages and control over management decisions. What should the Soviet policy be towards the workers?
+
+# support higher wages
+# support councils, and individual decisions.
+# call for striking workers to go back to work.
+
+@conditions
+title: Support the workers' demands for higher wages and improved working conditions.
+on-arrival: inflation += 0.2; capital_strike_progress += 1; workers_m += 5*(1-m_dissent); m_k_relation -= 4; prov_gov_soviet_cooperation -= 4
+
+
+@councils
+title: Support the workers' councils' supervision over management.
+on-arrival: inflation += 0.1; capital_strike_progress += 2; workers_m += 5*(1-m_dissent); m_k_relation -= 4; prov_gov_soviet_cooperation -= 4
+
+@takeover
+title: Support workers' councils seizing control over factories.
+
+@back_to_work
+title: Call for striking workers to go back to work.

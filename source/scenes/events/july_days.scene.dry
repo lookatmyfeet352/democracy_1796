@@ -1,0 +1,7 @@
+title: [+ month +] Crisis
+subtitle: The people demand all power to the Soviets and an end to the war...
+new-page: true 
+view-if: month >= 7 and offensive_started = 1 and july_days_seen = 0
+on-arrival: july_days_seen += 1
+tags: event 
+

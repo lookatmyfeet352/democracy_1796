@@ -1,0 +1,8 @@
+title: Industrial Policy
+new-page: true
+is-card: true
+on-arrival: industrial_policy_timer += 4; week_actions += 1
+view-if: industrial_policy_timer == 0 and ((player_party = "Kadet" and kadet_in_prov_gov and (trade_minister_party = "Kadet" or trade_minister_party = "Independent" or trade_minister_party = "Progressive" or trade_minister_party = "Octobrist" or trade_minister_party = "Trudovik" or trade_minister_party = "Popular Socialist")) or (player_party = "SR" and sr_in_prov_gov and (trade_minister_party = "SR" or trade_minister_party = "Trudovik" or trade_minister_party = "Popular Socialist")) or (player_party = "Menshevik" and m_in_prov_gov and trade_minister_party = "Menshevik"))
+card-image: img/industry.jpg
+tags: prov_gov
+

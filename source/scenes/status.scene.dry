@@ -1,0 +1,205 @@
+title: Status
+new-page: true
+is-special: true
+
+= Status
+
+Week [+ week +], [+ month : month +] [+ year +]
+
+Party: [+ player_party_name +]
+
+Party resources available:
+[? if player_party == "b": [+ b_resources +] ?]
+[? if player_party == "m": [+ m_resources +] ?]
+[? if player_party == "k": [+ k_resources +] ?]
+[? if player_party == "sr": [+ sr_resources +] ?]
+
+Internal dissent:
+[? if player_party == "b": [+ b_dissent_percent : dissent +] ?]
+[? if player_party == "m": [+ m_dissent_percent : dissent +] ?]
+[? if player_party == "k": [+ k_dissent_percent : dissent +] ?]
+[? if player_party == "sr": [+ sr_dissent_percent : dissent +] ?]
+
+= Provisional Government
+
+Prime Minister: [+ prime_minister +] ([+ prime_minister_party +])
+
+Budget: [+ budget +]
+
+Constituent Assembly elections: [? if ca_election_scheduled: [+ next_election_month : month +] [+ next_election_year +] ?] [? if not ca_election_scheduled: Not scheduled ?]
+
+= Economy and Society
+
+Monthly inflation: [+ monthly_inflation +]% ([+ inflation +]% annually)
+
+Real income (% of 1913): [+ income +]%
+
+Unemployment: [+ unemployed +]%
+
+Hunger: [+ hunger : hunger +]
+
+
+@politics
+title: Politics
+on-arrival: {!
+Q.m_relation = 0;
+Q.b_relation = 0;
+Q.sr_relation = 0;
+Q.k_relation = 0;
+switch (Q.player_party) {
+    case 'b':
+        Q.b_relation = -1;
+        Q.m_relation = Q.m_b_relation;
+        Q.k_relation = Q.b_k_relation;
+        Q.sr_relation = Q.b_sr_relation;
+        break;
+    case 'm':
+        Q.m_relation = -1;
+        Q.b_relation = Q.m_b_relation;
+        Q.k_relation = Q.m_k_relation;
+        Q.sr_relation = Q.m_sr_relation;
+        break;
+    case 'sr':
+        Q.sr_relation = -1;
+        Q.b_relation = Q.b_sr_relation;
+        Q.m_relation = Q.m_b_relation;
+        Q.k_relation = Q.sr_k_relation;
+        break;
+    case 'k':
+        Q.k_relation = -1;
+        Q.b_relation = Q.b_k_relation;
+        Q.m_relation = Q.m_k_relation;
+        Q.sr_relation = Q.sr_k_relation;
+        break;
+}
+!}
+
+# TODO: inter-party relationships
+
+= Inter-party Relationships
+
+[? if player_party != "m": Mensheviks: [+ m_relation : relationships +] ?]
+
+[? if player_party != "b": Bolsheviks: [+ b_relation : relationships +] ?]
+
+[? if player_party != "sr": SRs: [+ sr_relation : relationships +] ?]
+
+[? if player_party != "k": Kadets: [+ k_relation : relationships +] ?]
+
+= Internal factions
+
+[? if player_party == "b": Moderate ?]
+[? if player_party == "b": dissent: [+ moderate_dissent : dissent +], strength: [+ moderate_strength : strength_2 +]?]
+
+[? if player_party == "b": Center ?]
+[? if player_party == "b": dissent: [+ center_dissent : dissent +], strength: [+ center_strength : strength_2 +]?]
+
+[? if player_party == "b": Leninist ?]
+[? if player_party == "b": dissent: [+ leninist_dissent : dissent +], strength: [+ leninist_strength : strength_2 +]?]
+
+[? if player_party == "m": Social Patriot ?]
+[? if player_party == "m": dissent: [+ social_patriot_dissent : dissent +], strength: [+ social_patriot_strength : strength_2 +]?]
+
+[? if player_party == "m": Revolutionary Defensist  ?]
+[? if player_party == "m": dissent: [+ defensist_dissent : dissent +], strength: [+ defensist_strength : strength_2 +]?]
+
+[? if player_party == "m": Internationalist ?]
+[? if player_party == "m": dissent: [+ internationalist_dissent : dissent +], strength: [+ internationalist_strength : strength_2 +]?]
+
+[? if player_party == "k": Right-Kadet ?]
+[? if player_party == "k": dissent: [+ right_kadet_dissent : dissent +], strength: [+ right_kadet_strength : strength_2 +]?]
+
+[? if player_party == "k": Left-Kadet ?]
+[? if player_party == "k": dissent: [+ left_kadet_dissent : dissent +], strength: [+ left_kadet_strength : strength_2 +]?]
+
+[? if player_party == "sr": Right-SR ?]
+[? if player_party == "sr": dissent: [+ right_sr_dissent : dissent +], strength: [+ right_sr_strength : strength_2 +]?]
+
+[? if player_party == "sr": Center-SR ?]
+[? if player_party == "sr": dissent: [+ center_sr_dissent : dissent +], strength: [+ center_sr_strength : strength_2 +]?]
+
+[? if player_party == "sr": Left-SR ?]
+[? if player_party == "sr": dissent: [+ left_sr_dissent : dissent +], strength: [+ left_sr_strength : strength_2 +]?]
+
+@gov
+title: Government
+
+= Provisional Government
+
+Prime Minister: [+ prime_minister +] ([+ prime_minister_party +])
+
+Interior Minister: [+ interior_minister +] ([+ interior_minister_party +])
+
+Foreign Minister: [+ foreign_minister +] ([+ foreign_minister_party +])
+
+War Minister: [+ war_minister +] ([+ war_minister_party +])
+
+Finance Minister: [+ finance_minister +] ([+ finance_minister_party +])
+
+Justice Minister: [+ justice_minister +] ([+ justice_minister_party +])
+
+Agriculture Minister: [+ agriculture_minister +] ([+ agriculture_minister_party +])
+
+Transport Minister: [+ transport_minister +] ([+ transport_minister_party +])
+
+Industry and Trade Minister: [+ trade_minister +] ([+ trade_minister_party +])
+
+Education Minister: [+ education_minister +] ([+ education_minister_party +])
+
+Provisional government efficacy: [+ prov_gov_efficacy : efficacy +]
+
+Provisional government legitimacy: [+ prov_gov_legitimacy : legitimacy +]
+
+= Petrograd Soviet
+
+Chair: [+ soviet_chair +] ([+ soviet_chair_party +])
+
+Executive committee: [? if m_in_exco: Mensheviks, ?] [? if sr_in_exco: SRs ?] [? if b_in_exco: Bolsheviks ?]
+
+Overal composition:
+Mensheviks: [+ m_soviet +] %
+Bolsheviks: [+ b_soviet +] %
+SRs: [+ sr_soviet +] %
+Others: [+ other_soviet +] %
+
+Soviet efficacy: [+ soviet_efficacy : efficacy +]
+
+Soviet cooperation with Provisional Government: [+ soviet_cooperation : efficacy +]
+
+@economy
+title: Economy
+
+= Economy
+
+# = Public Opinion
+
+@defense
+title: Defense
+
+= Armies and Fronts
+
+Northern Front: [+ northern_front_soldiers +] divisions
+
+Western Front: [+ western_front_soldiers +] divisions
+
+Southwestern Front: [+ southwestern_front_soldiers +] divisions
+
+Romanian Front: [+ romanian_front_soldiers +] divisions
+
+Caucasus Front: [+ caucasus_front_soldiers +] divisions
+
+Garrisons and reserves: [+ reserve_soldiers +] divisions
+
+= Petrograd Forces
+
+Worker's militias: [+ workers_militia_strength +] thousand
+
+Worker's militia allegiance: Mensheviks: [+ workers_militia_m_loyalty : strength_2 +], Bolsheviks: [+ workers_militia_b_loyalty : strength_2 +], SRs: [+ workers_militia_sr_loyalty : strength_2 +], Independent: [+ workers_militia_independent : strength_2 +]
+
+City militias: [+ city_militia_strength +] thousand
+
+City militia allegiance: Mensheviks: [+ city_militia_m_loyalty : strength_2 +], Kadets: [+ city_militia_k_loyalty : strength_2 +], SRs: [+ city_militia_sr_loyalty : strength_2 +], Independent: [+ city_militia_independent : strength_2 +]
+
+Garrison: [+ garrison_strength +] thousand
+
+Garrison allegiance: Mensheviks: [+ garrison_m_loyalty : strength +], Bolsheviks: [+ garrison_b_loyalty : strength +], Kadets: [+ garrison_k_loyalty : strength +], SRs: [+ garrison_sr_loyalty : strength +], Independent: [+ garrison_independent : strength +]

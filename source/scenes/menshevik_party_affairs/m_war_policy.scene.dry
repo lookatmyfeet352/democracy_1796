@@ -1,0 +1,71 @@
+title: War Policy
+
+# maybe this should be a subset of questions of ideology
+
+= War Policy
+
+The war is the greatest question in politics at this moment. What should be our policy regarding the war?
+
+- @rd
+- @rd_2
+- @i_1
+- @i_2
+- @i_3
+- @sp_1
+- @sp_2
+- @sp_3
+
+@rd
+title: Continue a policy of revolutionary defensism.
+subtitle: Support an international peace without annexations or indemnities, but fight to defend the revolution in the meantime. [? if m_war_policy = 1: This is our current position. ?]
+view-if: m_war_policy = 1
+on-arrival: defensist_strength += 5; defensist_dissent -= 4; internationalist_dissent += 5
+
+@rd_2
+title: Adopt a policy of revolutionary defensism.
+subtitle: Support an international peace without annexations or indemnities, but fight to defend the revolution in the meantime.
+unavailable-subtitle: There is not enough support for this position within the party.
+view-if: m_war_policy != 1
+choose-if: defensist_strength >= internationalist_strength and defensist_strength >= social_patriot_strength
+on-arrival: m_war_policy = 1; defensist_strength += 10; internationalist_dissent += 20
+
+
+@i_1
+title: Adopt an internationalist position.
+subtitle: Support an immediate end to the war, even a separate peace if necessary.
+unavailable-subtitle: There is not enough support for this position within the party.
+view-if: m_war_policy != 0 
+choose-if: internationalist_strength >= defensist_strength + social_patriot_strength
+on-arrival: m_war_policy = 0; internationalist_strength += 5; internationalist_dissent -= 5; defensist_dissent += 15; social_patriot_dissent += 30
+
+@i_2
+title: Increase support for an internationalist position.
+subtitle: Support an immediate end to the war, even a separate peace if necessary.
+view-if: m_war_policy != 0 and internationalist_strength < defensist_strength + social_patriot_strength
+on-arrival: internationalist_strength += 4; internationalist_dissent -=  3; defensist_dissent += 5
+
+@i_3
+title: Continue to support an internationalist position.
+subtitle: Support an immediate end to the war, even a separate peace if necessary.
+view-if: m_war_policy = 1
+
+@sp_1
+title: Adopt a social patriot position.
+subtitle: We must fight the war until we win.
+unavailable-subtitle: There is not enough support for this position within the party.
+view-if: m_war_policy < 2 
+choose-if: social_patriot_strength >= internationalist_strength
+on-arrival: m_war_policy = 2; social_patriot_strength += 10; internationalist_dissent += 30
+
+@sp_2
+title: Support a social patriot position.
+subtitle: We must fight the war until we win.
+view-if: m_war_policy < 2 and social_patriot_strength < internationalist_strength
+on-arrival: social_patriot_strength += 4; social_patriot_dissent -= 5; internationalist_dissent += 5; defensist_dissent += 4
+
+
+@sp_3
+title: Continue to support a social patriot position.
+subtitle: We must fight the war until we win.
+view-if: m_war_policy = 2
+on-arrival: social_patriot_strength += 4; social_patriot_dissent -= 5; internationalist_dissent += 5; defensist_dissent += 4
