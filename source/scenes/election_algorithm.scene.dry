@@ -23,7 +23,7 @@ for (var c of Q.classes) {
 // 1. calculate support for each of the parties
 var total_support = 0;
 for (var party of Q.parties) {
-    if (party == "none") {
+    if (party == "none" || party == "anarchist") {
         continue;
     }
     var party_support = 0;
@@ -54,7 +54,7 @@ for (var party of Q.minority_parties) {
 // TODO: round to 1 decimal instead of rounding to integers
 // to do that, we multiply party_normalized*1000 and divide the rounded number by 10.
 for (var party of Q.parties) {
-    if (party == "none") {
+    if (party == "none" || party == "anarchist") {
         continue;
     }
     Q[party+'_assembly_normalized'] = Q[party + '_support']/total_support;
@@ -112,6 +112,9 @@ for (var party of Q.parties) {
     var party_support = 0;
     for (var c of petrograd_classes) {
         party_support += Q[c + '_petrograd']*Q[c+'_'+party+'_normalized'];
+    }
+    if (Q[party + '_soviet_bonus']) {
+      party_support += Q[party + '_soviet_bonus'];
     }
     Q[party + '_support'] = party_support;
     total_support += party_support;
@@ -214,7 +217,7 @@ for (var c of Q.classes) {
 // 1. calculate support for each of the parties
 var total_support = 0;
 for (var party of Q.parties) {
-    if (party == "none") {
+    if (party == "none" || party == "anarchist") {
         continue;
     }
 
@@ -230,7 +233,7 @@ for (var party of Q.parties) {
 // TODO: round to 1 decimal instead of rounding to integers
 // to do that, we multiply party_normalized*1000 and divide the rounded number by 10.
 for (var party of Q.parties) {
-    if (party == "none") {
+    if (party == "none" || party == "anarchist") {
         continue;
     }
 

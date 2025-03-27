@@ -3,7 +3,7 @@ new-page: true
 is-card: true
 on-arrival: military_policy_timer += 3; week_actions += 1
 view-if: military_policy_timer == 0 and ((player_party = "k" and k_in_prov_gov and (war_minister_party = "Kadet" or war_minister_party = "Independent" or war_minister_party = "Progressive" or war_minister_party = "Octobrist" or war_minister_party = "Trudovik" or war_minister_party = "Popular Socialist")) or (player_party = "sr" and sr_in_prov_gov and (war_minister_party = "SR" or war_minister_party = "Trudovik" or war_minister_party = "Popular Socialist")) or (player_party = "m" and m_in_prov_gov and war_minister_party = "Menshevik"))
-card-image: img/war.jpg
+card-image: img/army_1.jpg
 tags: prov_gov
 
 = Military Policy
@@ -24,27 +24,277 @@ Caucasus Front: [+ caucasus_front_soldiers +] divisions
 
 Garrisons and reserves: [+ reserve_soldiers +] divisions
 
-Military transport capacity:
+Morale (important for offense and defense): [+ morale : efficacy +]
+
+Discipline (primarily useful for offense): [+ discipline : efficacy +]
+
+Supply quality (based on military production): [+ supply_quality : efficacy +]
 
 - @reallocate: Shift the distribution of forces among the fronts and garrisons.
 - @prepare: Prepare for an offensive!
 - @defense: Shift to a defensive posture.
 - @soldiers: Change our policies regarding the rights of soldiers.
+- @root: No change in policy is needed.
+- @easy_discard
+- @cancel_advisor_action
+
+@military_menu
+title: Do something else.
+
+- @reallocate: Shift the distribution of forces among the fronts and garrisons.
+- @prepare: Prepare for an offensive!
+- @defense: Shift to a defensive posture.
+- @soldiers: Change our policies regarding the rights of soldiers.
+- @root: No further change in policy is needed.
 
 @reallocate
+on-arrival: remaining_movement_capacity = movement_capacity - soldiers_moved; sm = 10; sm = remaining_movement_capacity if remaining_movement_capacity < 10
 
 How should we change our soldiers?
 
-# movement capacity depends on trains
+Northern Front: [+ northern_front_soldiers +] divisions
 
+Western Front: [+ western_front_soldiers +] divisions
+
+Southwestern Front: [+ southwestern_front_soldiers +] divisions
+
+Romanian Front: [+ romanian_front_soldiers +] divisions
+
+Caucasus Front: [+ caucasus_front_soldiers +] divisions
+
+Garrisons and reserves: [+ reserve_soldiers +] divisions
+
+Movement capacity: [+ remaining_movement_capacity +] divisions
+
+# movement capacity depends on trains
 # demobilize
+- @remove_northern
+- @remove_western
+- @remove_southwestern
+- @remove_romanian
+- @remove_caucasus
+- @add_northern
+- @add_western
+- @add_southwestern
+- @add_romanian
+- @add_caucasus
+- @demobilize
+- @military_menu: Do something else.
+
+@remove_northern
+title: Remove troops from the Northern Front.
+on-arrival: northern_front_soldiers -= sm; reserve_soldiers += sm; soldiers_moved += sm
+choose-if: remaining_movement_capacity > 0
+go-to: reallocate
+
+We have removed [+ sm +] divisions from the Northern Front.
+
+@remove_western
+title: Remove troops from the Western Front.
+on-arrival: western_front_soldiers -= sm; reserve_soldiers += sm; soldiers_moved += sm
+choose-if: remaining_movement_capacity > 0
+go-to: reallocate
+
+We have removed [+ sm +] divisions from the Western Front.
+
+@remove_southwestern
+title: Remove troops from the Southwestern Front.
+on-arrival: southwestern_front_soldiers -= sm; reserve_soldiers += sm; soldiers_moved += sm
+choose-if: remaining_movement_capacity > 0
+go-to: reallocate
+
+We have removed [+ sm +] divisions from the Southwestern Front.
+
+
+@remove_romanian
+title: Remove troops from the Romanian Front.
+on-arrival: romanian_front_soldiers -= sm; reserve_soldiers += sm; soldiers_moved += sm
+choose-if: remaining_movement_capacity > 0
+go-to: reallocate
+
+We have removed [+ sm +] divisions from the Romanian Front.
+
+
+@remove_caucasus
+title: Remove troops from the Caucasus Front.
+on-arrival: caucasus_front_soldiers -= sm; reserve_soldiers += sm; soldiers_moved += sm
+choose-if: remaining_movement_capacity > 0
+go-to: reallocate
+
+We have removed [+ sm +] divisions from the Caucasus Front.
+
+
+@add_northern
+title: Add troops to the Northern Front.
+on-arrival: northern_front_soldiers += sm; reserve_soldiers -= sm; soldiers_moved += sm
+choose-if: remaining_movement_capacity > 0 and reserve_soldiers > sm
+go-to: reallocate
+
+We have added [+ sm +] divisions to the Northern Front.
+
+@add_western
+title: Add troops to the Western Front.
+on-arrival: western_front_soldiers += sm; reserve_soldiers -= sm; soldiers_moved += sm
+choose-if: remaining_movement_capacity > 0 and reserve_soldiers > sm
+go-to: reallocate
+
+We have added [+ sm +] divisions to the Western Front.
+
+
+@add_southwestern
+title: Add troops to the Southwestern Front.
+on-arrival: southwestern_front_soldiers += sm; reserve_soldiers -= sm; soldiers_moved += sm
+choose-if: remaining_movement_capacity > 0 and reserve_soldiers > sm
+go-to: reallocate
+
+We have added [+ sm +] divisions to the Southwestern Front.
+
+
+@add_romanian
+title: Add troops to the Romanian Front.
+on-arrival: romanian_front_soldiers += sm; reserve_soldiers -= sm; soldiers_moved += sm
+choose-if: remaining_movement_capacity > 0 and reserve_soldiers > sm
+go-to: reallocate
+
+We have added [+ sm +] divisions to the Romanian Front.
+
+
+@add_caucasus
+title: Add troops to the Caucasus Front.
+on-arrival: caucasus_front_soldiers += sm; reserve_soldiers -= sm; soldiers_moved += sm
+choose-if: remaining_movement_capacity > 0 and reserve_soldiers > sm
+go-to: reallocate
+
+We have added [+ sm +] divisions to the Caucasus Front.
+
+
+@demobilize
+title: Demobilize some reserve troops, returning them to civilian life.
+on-arrival: reserve_soldiers -= sm; soldiers_moved += sm;
+choose-if: remaining_movement_capacity > 0 and reserve_soldiers > sm
+go-to: reallocate
+
+We have demobilized [+ sm +] divisions from the reserve.
+
 
 @prepare
 
 Which front should prepare for an offensive?
+
+- @northern_offensive
+- @western_offensive
+- @southwestern_offensive
+- @romanian_offensive
+- @caucasus_offensive
+- @military_menu
+
+@northern_offensive
+title: Northern Front
+on-arrival: front = "northern"; enemy_front = "northwestern"; attacking = 1;
+
+The Northern Front is in the Baltic countries.
+
+Enemy forces: [+ northwestern_enemy_soldiers +] divisions
+
+Enemy morale: [+ northwestern_enemy_morale : efficacy +]
+
+Enemy discipline: [+ northwestern_enemy_discipline : efficacy +]
+
+Enemy supply quality: [+ northwestern_enemy_supply_quality : efficacy +]
+
+- @launch_offensive
+- @prepare: No, choose a different direction.
+- @military_menu
+
+@western_offensive
+title: Western Front
+on-arrival: front = "western"; enemy_front = "northwestern"; attacking = 1;
+
+The Western Front is in the direction of Belarussia.
+
+Enemy forces: 
+
+Enemy forces: [+ northwestern_enemy_soldiers +] divisions
+
+Enemy morale: [+ northwestern_enemy_morale : efficacy +]
+
+Enemy discipline: [+ northwestern_enemy_discipline : efficacy +]
+
+Enemy supply quality: [+ northwestern_enemy_supply_quality : efficacy +]
+
+- @launch_offensive
+- @prepare: No, choose a different direction.
+- @military_menu
+
+
+@southwestern_offensive
+title: Southwestern Front
+on-arrival: front = "southwestern"; enemy_front = "southwestern"; attacking = 1;
+
+The Southwestern Front is based in Galicia and Ukraine.
+
+Enemy forces: [+ southwestern_enemy_soldiers +] divisions
+
+Enemy morale: [+ southwestern_enemy_morale : efficacy +]
+
+Enemy discipline: [+ southwestern_enemy_discipline : efficacy +]
+
+Enemy supply quality: [+ southwestern_enemy_supply_quality : efficacy +]
+
+- @launch_offensive
+- @prepare: No, choose a different direction.
+- @military_menu
+
+
+@romanian_offensive
+title: Romanian Front
+on-arrival: front = "romanian"; enemy_front = "southwestern"; attacking = 1;
+
+The Romanian Front consists of the rump army of Romania, advised by Russian generals and augmented by Russian troops.
+
+Enemy forces: [+ southwestern_enemy_soldiers +] divisions
+
+Enemy morale: [+ southwestern_enemy_morale : efficacy +]
+
+Enemy discipline: [+ southwestern_enemy_discipline : efficacy +]
+
+Enemy supply quality: [+ southwestern_enemy_supply_quality : efficacy +]
+
+- @launch_offensive
+- @prepare: No, choose a different direction.
+- @military_menu
+
+
+@caucasus_offensive
+title: Caucasus Front
+on-arrival: front = "caucasus"; enemy_front = "caucasus"; attacking = 1;
+
+The Caucasus Front has made advances into Turkish Armenia. However, the terrain here is very difficult for a further offensive.
+
+Enemy forces: [+ caucasus_enemy_soldiers +] divisions
+
+Enemy morale: [+ caucasus_enemy_morale : efficacy +]
+
+Enemy discipline: [+ caucasus_enemy_discipline : efficacy +]
+
+Enemy supply quality: [+ caucasus_enemy_supply_quality : efficacy +]
+
+- @launch_offensive
+- @prepare: No, choose a different direction.
+- @military_menu
+
+
+@launch_offensive
+title: Prepare the offensive.
+
+To prepare the offensive, we should send additional supplies to the front, which might require allocating more of the railroad system to military usage.
+
+
 
 @defense
 
 Which fronts should shift to a defensive posture?
 
 @soldiers
+
+Since the Petrograd Soviet's Order No. 1, the soldiers' discipline has fallen. Should we continue democratizing the army, or restore discipline even at the cost of inciting conflict among the ranks?

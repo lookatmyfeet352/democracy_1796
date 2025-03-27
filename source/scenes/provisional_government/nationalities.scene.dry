@@ -1,0 +1,13 @@
+title: Nationalities
+new-page: true
+is-card: true
+on-arrival: nationalities_policy_timer += 4; week_actions += 1
+frequency: 50
+view-if: nationalities_policy_timer == 0 and ((player_party = "k" and k_in_prov_gov and (prime_minister_party = "Kadet" or prime_minister_party = "Independent" or prime_minister_party = "Progressive" or prime_minister_party = "Octobrist" or prime_minister_party = "Trudovik" or prime_minister_party = "Popular Socialist")) or (player_party = "sr" and sr_in_prov_gov and (prime_minister_party = "SR" or prime_minister_party = "Trudovik" or prime_minister_party = "Popular Socialist")) or (player_party = "m" and m_in_prov_gov and prime_minister_party = "Menshevik"))
+card-image: img/bund_poster.jpg
+tags: prov_gov
+
+= Nationalities
+
+The Revolution has opened a space to discuss reshaping . Minority nationalities are demanding equality or autonomy.
+

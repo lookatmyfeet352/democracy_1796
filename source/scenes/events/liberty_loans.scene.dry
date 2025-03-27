@@ -1,0 +1,29 @@
+title: Liberty Loans 
+subtitle: The war must be paid for, somehow...
+view-if: month = 3 and week = 4 and ((player_party = "m" and not m_in_prov_gov and m_in_exco) or (player_party = "b" and not b_in_prov_gov and b_in_exco) or (player_party = "sr" and not sr_in_prov_gov and sr_in_exco))
+new-page: true
+on-arrival: liberty_loan_seen += 1;
+max-visits: 1
+face-image: img/freedom_bonds.jpg
+tags: event
+
+= Liberty Loans
+
+The Provisional Government is issuing a new set of war bonds, called the "Liberty Loan", in order to finance the war and to reduce inflation by reducing the amount of currency in circulation. They are asking the Soviet to ask the workers to purchase these bonds.
+
+- @support_loan: Support the Liberty Loans.
+- @neutral_loan: The Soviet will neither endorse nor reject the loan.
+- @oppose_loan: Oppose the Liberty Loan, asking the workers to reject the loan.
+
+@support_loan
+on-arrival: budget += 2; monthly_inflation -= 0.3; defensist_strength += 5*(1-m_dissent); right_sr_strength += 5*(1-sr_dissent); internationalist_dissent += 5; left_sr_dissent += 5; 
+choose-if: player_party != "b"
+unavailable-subtitle: The Bolsheviks would never support this.
+
+Through the Soviet Executive Committee, we have supported the loans, and are asking the 
+
+@neutral_loan
+on-arrival: budget += 2; monthly_inflation -= 0.3; defensist_strength += 5*(1-m_dissent); right_sr_strength += 5*(1-sr_dissent); internationalist_dissent += 5; left_sr_dissent += 5; 
+
+@oppose_loan
+on-arrival: budget += 1; monthly_inflation -= 0.1; defensist_strength -= 5*(1-m_dissent); right_sr_strength += 5*(1-sr_dissent); internationalist_dissent += 5; left_sr_dissent += 5; 

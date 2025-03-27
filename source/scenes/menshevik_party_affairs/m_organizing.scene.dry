@@ -22,7 +22,7 @@ Social Democrats have been organizing among the working class for decades, and h
 subtitle: -1 resource
 choose-if: m_resources >= 1
 unavailable-subtitle: Not enough resources.
-on-arrival: m_resources -= 1; m_soldiers += 6*(1-m_dissent); m_soldiers -= 2 if war_weariness >= 50 and m_war_policy >= 2; m_soldiers -= 2 if war_weariness >= 60 and m_war_policy >= 1
+on-arrival: m_resources -= 1; soldiers_m += 6*(1-m_dissent); soldiers_m -= 2 if war_weariness >= 50 and m_war_policy >= 2; soldiers_m -= 2 if war_weariness >= 60 and m_war_policy >= 1
 
 We have increased our organizing among the soldiers. [? if (war_weariness >= 50 and m_war_policy >= 2) or (war_weariness >= 60 and m_war_policy >= 1): Our policy is viewed as too pro-war, and makes it harder to organize among the soldiers. ?]
 
@@ -30,7 +30,7 @@ We have increased our organizing among the soldiers. [? if (war_weariness >= 50 
 subtitle: -1 resource
 choose-if: m_resources >= 1
 unavailable-subtitle: Not enough resources.
-on-arrival: m_resources -= 1; m_workers += 5*(1-m_dissent); m_workers_org += 1
+on-arrival: m_resources -= 1; workers_m += 5*(1-m_dissent); m_workers_org += 1
 
 We have increased our organizing among the workers.
 

@@ -2,7 +2,24 @@ title: Internal Security
 new-page: true
 is-card: true
 on-arrival: internal_security_timer += 4; week_actions += 1
-view-if: internal_security_timer == 0 and ((player_party = "Kadet" and kadet_in_prov_gov and (interior_minister_party = "Kadet" or interior_minister_party = "Independent" or interior_minister_party = "Progressive" or interior_minister_party = "Octobrist" or interior_minister_party = "Trudovik" or interior_minister_party = "Popular Socialist")) or (player_party = "SR" and sr_in_prov_gov and (interior_minister_party = "SR" or interior_minister_party = "Trudovik" or interior_minister_party = "Popular Socialist")) or (player_party = "Menshevik" and m_in_prov_gov and interior_minister_party = "Menshevik"))
-card-image: img/security.jpg
+view-if: internal_security_timer == 0 and ((player_party = "Kadet" and k_in_prov_gov and (interior_minister_party = "Kadet" or interior_minister_party = "Independent" or interior_minister_party = "Progressive" or interior_minister_party = "Octobrist" or interior_minister_party = "Trudovik" or interior_minister_party = "Popular Socialist")) or (player_party = "SR" and sr_in_prov_gov and (interior_minister_party = "SR" or interior_minister_party = "Trudovik" or interior_minister_party = "Popular Socialist")) or (player_party = "Menshevik" and m_in_prov_gov and interior_minister_party = "Menshevik"))
+card-image: img/militias.jpg
 tags: prov_gov
 
+= Internal Security
+
+# options:
+# - rural gendarme
+# - local militias: increase loyalty, increase armaments, increase size
+
+Following the revolution, there have been reports of increasing crime and disorder. Inflation has driven more theft. Prisoners have been released from jails. The new militias have not yet replaced the functions of the tsarist police. And there is always the threat of counter-revolution and Black Hundredism.
+
+- @militias
+- @root: We do not need new policy.
+- @easy_discard
+- @cancel_advisor_action
+
+@militias
+title: Strengthen the city militias.
+subtitle: Replacing the old police forces, the city militias are volunteer citizen's organizations that enforce the law and maintain order.
+on-arrival: city_militia_strength += 5; city_militia_militancy += 0.02;

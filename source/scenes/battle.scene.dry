@@ -1,0 +1,24 @@
+title: Battle
+go-to: jumpScene
+on-arrival: {!
+// front, outcomes
+//Q.front is the attacking front
+//Q.attacking is either 1 or 0 - 1 is if russia is on the offensive.
+// results:
+if (Q.attacking) {
+    var attacking_soldiers = Q[front + '_front_soldiers'];
+    var defending_soldiers = Q[enemy_front + '_enemy_soldiers'];
+    var defending_morale = Q[enemy_front + '_enemy_morale'];
+    var defending_supply = Q[enemy_front + '_supply_quality'];
+    var attack_power = attacking_soldiers*Q.morale*Q.discipline*Q.supply_quality;
+    var defending_power = defending_soldiers*defending_morale*defending_morale;
+} else {
+    var attacking_soldiers = Q[enemy_front + '_enemy_soldiers'];
+    var attacking_morale = Q[enemy_front + '_enemy_morale'];
+    var attacking_supply = Q[enemy_front + '_supply_quality'];
+    var defending_soldiers = Q[front + '_front_soldiers'];
+    var attack_power = attacking_soldiers*attacking_morale*attacking_supply;
+    var defending_power = defending_soldiers*Q.morale*Q.supply_quality;
+}
+
+!}

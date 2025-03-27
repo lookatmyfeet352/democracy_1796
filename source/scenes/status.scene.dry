@@ -32,7 +32,7 @@ Constituent Assembly elections: [? if ca_election_scheduled: [+ next_election_mo
 
 Monthly inflation: [+ monthly_inflation +]% ([+ inflation +]% annually)
 
-Real income (% of 1913): [+ income +]%
+# Real income (% of 1913): [+ income +]%
 
 Unemployment: [+ unemployed +]%
 
@@ -168,13 +168,58 @@ Soviet cooperation with Provisional Government: [+ soviet_cooperation : efficacy
 
 @economy
 title: Economy
+on-arrival: {!
+Q.trains_total = Math.round(Q.train_capacity/1000);
+Q.food_total = Math.round(Q.food_production/1000);
+Q.food_sold_disp = (Q.food_sold*100).toFixed(1);
+Q.food_requisitioned_disp = (Q.food_requisitioned*100).toFixed(1);
+!}
 
-= Economy
+= Industrial Production
 
-# = Public Opinion
+Military: [+ military_industry +]%
+
+Civilian goods: [+ civilian_industry +]%
+
+Agricultural equipment: [+ agricultural_industry +]%
+
+Transportation equipment: [+ transportation_industry +]%
+
+Capital goods: [+ capital_industry +]%
+
+Total industrial production (% of 1916): [+ industry +]%
+
+= Railways
+
+Military usage: [+ military_trains +]%
+
+Civilian usage: [+ civilian_trains +]%
+
+Total transport capacity: [+ trains_total +] million tons/year
+
+= Agriculture
+
+Food production: [+ food_total +] million tons/year
+
+Food sold to cities and towns: [+ food_sold_disp +]%
+
+Food requisitioned by the military: [+ food_requisitioned_disp +]%
+
+= Finances and Debt
+
+Budget balance: [+ budget +]
+
+Long-term domestic debt: [+ domestic_debt +]
+
+Foreign debt: [+ foreign_debt +]
+
 
 @defense
 title: Defense
+
+[? if is_armistice and not is_peace: An armistice with the Central Powers has been signed. ?]
+
+[? if is_peace: An peace treaty with the Central Powers has been signed. ?]
 
 = Armies and Fronts
 
@@ -189,6 +234,12 @@ Romanian Front: [+ romanian_front_soldiers +] divisions
 Caucasus Front: [+ caucasus_front_soldiers +] divisions
 
 Garrisons and reserves: [+ reserve_soldiers +] divisions
+
+Morale: [+ morale : efficacy +]
+
+Discipline: [+ discipline : efficacy +]
+
+Supply quality: [+ supply_quality : efficacy +]
 
 = Petrograd Forces
 

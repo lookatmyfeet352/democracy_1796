@@ -1,8 +1,9 @@
 title: America Enters the War!
 subtitle: The United States has entered the Great War on the side of the Entente.
 new-page: true 
-view-if: month = 4 and us_enters_war <= n_players
+view-if: month = 4
 on-arrival: us_enters_war += 1
+max-visits-var: n_players
 tags: event 
 
 = America Enters the War!

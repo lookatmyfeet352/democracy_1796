@@ -1,0 +1,12 @@
+title: Party Disunity
+new-page: true
+view-if: m_party_disunity_timer <= 0 and m_dissent >= 0.3
+on-arrival: m_party_disunity_timer += 3; week_actions += 1
+frequency: 100
+is-card: true
+card-image: img/rsdlp_2.jpg
+tags: m_party
+
+= Party Disunity
+
+

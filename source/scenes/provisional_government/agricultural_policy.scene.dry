@@ -2,8 +2,8 @@ title: Agriculture and Land Reform
 new-page: true
 is-card: true
 on-arrival: agricultural_policy_timer += 3; week_actions += 1
-view-if: agricultural_policy_timer == 0 and ((player_party = "Kadet" and kadet_in_prov_gov and (agriculture_minister_party = "Kadet" or agriculture_minister_party = "Independent" or agriculture_minister_party = "Progressive" or agriculture_minister_party = "Octobrist" or agriculture_minister_party = "Trudovik" or agriculture_minister_party = "Popular Socialist")) or (player_party = "SR" and sr_in_prov_gov and (agriculture_minister_party = "SR" or agriculture_minister_party = "Trudovik" or agriculture_minister_party = "Popular Socialist")) or (player_party = "Menshevik" and m_in_prov_gov and agriculture_minister_party = "Menshevik"))
-card-image: img/rural.jpg
+view-if: agricultural_policy_timer == 0 and ((player_party = "k" and k_in_prov_gov and (agriculture_minister_party = "Kadet" or agriculture_minister_party = "Independent" or agriculture_minister_party = "Progressive" or agriculture_minister_party = "Octobrist" or agriculture_minister_party = "Trudovik" or agriculture_minister_party = "Popular Socialist")) or (player_party = "sr" and sr_in_prov_gov and (agriculture_minister_party = "SR" or agriculture_minister_party = "Trudovik" or agriculture_minister_party = "Popular Socialist")) or (player_party = "m" and m_in_prov_gov and agriculture_minister_party = "Menshevik"))
+card-image: img/peasant_2.jpg
 tags: prov_gov
 
 = Agricultural Policy
@@ -26,9 +26,8 @@ The peasants are hungry for land, and the workers are hungry for bread. There mu
 
 @land_reform
 title: Land Reform
-subtitle: -1 budget - Break up the large aristocratic estates and give land to landless workers.
-unavailable-subtitle: [? if budget <= 0 : Requires 1 budget. ?] [? if judicial_reform < 2 : The judiciary would never allow this. ?]
-choose-if: judicial_reform >= 2 and budget > 0
+subtitle: -1 budget - Start the land reform process by creating land committees.
+view-if: land_reform = 0
 on-arrival: budget -= 1; land_reform += 1; coalition_dissent += 1; rural_spd += 5*(1-dissent); rural_nsdap -= 4*(1-dissent); unemployed -= 1; dvp_relation -= 5; z_relation -= 4; left_strength += 8; left_dissent -= 5; rural_sol += 3; rural_policy += 1; coup_progress += 1; agriculture_goal_completed += 1;
 max-visits: 3
 

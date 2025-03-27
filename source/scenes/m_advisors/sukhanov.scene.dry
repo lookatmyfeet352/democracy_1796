@@ -10,12 +10,23 @@ new-page: true
 Nikolai Sukhanov is an independent Social Democrat who is one of the leading proponents of the internationalist position.
 
 # actions: increase internationalist strength, 
-Vladimir Voitinsky is an Menshevik recolutionary who returned from exile in Siberia. He is an academic from Petrograd who studied economics, and is close to the revolutionary defensist faction led by Tsereteli.
 
 - @plan
 - @carry_out_policy
 - @depression
 - @root: Return to main
+
+@internationalism
+title: Support Internationalism
+subtitle: Increase support for internationalism among our party.
+
+@sd_cooperation
+title: Social-Democratic Cooperation
+subtitle: Increase cooperation between the Mensheviks and Bolsheviks.
+
+@media_campaign
+title: Media Campaign
+subtitle: Use our media to campaign among the workers and soldiers.
 
 @plan
 title: Adopt the WTB-plan!

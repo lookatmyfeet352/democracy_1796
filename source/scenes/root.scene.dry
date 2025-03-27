@@ -91,7 +91,9 @@ Q.moderate_dissent = 10;
 Q.moderate_split = 0;
 Q.leninist_split = 0;
 // moderates can't split, but leninists can split to become the Communist Party.
-Q.b_war_policy = 0;
+Q.b_war_policy = 2;
+Q.b_industrial_policy = 1;
+Q.b_prov_gov_policy = 3;
 
 // menshevik internals
 Q.m_factions = ['social_patriot', 'defensist', 'internationalist'];
@@ -104,11 +106,19 @@ Q.internationalist_strength = 30;
 Q.internationalist_dissent = 35;
 Q.defensist_split = 0;
 Q.internationalist_split = 0;
-// 3 = expansionist, 2 = social patriot, 1 = revolutionary defensist, 0 = internationalist, -1 = revolutionary defeatist
+// -1 = expansionist, 0 = social patriot, 1 = revolutionary defensist, 2 = internationalist, 3 = revolutionary defeatist
+// less is more anti-war
 Q.m_war_policy = 1;
+// rural policy is actually two different things: how farming should be done (communal, private, collective, state-owned) and what should be done with large estates/state property (no change, voluntary sale, compensated seizures, uncompensated seizures)
+// agricultural policy: -1 = Stolypin privatization, 0 = voluntary privatization, 1 = communal farming, 2 = state farming, 3 = collective farming
+// land policy: -1 = no change, 0 = voluntary sales, 1 = compensated seizures, 2 = uncompensated seizures
 Q.m_rural_policy = 0;
 Q.m_nationalities_policy = 0;
-Q.m_labor_policy = 0;
+// -1 = laissez-faire, 0 = trade unions, 1 = worker supervision, 2 = syndicalism, 3 = state ownership
+// more is more left-wing
+Q.m_industrial_policy = 0;
+// -1 = liberal coalition, 0 = democratic coalition, 1 = external support, 2 = opposition, 3 = socialist coalition, 4 = armed overthrow
+Q.m_prov_gov_policy = 1;
 
 // sr internals
 Q.sr_factions = ['left_sr', 'center_sr', 'right_sr'];
@@ -120,7 +130,11 @@ Q.right_sr_strength = 50;
 Q.right_sr_dissent = 10;
 Q.left_sr_split = 0;
 Q.right_sr_split = 0;
+// policies
 Q.sr_war_policy = 1;
+Q.sr_rural_policy = 2;
+Q.sr_prov_gov_policy = 1;
+Q.sr_industrial_policy = 0;
 
 // kadet internals
 Q.k_factions = ['left_kadet', 'right_kadet'];
@@ -129,7 +143,7 @@ Q.left_kadet_dissent = 5;
 Q.right_kadet_strength = 50;
 Q.right_kadet_dissent = 5;
 // 3 = expansionist/annexationist
-Q.k_war_policy = 3;
+Q.k_war_policy = -1;
 
 
 
@@ -149,7 +163,16 @@ Q.sr_k_relation = 40;
 
 // government
 // Provisional government budget
-Q.budget = 3;
+// each budget unit is ~= 1% of national income or about 120 million 1913 rubles (or about 800 million 1917 rubles)
+Q.budget = 0;
+// debt as % of GDP - based on 1913 rubles income (table A3 of Markevich and Harrison), plus debt statistics from Table 6.4 of Gatrell Russia's First World War
+// income = 12033
+// long-term domestic debt from 1914-1916 = 7762 million rubles
+Q.domestic_debt = 65;
+// foreign debt from 1914-1916 = 5887 million rubles
+Q.foreign_debt = 49;
+
+// military are already incorporated into the budget balance (1200 million rubles/month at start, increasing with increased salaries (see table 6.4)) 
 
 
 
@@ -161,7 +184,9 @@ Q.budget = 3;
 // source for inflation number: table 2 of https://warwick.ac.uk/fac/soc/economics/staff/mharrison/public/rgwr_postprint.pdf
 // annualized from a 5.8% montly inflation rate
 Q.monthly_inflation = 5.8;
-Q.inflation = 96;
+Q.inflation = Math.pow(1+0.01*Q.monthly_inflation, 12);
+Q.inflation = Math.round(100*(Q.inflation - 1));
+
 // availability of consumer goods (out of 100 - pre-war levels)
 Q.consumer_goods = 5;
 // I can't find hard statistics on the prevalence of undernourishment; just fudging things for now
@@ -169,8 +194,6 @@ Q.consumer_goods = 5;
 // availability of food in urban areas
 // this is just fudged - Food production declined by 20% by 1917 from 1913 (as did real incomes)
 
-// hunger is the % of food consumption that isn't satisfied.
-Q.hunger = 20;
 // Income as a percent of 1913
 // source: https://warwick.ac.uk/fac/soc/economics/staff/mharrison/public/rgwr_postprint.pdf
 Q.income = 79;
@@ -184,52 +207,19 @@ Q.unemployed = 2;
 // percent allocated to military production
 Q.military_industry = 50;
 // percent allocated to civilian production
-Q.civilian_industry = 40;
+Q.civilian_industry = 45;
 // percent allocated to production of agricultural equipment, etc. (can increase food production)
 Q.agricultural_industry = 1;
 // production of train locomotives, cars, and rails
 Q.transportation_industry = 1;
 // industrial capacity allocated to industrial expansion and replacing capital depreciation (if this is below 3% of total industrial capacity, then industry declines)
 Q.capital_industry = 3;
-// total industrial production (multiple of Jan 1917)
+// only used for allocation...
+Q.unused_industry = 0;
+// industrial changes limit is the amount of production that can be retooled per week.
+Q.industrial_changes_limit = 5;
+// total industrial production (multiple of Jan 1917 - this is affected by industrial policy.)
 Q.industry = 100;
-
-// agricultural production
-// source: https://encyclopedia.1914-1918-online.net/article/food-and-nutrition-russian-empire/ Table 3
-// See also: https://warwick.ac.uk/fac/soc/economics/staff/mharrison/data/greatwar/appendix.pdf Table A22, A11
-// according to A22: 80,912,000 tons of grain in 1917, 26,000,000 tons of potatoes
-// (some of this grain is probably feed but I don't have a sense of how much...)
-// = 80 million tons = 80000 million kg of grain
-// = 26000 million kg of potatoes
-// = 106000 million kg of grain + potatoes
-// extremely unrealistic but maybe we should divide it by 12 for gameplay's sake... or divide it by 52 for even more unrealistic gameplay's sake
-// 
-// grain: 51%, potatoes: 14%, cattle, sheep/goats, pigs: 7% each
-// 86% of agriculture goes to food crops..., 51% of all agriculture is grain
-// = 134,902 million kg
-// fudge factor for feed/meat conversions lol
-Q.food_production = 115000; // in millions of kg of grain-equivalent
-// source: https://encyclopedia.1914-1918-online.net/article/food-and-nutrition-russian-empire/ - "7.4%" of grain and fodder crops reached the market
-Q.food_sold = 0.08; // fraction of food production that reaches the civilian population in the cities
-// food consumed by the military
-Q.food_requisitioned = 0.08;
-// millions of kg consumed by civilians per year (TODO)
-// population: 145,449,000 (Table A8, Column M of https://warwick.ac.uk/fac/soc/economics/staff/mharrison/data/greatwar/appendix.pdf)
-// estimate: 1 urban civilian requires 1 kg of grain-equivalent/day (ration is 1 kg of bread according to various sources) - minimal sustenance
-// round up to 500 kg/year for "demand"
-// 500 jin/year for china (see sources for Shanxi People's War)
-// 20% urbanity estimate
-// 10% military estimate
-// if 1 urban civilian requires 500 kg/year: food required is 14500 million kg
-// assume higher demands for the military (active soldiering, also bc of horses and stuff) - let's say 700 kg/year
-// These are basic demands
-Q.food_demand_urban = 14500;// in million kg/year
-Q.food_demand_rural = 50750; // million kg/year - minimal demand; lower than this would provoke famine/violence
-Q.food_demand_military = 7000; // million kg/year
-// if food demand is higher than food_production*food_sold, then there will be an urban famine/urban hunger.
-// if 
-
-// military goods production = Q.industry * Q.military_industry/100
 
 
 /////////////////////// transportation
@@ -237,6 +227,7 @@ Q.food_demand_military = 7000; // million kg/year
 // source: https://encyclopedia.1914-1918-online.net/article/railways-russian-empire/ (for the 40% of railroad capacity for military)
 // preparing for the 1917 offensive, train usage would dlikely be higher for the military
 Q.military_trains = 40;
+// civilians should be divided into industrial ,passenger, etc.
 Q.civilian_trains = 60;
 // total train capacity in 1916: 17.23 billion poods of cargo (cite: above)
 // 1 pood = 16.38 kg
@@ -252,7 +243,74 @@ Q.civilian_trains = 60;
 // I just halved the above number bc of round trips lol
 Q.train_capacity = 140000;
 
-// TODO: calculate food_distributed
+
+
+// agricultural production
+// source: https://encyclopedia.1914-1918-online.net/article/food-and-nutrition-russian-empire/ Table 3
+// See also: https://warwick.ac.uk/fac/soc/economics/staff/mharrison/data/greatwar/appendix.pdf Table A22, A11
+// according to A22: 80,912,000 tons of grain in 1917, 26,000,000 tons of potatoes
+// (some of this grain is probably feed but I don't have a sense of how much...)
+// = 80 million tons = 80000 million kg of grain
+// = 26000 million kg of potatoes
+// = 106000 million kg of grain + potatoes
+// extremely unrealistic but maybe we should divide it by 12 for gameplay's sake... or divide it by 52 for even more unrealistic gameplay's sake
+// 
+// grain: 51%, potatoes: 14%, cattle, sheep/goats, pigs: 7% each
+// 86% of agriculture goes to food crops..., 51% of all agriculture is grain
+// = 134,902 million kg
+// fudge factor for feed/meat conversions lol
+Q.food_production = 134000; // in millions of kg of grain-equivalent
+// source: https://encyclopedia.1914-1918-online.net/article/food-and-nutrition-russian-empire/ - "7.4%" of grain and fodder crops reached the market
+Q.food_sold = 0.08; // fraction of food production that reaches the civilian population in the cities
+// food consumed by the military
+Q.food_requisitioned = 0.08;
+// millions of kg consumed by civilians per year (TODO)
+// population: 145,449,000 (Table A8, Column M of https://warwick.ac.uk/fac/soc/economics/staff/mharrison/data/greatwar/appendix.pdf)
+// estimate: 1 urban civilian requires 1 kg of grain-equivalent/day (ration is 1 kg of bread according to various sources) - minimal sustenance
+// round up to 500 kg/year for "demand"
+// 500 jin/year for china (see sources for Shanxi People's War)
+// 20% urbanity estimate
+// 10% military estimate
+// if 1 urban civilian requires 500 kg/year: food required is 14500 million kg
+// assume higher demands for the military (active soldiering, also bc of horses and stuff) - let's say 700 kg/year
+Q.urban_population = 145000000*(20)/100;
+Q.rural_population = 145000000*(72)/100;
+Q.soldiers_population = 145000000*(8)/100
+// These are basic demands
+Q.food_demand_urban = Q.urban_population*500/1000000;// in million kg/year
+Q.food_demand_rural = Q.rural_population*500/1000000; // million kg/year - minimal demand; lower than this would provoke famine/violence
+Q.food_demand_military = Q.soldiers_population*700/1000000; // million kg/year
+// if food demand is higher than food_production*food_sold, then there will be an urban famine/urban hunger.
+
+// hunger is the % of food consumption that isn't satisfied.
+Q.food_supply_urban = Q.food_production*Q.food_sold;
+Q.food_transport_capacity = Q.train_capacity*Q.civilian_trains*0.15/100;
+// food transport capacity is an upper bound on food supply
+if (Q.food_supply_urban > Q.food_transport_capacity) {
+    Q.food_supply_urban = Q.food_transport_capacity;
+}
+Q.hunger = 100*(Q.food_demand_urban - Q.food_supply_urban)/Q.food_demand_urban; 
+if (Q.hunger < 0) {
+    Q.hunger = 0; 
+}
+// rural hunger
+Q.food_supply_rural = Q.food_production*(1 - Q.food_sold)*(1 - Q.food_requisitioned);
+Q.rural_hunger = 100*(Q.food_demand_rural - Q.food_supply_rural)/Q.food_demand_rural;
+if (Q.rural_hunger < 0) {
+    Q.rural_hunger = 0;
+}
+// soldier hunger
+Q.food_supply_soldier = Q.food_production*Q.food_requisitioned;
+Q.food_transport_capacity_soldier = Q.train_capacity*Q.military_trains*0.15/100;
+if (Q.food_supply_soldier > Q.food_transport_capacity_soldier) {
+    Q.food_supply_soldier = Q.food_transport_capacity_soldier;
+}
+Q.soldier_hunger = 100*(Q.food_demand_military - Q.food_supply_soldier)/Q.food_demand_military;
+if (Q.soldier_hunger < 0) {
+    Q.soldier_hunger = 0;
+}
+
+// military goods production = Q.industry * Q.military_industry/100
 
 
 ////////////////////// Provisional government
@@ -321,7 +379,7 @@ Q.soviet_chair = "Chkheidze";
 Q.soviet_chair_party = "Menshevik";
 
 // efficacy of petrograd soviet decisions
-Q.soviet_efficacy = 0.7;
+Q.soviet_efficacy = 0.5;
 
 // cooperation between the soviet and the provisional government
 Q.soviet_cooperation = 0.8;
@@ -332,29 +390,65 @@ Q.soviet_cooperation = 0.8;
 
 // approximate count (in thousands - 10 million soldiers and sailors)
 // approx. 8 million in 1917
-Q.soldiers_count = 9000;
+Q.soldiers_count = 8000;
 // Materiel supply - 50 consumed per million soldiers per week, more during operations
 // this is kinda fudge; I don't have solid numbers
 Q.materiel = 200;
-// military discipline
-Q.discipline = 0.7;
+// military discipline - used in offense
+Q.discipline = 0.5;
 // military leadership
 Q.leadership = 0.6;
-// War weariness goes up to 1 (and beyond it)
-Q.war_weariness = 0.4;
-// between 0 and 1
-Q.morale = 0.7;
+// War weariness is between 0 and 100
+Q.war_weariness = 40;
+// supply quality is based on military industry
+Q.supply_quality = 0.5;
+// morale is used in defense. between 0 and 1
+Q.morale = 0.5;
+// defensive bonus is added...
+Q.defense_bonus = 1;
 
 // The war has 5 fronts, plus a bunch of reserves
 // numbers mostly from wikipedia, with some making stuff up
 // numbers are the number of divisions
+// (also based on the number of votes in the Constituent Assembly elections)
 Q.northern_front_soldiers = 100;
 Q.western_front_soldiers = 100;
 Q.southwestern_front_soldiers = 200;
 Q.romanian_front_soldiers = 100;
-Q.caucasus_front_soldiers = 100;
+Q.caucasus_front_soldiers = 50;
 Q.reserve_soldiers = 100;
 
+// movement_capacity is the number of divisions that can be moved per action
+// This is rather arbitrary...
+Q.movement_capacity = Math.round(0.001*Q.military_trains*Q.train_capacity/100);
+Q.soldiers_moved = 0;
+
+// The opposing side
+Q.northwestern_enemy_soldiers = 60;
+Q.northwestern_enemy_morale = 0.75;
+Q.northwestern_enemy_discipline = 1;
+Q.northwestern_enemy_supply_quality = 1;
+Q.northwestern_enemy_defense_bonus = 1;
+Q.southwestern_enemy_soldiers = 80;
+Q.southwestern_enemy_morale = 0.75;
+Q.southwestern_enemy_discipline = 1;
+Q.southwestern_enemy_supply_quality = 1;
+Q.southwestern_enemy_defense_bonus = 1;
+Q.caucasus_enemy_soldiers = 50;
+Q.caucasus_enemy_morale = 0.5;
+Q.caucasus_enemy_discipline = 0.5;
+Q.caucasus_enemy_supply_quality = 0.5;
+Q.caucasus_enemy_defense_bonus = 5;
+
+// Variables for the battle
+// attacking front
+Q.front = "northern";
+Q.enemy_front = "northwestern";
+// attacking is either 1 or 0 - if Russia is on the offense.
+Q.attacking = 1;
+// are we currently in an offensive battle?
+Q.in_offensive = 0;
+Q.in_defensive = 0;
 
 // Militias
 
@@ -389,6 +483,38 @@ Q.city_militia_soviet_loyalty = 0;
 Q.city_militia_prov_gov_loyalty = 50;
 Q.city_militia_independent = 20;
 
+// rural militia...
+Q.rural_militia_strength = 0;
+Q.rural_militia_militancy = 0;
+Q.rural_militia_loyalty = 0;
+
+// loyal troops will always be loyal to the provisional government.
+Q.loyal_troops_strength = 0;
+Q.loyal_troops_militancy = 0;
+
+
+// crime and punishment
+// somewhat arbitrary number...
+Q.crime = 10;
+
+
+// Foreign relations ////////////////////////////////
+
+Q.west_relation = 60;
+Q.usa_relation = 60;
+Q.west_loan_cap = 10;
+Q.west_loans = 5;
+Q.usa_loans = 1;
+Q.usa_loan_cap = 5;
+
+// negotiations for a general peace
+Q.general_negotiations = 0;
+// negotiations for a separate peace with the Central Powers
+Q.central_negotiations = 0;
+// has an armistice been signed?
+Q.is_armistice = 0;
+// has a peace treaty been signed?
+Q.is_peace = 0;
 
 // Demographics ////////////////////////////////////
 
@@ -590,6 +716,11 @@ Q.b_soviet = 20;
 Q.m_soviet = 40;
 Q.sr_soviet = 40;
 
+// Soviet electoral bonuses
+Q.m_soviet_bonus = 1;
+Q.sr_soviet_bonus = 1;
+Q.b_soviet_bonus = 0;
+
 // Petrograd City Duma
 Q.b_petrograd = 10;
 Q.m_petrograd = 20;
@@ -597,34 +728,52 @@ Q.sr_petrograd = 20;
 
 
 // Advisors/Leaders
-Q.n_advisors = 3;
+Q.m_n_advisors = 3;
+Q.b_n_advisors = 3;
+Q.sr_n_advisors = 3;
+Q.k_n_advisors = 3;
 // timer - this decrements by 1 every turn, and is set to 5 whenever an advisor action is used, so that you can only use one advisor action every 5 months.
 // let's just put all of the timers here...
 // most party affairs and government affairs cards are on a timer.
 Q.timers = [//m_party
-            'advisor_action', 'confronting_nazis', 'crisis_program',
-            'fundraising', 'ideology',
+            'm_enemies', 'm_fundraising', 'm_ideology',
+            'm_inter_party_relationships', 'm_media',
+            'm_organizing', 'm_party_unity', 'm_shuffle_leadership',
+            'm_reunify',
+            'm_prov_gov_policy', 'm_industrial_policy',
+            'm_war_policy',
             //sr_party
-            'inter_party_relationships', 'international_relations',
-            'iron_front', 'media',
+            'sr_enemies', 'sr_fundraising', 'sr_ideology',
+            'sr_inter_party_relationships', 'sr_media',
+            'sr_organizing', 'sr_party_unity', 'sr_shuffle_leadership',
             //b_party
-            'party_organizations', 'rally', 'reichsbanner',
+            'b_enemies', 'b_fundraising', 'b_ideology',
+            'b_inter_party_relationships', 'b_media',
+            'b_organizing', 'b_party_unity', 'b_shuffle_leadership',
+            'b_reunify',
             //k_party
             'shuffle_leadership', 'streetfighting', 'peoples_party',
             // prov_gov
             'agricultural_policy', 'food_policy', 'fiscal_policy',
             'foreign_policy', 'judiciary', 'labor_affairs',
-            'military_policy',
+            'military_policy', 'education_policy',
             'internal_security', 'transportation_policy',
-            'shuffle_cabinet', 'social_welfare',
+            'industrial_policy', 'nationalities',
+            'shuffle_cabinet', 'social_policy',
             'education_policy', 'economic_policy', 'coalition_affairs',
             'womens_rights',
             // soviet
+            'food_soviet', 'labor_soviet', 'militias', 'prov_gov_relations',
+            'nationalities_soviet', 'war_soviet', 'land_soviet',
+            'organization_soviet',
             // events
-            'emergency_cuts', 'unemployment_insurance',
-            'sa_ban', 'sh_ban',
-            'kpd_policy', 'kpd_ultimatum', 'popular_front_dispute'];
+            'food_shortages', 'high_inflation',
+            'prov_gov_policies'
+            ];
 Q.advisor_action_timer = 0;
+
+Q.prov_gov_policies_timer = 3;
+Q.food_shortages_timer = 2;
 
 // constituent assembly election
 Q.election_type = "ca";

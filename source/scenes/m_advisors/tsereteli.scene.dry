@@ -1,15 +1,15 @@
-title: Nikolai Chkheidze
+title: Irakli Tsereteli
 is-pinned-card: true
 tags: advisor
-card-image: img/portraits/m/chkheidze.jpg
-view-if: chkheidze_advisor = 1 and player_party = "m"
+card-image: img/portraits/m/tsereteli.jpg
+view-if: tsereteli_advisor = 1 and player_party = "m"
 new-page: true 
 
-= Nikolai Chkheidze
+= Irakli Tsereteli
 
-Nikolai Chkheidze is a Georgian Menshevik member of the Duma, and one of the organizers of the Petrograd Soviet. He is close to the revolutionary defensist faction led by Tsereteli.
+Irakli Tsereteli is a Georgian Menshevik revolutionary who returned from Siberian exile. In exile, he developed a nuanced position on the war, calling for a negotiated end to the war without defeatism.
 
-# actions: soviet cooperation with prov gov, improve relations with soviet parties, support revolutionary defensism
+# actions: fundraising, organizing workers, inter-party relations, clear the agenda
 
 - @fundraising
 - @improve_relations
@@ -42,6 +42,4 @@ on-arrival: advisor_action_timer = 6; soviet_cooperation += 0.05; m_k_relation +
 
 We have increased cooperation between the Soviet and the Provisional Government. This also improves our relations with the Kadets.
 
-@organizing_workers
-title: Organizing Workers
-subtitle: Build up our factory organizations.
+

@@ -7,3 +7,6 @@ is-card: true
 card-image: img/red_guard_1.jpg
 
 = Workers' Militias
+
+@loyalty
+title: Increase militia cooperation with the Soviet.

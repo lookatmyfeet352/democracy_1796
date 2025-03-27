@@ -1,4 +1,6 @@
 title: Rural Policy
+choose-if: m_rural_policy_available = 1
+unavailable-subtitle: Rural policy is not a Menshevik priority.
 
 = Rural Policy
 
@@ -8,14 +10,14 @@ The Mensheviks have not had a well-defined rural or agrarian policy platform. We
 # land redistribution -> communization
 # state ownership
 
-- @privatize: Continue the Stolypin program of privatizing land, allowing for large private farms.
+- @privatize: Continue the Stolypin program of privatizing land, allowing for private farms farms to grow.
 - @voluntary: Allow peasants to choose whether to privatize land or continue communal farming.
 - @state_owned: Create large state-owned farms from large estates.
 - @redistribute: Redistribute large estates to the peasants based on how much individual households are able to farm.
 - @communes: Farming should be done communally.
 
 @privatize
-title: The poor peasants are generally opposed.
+subtitle: The poor peasants are generally opposed.
 
 @voluntary
 subtitle: This is the Kadet policy.

@@ -10,7 +10,7 @@ if (Q.advisor_action_timer <= 0) {
     Q.pinnedCardsDescription = 'Advisors - next action available in ' + Q.advisor_action_timer + ' months.';
 }
 !}
-max-cards: 3
+max-cards: 4
 
 # TODO: should this really be a new page?
 
@@ -38,7 +38,7 @@ if (Q.advisor_action_timer <= 0) {
     Q.pinnedCardsDescription = 'Advisors - next action available in ' + Q.advisor_action_timer + ' months.';
 }
 !}
-max-cards: 4
+max-cards: 5
 
 #Here, the main deck will be displayed. Clicking on the deck draws a card into your hand. Clicking on a card activates that card.
 
@@ -86,7 +86,7 @@ view-if: player_party = "k"
 @prov_gov
 title: Provisional Government
 view-if: player_party = "k" or (player_party = "m" and m_in_prov_gov) or (player_party = "SR" and sr_in_prov_gov)
-card-image: img/prov_gov.jpg
+card-image: img/prov_gov_1.jpg
 is-deck: true
 
 - #prov_gov

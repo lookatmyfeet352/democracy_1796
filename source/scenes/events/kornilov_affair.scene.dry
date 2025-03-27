@@ -1,0 +1,8 @@
+title: [+ month +] Crisis
+subtitle: The people are outraged about the Provisional Government's war policy...
+new-page: true
+view-if: (allied_demands_seen = 1 or k_is_player = 0) and (player_party = "m" or player_party = "sr") and april_days_seen = 0 and ((month = 4 and week >= 3) or month > 4)
+on-arrival: april_days_seen += 1; kornilov_affair_seen += 1
+max-visits-var: n_players
+tags: event
+

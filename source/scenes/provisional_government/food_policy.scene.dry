@@ -2,7 +2,7 @@ title: Food Policy
 new-page: true
 is-card: true
 on-arrival: food_policy_timer += 3; week_actions += 1
-view-if: food_policy_timer == 0 and ((player_party = "Kadet" and kadet_in_prov_gov and (food_minister_party = "Kadet" or food_minister_party = "Independent" or food_minister_party = "Progressive" or food_minister_party = "Octobrist" or food_minister_party = "Trudovik" or food_minister_party = "Popular Socialist")) or (player_party = "SR" and sr_in_prov_gov and (food_minister_party = "SR" or food_minister_party = "Trudovik" or food_minister_party = "Popular Socialist")) or (player_party = "Menshevik" and m_in_prov_gov and food_minister_party = "Menshevik"))
+view-if: food_policy_timer == 0 and ((player_party = "k" and k_in_prov_gov and (food_minister_party = "Kadet" or food_minister_party = "Independent" or food_minister_party = "Progressive" or food_minister_party = "Octobrist" or food_minister_party = "Trudovik" or food_minister_party = "Popular Socialist")) or (player_party = "sr" and sr_in_prov_gov and (food_minister_party = "SR" or food_minister_party = "Trudovik" or food_minister_party = "Popular Socialist")) or (player_party = "m" and m_in_prov_gov and food_minister_party = "Menshevik"))
 card-image: img/food.jpg
 tags: prov_gov
 

@@ -1,0 +1,14 @@
+title: Provisional Government Policies
+subtitle: The Provisional Government is enacting its policies...
+view-if: prov_gov_policies_timer = 0 and ((player_party = "m" and not m_in_prov_gov) or (player_party = "b" and not b_in_prov_gov) or (player_party = "sr" and not sr_in_prov_gov))
+new-page: true
+on-arrival: prov_gov_policies_timer += 4;
+tags: event
+
+# different policies for every month...
+
+# month 1: pardon for all political prisoners, state monopoly for food
+
+# month 2: constituent assembly election progress += 1
+
+# month 3: 

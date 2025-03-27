@@ -1,0 +1,10 @@
+title: Capital Flight
+subtitle: Capitalists are closing down their plants and moving assets out of the country.
+new-page: true
+view-if: capital_flight_progress >= 10 and capital_flight_timer = 0
+on-arrival: capital_flight_timer += 24; industry *= 0.8; coup_progress += 2;
+tags: event
+
+= Capital Flight
+
+Increasingly, businesses perceive that their operations will be unprofitable.

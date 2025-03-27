@@ -1,0 +1,18 @@
+title: High Inflation
+subtitle: Workers are seeing their purchasing power decline.
+view-if: inflation >= 25 and high_inflation_timer = 0
+new-page: true
+on-arrival: capital_flight_progress += 1; industry *= 0.97; high_inflation_timer = 12 if inflation >= 25; high_inflation_timer = 8 if inflation >= 50; high_inflation_timer = 4 if inflation >= 90
+tags: event
+
+= High Inflation
+
+Prices are spiralling out of control, and everyone across Russia are seeing their purchasing power decline. In response, workers are striking for better wages. [? if player_party != "b" : The strikes reduce production and might worsen inflation, while also making the bourgeoisie more nervous about their investments. ?]
+
+Is there anything we can do?
+
+# the soviet should impose a regime of price and wage controls. The soviet must play a larger role in organizing the economy, if the provisional government is unwilling.
+# impose price controls
+# immediate cuts to government disbursements and non-military expenses.
+# raise income taxes, including taxes for middle-income workers.
+# call on workers to cease striking
