@@ -123,6 +123,9 @@ if ((Q.chancellor == "Hitler" || Q.president == "Hitler") && Q.total_defeat) {
 - #endings
 - @end_game: End game.
 
+@red_october
+view-if: president = "Lenin" or president = "Trotsky" or president = "Kamenev"
+
 
 @hitler_wins
 view-if: (chancellor == "Hitler" or president == "Hitler") and (total_defeat==1 or civil_war_seen == 0)

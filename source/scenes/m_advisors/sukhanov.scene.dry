@@ -9,45 +9,47 @@ new-page: true
 
 Nikolai Sukhanov is an independent Social Democrat who is one of the leading proponents of the internationalist position.
 
-# actions: increase internationalist strength, 
+# actions: increase internationalist strength, adopt anti-war ideology
 
-- @plan
-- @carry_out_policy
-- @depression
+- @internationalism
+- @adopt_internationalism
+- @sd_cooperation
+- @media_campaign
 - @root: Return to main
+
+@adopt_internationalism
+title: Adopt Internationalism as our party policy.
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?][? if m_war_policy = 2 : We already have an internationalist war policy. ?][? if internationalist_strength < defensist_strength + social_patriot_strength: There is not enough support for this position within the party. ?]
+choose-if: advisor_action <= 0 and internationalist_strength >= defensist_strength + social_patriot_strength and m_war_policy != 2
+on-arrival: advisor_action_timer = 4; m_war_policy = 2; internationalist_strength += 5; internationalist_dissent -= 5; defensist_dissent += 15; social_patriot_dissent += 30
+
+We have adopted an internationalist position, calling for an immediate end to the war.
 
 @internationalism
 title: Support Internationalism
 subtitle: Increase support for internationalism among our party.
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?][? if m_war_policy = 2 : We already have an internationalist war policy. ?]
+choose-if: advisor_action <= 0 and m_war_policy != 2
+on-arrival: advisor_action_timer = 4; internationalist_strength += 6; internationalist_dissent -= 3; defensist_dissent += 5
+
+We are building up support for internationalism within the party, so that we may eventually adopt this position.
+
 
 @sd_cooperation
 title: Social-Democratic Cooperation
 subtitle: Increase cooperation between the Mensheviks and Bolsheviks.
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+choose-if: advisor_action <= 0
+on-arrival: advisor_action_timer = 4; m_b_relation += 5*(1-m_dissent); m_b_relation -= 3 if leninist_strength >= moderate_strength or m_war_policy <= 1 or m_prov_gov_policy <= 1; m_resources -= 1;
+
+We have attempted to build closer ties with the Bolsheviks, our wayward cousins in the RSDLP. [? if leninist_strength >= moderate_strength : The influence of Lenin makes it difficult for us to build these relationships. ?][? if m_war_policy <= 1 : Our defensist war policy makes it difficult to improve relations. ?][? if m_prov_gov_policy <= 1: Our support of the Provisional Government makes it difficult to improve relations. ?]
+
 
 @media_campaign
 title: Media Campaign
 subtitle: Use our media to campaign among the workers and soldiers.
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+choose-if: advisor_action <= 0
+on-arrival: advisor_action_timer = 4; workers_m += 4*(1-m_dissent); soldiers_m += 4*(1-m_dissent); soldiers_m -= 2 if (war_weariness >= 60 and m_war_policy <= 1);
 
-@plan
-title: Adopt the WTB-plan!
-subtitle: Convincing the rest of the party to support the WTB-plan.
-choose-if: advisor_action_timer <= 0 and wtb_adopted == 0 and wtb_support >= 3 and black_thursday_seen and (not historical_mode or ((labor_strength >= center_strength) and (labor_strength >= left_strength) and (labor_strength >= reformist_strength)))
-on-arrival: advisor_action_timer = 6;
-unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?][? if black_thursday_seen == 0 : We are not currently in an economic crisis. ?][? if wtb_adopted > 0 : We have already adopted the WTB-Plan. ?][? if wtb_support < 3 : There is not enough support for the WTB-Plan. ?][? if (labor_strength < center_strength or labor_strength < left_strength or labor_strength < reformist_strength) and historical_mode : The labor faction is not strong enough. ?]
-
-@carry_out_policy
-title: Carry out the economic plan.
-subtitle: If we are in government, we can carry out a public works program such as the WTB-Plan.
-unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?][? if wtb_adopted == 0 : We have not yet adopted an economic plan. ?][? if spd_in_government == 0 : The SPD is not in government. ?][? if works_program >= 2 : We have already started implementing the plan. ?]
-choose-if: advisor_action_timer <= 0 and wtb_adopted and spd_in_government and wtb_implemented <= 1
-on-arrival: advisor_action_timer = 6; economic_policy_timer -= 12
-
-
-@depression
-title: Addressing the economic crisis
-subtitle: Formulate a plan to get us out of the economic crisis.
-choose-if: advisor_action_timer <= 0 and wtb_adopted == 0 and black_thursday_seen == 1 and wtb_support <= 3
-unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?][? if black_thursday_seen == 0 : We are not currently in an economic crisis. ?][? if wtb_adopted > 0 : We have already adopted the WTB-Plan. ?]
-on-arrival: advisor_action_timer = 6; wtb_support += 2; center_dissent += 10; labor_strength += 1
-
-The WTB-plan, named for its primary supporters Woytinsky, Tarnow, and Baade, has been adopted as the unions' plan for getting us out of the depression. Woytinsky canvasses in favor of this policy through the SPD and the unions.
+Our propaganda campaign encourages support for the Menshevik party among the workers and soldiers.

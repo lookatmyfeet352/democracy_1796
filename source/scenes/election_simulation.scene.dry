@@ -116,7 +116,7 @@ Q.tatar_muslim_socialists = 20;
 Q.tatar_turkic_muslim_parties = 20;
 Q.other_turkic_turkic_muslim_parties = 30;
 Q.other_turkic_muslim_socialists = 20;
-Q.other_cossacks = 20;
+Q.others_cossacks = 20;
 !}
 go-to: election_algorithm
 set-jump: post_election
@@ -231,7 +231,7 @@ Q.tatar_muslim_socialists = 20;
 Q.tatar_turkic_muslim_parties = 20;
 Q.other_turkic_turkic_muslim_parties = 30;
 Q.other_turkic_muslim_socialists = 20;
-Q.other_cossacks = 20;
+Q.others_cossacks = 20;
 !}
 go-to: election_algorithm
 set-jump: post_election
@@ -476,7 +476,7 @@ Q.tatar_muslim_socialists = 20;
 Q.tatar_turkic_muslim_parties = 20;
 Q.other_turkic_turkic_muslim_parties = 30;
 Q.other_turkic_muslim_socialists = 20;
-Q.other_cossacks = 20;
+Q.others_cossacks = 20;
 !}
 go-to: election_algorithm.petrograd_soviet
 set-jump: post_election_soviet
@@ -494,36 +494,37 @@ Q.popular_socialist_r = Q.popular_socialist_assembly_votes_dec;
 Q.anarchist_r = Q.anarchist_assembly_votes_dec;
 Q.conservative_r = Q.conservative_assembly_votes_dec;
 Q.other_r = Q.other_assembly_votes_dec;
+Q.muslim_national_r = Q.musavat_assembly_votes_dec + Q.alash_assembly_votes_dec + Q.turkic_muslim_parties_assembly_votes_dec;
 // minority parties
 !}
 
 **Election results:**
 
-# 1928: 30, 1930: 25, 1932: 22
-SR: [+ sr_r +]
+SR: [+ sr_r +]%
 
-Ukrainian SRs: [+ ukrainian_sr_assembly_votes_dec +]
+Ukrainian SRs: [+ ukrainian_sr_assembly_votes_dec +]%
 
-# 1928: 15, 1930: 15, 1932: 
-Mensheviks: [+ m_r +]
+Mensheviks: [+ m_r +]%
 
-# 1928: 10, 1930: 13
-Bolsheviks: [+ b_r +]
+Bolsheviks: [+ b_r +]%
 
-# 1928: 5, 1930: 4 (as DstP)
-Kadets: [+ k_r +]
+Kadets: [+ k_r +]%
 
-# 1928: 9, 1930: 5
-Conservatives: [+ conservative_r +]
+Conservatives: [+ conservative_r +]%
 
-# 1928: 14, 1930: 7
-Popular Socialists: [+ popular_socialist_r +]
+Popular Socialists: [+ popular_socialist_r +]%
 
-# 1928: 3, 1930: 18
-Anarchists: [+ anarchist_r +]
+Cossacks: [+ cossacks_assembly_votes_dec +]%
 
-# 1928: 9, 1930: 10
-Other: [+ other_r +]
+Muslim Socialists: [+ muslim_socialists_assembly_votes_dec +]%
+
+Muslim national parties (Alash, Musavat, others): [+ muslim_national_r +]%
+
+Armenian Revolutionary Federation (Dashnaks): [+ dashnak_assembly_votes_dec +]%
+
+Jewish National List: [+ jewish_national_list_assembly_votes_dec +]%
+
+Other: [+ other_r +]%
 
 
 @post_election_soviet

@@ -8,5 +8,33 @@ card-image: img/red_guard_1.jpg
 
 = Workers' Militias
 
+During the February Revolution, the workers of Petrograd organized militias for self-defense. Now, they will listen to the Soviet for further direction.
+
+# should this use party resources?
+
+- @loyalty
+- @root: No action is needed.
+- @easy_discard
+- @cancel_advisor_action
+
 @loyalty
 title: Increase militia cooperation with the Soviet.
+on-arrival: workers_militia_m += 0.05
+
+# TODO: max recruitment depends on support
+
+@recruitment
+title: Recruit more workers into the militias.
+choose-if: workers_militia_strength <= 80 
+unavailable-subtitle: There are not enough willing workers to recruit.
+on-arrival: workers_militia_strength += 5;
+
+@arming
+title: Increase armaments for the militias.
+choose-if: workers_militia_militancy < 0.7 and ((player_party = "m" and m_resources >= 1) or (player_party = "sr" and sr_resources >= 1) or (player_party = "b" and b_resources >= 1))
+unavailable-subtitle: [? if ((player_party = "m" and m_resources >= 1) or (player_party = "sr" and sr_resources >= 1) or (player_party = "b" and b_resources >= 1)): We do not have enough resources. ?]
+on-arrival: workers_militia_militancy += 0.05; sr_resources -= 1 if player_party = "sr"; b_resources -= 1 if player_party = "b"; m_resources -= 1 if player_party = "m";
+
+We have spent resources on purchasing more armaments for the workers' militias.
+
+

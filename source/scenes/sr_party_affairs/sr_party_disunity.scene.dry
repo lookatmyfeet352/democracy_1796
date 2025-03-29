@@ -1,0 +1,57 @@
+title: Party Disunity
+new-page: true
+view-if: sr_party_disunity_timer <= 0 and (sr_dissent >= 0.3 or ((internationalist_dissent > 30 and not internationalist_split) or (defensist_dissent > 30 and not defensist_split)))
+on-arrival: sr_party_disunity_timer += 3; week_actions += 1
+frequency: 200
+is-card: true
+card-image: img/rsdlp_2.jpg
+tags: sr_party
+
+= Party Disunity
+
+The Menshevik party is being torn apart by internal dissent. Upset at the leadership and general direction of the party, factions are openly discussing splitting or purging rivals. This hampers the effectiveness of all of our policies.
+
+[? if internationalist_dissent > 30 : The Internationalists are upset at the direction of the party, arguing that it is too right-wing and pro-war, and too cozy with the liberals. ?]
+
+[? if defensist_dissent > 30 : The Revolutionary Defensists are upset at the direction of the party, arguing that it is too radical. ?]
+
+[? if social_patriot_dissent > 30 : The Social Patriots are upset that we are insufficiently supportive of the war. ?]
+
+- @party_discipline
+- @do_nothing
+
+@party_discipline
+title: Enforce party discipline.
+on-arrival: internationalist_dissent -= 5; defensist_dissent -= 5; social_patriot_dissent -= 5; workers_sr -= 4; soldiers_sr -= 4
+
+Enforcing party discipline reduces dissent, but it leads to demoralization among our base.
+
+@concessions_internationalists
+title: Give concessions to the Internationalists.
+view-if: internationalist_dissent > 30
+
+@concessions_defensists
+title: Give concessions to the Defensists.
+view-if: defensist_dissent > 30
+
+@expel_internationalists
+title: Expel the Internationalists.
+view-if: internationalist_dissent > 30
+choose-if: internationalist_strength <= defensist_strength
+unavailable-subtitle: The Internationalists are too strong.
+on-arrival: internationalist_split = 1;
+
+@expel_defensists
+title: Expel the Defensists.
+view-if: defensist_dissent > 30
+choose-if: defensist_strength <= internationalist_strength
+unavailable-subtitle: The Defensists are too strong.
+on-arrival: defensist_split = 1;
+
+We have expelled most of the dissenting Defensists and Social-Patriot! They respond by forming their own "Menshevik-Defensist" party. This costs us a great deal of support, and tanks our relations with the Kadets.
+
+
+@do_nothing
+title: Let the factions argue with themselves.
+
+Let the factions bicker; perhaps dissent is healthy for the party.

@@ -2,7 +2,7 @@ title: High Inflation
 subtitle: Workers are seeing their purchasing power decline.
 view-if: inflation >= 25 and high_inflation_timer = 0
 new-page: true
-on-arrival: capital_flight_progress += 1; industry *= 0.97; high_inflation_timer = 12 if inflation >= 25; high_inflation_timer = 8 if inflation >= 50; high_inflation_timer = 4 if inflation >= 90
+on-arrival: capital_flight_progress += 1; industry *= 0.99; high_inflation_timer = 12 if inflation >= 25; high_inflation_timer = 8 if inflation >= 50; high_inflation_timer = 4 if inflation >= 90; prov_gov_legitimacy -= 3;
 tags: event
 
 = High Inflation

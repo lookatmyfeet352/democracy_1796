@@ -1,0 +1,67 @@
+title: Land Seizures
+subtitle: Peasants are taking land reform into their own hands.
+new-page: true
+view-if: land_seizures_timer = 0 and ((land_reform = 0) or (land_reform <= 2 and rural_militia_strength <= 20))
+on-arrival: land_seizures_timer += 6; food_production *= 0.95; peasants_conservative -= 6; peasants_popular_socialist -= 6;
+tags: event
+
+= Land Seizures
+
+Peasants have been energized by the revolution. Heeding the longstanding Socialist-Revolutionary calls for land redistribution, peasants have been seizing the lands of nobles and rich landowners. [? if land_reform = 0 : These are lawless acts, and there have been reports of violence - peasant mobs burning the estates of nobles. ?][? if land_reform <= 2: Despite our land reform policies, the peasants do not feel that we are moving fast enough. Peasants demand more land, more quickly. ?][? if rural_militia_strength = 0 : This is exacerbated by the lack of rural law enforcement - the old tsarist gendarmes have been largely disbanded. ?]
+
+What should we do?
+
+- @initiate
+- @continue
+- @suppress
+- @suppress_2
+- @nothing
+
+# if in control of agricultural ministry 
+
+@initiate
+title: Initiate a program of land reform to meet peasant demands.
+subtitle: -1 budget
+view-if: land_reform = 0 and ((player_party = "m" and agriculture_minister_party = "Menshevik") or (player_party = "k" and agriculture_minister_party = "Kadet") or (player_party = "sr" and agriculture_minister_party = "SR"))
+on-arrival: land_reform += 1; budget -= 1; land_seizures_timer += 4; peasants_sr += 5*(1-sr_dissent) + sr_rural_org if player_party = "sr"; peasants_k += 2 if player_party = "k";
+
+In response to the unauthorized seizures, we have formed land committees to regulate the process of redistribution and expropriation, in some cases compensating former landowners for the seized land.
+
+@continue
+title: Continue the land reform program to meet peasant demands.
+subtitle: -1 budget
+view-if: land_reform >= 1 and ((player_party = "m" and agriculture_minister_party = "Menshevik") or (player_party = "k" and (agriculture_minister_party = "Kadet" or agriculture_minister_party = "Popular Socialist")) or (player_party = "sr" and (agriculture_minister_party = "SR" or agriculture_minister_party = "Popular Socialist")))
+on-arrival: land_reform += 1; budget -= 1; peasants_sr += 5*(1-sr_dissent) + sr_rural_org if player_party = "sr"; peasants_k += 2 if player_party = "k"; land_seizures_timer += 6;
+
+In response to the unauthorized seizures, we have continued to support the land committees and their regularization of the process of land redistribution.
+
+@support
+title: Support the peasants' struggle!
+subtitle: This is more propaganda support than practical support.
+unavailable-subtitle: [? if player_party = "k": The Kadets will never support this anarchy. ?][? if player_party = "m": The Mensheviks do not have a rural policy yet. ?]
+choose-if: (player_party = "m" and m_land_policy > 1) or (player_party = "b") or (player_party = "sr")
+on-arrival: peasants_b += 5 if player_party = "b"; peasants_sr += 5*(1-sr_dissent) + sr_rural_org if player_party = "sr"; food_production *= 0.99;
+
+[? if player_party = "sr": Our rural organizations are supporting the peasants in their struggle. This raises the status of the SRs among the peasants. ?]
+[? if player_party = "b": Our support for the peasants raises our status in the villages, perhaps finally giving the Bolsheviks a foothold in the countryside. ?]
+
+@suppress
+title: This is too much! The peasants must stop.
+subtitle: [? if player_party = "m" and not m_in_prov_gov: There is nothing we can do, practically, besides publish articles against the peasants. ?]
+on-arrival: peasants_m -= 2 if player_party = "m"; peasants_b -= 2 if player_party = "b"; peasants_sr -= 2 if player_party = "sr"; peasants_k -= 2 if player_party = "k"
+
+We have publicly criticized the peasants for their actions. What more can we do?
+
+@suppress_2
+title: Call the militia to suppress the peasants.
+choose-if: rural_militia_strength >= 10
+view-if: ((player_party = "m" and interior_minister_party = "Menshevik") or (player_party = "k" and (interior_minister_party = "Kadet" or interior_minister_party = "Popular Socialist")) or (player_party = "sr" and (interior_minister_party = "SR" or interior_minister_party = "Popular Socialist")))
+unavailable-subtitle: We do not have a strong enough rural militia.
+on-arrival: peasants_m -= 5 if player_party = "m"; peasants_sr -= 5 if player_party = "sr"; peasants_k -= 5 if player_party = "k"; food_production *= 1.01; land_seizuers_timer += 4;
+
+We have called the newfound rural militia to restore order to the countryside, stopping the land seizures.
+
+@nothing
+title: There is nothing we can do.
+
+There is nothing we can do. For now, the peasants' fate is out of our hands.

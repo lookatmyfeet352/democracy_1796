@@ -1,0 +1,62 @@
+title: Media and Propaganda
+new-page: true
+view-if: k_media_timer <= 0
+on-arrival: k_media_timer += 4; week_actions += 1
+frequency: 100
+is-card: true
+card-image: img/newspapers.jpg
+tags: k_party
+
+= Media and Propaganda
+
+What should be our strategy for our newspapers and party organs?
+
+# media strategies: support prov gov, support soviet policies, support Menshevik campaigning, support revolutionary defensism
+
+- @support_prov_gov
+- @support_m
+- @support_rd
+- @support_id
+- @root: We do not need more propaganda.
+- @easy_discard
+- @cancel_advisor_action
+
+@support_prov_gov
+title: Support the Provisional Government.
+subtitle: -1 resource
+choose-if: k_resources >= 1
+on-arrival: k_k_relation += 6*(1-k_dissent); soviet_cooperation += 0.04*(1-k_dissent);
+
+Our propaganda campaign is aimed at supporting the Provisional Government and Soviet cooperation with the Provisional Government. This raises our relations with the Kadets.
+
+@support_m
+title: Support the Menshevik party.
+subtitle: -1 resource
+choose-if: k_resources >= 1
+on-arrival: workers_m += 4*(1-k_dissent); soldiers_m += 4*(1-k_dissent); soldiers_m -= 2 if (war_weariness >= 60 and k_war_policy <= 1);
+
+Our propaganda campaign encourages support for the Menshevik party among the workers and soldiers.
+
+@support_rd
+title: Support the ideology of revolutionary defensism - defending a defensive war effort as necessary for peace.
+subtitle: -1 resource
+choose-if: k_resources >= 1
+on-arrival: defensist_strength += 6*(1-k_dissent); 
+
+Our newspapers print editorials in support of revolutionary defensism, arguing that a defensive war is necessary for a peace without annexations and indemnities.
+
+@support_id
+title: Support the ideology of internationalism - support immediate negotiations for a peace.
+subtitle: -1 resource
+choose-if: k_resources >= 1
+on-arrival: internationalist_strength += 6*(1-k_dissent); internationalist_dissent -= 5*(1-k_dissent); social_patriot_dissent += 5; defensist_dissent += 4; soldiers_m += 3*(1-k_dissent);
+
+Our newspapers print editorials in support of internationalism, arguing that an immediate peace is necessary. This bolsters the Internationalist faction within the party while upsetting the defensists, and raises our standing with the soldiers.
+
+@support_pat
+title: Support the war effort from a social-patriot standpoint.
+subtitle: -1 resource
+choose-if: k_resources >= 1
+on-arrival: social_patriot_strength += 6*(1-k_dissent); social_patriot_dissent -= 5*(1-k_dissent); internationalist_dissent += 5; war_weariness -= 3*(1-k_dissent); 
+
+Our newspapers print editorials in support of the war effort, without any of the revolutionary defensist conditions. This bolsters the Social Patriot faction.

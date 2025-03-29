@@ -192,12 +192,12 @@ if (Q.week_actions >= 1 && Q.current_player >= Q.n_players) {
     // agricultural industry effects on food acquisition
     if (Q.agricultural_industry_production >= 5) {
         Q.food_production *= 1.001;
-        if (Q.food_sold < 0.07 + (Q.agricultural_industry_production - 2)/100 && Q.rural_hunger <= 0) {
-            Q.food_sold += 0.01;
+        if (Q.food_sold < 0.07 + (Q.agricultural_industry_production - 1)/100 && Q.rural_hunger <= 0) {
+            Q.food_sold += 0.003;
         }
     } else {
-        if (Q.food_sold > 0.07 + (Q.agricultural_industry_production - 2)/100) {
-            Q.food_sold -= 0.01;
+        if (Q.food_sold > 0.07 + (Q.agricultural_industry_production - 1)/100) {
+            Q.food_sold -= 0.003;
         }
     }
     if (Q.rural_hunger > 0) {
@@ -246,7 +246,7 @@ if (Q.week_actions >= 1 && Q.current_player >= Q.n_players) {
         Q.train_capacity *= 1.001;
     }
     // Effects of hunger and war exhaustion on party support
-    if (Q.hunger >= 10 && Q.war_weariness >= 60) {
+    if (Q.hunger >= 10 && (Q.war_weariness >= 60 || Q.monthly_inflation >= 6.5)) {
         Q.workers_b += 0.1;
         Q.soldiers_b += 0.1;
         if (Q.m_in_prov_gov) {
@@ -258,7 +258,7 @@ if (Q.week_actions >= 1 && Q.current_player >= Q.n_players) {
             Q.soldiers_sr -= 0.2;
         }
     }
-    if (Q.hunger >= 20 && Q.war_weariness >= 50) {
+    if (Q.hunger >= 20 && (Q.war_weariness >= 50 || Q.monthly_inflation >= 5.5)) {
         Q.workers_b += 0.1;
         Q.soldiers_b += 0.1;
         if (Q.m_in_prov_gov) {
@@ -270,7 +270,8 @@ if (Q.week_actions >= 1 && Q.current_player >= Q.n_players) {
             Q.soldiers_sr -= 0.2;
         }
     }
-    if (Q.hunger >= 30 && Q.war_weariness >= 40) {
+    if (Q.hunger >= 30 && (Q.war_weariness >= 40 || Q.monthly_inflation >= 5)) {
+        Q.prov_gov_legitimacy -= 1;
         Q.workers_b += 0.1;
         Q.soldiers_b += 0.1;
         if (Q.b_in_prov_gov) {
@@ -289,7 +290,8 @@ if (Q.week_actions >= 1 && Q.current_player >= Q.n_players) {
             Q.soldiers_sr -= 0.2;
         }
     }
-    if (Q.hunger >= 40 && Q.war_weariness >= 30) {
+    if (Q.hunger >= 40 && (Q.war_weariness >= 30 || Q.monthly_inflation >= 4)) {
+        Q.prov_gov_legitimacy -= 1;
         Q.workers_b += 0.1;
         Q.soldiers_b += 0.1;
         if (Q.b_in_prov_gov) {
@@ -308,6 +310,7 @@ if (Q.week_actions >= 1 && Q.current_player >= Q.n_players) {
         }
     }
     if (Q.hunger >= 50) {
+        Q.prov_gov_legitimacy -= 1;
         Q.workers_b += 0.1;
         Q.soldiers_b += 0.1;
         if (Q.b_in_prov_gov) {
@@ -348,7 +351,7 @@ if (Q.week_actions >= 1 && Q.current_player >= Q.n_players) {
     if (Q.soldiers_k_normalized < Q.garrison_k_loyalty) {
         Q.garrison_k_loyalty -= 1;
     }
-    // War exhaustion changes
+    // War exhaustion changes - increase by 1 every week
     if (!Q.is_armistice && !Q.is_peace && Q.month >= 4) {
         Q.war_exhaustion += 1;
     }

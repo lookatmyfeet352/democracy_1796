@@ -1,24 +1,55 @@
-title: [+ month +] Crisis
+title: [+ month : month +] Crisis
 subtitle: The people are outraged about the Provisional Government's war policy...
 new-page: true
-view-if: (allied_demands_seen = 1 or k_is_player = 0) and (player_party = "m" or player_party = "sr") and april_days_seen = 0 and ((month = 4 and week >= 3) or month > 4)
+view-if: (allied_demands_seen = 1 or k_is_player = 0) and april_days_seen = 0 and ((month = 4 and week >= 3) or month > 4)
 on-arrival: april_days_seen += 1
 max-visits-var: n_players
 face-image: womens_day.jpg
 tags: event
+go-to: april_days_k if player_party = "k"; april_days_m if player_party = "m"; april_days_sr if player_party = "sr"; april_days_b if player_party = "b"
 
-= [+ month +] Crisis
+= [+ month : month +] Crisis
 
-Mass protests in Petrograd! News has spread of Foreign Minister Milyukov's secret letter to the Allies assuring them of the redoubling of our war effort. This has radicalized the workers and the soldiers of the Petrograd garrison. rising anti-war sentiment has caused
+Mass protests in Petrograd! News has spread of Foreign Minister Milyukov's secret letter to the Allies assuring them of the redoubling of our war effort. This has radicalized the workers and the soldiers of the Petrograd garrison, and now they are marching against the imperialist war, and are demanding the ouster of Milyukov.
 
 @april_days_m
+go-to: enter_govt if m_k_relation >= 40; tensions if m_k_relation < 40
 
 @april_days_sr
+go-to: enter_govt if sr_k_relation >= 40; tensions if sr_k_relation < 40
 
-# Mensheviks always go first in Petrograd Soviet reactions.
+@enter_govt
+
+The Kadets in the Provisional Government are ready to be rid of Milyukov and allow more socialists to join the government, if it would ease the tensions with the workers and soldiers.
+
+- @join_govt_m: Yes, we will join the Provisional Government!
+- @join_govt_sr: Yes, we will join the Provisional Government!
+- @no_join_govt_m: No, we will not join the government.
+- @no_join_govt_sr: No, we will not join the government.
+
+@join_govt_m
+on-arrival: cabinet_points = m_k_relation;
+
+# TODO: event to join cabinet
+
+
+@join_govt_sr
+on-arrival: cabinet_points = sr_k_relation;
+
+@no_join_govt_m
+
+@no_join_govt_sr
+
+
+
+@tensions
+on-arrival: soviet_cooperation *= 0.9; prov_gov_legitimacy -= 8; left_sr_strength += 5; internationalist_strength += 5
+
+Despite the demands of the streets, the Provisional Government will not budge from its course.
+
 
 @april_days_k
 
-Some in the Kadets
+Some in the Kadets are ready to be rid of Milyukov, if it would ease the tension with the socialists.
 
 @april_days_b

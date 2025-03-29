@@ -29,7 +29,7 @@ on-arrival: inflation += 0.1; capital_strike_progress += 2; workers_m += 5*(1-m_
 
 @takeover
 title: Support workers' councils seizing control over factories.
-choose-if: (player_party = "m" and m_internationalist_strength > m_defensist_strength)
+choose-if: (player_party = "m" and m_internationalist_strength > m_defensist_strength and m_industrial_policy >= 2) or (player_party = "sr" and left_sr_strength >= right_sr_strength)
 
 @back_to_work
 title: Call for striking workers to go back to work.

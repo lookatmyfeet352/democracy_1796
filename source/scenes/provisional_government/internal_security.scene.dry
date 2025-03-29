@@ -23,3 +23,12 @@ Following the revolution, there have been reports of increasing crime and disord
 title: Strengthen the city militias.
 subtitle: Replacing the old police forces, the city militias are volunteer citizen's organizations that enforce the law and maintain order.
 on-arrival: city_militia_strength += 5; city_militia_militancy += 0.02;
+
+We have strengthened the city militias.
+
+@rural_militias
+title: Form rural militias.
+subtitle: We need to maintain order in the countryside.
+on-arrival: rural_militia_strength += 10; rural_militia_militancy = 0.5 if rural_militia_militancy = 0;
+
+We have formed a new body of rural militias to maintain order in the countryside.

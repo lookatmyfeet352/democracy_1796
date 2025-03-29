@@ -5,5 +5,36 @@ on-arrival: transport_policy_timer += 3; week_actions += 1
 view-if: transport_policy_timer == 0 and ((player_party = "k" and k_in_prov_gov and (transport_minister_party = "Kadet" or transport_minister_party = "Independent" or transport_minister_party = "Progressive" or transport_minister_party = "Octobrist" or transport_minister_party = "Trudovik" or transport_minister_party = "Popular Socialist")) or (player_party = "sr" and sr_in_prov_gov and (transport_minister_party = "SR" or transport_minister_party = "Trudovik" or transport_minister_party = "Popular Socialist")) or (player_party = "m" and m_in_prov_gov and transport_minister_party = "Menshevik"))
 card-image: img/train.jpg
 tags: prov_gov
+go-to: transport_menu
 
 = Transportation Policy
+
+Due to the war, the government has acquired a great deal of power over the railroads. What should our transportation policy be?
+
+@transport_menu
+
+Current allocation:
+
+- @allocate_military
+- @allocate_civilian
+- @prioritize_food
+- @prioritize_industry
+- @rail_labor
+- @root: No action needs to be taken.
+- @easy_discard
+- @cancel_advisor_action
+
+@allocate_military
+title: Allocate more rail capacity for the military.
+
+@allocate_civilian
+title: Allocate more rail capacity for civilian uses.
+
+@prioritize_food
+title: Prioritize civilian rail capacity for food.
+
+@prioritize_industry
+title: Prioritize civilian rail capacity for industry.
+
+@rail_labor
+title: Work with the railworkers' union to improve wages and working conditions.
