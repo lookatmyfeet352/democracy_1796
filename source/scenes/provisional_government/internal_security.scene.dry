@@ -15,6 +15,7 @@ tags: prov_gov
 Following the revolution, there have been reports of increasing crime and disorder. Inflation has driven more theft. Prisoners have been released from jails. The new militias have not yet replaced the functions of the tsarist police. And there is always the threat of counter-revolution and Black Hundredism.
 
 - @militias
+- @rural_militias
 - @root: We do not need new policy.
 - @easy_discard
 - @cancel_advisor_action
@@ -22,13 +23,37 @@ Following the revolution, there have been reports of increasing crime and disord
 @militias
 title: Strengthen the city militias.
 subtitle: Replacing the old police forces, the city militias are volunteer citizen's organizations that enforce the law and maintain order.
-on-arrival: city_militia_strength += 5; city_militia_militancy += 0.02;
+view-if: city_militias = 0
+on-arrival: city_militia_strength += 5; city_militia_militancy += 0.02; city_militias += 1
 
 We have strengthened the city militias.
 
+@recruit_militias
+title: Strengthen the city militias.
+subtitle: -= budget
+view-if: city_militias >= 1
+
+@militia_efficacy
+title: Improve the effectiveness and loyalty of the city militias.
+
+
+
 @rural_militias
 title: Form rural militias.
-subtitle: We need to maintain order in the countryside.
-on-arrival: rural_militia_strength += 10; rural_militia_militancy = 0.5 if rural_militia_militancy = 0;
+subtitle: We need to maintain order in the countryside. -1 budget
+on-arrival: rural_militia_strength += 10; rural_militia_militancy = 0.5 if rural_militia_militancy = 0; budget -= 1
 
 We have formed a new body of rural militias to maintain order in the countryside.
+
+@rural_militias_2
+title: Continue building up our rural militias.
+subtitle: We need to maintain order in the countryside. -1 budget
+on-arrival: rural_militia_strength += 10; rural_militia_militancy = 0.5 if rural_militia_militancy = 0; budget -= 1
+
+We have formed a new body of rural militias to maintain order in the countryside.
+
+
+
+@anti_crime
+title: Use the militias to combat crime.
+on-arrival: 

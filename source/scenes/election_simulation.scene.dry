@@ -398,15 +398,15 @@ Q.minority_parties = ['ukrainian_sr', 'alash', 'musavat', 'dashnak', 'jewish_soc
 
 // Support for party by social group
 // they don't have to sum to 100 since the electoral calculations will be normalized.
-Q.workers_b = 10;
-Q.workers_m = 50;
+Q.workers_b = 50;
+Q.workers_m = 10;
 Q.workers_sr = 30;
-Q.workers_k = 5;
-Q.workers_conservative = 2;
-Q.workers_popular_socialist = 5;
+Q.workers_k = 0;
+Q.workers_conservative = 0;
+Q.workers_popular_socialist = 0;
 Q.workers_anarchist = 5;
 Q.workers_other = 5;
-Q.workers_none = 10;
+Q.workers_none = 20;
 
 Q.middle_b = 5;
 Q.middle_m = 10;
@@ -438,15 +438,15 @@ Q.underclass_anarchist = 15;
 Q.underclass_other = 5;
 Q.underclass_none = 30;
 
-Q.soldiers_b = 10;
-Q.soldiers_m = 20;
-Q.soldiers_sr = 40;
-Q.soldiers_k = 5;
-Q.soldiers_conservative = 2;
-Q.soldiers_popular_socialist = 5;
+Q.soldiers_b = 50;
+Q.soldiers_m = 10;
+Q.soldiers_sr = 20;
+Q.soldiers_k = 0;
+Q.soldiers_conservative = 0;
+Q.soldiers_popular_socialist = 2;
 Q.soldiers_anarchist = 6;
 Q.soldiers_other = 10;
-Q.soldiers_none = 10;
+Q.soldiers_none = 20;
 
 Q.elites_b = 0;
 Q.elites_m = 2;
@@ -537,7 +537,7 @@ Q.sr_r = Q.sr_soviet_votes_dec;
 Q.popular_socialist_r = Q.popular_socialist_soviet_votes_dec;
 Q.anarchist_r = Q.anarchist_soviet_votes_dec;
 Q.conservative_r = Q.conservative_soviet_votes_dec;
-Q.other_r = Q.other_soviet_votes_dec;
+Q.other_r = Q.other_soviet_votes_dec + Q.k_soviet_votes_dec + Q.conservative_soviet_votes_dec;
 // minority parties
 !}
 
@@ -549,12 +549,8 @@ Mensheviks: [+ m_r +]
 
 Bolsheviks: [+ b_r +]
 
-Kadets: [+ k_r +]
-
 Popular Socialists: [+ popular_socialist_r +]
 
 Anarchists: [+ anarchist_r +]
 
 Other: [+ other_r +]
-
-

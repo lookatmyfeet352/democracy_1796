@@ -121,6 +121,14 @@ switch (Q.player_party) {
 [? if player_party == "sr": Left-SR ?]
 [? if player_party == "sr": dissent: [+ left_sr_dissent : dissent +], strength: [+ left_sr_strength : strength_2 +]?]
 
+= [+ player_party_name +] Party Positions
+
+Provisional Government policy: [? if player_party = "m": [+ m_prov_gov_policy : prov_gov_policy +]?][? if player_party = "sr": [+ sr_prov_gov_policy : prov_gov_policy +]?][? if player_party = "k": [+ k_prov_gov_policy : prov_gov_policy +]?][? if player_party = "b": [+ b_prov_gov_policy : prov_gov_policy +]?]
+
+Labor policy: [? if player_party = "m": [+ m_industrial_policy : industrial_policy +]?][? if player_party = "sr": [+ sr_industrial_policy : industrial_policy +]?][? if player_party = "k": [+ k_industrial_policy : industrial_policy +]?][? if player_party = "b": [+ b_industrial_policy : industrial_policy +]?]
+
+War policy: [? if player_party = "m": [+ m_war_policy : war_policy +]?][? if player_party = "sr": [+ sr_war_policy : war_policy +]?][? if player_party = "k": [+ k_war_policy : war_policy +]?][? if player_party = "b": [+ b_war_policy : war_policy +]?]
+
 @gov
 title: Government
 

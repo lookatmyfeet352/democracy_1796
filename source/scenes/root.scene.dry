@@ -153,6 +153,8 @@ Q.right_kadet_strength = 50;
 Q.right_kadet_dissent = 5;
 // 3 = expansionist/annexationist
 Q.k_war_policy = -1;
+Q.k_industrial_policy = -1;
+Q.k_prov_gov_policy = -1;
 
 
 
@@ -180,6 +182,8 @@ Q.budget = 0;
 Q.domestic_debt = 65;
 // foreign debt from 1914-1916 = 5887 million rubles
 Q.foreign_debt = 49;
+// how much bonding capacity is left...
+Q.bonding_capacity = 4;
 
 // military are already incorporated into the budget balance (1200 million rubles/month at start, increasing with increased salaries (see table 6.4)) 
 
@@ -197,6 +201,7 @@ Q.inflation = Math.pow(1+0.01*Q.monthly_inflation, 12);
 Q.inflation = Math.round(100*(Q.inflation - 1));
 
 // availability of consumer goods (out of 100 - pre-war levels)
+// TODO: this is currently unused
 Q.consumer_goods = 5;
 // I can't find hard statistics on the prevalence of undernourishment; just fudging things for now
 // source: https://encyclopedia.1914-1918-online.net/article/food-and-nutrition-russian-empire/
@@ -444,12 +449,12 @@ Q.northwestern_enemy_soldiers = 60;
 Q.northwestern_enemy_morale = 0.75;
 Q.northwestern_enemy_discipline = 0.9;
 Q.northwestern_enemy_supply_quality = 0.9;
-Q.northwestern_enemy_defense_bonus = 1;
+Q.northwestern_enemy_defense_bonus = 0.1;
 Q.southwestern_enemy_soldiers = 80;
 Q.southwestern_enemy_morale = 0.75;
 Q.southwestern_enemy_discipline = 0.9;
 Q.southwestern_enemy_supply_quality = 0.9;
-Q.southwestern_enemy_defense_bonus = 1;
+Q.southwestern_enemy_defense_bonus = 0.1;
 Q.caucasus_enemy_soldiers = 50;
 Q.caucasus_enemy_morale = 0.5;
 Q.caucasus_enemy_discipline = 0.5;
@@ -784,7 +789,7 @@ Q.timers = [//m_party
             'industrial_policy', 'nationalities',
             'shuffle_cabinet', 'social_policy',
             'education_policy', 'economic_policy', 'coalition_affairs',
-            'womens_rights',
+            'womens_rights', 'offensive',
             // soviet
             'food_soviet', 'labor_soviet', 'militias', 'prov_gov_relations',
             'nationalities_soviet', 'war_soviet', 'land_soviet',
@@ -803,11 +808,13 @@ Q.land_seizures_timer = 4;
 
 // constituent assembly election
 Q.election_type = "ca";
-Q.ca_election_progress = 0;
-Q.ca_election_scheduled = 0;
+Q.ca_progress = 0;
+Q.ca_scheduled = 0;
 Q.next_election_year = 1918;
 Q.next_election_month = 12;
+Q.next_election_week = 0;
 Q.next_election_time = 100;
+Q.time_to_election = 100;
 
 
 // menshevik advisors

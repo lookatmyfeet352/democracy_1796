@@ -1,0 +1,4 @@
+title: Bolshevik Coup
+view-if: player_party != "b"
+
+# TODO:

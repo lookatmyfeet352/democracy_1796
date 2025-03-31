@@ -3,7 +3,7 @@ new-page: true
 is-card: true
 on-arrival: food_policy_timer += 3; week_actions += 1
 view-if: food_policy_timer == 0 and ((player_party = "k" and k_in_prov_gov and (food_minister_party = "Kadet" or food_minister_party = "Independent" or food_minister_party = "Progressive" or food_minister_party = "Octobrist" or food_minister_party = "Trudovik" or food_minister_party = "Popular Socialist")) or (player_party = "sr" and sr_in_prov_gov and (food_minister_party = "SR" or food_minister_party = "Trudovik" or food_minister_party = "Popular Socialist")) or (player_party = "m" and m_in_prov_gov and food_minister_party = "Menshevik"))
-card-image: img/food.jpg
+card-image: img/market.jpg
 tags: prov_gov
 
 = Food Policy
@@ -11,3 +11,36 @@ tags: prov_gov
 # state buyer
 # rationing - impose rationing, reduce rations, increase rations
 # impose food taxes in kind
+
+The revolution occurred because of the shortages of bread, and the people are desperately demanding relief for their hunger.
+
+- @state_buyer
+- @increase_price
+- @root: No action is needed.
+- @easy_discard
+- @cancel_advisor_action
+
+@state_buyer
+title: Create a state monopoly for grain purchasing.
+subtitle: -2 budget
+on-arrival: budget -= 2; grain_price += 1; food_sold += 0.01; grain_monopoly = 1; monthly_inflation += 0.01;
+view-if: grain_monopoly = 0
+
+We have created a state monopoly for grain purchasing. The goal is to provide both good prices for farmers as well as acquire enough food to feed the cities, and to sell the food at affordable prices.
+
+@increase_price
+title: Increase the price of grain paid out to farmers.
+subtitle: -2 budget
+on-arrival: budget -= 2; grain_price += 1; food_sold += 0.01; monthly_inflation += 0.04;
+view-if: grain_monopoly = 1
+
+We have increased the price of grain paid out to farmers.
+
+@reduce_rations
+title: Reduce food rations.
+
+@tax_in_kind
+title: Impose a tax-in-kind of grain on farmers.
+view-if: grain_tax_available = 1
+
+# this is a NEP idea I think

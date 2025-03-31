@@ -11,42 +11,86 @@ tags: prov_gov
 
 For the past few years, the Tsarist regime has been printing money and taking loans from the western allies to finance the war, leading to spiraling inflation. We must bring our fiscal affairs back into balance somehow. Taxation, bonds, and controlling the budget are potential levers.
 
-- @raise_progressive: Make the tax system more progressive by raising taxes on the rich and cutting them for the poor.
-- @raise_rich: Increase taxes on the rich.
-- @raise_overall: Increase overall taxes.
-- @cut_overall: Cut overall taxes.
-- @regressive
+Current tax levels:
+
+Income taxes: [+ income_taxes : taxation +]
+
+Business taxes: [+ business_taxes : taxation +]
+
+Indirect taxes: [+ indirect_taxes : taxation +]
+
+- @raise_taxes: Raise income taxes.
+- @cut_taxes
+- @raise_profit_taxes: Raise excess profit taxes on businesses.
+#- @raise_indirect_taxes: Raise indirect taxes.
+- @loans: Take out war bonds.
+- @foreign_loans: Take out more loans from foreign powers.
+- @discipline: Engage in budget discipline.
+- @printers: Turn on the money printers!
 - @root: Do not change the tax system.
 - @easy_discard
+- @cancel_advisor_action
 
-@raise_progressive
-subtitle: This does not change overall revenue.
-on-arrival: workers_spd += 6*(1-dissent); old_middle_spd -= 3; new_middle_spd -= 3; coalition_dissent += 1 if in_grand_coalition; dvp_relation -= 4; finance_goal_completed += 1;
+@raise_taxes
+subtitle: +1 budget
+on-arrival: budget += 1; middle_none += 5; capital_flight_progress += 1; capital_flight_progress += 1 if income_taxes >= 2; workers_m -= 3 if player_party = "m"; workers_sr -= 3 if player_party = "sr"; workers_k -= 3 if player_party = "k"; middle_m -= 5 if player_party = "m"; middle_sr -= 5 if player_party = "sr"; middle_k -= 5 if player_party = "k" and income_taxes >= 2; income_taxes += 1; monthly_inflation -= 0.2;
 
-Making the tax system more progressive is popular among our base, but it upsets our bourgeois coalition partners, as well as our minimal number of bourgeois voters.
+Russia has historically had a weak tax base, relying primarily on indirect taxes. Only the middle class and some of the better-paid workers, less than a quarter of the working population, pay income taxes.
 
-@raise_rich
+Our tax increases hurts the livelihoods of workers and the middle class, and cuts into business confidence.
+
+@cut_taxes
+title: Cut income taxes.
+subtitle: -1 budget
+view-if: budget >= 1
+on-arrival: budget -= 1; capital_flight_progress -= 1; workers_m += 3*(1-m_dissent) if player_party = "m"; workers_sr += 3*(1-sr_dissent) if player_party = "sr"; workers_k += (1-k_dissent)*3 if player_party = "k"; middle_m += 5*(1-m_dissent) if player_party = "m"; middle_sr += 5*(1-sr_dissent) if player_party = "sr"; middle_k += 5*(1-k_dissent) if player_party = "k" and income_taxes >= 2; income_taxes -= 1; monthly_inflation += 0.2;
+
+We have cut income taxes for the workers and middle class.
+
+@raise_profit_taxes
+subtitle: +1 budget
+on-arrival: budget += 1; middle_none += 5; capital_flight_progress += 1; capital_flight_progress += 1 if business_taxes >= 1; elite_m -= 5 if player_party = "m"; elite_sr -= 5 if player_party = "sr"; elite_k -= 5 if player_party = "k"; middle_m -= 5 if player_party = "m"; middle_sr -= 5 if player_party = "sr"; middle_k -= 5 if player_party = "k" and business_taxes >= 1; coup_progress += 1 if business_taxes >= 2; business_taxes += 1; monthly_inflation -= 0.2;
+
+We have raised excess profit taxes on businesses. This cuts into business confidence.
+
+@cut_profit_taxes
+view-if: budget >= 1
+
+@raise_indirect_taxes
+subtitle: +1 budget
+on-arrival: budget += 1; workers_none += 5; workers_m -= 6 if player_party = "m"; workers_sr -= 6 if player_party = "sr"; workers_k -= 6 if player_party = "k"; capital_flight_progress += 1 if indirect_taxes >= 1; indirect_taxes += 1; monthly_inflation -= 0.2;
+
+We have raised indirect taxes - fees for government services, taxes on internal trade, and so on. This hurts the livelihoods of the workers.
+
+@cut_indirect_taxes
+view-if: budget >= 1
+
+@loans
 subtitle: +2 budget
-on-arrival: workers_spd += 4*(1-dissent); old_middle_spd -= 4; new_middle_spd -= 4; coalition_dissent += 1 if in_grand_coalition; coalition_dissent += 1 if capital_strike_progress >= 5; budget += 2; dvp_relation -= 4; unemployed += 1; capital_strike_progress += 1; finance_goal_completed += 1;
+unavailable-subtitle: People cannot afford to buy any more bonds. 
+choose-if: bonding_capacity >= 2 
+on-arrival: budget += 2; bonding_capacity -= 2; monthly_inflation -= 0.2;
 
-Raising taxes on the rich is popular among our base, but it alienates the bourgeoisie. Increasing taxes also decreases economic demand, which may lead to more unemployment.
+[? if bonding_capacity >= 2 and liberty_loan_seen = 0 : We have issued the "Liberty Loans", a new set of war bonds. ?]
+[? if bonding_capacity < 2 or liberty_loan_seen > 0 : We have issued a new set of bonds. Unfortunately, the people might not be able to purchase more bonds beyond this point. ?]
 
-@cut_overall
-subtitle: -2 budget
-choose-if: budget >= 2
-on-arrival: budget -= 2; new_middle_spd += 5*(1-dissent); old_middle_spd += 4*(1-dissent); workers_spd += 3*(1-dissent); dvp_relation += 5*(1-dissent); z_relation += 5*(1-dissent); unemployed -= 1
+@foreign_loans
+subtitle: +2 budget
+unavailable-subtitle: Our relation with the West is not good enough.
+choose-if: west_relation >= 60
+on-arrival: west_relation -= 10; west_loans += 2; foreign_debt += 2; budget += 2
 
-Cutting taxes benefits most the rich and middle-class, who pay more taxes than the working class. Our coalition partners are happy at our orthodox economic course.
+We have taken out a new set of foreign loans.
 
-@raise_overall
-subtitle: +3 budget
-on-arrival: budget += 3; new_middle_spd -= 4; old_middle_spd -= 4; workers_spd -= 3; rural_spd -= 3; unemployed += 2; kpd_coalition_dissent += 1
+@discipline
+subtitle: +2 budget - cut government salaries and benefits.
+on-arrival: budget += 2; middle_none += 5; workers_none += 5; soldiers_none += 5;  workers_m -= 3 if player_party = "m"; workers_sr -= 3 if player_party = "sr"; workers_k -= 3 if player_party = "k"; middle_m -= 3 if player_party = "m"; middle_sr -= 3 if player_party = "sr"; middle_k -= 3 if player_party = "k"; soldiers_m -= 5 if player_party = "m"; soldiers_sr -= 5 if player_party = "sr"; soldiers_k -= 5 if player_party = "k"; train_capacity *= 0.999; morale -= 0.04; benefits -= 1; monthly_inflation -= 0.4; prov_gov_efficacy -= 0.06;
 
-Raising taxes hurts our support among all those who pay taxes. [? if in_grand_coalition or in_weimar_coalition : However, our coalition partners are more supportive of the idea of "shared sacrifice" than simply taxing the rich. ?] Increasing taxes also decreases economic demand, which may lead to more unemployment.
+Cutting the budget hurts the workers and middle class, and also reduces the morales of the soldiers and railroad workers, two of the largest groups of government employees. This makes them less effective at their jobs.
 
-@regressive
-title: Lower taxes on the rich, while increasing consumption taxes (which affect the working class more).
-subtitle: This does not change overall revenue.
-on-arrival: workers_spd -= 6; new_middle_spd += 5*(1-dissent); old_middle_spd += 4*(1-dissent); dvp_relation += 5; z_relation += 4; coalition_dissent -= 1; kpd_coalition_dissent += 1
+@printers
+subtitle: +2 budget
+on-arrival: monthly_inflation += 0.4; budget += 2; workers_none += 5; middle_none += 5; soldiers_none += 5;
 
-Our regressive taxation policy benefits the rich while hurting the poor and working-class. Our bourgeois coalition partners approve of this orthodox economic course.
+We have turned on the money printers. This is bad for our government's legitimacy, and will contribute to inflation.
+

@@ -1,0 +1,53 @@
+title: Battle Outcome
+subtitle: The outcome of our offensive...
+new-page: true
+view-if: in_offensive_battle = 1
+set-jump: battle_outcome.post_battle
+go-to: battle
+tags: event
+
+@post_battle
+go-to: defeat_2 if battle_outcome = -2; defeat_1 if battle_outcome = -1; victory_1 if battle_outcome = 1; victory_2 if battle_outcome = 2
+on-arrival: in_offensive_battle = 0;
+
+@defeat_2
+on-arrival: defensist_strength -= 6; social_patriot_strength -= 10; right_sr_strength -= 6; soldiers_sr -= 15 if sr_in_prov_gov; soldiers_m -= 15 if m_in_prov_gov; soldiers_k -= 15; morale *= 0.8; discipline *= 0.7; train_capacity *= 0.999; soldiers_b += 15 if not b_in_prov_gov; military_progress -= 2;
+
+= Total Defeat
+
+Our casualties: [+ friendly_casualties +] divisions
+
+Enemy casualties: [+ hostile_casualties +] divisions
+
+@defeat_1
+on-arrival: defensist_strength -= 6; social_patriot_strength -= 10; right_sr_strength -= 6; soldiers_sr -= 8 if sr_in_prov_gov; soldiers_m -= 8 if m_in_prov_gov; soldiers_k -= 10; morale *= 0.9; discipline *= 0.7; train_capacity *= 0.999; soldiers_b += 10 if not b_in_prov_gov; military_progress -= 1;
+
+= Defeat
+
+Our casualties: [+ friendly_casualties +] divisions
+
+Enemy casualties: [+ hostile_casualties +] divisions
+
+Enemy forces have inflicted a defeat upon us.
+
+@victory_1
+on-arrival: defensist_strength += 10; social_patriot_strength += 10; right_sr_strength += 10; morale *= 1.05; discipline *= 0.7; defense_bonus = 0; train_capacity *= 0.999; military_progress -= 1; coup_progress += 1
+
+= Victory
+
+Our casualties: [+ friendly_casualties +] divisions
+
+Enemy casualties: [+ hostile_casualties +] divisions
+
+We have achieved a victory over the enemy!
+
+@victory_2
+on-arrival: defensist_strength += 10; social_patriot_strength += 10; right_sr_strength += 10; morale *= 1.05; discipline *= 0.7; defense_bonus = 0; train_capacity *= 0.999; military_progress -= 2; coup_progress += 2
+
+= Total Victory
+
+Our casualties: [+ friendly_casualties +] divisions
+
+Enemy casualties: [+ hostile_casualties +] divisions
+
+We have achieved a total victory over the enemy!

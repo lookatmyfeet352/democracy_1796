@@ -1,0 +1,102 @@
+title: Join the Provisional Government!
+go-to: menu
+
+Which ministerial positions should we take?
+
+@menu
+
+- #m_mins
+- #m_drop_mins
+
+@agriculture
+title: Agriculture Ministry
+tags: m_mins
+
+@food
+title: Food Ministry
+tags: m_mins
+
+@justice
+title: Justice Ministry
+tags: m_mins
+
+@labor
+title: Labor Ministry
+tags: m_mins
+
+@interior
+title: Interior Ministry
+tags: m_mins
+
+@finance
+title: Finance Ministry
+tags: m_mins
+
+@war
+title: War Ministry
+tags: m_mins
+
+@foreign
+title: Foreign Ministry
+tags: m_mins
+
+@transport
+title: Transportation Ministry
+tags: m_mins
+
+@trade
+title: Industry and Trade Ministry
+subtitle: This ministry manages industrial production.
+tags: m_mins
+
+@drop_agriculture
+title: Drop the Agriculture Ministry.
+tags: m_drop_mins
+
+@drop_food
+title: Drop the Food Ministry.
+tags: m_drop_mins
+
+
+
+@drop_justice
+title: Drop the Justice Ministry.
+tags: m_drop_mins
+
+
+
+@drop_labor
+title: Drop the Labor Ministry.
+tags: m_drop_mins
+
+
+@drop_interior
+title: Drop the Interior Ministry.
+tags: m_drop_mins
+
+
+@drop_finance
+title: Drop the Finance Ministry.
+tags: m_drop_mins
+
+
+@drop_war
+title: Drop the War Ministry.
+tags: m_drop_mins
+
+
+@drop_foreign
+title: Drop the Foreign Ministry.
+tags: m_drop_mins
+
+
+@drop_transport
+title: Drop the Transport Ministry.
+tags: m_drop_mins
+
+
+@drop_trade
+title: Drop the Trade and Industry Ministry.
+tags: m_drop_mins
+
+

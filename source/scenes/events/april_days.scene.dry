@@ -28,17 +28,22 @@ The Kadets in the Provisional Government are ready to be rid of Milyukov and all
 - @no_join_govt_sr: No, we will not join the government.
 
 @join_govt_m
+view-if: player_party = "m"
 on-arrival: cabinet_points = m_k_relation;
 
 # TODO: event to join cabinet
 
 
 @join_govt_sr
+view-if: player_party = "sr"
 on-arrival: cabinet_points = sr_k_relation;
 
+
 @no_join_govt_m
+view-if: player_party = "m"
 
 @no_join_govt_sr
+view-if: player_party = "sr"
 
 
 

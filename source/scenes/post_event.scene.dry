@@ -11,6 +11,14 @@ for (var c of Q.classes) {
     }
 }
 
+if (Q.prov_gov_legitimacy < 1) Q.prov_gov_legitimacy = 1;
+if (Q.soviet_cooperation < 0.01) Q.soviet_cooperation = 0.01;
+if (Q.prov_gov_efficacy < 0.01) Q.prov_gov_efficacy = 0.01;
+if (Q.soviet_efficacy < 0.01) Q.soviet_efficacy = 0.01;
+
+// round to integers...
+Q.train_capacity = Math.round(Q.train_capacity);
+
 // re-calculate party support
 // calculate normalized class voting for the achievements
 for (var c of Q.classes) {
@@ -97,16 +105,21 @@ for (var p of Q.city_militia_parties) {
     Q['city_militia_' + p + '_loyalty'] = 100*Q['city_militia_' + p + '_loyalty']/total_city_militia_loyalty;
 }
 Q.city_militia_independent = 100*Q.city_militia_independent/total_city_militia_loyalty;
-// normalize garrison loyalty
+
+// Garrison loyalty is the same as that for the soldiers demographic as a whole.
 Q.garrison_parties = ['m', 'sr',  'k', 'b'];
-var total_garrison_loyalty = Q.garrison_independent;
-for (var p of Q.garrison_parties) {
-    total_garrison_loyalty += Q['garrison_' + p + '_loyalty'];
+var total_garrison_loyalty = 0;
+for (var p of Q.parties) {
+    total_garrison_loyalty += Q['soldiers_' + p];
 }
+non_independent = 0;
 for (var p of Q.garrison_parties) {
-    Q['garrison_' + p + '_loyalty'] = 100*Q['garrison_' + p + '_loyalty']/total_garrison_loyalty;
+    Q['garrison_' + p + '_loyalty'] = 100*Q['soldiers_' + p]/total_garrison_loyalty;
+    non_independent += Q['garrison_' + p + '_loyalty'];
+    console.log('garrison_' + p + '_loyalty', Q['garrison_' + p + '_loyalty']);
 }
-Q.garrison_independent = 100*Q.garrison_independent/total_garrison_loyalty;
+Q.garrison_independent = 100*(100-non_independent)/total_garrison_loyalty;
+console.log('garrison_independent', Q.garrison_independent);
 
 if (Q.unemployed <= 1) {
     Q.unemployed = 1;
@@ -167,6 +180,7 @@ if (Q.week_actions >= 1 && Q.current_player >= Q.n_players) {
     if (Q.week >= 5) {
         Q.month += 1;
         Q.week = 1;
+        // TODO: update Soviet representation on every new month
     }
     if (Q.month >= 13) {
         Q.month = 1;
@@ -179,6 +193,8 @@ if (Q.week_actions >= 1 && Q.current_player >= Q.n_players) {
         }
     }
     
+    Q.movement_capacity = Math.round(0.001*Q.military_trains*Q.train_capacity/100);
+    Q.soldiers_moved = 0;
     // industrial changes
     Q.industrial_changes = 0;
     // industrial production
@@ -192,12 +208,12 @@ if (Q.week_actions >= 1 && Q.current_player >= Q.n_players) {
     // agricultural industry effects on food acquisition
     if (Q.agricultural_industry_production >= 5) {
         Q.food_production *= 1.001;
-        if (Q.food_sold < 0.07 + (Q.agricultural_industry_production - 1)/100 && Q.rural_hunger <= 0) {
-            Q.food_sold += 0.003;
+        if (Q.food_sold < 0.07 + (Q.agricultural_industry_production - 3)/100 && Q.rural_hunger <= 0) {
+            Q.food_sold += 0.002;
         }
     } else {
         if (Q.food_sold > 0.07 + (Q.agricultural_industry_production - 1)/100) {
-            Q.food_sold -= 0.003;
+            Q.food_sold -= 0.002;
         }
     }
     if (Q.rural_hunger > 0) {
@@ -206,25 +222,25 @@ if (Q.week_actions >= 1 && Q.current_player >= Q.n_players) {
     // civilian production effects on inflation and food_sold
     if (Q.civilian_production >= 80) {
         if (Q.monthly_inflation >= 1) Q.monthly_inflation -= 0.1;
-        if (Q.rural_hunger <= 0 && Q.food_sold <= 0.25) {
+        if (Q.rural_hunger <= 0 && Q.food_sold <= 0.2) {
             Q.food_sold += 0.002;
         }
     }
     if (Q.civilian_production >= 70) {
         if (Q.monthly_inflation >= 2) Q.monthly_inflation -= 0.1;
-        if (Q.rural_hunger <= 0 && Q.food_sold <= 0.2) {
+        if (Q.rural_hunger <= 0 && Q.food_sold <= 0.15) {
             Q.food_sold += 0.002;
         }
     }
     if (Q.civilian_production >= 60) {
         if (Q.monthly_inflation >= 3.5) Q.monthly_inflation -= 0.1;
-        if (Q.rural_hunger <= 0 && Q.food_sold <= 0.15) {
+        if (Q.rural_hunger <= 0 && Q.food_sold <= 0.1) {
             Q.food_sold += 0.001;
         }
     }
     if (Q.civilian_production >= 50) {
         if (Q.monthly_inflation >= 5) Q.monthly_inflation -= 0.1;
-        if (Q.rural_hunger <= 0 && Q.food_sold <= 0.1) {
+        if (Q.rural_hunger <= 0 && Q.food_sold <= 0.08) {
             Q.food_sold += 0.001;
         }
     }
@@ -245,10 +261,11 @@ if (Q.week_actions >= 1 && Q.current_player >= Q.n_players) {
     if (Q.transportation_production >= 5) {
         Q.train_capacity *= 1.001;
     }
-    // Effects of hunger and war exhaustion on party support
+    // Effects of hunger, inflation, and war exhaustion on party support
     if (Q.hunger >= 10 && (Q.war_weariness >= 60 || Q.monthly_inflation >= 6.5)) {
-        Q.workers_b += 0.1;
-        Q.soldiers_b += 0.1;
+        Q.prov_gov_legitimacy -= 1;
+        Q.workers_b += 0.3;
+        Q.soldiers_b += 0.5;
         if (Q.m_in_prov_gov) {
             Q.workers_m -= 0.4;
             Q.soldiers_m -= 0.4;
@@ -259,8 +276,9 @@ if (Q.week_actions >= 1 && Q.current_player >= Q.n_players) {
         }
     }
     if (Q.hunger >= 20 && (Q.war_weariness >= 50 || Q.monthly_inflation >= 5.5)) {
-        Q.workers_b += 0.1;
-        Q.soldiers_b += 0.1;
+        Q.prov_gov_legitimacy -= 1;
+        Q.workers_b += 0.3;
+        Q.soldiers_b += 0.5;
         if (Q.m_in_prov_gov) {
             Q.workers_m -= 0.4;
             Q.soldiers_m -= 0.4;
@@ -272,14 +290,14 @@ if (Q.week_actions >= 1 && Q.current_player >= Q.n_players) {
     }
     if (Q.hunger >= 30 && (Q.war_weariness >= 40 || Q.monthly_inflation >= 5)) {
         Q.prov_gov_legitimacy -= 1;
-        Q.workers_b += 0.1;
-        Q.soldiers_b += 0.1;
+        Q.workers_b += 0.3;
+        Q.soldiers_b += 0.5;
         if (Q.b_in_prov_gov) {
-            Q.workers_b -= 0.1;
-            Q.soldiers_b -= 0.1;
+            Q.workers_b -= 0.3;
+            Q.soldiers_b -= 0.5;
             // if Bolsheviks are in the provisional government and things are going badly, then anarchists gain in support.
-            Q.workers_anarchist += 0.1;
-            Q.soldiers_anarchist += 0.1;
+            Q.workers_anarchist += 0.3;
+            Q.soldiers_anarchist += 0.5;
         }
         if (Q.m_in_prov_gov) {
             Q.workers_m -= 0.4;
@@ -292,13 +310,13 @@ if (Q.week_actions >= 1 && Q.current_player >= Q.n_players) {
     }
     if (Q.hunger >= 40 && (Q.war_weariness >= 30 || Q.monthly_inflation >= 4)) {
         Q.prov_gov_legitimacy -= 1;
-        Q.workers_b += 0.1;
-        Q.soldiers_b += 0.1;
+        Q.workers_b += 0.3;
+        Q.soldiers_b += 0.5;
         if (Q.b_in_prov_gov) {
-            Q.workers_b -= 0.1;
-            Q.soldiers_b -= 0.1;
-            Q.workers_anarchist += 0.1;
-            Q.soldiers_anarchist += 0.1;
+            Q.workers_b -= 0.3;
+            Q.soldiers_b -= 0.5;
+            Q.workers_anarchist += 0.3;
+            Q.soldiers_anarchist += 0.5;
         }
         if (Q.m_in_prov_gov) {
             Q.workers_m -= 0.4;
@@ -311,13 +329,13 @@ if (Q.week_actions >= 1 && Q.current_player >= Q.n_players) {
     }
     if (Q.hunger >= 50) {
         Q.prov_gov_legitimacy -= 1;
-        Q.workers_b += 0.1;
-        Q.soldiers_b += 0.1;
+        Q.workers_b += 0.3;
+        Q.soldiers_b += 0.5;
         if (Q.b_in_prov_gov) {
-            Q.workers_b -= 0.1;
-            Q.soldiers_b -= 0.1;
-            Q.workers_anarchist += 0.1;
-            Q.soldiers_anarchist += 0.1;
+            Q.workers_b -= 0.3;
+            Q.soldiers_b -= 0.5;
+            Q.workers_anarchist += 0.3;
+            Q.soldiers_anarchist += 0.5;
         }
         if (Q.m_in_prov_gov) {
             Q.workers_m -= 0.4;
@@ -338,22 +356,9 @@ if (Q.week_actions >= 1 && Q.current_player >= Q.n_players) {
     if (Q.workers_sr_normalized < Q.workers_militia_sr_loyalty) {
         Q.workers_militia_sr_loyalty -= 1;
     }
-    // garrison loyalties are affected by support...
-    if (Q.soldiers_m_normalized < Q.garrison_m_loyalty) {
-        Q.garrison_m_loyalty -= 1;
-    }
-    if (Q.soldiers_b_normalized < Q.garrison_b_loyalty) {
-        Q.garrison_b_loyalty -= 1;
-    }
-    if (Q.soldiers_sr_normalized < Q.garrison_sr_loyalty) {
-        Q.garrison_sr_loyalty -= 1;
-    }
-    if (Q.soldiers_k_normalized < Q.garrison_k_loyalty) {
-        Q.garrison_k_loyalty -= 1;
-    }
     // War exhaustion changes - increase by 1 every week
     if (!Q.is_armistice && !Q.is_peace && Q.month >= 4) {
-        Q.war_exhaustion += 1;
+        Q.war_weariness += 1;
     }
 } else if (Q.week_actions >= 0 && Q.current_player < Q.n_players) {
     // If there are more players...
