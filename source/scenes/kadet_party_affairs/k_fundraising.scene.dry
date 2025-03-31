@@ -4,7 +4,7 @@ view-if: k_fundraising_timer <= 0
 on-arrival: k_fundraising_timer += 4; week_actions += 1
 frequency: 300
 is-card: true
-card-image: img/menshevik_1.jpg
+card-image: img/kadet_1.jpg
 tags: k_party
 
 = Fundraising

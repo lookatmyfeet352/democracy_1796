@@ -1,0 +1,10 @@
+title: SR Party Convention
+subtitle: The Third Convention of the Socialist-Revolutionary Party
+new-page: True
+view-if: player_party != "m" and month = 5 and week = 4
+max-visits: 1
+#tags: event
+
+= SR Party Convention
+
+# depending on actions, the party either adopts left-SR or right-SR or center-SR platform.

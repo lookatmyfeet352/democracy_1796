@@ -1,0 +1,10 @@
+title: Menshevik Party Convention
+subtitle: A National Conference of the RSDLP (Mensheviks)
+new-page: True
+view-if: player_party != "m" and month = 5 and week = 2
+max-visits: 1
+# tags: event
+
+= RSDLP(M) Party Convention
+
+# depending on

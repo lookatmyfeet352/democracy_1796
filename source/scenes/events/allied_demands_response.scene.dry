@@ -1,4 +1,0 @@
-title: Allied Demands
-view-if: month >= 4 and (allied_demands_seen = 1)
-
-= Allied Demands and the Miliukov Note

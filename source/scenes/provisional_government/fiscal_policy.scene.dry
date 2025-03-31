@@ -2,7 +2,7 @@ title: Fiscal Policy
 new-page: true
 is-card: true
 on-arrival: fiscal_policy_timer += 4; week_actions += 1
-view-if: fiscal_policy_timer == 0 and ((player_party = "k" and k_in_prov_gov and (finance_minister_party = "Kadet" or finance_minister_party = "Independent" or finance_minister_party = "Progressive" or finance_minister_party = "Octobrist" or finance_minister_party = "Trudovik" or finance_minister_party = "Popular Socialist")) or (player_party = "sr" and sr_in_prov_gov and (finance_minister_party = "SR" or finance_minister_party = "Trudovik" or finance_minister_party = "Popular Socialist")) or (player_party = "m" and m_in_prov_gov and finance_minister_party = "Menshevik"))
+view-if: fiscal_policy_timer == 0 and ((player_party = "k" and k_in_prov_gov and (prime_minister = "Lvov" or finance_minister_party = "Kadet" or finance_minister_party = "Independent" or finance_minister_party = "Progressive" or finance_minister_party = "Octobrist" or finance_minister_party = "Trudovik" or finance_minister_party = "Popular Socialist")) or (player_party = "sr" and sr_in_prov_gov and (prime_minister = "Kerensky" or finance_minister_party = "SR" or finance_minister_party = "Trudovik" or finance_minister_party = "Popular Socialist")) or (player_party = "m" and m_in_prov_gov and (prime_minister = "Tsereteli" or finance_minister_party = "Menshevik")))
 card-image: img/ruble.jpg
 tags: prov_gov
 
@@ -33,6 +33,8 @@ Indirect taxes: [+ indirect_taxes : taxation +]
 
 @raise_taxes
 subtitle: +1 budget
+unavailable-subtitle: Taxes are already too high.
+choose-if: income_taxes < 5
 on-arrival: budget += 1; middle_none += 5; capital_flight_progress += 1; capital_flight_progress += 1 if income_taxes >= 2; workers_m -= 3 if player_party = "m"; workers_sr -= 3 if player_party = "sr"; workers_k -= 3 if player_party = "k"; middle_m -= 5 if player_party = "m"; middle_sr -= 5 if player_party = "sr"; middle_k -= 5 if player_party = "k" and income_taxes >= 2; income_taxes += 1; monthly_inflation -= 0.2;
 
 Russia has historically had a weak tax base, relying primarily on indirect taxes. Only the middle class and some of the better-paid workers, less than a quarter of the working population, pay income taxes.
@@ -49,6 +51,8 @@ We have cut income taxes for the workers and middle class.
 
 @raise_profit_taxes
 subtitle: +1 budget
+unavailable-subtitle: Taxes are already too high.
+choose-if: business_taxes < 5
 on-arrival: budget += 1; middle_none += 5; capital_flight_progress += 1; capital_flight_progress += 1 if business_taxes >= 1; elite_m -= 5 if player_party = "m"; elite_sr -= 5 if player_party = "sr"; elite_k -= 5 if player_party = "k"; middle_m -= 5 if player_party = "m"; middle_sr -= 5 if player_party = "sr"; middle_k -= 5 if player_party = "k" and business_taxes >= 1; coup_progress += 1 if business_taxes >= 2; business_taxes += 1; monthly_inflation -= 0.2;
 
 We have raised excess profit taxes on businesses. This cuts into business confidence.

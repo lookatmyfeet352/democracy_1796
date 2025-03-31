@@ -3,7 +3,7 @@ new-page: true
 is-card: true
 on-arrival: prepare_ca_timer += 2; week_actions += 1
 frequency: 100
-view-if: prepare_ca_timer == 0 and ca_scheduled = 0 and ((player_party = "k" and k_in_prov_gov and (prime_minister_party = "Kadet" or prime_minister_party = "Independent" or prime_minister_party = "Progressive" or prime_minister_party = "Octobrist" or prime_minister_party = "Trudovik" or prime_minister_party = "Popular Socialist")) or (player_party = "sr" and sr_in_prov_gov and (prime_minister_party = "SR" or prime_minister_party = "Trudovik" or prime_minister_party = "Popular Socialist")) or (player_party = "m" and m_in_prov_gov and prime_minister_party = "Menshevik"))
+view-if: prepare_ca_timer == 0 and ca_scheduled = 0 and ((player_party = "k" and k_in_prov_gov and (prime_minister = "Lvov" or justice_minister_party = "Kadet" or justice_minister_party = "Independent" or justice_minister_party = "Progressive" or justice_minister_party = "Octobrist" or justice_minister_party = "Trudovik" or justice_minister_party = "Popular Socialist")) or (player_party = "sr" and sr_in_prov_gov and (prime_minister = "Kerensky" or justice_minister_party = "SR" or justice_minister_party = "Trudovik" or justice_minister_party = "Popular Socialist")) or (player_party = "m" and m_in_prov_gov and (prime_minister = "Tsereteli" or justice_minister_party = "Menshevik")))
 card-image: img/posters.jpg
 tags: prov_gov
 

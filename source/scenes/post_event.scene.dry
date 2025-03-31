@@ -152,6 +152,9 @@ Q.hunger = 100*(Q.food_demand_urban - Q.food_supply_urban)/Q.food_demand_urban;
 if (Q.hunger < 0) {
     Q.hunger = 0;
 }
+Q.food_demand_urban = Math.round(Q.food_demand_urban);
+Q.food_supply_urban = Math.round(Q.food_supply_urban);
+Q.hunger = Math.round(Q.hunger); 
 // rural hunger 
 Q.food_supply_rural = Q.food_production*(1 - Q.food_sold)*(1 - Q.food_requisitioned); 
 Q.rural_hunger = 100*(Q.food_demand_rural - Q.food_supply_rural)/Q.food_demand_rural;
@@ -181,6 +184,59 @@ if (Q.week_actions >= 1 && Q.current_player >= Q.n_players) {
         Q.month += 1;
         Q.week = 1;
         // TODO: update Soviet representation on every new month
+        var petrograd_classes = ["workers", "soldiers"];
+
+        for (var c of petrograd_classes) {
+            var class_votes = 0;
+            for (var party of Q.parties) {
+                if (party == "none") {
+                    continue;
+                }
+                if (!Q[c+'_'+party] || Q[c+'_'+party] < 0) {
+                    Q[c+'_'+party] = 0;
+                }
+                class_votes += Q[c+'_'+party];
+            }
+            for (var party of Q.parties) {
+                Q[c + '_' + party + '_normalized'] = 100*Q[c+'_'+party]/class_votes;
+                Q[c + '_' + party + '_display'] = Math.round(100*Q[c+'_'+party]/class_votes);
+            }
+        }
+        // 1. calculate support for each of the parties
+        var total_support = 0;
+        for (var party of Q.parties) {
+            if (party == "none") {
+                continue;
+            }
+            var party_support = 0;
+            for (var c of petrograd_classes) {
+                party_support += Q[c + '_petrograd']*Q[c+'_'+party+'_normalized'];
+            }
+            if (Q[party + '_soviet_bonus']) {
+              party_support += Q[party + '_soviet_bonus'];
+            }
+            Q[party + '_support'] = party_support;
+            total_support += party_support;
+        }
+        // 2. normalize support (fraction)
+        // 3. Round to integers
+        // TODO: round to 1 decimal instead of rounding to integers
+        // to do that, we multiply party_normalized*1000 and divide the rounded number by 10.
+        for (var party of Q.parties) {
+            if (party == "none") {
+                continue;
+            }
+            Q[party+'_soviet_normalized'] = Q[party + '_support']/total_support;
+            Q[party+'_soviet_votes_dec'] = Math.round(Q[party+'_soviet_normalized']*1000)/10;
+            Q[party+'_soviet_votes'] = Math.round(Q[party+'_soviet_normalized']*100);
+            Q[party + '_soviet_votes_disp'] = Q[party+'_soviet_votes_dec'].toFixed(1);
+        }
+        Q.m_soviet = Q.m_soviet_votes_dec;
+        Q.sr_soviet = Q.sr_soviet_votes_dec;
+        Q.b_soviet = Q.b_soviet_votes_dec;
+        Q.other_soviet = Math.round(10*(Q.anarchist_soviet_votes_dec + Q.popuar_socialist_soviet_votes_dec + Q.other_soviet_votes_dec + Q.k_soviet_votes_dec))/10;
+
+
     }
     if (Q.month >= 13) {
         Q.month = 1;
@@ -381,8 +437,6 @@ if (choices && choices[0].title != "Continue...") {
     has_event = 0;
 }
 
-if (typeof window !== "undefined" && window.generateBar) {
-}
 !}
 go-to: events_choice if has_event = 1; main if has_event = 0
 

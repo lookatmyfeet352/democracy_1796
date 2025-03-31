@@ -10,4 +10,27 @@ card-image: img/soviet_2.jpg
 
 The Petrograd Soviet is a largely ad-hoc council; perhaps we should build up organs for longer-term governance.
 
+- @org_1
+- @org
+- @root: No action is needed.
+- @easy_discard
+- @cancel_advisor_action
+
+@org_1
+title: Create an economic coordination infrastructure.
+subtitle: -1 resource
+choose-if: (player_party = "m" and m_resources >= 1) or (player_party = "sr" and sr_resources >= 1) or (player_party = "b" and b_resources >= 1)
+on-arrival: soviet_organization += 1; soviet_efficacy += 0.05
+
+We have started a council for coordinating the distribution of resources across enterprises in Petrograd and beyond. In the long run, this should allow us to improve our industrial production and reduce working hours.
+
+@org
+title: Build up economic coordination between factories and enterprises.
+subtitle: -1 resource
+choose-if: (player_party = "m" and m_resources >= 1) or (player_party = "sr" and sr_resources >= 1) or (player_party = "b" and b_resources >= 1)
+view-if: soviet_organization > 0
+on-arrival: soviet_organization += 1; soviet_efficacy += 0.05
+
+We are continuing to build up economic coordination infrastructure.
+
 # options: 

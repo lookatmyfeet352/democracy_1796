@@ -12,7 +12,7 @@ Herein contains relevant information about revolutionary Russia in 1917.
 - @government: Provisional Government
 - @demographics: Demographics
 - @parties: Parties
-- @public_opinion: Public opinion (and projected election results)
+- @economy: Economics
 - @paramilitaries: Paramilitary groups
 - @factions: Internal Factions
 - @backSpecialScene: Exit library.
@@ -26,12 +26,10 @@ go-to: menu
 = Timeline of recent Russian history
 
 # What is to be done? Land and Liberty, People's Will
-
-
 # Emancipation of the serfs
 **1861**: Tsar Alexander II decrees the emancipation of the serfs. However, the former serfs are still ridden by debts and poverty, as they had to pay redemption taxes to buy their freedom from the nobles.
 
-**1863**: The novel *What Is to Be Done?* by Nikolay Chernyshevsky is published, becoming the inspiration for a generation of revolutionaries.
+#**1863**: The novel *What Is to Be Done?* by Nikolay Chernyshevsky is published, becoming the inspiration for a generation of revolutionaries.
 
 **1860s-70s**: The ideology of *narodism*, or populism, is developed from various strands of non-Marxist socialist and anarchist thought. This ideology sees the Russian peasants as the protagonists of the future revolution, in contrast to Marxism which sees the urban proletariat as the most revolutionary class. The adherents of narodism launch a movement to "go to the people", going to the countryside to spread revolutionary ideology. This movement fails utterly.
 
@@ -108,6 +106,61 @@ set-jump: election_projections
 #Support for Nationalism: [+ nationalism +]%
 
 #Support for the Republic: [+ pro_republic +]%
+
+@economy
+on-arrival: {!
+Q.trains_total = Math.round(Q.train_capacity/1000);
+Q.food_total = Math.round(Q.food_production/1000);
+Q.food_sold_disp = (Q.food_sold*100).toFixed(1);
+Q.food_requisitioned_disp = (Q.food_requisitioned*100).toFixed(1);
+!}
+go-to: menu
+
+= Industrial Production
+
+Military: [+ military_industry +]%
+
+Civilian goods: [+ civilian_industry +]%
+
+Agricultural equipment: [+ agricultural_industry +]%
+
+Transportation equipment: [+ transportation_industry +]%
+
+Capital goods: [+ capital_industry +]%
+
+Total industrial production (% of 1916): [+ industry +]%
+
+= Railways
+
+Military usage: [+ military_trains +]%
+
+Civilian usage: [+ civilian_trains +]%
+
+Total transport capacity: [+ trains_total +] million tons/year
+
+= Agriculture
+
+Food production: [+ food_total +] million tons/year
+
+Food sold to cities and towns: [+ food_sold_disp +]%
+
+Food requisitioned by the military: [+ food_requisitioned_disp +]%
+
+= Food Consumption
+
+Urban food demand: [+ food_demand_urban +] million kg/year
+
+Urban food supply: [+ food_supply_urban +] million kg/year
+
+Food shortage: [+ hunger +]% 
+
+= Finances and Debt
+
+Budget balance: [+ budget +]
+
+Long-term domestic debt: [+ domestic_debt +]
+
+Foreign debt: [+ foreign_debt +]
 
 
 @election_projections

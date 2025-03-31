@@ -5,84 +5,84 @@ Which ministerial positions should we take?
 
 @menu
 
-- #m_mins
-- #m_drop_mins
+- #sr_mins
+- #sr_drop_mins
 - @no_more
 
 @no_more
 title: No more ministries
-subtitle: [? if m_influence >= 10: We still have some more influence to gain ministries. ?][? if m_influence < 10 : We do not have much influence left. ?]
+subtitle: [? if sr_influence >= 10: We still have some more influence to gain ministries. ?][? if sr_influence < 10 : We do not have much influence left. ?]
 
 This coalition arrangement is tolerable to all the parties.
 
 
 @agriculture
 title: Agriculture Ministry
-tags: m_mins
-choose-if: m_rural_policy != 0 and m_influence >= 10
-unavailable-subtitle: We do not have a rural policy.
+tags: sr_mins
+choose-if: sr_influence >= 10
+view-if: agriculture_minister_party != "SR"
+on-arrival: sr_influence -= 10; agriculture_minister = "Chernov"; agriculture_minister_party = "SR"
 go-to: menu
+
+Viktor Chernov has been appointed Agriculture Minister.
 
 @food
 title: Food Ministry
 subtitle: The Food ministry deals with food procurement.
-tags: m_mins
-choose-if: m_influence >= 10
-view-if: food_minister_party != "Menshevik"
-on-arrival: m_influence -= 10; food_minister = "Groman"; food_minister_party = "Menshevik"
+tags: sr_mins
+choose-if: sr_influence >= 10
+view-if: food_minister_party != "Popular Socialist"
+on-arrival: sr_influence -= 10; food_minister = "Peshekhonov"; food_minister_party = "Popular Socialist"
 go-to: menu
 
-Vladimir Groman, a Menshevik-affiliated economist, has been appointed Food Minister.
+Alexey Peshekhonov has been appointed Food Minister.
 
 @justice
 title: Justice Ministry
-tags: m_mins
-choose-if: m_influence <= 10
-view-if: justice_minister_party != "Menshevik"
+tags: sr_mins
+choose-if: sr_influence >= 10
+view-if: justice_minister_party != "SR"
 go-to: menu
-on-arrival: m_influence -= 10; justice_minister = "Malyantovich"; justice_minister_party = "Menshevik"
+on-arrival: sr_influence -= 10; justice_minister = "Kerensky"; justice_minister_party = "SR"
 
 Pavel Malyantovich has been appointed Justice Minister.
 
 @labor
 title: Labor Ministry
-subtitle: We are expected to take this position.
-tags: m_mins
-choose-if: m_influence >= 10
-view-if: labor_minister_party != "Menshevik"
-on-arrival: m_influence -= 10; labor_minister = "Skobelev"; labor_minister_party = "Menshevik"
+tags: sr_mins
+choose-if: sr_influence >= 10
+view-if: labor_minister_party != "SR"
+on-arrival: sr_influence -= 10; labor_minister = "Gots"; labor_minister_party = "SR"
 go-to: menu
 
-Matvey Skobelev, a Menshevik Duma member, has been appointed Labor Minister.
+Abram Gots has been appointed Labor Minister.
 
 @interior
 title: Interior Ministry
 subtitle: The Interior Ministry deals with internal security.
-tags: m_mins
-choose-if: m_influence >= 15
-view-if: interior_minister_party != "Menshevik"
+tags: sr_mins
+choose-if: sr_influence >= 15
+view-if: interior_minister_party != "SR"
 go-to: menu
-on-arrival: m_influence -= 15; interior_minister = "Tsereteli"; interior_minister_party = "Menshevik"
+on-arrival: sr_influence -= 15; interior_minister = "Avksentiev"; interior_minister_party = "SR"
 
-Irakli Tsereteli has been appointed Interior Minister.
+Nikolai Avksentiev has been appointed Interior Minister.
 
 @finance
 title: Finance Ministry
-tags: m_mins
-choose-if: m_influence >= 15
-view-if: finance_minister_party != "Menshevik"
+tags: sr_mins
+choose-if: sr_influence >= 15
 go-to: menu
-on-arrival: m_influence -= 15; finance_minister = "Voitinsky"; finance_minister_party = "Menshevik"
+on-arrival: sr_influence -= 15; finance_minister = "Voitinsky"; finance_minister_party = "SR"
 
 Vladimir Voitinsky has been appointed Finance Minister.
 
 @war
 title: War Ministry
-tags: m_mins
-choose-if: m_influence >= 15
-view-if: war_minister_party != "Menshevik"
+tags: sr_mins
+choose-if: sr_influence >= 15
 go-to: menu
-on-arrival: m_influence -= 15; war_minister = "Tsereteli"; war_minister_party = "Menshevik"
+on-arrival: sr_influence -= 15; war_minister = "Tsereteli"; war_minister_party = "SR"
 
 Irakli Tsereteli has been appointed War Minister.
 
@@ -90,11 +90,10 @@ Irakli Tsereteli has been appointed War Minister.
 
 @foreign
 title: Foreign Ministry
-tags: m_mins
-choose-if: m_influence >= 15
-view-if: foreign_minister_party != "Menshevik"
+tags: sr_mins
+choose-if: sr_influence >= 15
 go-to: menu
-on-arrival: m_influence -= 15; foreign_minister = "Tsereteli" if not defensist_split; foreign_minister = "Martov" if defensist_split; foreign_minister_party = "Menshevik"
+on-arrival: sr_influence -= 15; foreign_minister = "Tsereteli" if not defensist_split; foreign_minister = "Martov" if defensist_split; foreign_minister_party = "SR"
 
 [? if not defensist_split : Irakli Tsereteli ?][? if defensist_split: Julius Martov ?] has been appointed Foreign Minister.
 
@@ -102,11 +101,10 @@ on-arrival: m_influence -= 15; foreign_minister = "Tsereteli" if not defensist_s
 @transport
 title: Transportation Ministry
 subtitle: This ministry manages the railroads.
-tags: m_mins
-choose-if: m_influence >= 10
-view-if: transport_minister_party != "Menshevik"
+tags: sr_mins
+choose-if: sr_influence >= 10
 go-to: menu
-on-arrival: m_influence -= 10; transport_minister = "Voitinsky"; transport_minister_party = "Menshevik"
+on-arrival: sr_influence -= 10; transport_minister = "Voitinsky"; transport_minister_party = "SR"
 
 Vladimir Voitinsky has been appointed Transportation Minister.
 
@@ -114,11 +112,10 @@ Vladimir Voitinsky has been appointed Transportation Minister.
 @trade
 title: Industry and Trade Ministry
 subtitle: This ministry manages industrial production.
-tags: m_mins
-choose-if: m_influence >= 10
-view-if: trade_minister_party != "Menshevik"
+tags: sr_mins
+choose-if: sr_influence >= 10
 go-to: menu
-on-arrival: m_influence -= 10; trade_minister = "Groman"; trade_minister_party = "Menshevik"
+on-arrival: sr_influence -= 10; trade_minister = "Groman"; trade_minister_party = "SR"
 
 Vladimir Groman has been appointed Trade and Industry Minister.
 
@@ -126,8 +123,8 @@ Vladimir Groman has been appointed Trade and Industry Minister.
 
 @drop_agriculture
 title: Drop the Agriculture Ministry.
-view-if: agriculture_minister_party = "Menshevik"
-tags: m_drop_mins
+view-if: agriculture_minister_party = "SR"
+tags: sr_drop_mins
 go-to: menu
 on-arrival: {!
 if (Q.sr_in_prov_gov) {
@@ -137,20 +134,20 @@ if (Q.sr_in_prov_gov) {
     Q.agriculture_minister = "Shingarev";
     Q.agriculture_minister_party = "Kadet";
 }
-Q.m_influence += 10;
+Q.sr_influence += 10;
 !}
 
 We have dropped the Agriculture Ministry, and the position has been assigned to [+ agriculture_minister +], the [+ agriculture_minister_party +].
 
 @drop_food
 title: Drop the Food Ministry.
-view-if: food_minister_party = "Menshevik"
-tags: m_drop_mins
+view-if: agriculture_minister_party = "SR"
+tags: sr_drop_mins
 go-to: menu
 on-arrival: {!
 Q.food_minister = "Peshekhonov";
 Q.food_minister_party = "Popular Socialist";
-Q.m_influence += 10;
+Q.sr_influence += 10;
 !}
 
 We have dropped the Food Ministry, and the position has been assigned to [+ food_minister +], the [+ food_minister_party +].
@@ -159,13 +156,13 @@ We have dropped the Food Ministry, and the position has been assigned to [+ food
 
 @drop_justice
 title: Drop the Justice Ministry.
-view-if: justice_minister_party = "Menshevik"
-tags: m_drop_mins
+view-if: agriculture_minister_party = "SR"
+tags: sr_drop_mins
 go-to: menu
 on-arrival: {!
 Q.justice_minister = "Kerensky";
 Q.justice_minister_party = "SR";
-Q.m_influence += 10;
+Q.sr_influence += 10;
 !}
 
 We have dropped the Justice Ministry, and the position has been assigned to [+ justice_minister +], the [+ justice_minister_party +].
@@ -173,13 +170,13 @@ We have dropped the Justice Ministry, and the position has been assigned to [+ j
 
 @drop_labor
 title: Drop the Labor Ministry.
-view-if: labor_minister_party = "Menshevik"
-tags: m_drop_mins
+view-if: agriculture_minister_party = "SR"
+tags: sr_drop_mins
 go-to: menu
 on-arrival: {!
 Q.labor_minister = "Konovalov";
 Q.labor_minister_party = "Progressive";
-Q.m_influence += 10;
+Q.sr_influence += 10;
 !}
 
 We have dropped the Labor Ministry, and the position has been assigned to [+ labor_minister +], the [+ labor_minister_party +].
@@ -188,8 +185,8 @@ We have dropped the Labor Ministry, and the position has been assigned to [+ lab
 
 @drop_interior
 title: Drop the Interior Ministry.
-view-if: interior_minister_party = "Menshevik"
-tags: m_drop_mins
+view-if: interior_minister_party = "SR"
+tags: sr_drop_mins
 go-to: menu
 on-arrival: {!
 if (Q.kadets_resigned) {
@@ -199,7 +196,7 @@ if (Q.kadets_resigned) {
     Q.interior_minister = "Lvov";
     Q.interior_minister_party = "Independent";
 }
-Q.m_influence += 15;
+Q.sr_influence += 15;
 !}
 
 We have dropped the Interior Ministry, and the position has been assigned to [+ interior_minister +], the [+ interior_minister_party +].
@@ -207,8 +204,8 @@ We have dropped the Interior Ministry, and the position has been assigned to [+ 
 
 @drop_finance
 title: Drop the Finance Ministry.
-view-if: finance_minister_party = "Menshevik"
-tags: m_drop_mins
+view-if: finance_minister_party = "SR"
+tags: sr_drop_mins
 go-to: menu
 on-arrival: {!
 if (Q.kadets_resigned) {
@@ -218,7 +215,7 @@ if (Q.kadets_resigned) {
     Q.finance_minister = "Tereshchenko";
     Q.finance_minister_party = "Independent";
 }
-Q.m_influence += 15;
+Q.sr_influence += 15;
 !}
 
 We have dropped the Finance Ministry, and the position has been assigned to [+ finance_minister +], the [+ finance_minister_party +].
@@ -227,8 +224,8 @@ We have dropped the Finance Ministry, and the position has been assigned to [+ f
 
 @drop_war
 title: Drop the War Ministry.
-view-if: war_minister_party = "Menshevik"
-tags: m_drop_mins
+view-if: war_minister_party = "SR"
+tags: sr_drop_mins
 go-to: menu
 on-arrival: {!
 if (Q.kadets_resigned) {
@@ -238,7 +235,7 @@ if (Q.kadets_resigned) {
     Q.war_minister = "Kerensky";
     Q.war_minister_party = "SR";
 }
-Q.m_influence += 15;
+Q.sr_influence += 15;
 !}
 
 We have dropped the War Ministry, and the position has been assigned to [+ war_minister +], the [+ war_minister_party +].
@@ -247,13 +244,13 @@ We have dropped the War Ministry, and the position has been assigned to [+ war_m
 
 @drop_foreign
 title: Drop the Foreign Ministry.
-view-if: foreign_minister_party = "Menshevik"
-tags: m_drop_mins
+view-if: foreign_minister_party = "SR"
+tags: sr_drop_mins
 go-to: menu
 on-arrival: {!
 Q.foreign_minister = "Tereshchenko";
 Q.foreign_minister_party = "Independent";
-Q.m_influence += 15;
+Q.sr_influence += 15;
 !}
 
 We have dropped the Foreign Ministry, and the position has been assigned to [+ foreign_minister +], the [+ foreign_minister_party +].
@@ -262,13 +259,13 @@ We have dropped the Foreign Ministry, and the position has been assigned to [+ f
 
 @drop_transport
 title: Drop the Transport Ministry.
-view-if: transport_minister_party = "Menshevik"
-tags: m_drop_mins
+view-if: transport_minister_party = "SR"
+tags: sr_drop_mins
 go-to: menu
 on-arrival: {!
 Q.transport_minister = "Nekrasov";
 Q.transport_minister_party = "Kadet";
-Q.m_influence += 10;
+Q.sr_influence += 10;
 !}
 
 We have dropped the Transport Ministry, and the position has been assigned to [+ transport_minister +], the [+ transport_minister_party +].
@@ -277,13 +274,13 @@ We have dropped the Transport Ministry, and the position has been assigned to [+
 
 @drop_trade
 title: Drop the Trade and Industry Ministry.
-view-if: trade_minister_party = "Menshevik"
-tags: m_drop_mins
+view-if: trade_minister_party = "SR"
+tags: sr_drop_mins
 go-to: menu
 on-arrival: {!
 Q.trade_minister = "Konovalov";
 Q.trade_minister_party = "Progressive";
-Q.m_influence += 10;
+Q.sr_influence += 10;
 !}
 
 We have dropped the Trade Ministry, and the position has been assigned to [+ trade_minister +], the [+ trade_minister_party +].

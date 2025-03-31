@@ -154,6 +154,8 @@ Industry and Trade Minister: [+ trade_minister +] ([+ trade_minister_party +])
 
 Education Minister: [+ education_minister +] ([+ education_minister_party +])
 
+[? if post_minister: Posts and Telegraph Minister: [+ post_minister +] ([+ post_minister_party +]) ?]
+
 Provisional government efficacy: [+ prov_gov_efficacy : efficacy +]
 
 Provisional government legitimacy: [+ prov_gov_legitimacy : legitimacy +]
@@ -262,3 +264,5 @@ City militia allegiance: Mensheviks: [+ city_militia_m_loyalty : strength_2 +], 
 Garrison: [+ garrison_strength +] thousand
 
 Garrison allegiance: Mensheviks: [+ garrison_m_loyalty : strength +], Bolsheviks: [+ garrison_b_loyalty : strength +], Kadets: [+ garrison_k_loyalty : strength +], SRs: [+ garrison_sr_loyalty : strength +], Independent: [+ garrison_independent : strength +]
+
+[? if loyal_troops > 0 : Loyal troops (Battalions of Death): [+ loyal_troops_strength +] thousand ?]

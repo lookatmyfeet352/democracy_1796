@@ -13,6 +13,8 @@ During the February Revolution, the workers of Petrograd organized militias for 
 # should this use party resources?
 
 - @loyalty
+- @recruitment
+- @arming
 - @root: No action is needed.
 - @easy_discard
 - @cancel_advisor_action

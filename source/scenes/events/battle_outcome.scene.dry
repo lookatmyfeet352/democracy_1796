@@ -4,6 +4,7 @@ new-page: true
 view-if: in_offensive_battle = 1
 set-jump: battle_outcome.post_battle
 go-to: battle
+face-image: offensive.jpg
 tags: event
 
 @post_battle
@@ -19,8 +20,10 @@ Our casualties: [+ friendly_casualties +] divisions
 
 Enemy casualties: [+ hostile_casualties +] divisions
 
+Our forces have been totally defeated by the Central Powers armies, and are retreating behind their starting positions. The defeat has accelerated the trend towards anti-war sentiment.
+
 @defeat_1
-on-arrival: defensist_strength -= 6; social_patriot_strength -= 10; right_sr_strength -= 6; soldiers_sr -= 8 if sr_in_prov_gov; soldiers_m -= 8 if m_in_prov_gov; soldiers_k -= 10; morale *= 0.9; discipline *= 0.7; train_capacity *= 0.999; soldiers_b += 10 if not b_in_prov_gov; military_progress -= 1;
+on-arrival: defensist_strength -= 6; social_patriot_strength -= 10; right_sr_strength -= 6; soldiers_sr -= 8 if sr_in_prov_gov; soldiers_m -= 8 if m_in_prov_gov; soldiers_k -= 10; morale *= 0.9; discipline *= 0.7; train_capacity *= 0.9999; soldiers_b += 10 if not b_in_prov_gov; military_progress -= 1;
 
 = Defeat
 
@@ -28,10 +31,11 @@ Our casualties: [+ friendly_casualties +] divisions
 
 Enemy casualties: [+ hostile_casualties +] divisions
 
-Enemy forces have inflicted a defeat upon us.
+The Central Powers have inflicted a defeat upon us. Our forces have retreated to their starting positions. The defeat has accelerated the trend towards anti-war sentiment.
 
 @victory_1
-on-arrival: defensist_strength += 10; social_patriot_strength += 10; right_sr_strength += 10; morale *= 1.05; discipline *= 0.7; defense_bonus = 0; train_capacity *= 0.999; military_progress -= 1; coup_progress += 1
+on-arrival: defensist_strength += 10; social_patriot_strength += 10; right_sr_strength += 10; morale *= 1.05; discipline *= 0.9; defense_bonus = 0; train_capacity *= 0.9999; military_progress -= 1; coup_progress += 1
+achievement: victory
 
 = Victory
 
@@ -39,10 +43,11 @@ Our casualties: [+ friendly_casualties +] divisions
 
 Enemy casualties: [+ hostile_casualties +] divisions
 
-We have achieved a victory over the enemy!
+We have achieved a victory over the enemy! We have gained some territory.
 
 @victory_2
-on-arrival: defensist_strength += 10; social_patriot_strength += 10; right_sr_strength += 10; morale *= 1.05; discipline *= 0.7; defense_bonus = 0; train_capacity *= 0.999; military_progress -= 2; coup_progress += 2
+on-arrival: defensist_strength += 10; social_patriot_strength += 10; right_sr_strength += 10; morale *= 1.05; discipline *= 0.9; defense_bonus = 0; train_capacity *= 0.9999; military_progress -= 2; coup_progress += 2
+achievement: victory
 
 = Total Victory
 
@@ -50,4 +55,4 @@ Our casualties: [+ friendly_casualties +] divisions
 
 Enemy casualties: [+ hostile_casualties +] divisions
 
-We have achieved a total victory over the enemy!
+We have achieved a total victory over the enemy! We have gained a great deal of teritory.

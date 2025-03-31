@@ -45,6 +45,8 @@ We have taken out more loans from the Western powers. This reduces our relations
 @raise_taxes
 title: Raise taxes.
 subtitle: +2 budget
+unavailable-subtitle: Taxes are already too high.
+choose-if: income_taxes < 5 and business_taxes < 5
 view-if: budget < 0
 on-arrival: budget += 2; income_taxes += 1; business_taxes += 1; middle_none += 7; workers_none += 7; capital_flight_progress += 2; workers_m -= 6 if player_party = "m"; workers_sr -= 6 if player_party = "sr"; workers_k -= 6 if player_party = "k"; middle_m -= 9 if player_party = "m"; middle_sr -= 9 if player_party = "sr"; middle_k -= 9 if player_party = "k"; monthly_inflation -= 0.4;
 go-to: budget_deficit_menu

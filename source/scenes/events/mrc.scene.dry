@@ -1,0 +1,9 @@
+title: Military-Revolutionary Committee
+subtitle: The Bolsheviks are organizing for an uprising...
+new-page: True
+view-if: b_in_exco and prov_gov_legitimacy <= 50
+on-arrival: soldiers_b += 25; workers_militia_b_loyalty += 25; mrc = 1
+tags: event
+max-visits: 1
+
+= Military-Revolutionary Committee

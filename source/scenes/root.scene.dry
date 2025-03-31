@@ -60,7 +60,7 @@ Q.player4_party = "";
 // party resources
 Q.b_resources = 2;
 Q.m_resources = 2;
-Q.kadet_resources = 3;
+Q.k_resources = 3;
 Q.sr_resources = 2;
 // party dues
 Q.b_dues = 2;
@@ -289,7 +289,7 @@ Q.food_requisitioned = 0.08;
 // assume higher demands for the military (active soldiering, also bc of horses and stuff) - let's say 700 kg/year
 Q.urban_population = 145000000*(20)/100;
 Q.rural_population = 145000000*(72)/100;
-Q.soldiers_population = 145000000*(8)/100
+Q.soldiers_population = 145000000*(8)/100;
 // These are basic demands
 Q.food_demand_urban = Q.urban_population*500/1000000;// in million kg/year
 Q.food_demand_rural = Q.rural_population*500/1000000; // million kg/year - minimal demand; lower than this would provoke famine/violence
@@ -307,6 +307,9 @@ Q.hunger = 100*(Q.food_demand_urban - Q.food_supply_urban)/Q.food_demand_urban;
 if (Q.hunger < 0) {
     Q.hunger = 0; 
 }
+Q.food_demand_urban = Math.round(Q.food_demand_urban);
+Q.food_supply_urban = Math.round(Q.food_supply_urban);
+Q.hunger = Math.round(Q.hunger);
 // rural hunger
 Q.food_supply_rural = Q.food_production*(1 - Q.food_sold)*(1 - Q.food_requisitioned);
 Q.rural_hunger = 100*(Q.food_demand_rural - Q.food_supply_rural)/Q.food_demand_rural;
@@ -634,16 +637,16 @@ Q.minority_parties = ['ukrainian_sr', 'alash', 'musavat', 'dashnak', 'jewish_soc
 Q.workers_b = 10;
 Q.workers_m = 50;
 Q.workers_sr = 30;
-Q.workers_k = 5;
-Q.workers_conservative = 2;
-Q.workers_popular_socialist = 5;
+Q.workers_k = 2;
+Q.workers_conservative = 1;
+Q.workers_popular_socialist = 3;
 Q.workers_anarchist = 5;
-Q.workers_other = 5;
+Q.workers_other = 3;
 Q.workers_none = 10;
 
 Q.workers_pro_prov_gov = 85;
 Q.workers_pro_soviet = 95;
-Q.worker_demands = 60;
+Q.labor_unrest = 10;
 
 Q.middle_b = 5;
 Q.middle_m = 10;
@@ -670,7 +673,7 @@ Q.peasants_none = 10;
 
 Q.peasants_pro_prov_gov = 65;
 Q.peasants_pro_soviet = 70;
-Q.peasant_demands = 60;
+Q.peasant_unrest = 10;
 
 Q.underclass_b = 15;
 Q.underclass_m = 5;
@@ -698,7 +701,7 @@ Q.soldiers_none = 10;
 // this rises a lot due to Order Number 1
 Q.soldiers_pro_prov_gov = 50;
 Q.soldiers_pro_soviet = 60;
-Q.soldier_demands = 60;
+Q.soldier_unrest = 10;
 
 Q.elites_b = 0;
 Q.elites_m = 2;
@@ -740,9 +743,10 @@ Q.minorities_pro_soviet = 60;
 
 // Petrograd Soviet compositions
 // I can't find hard numbers
-Q.b_soviet = 20;
+Q.b_soviet = 9;
 Q.m_soviet = 40;
-Q.sr_soviet = 40;
+Q.sr_soviet = 33;
+Q.other_soviet = 18;
 
 // Soviet electoral bonuses
 Q.m_soviet_bonus = 1;
@@ -893,7 +897,7 @@ For more information on the politics of the Provisional Government, see the "Lib
 
 - @single_player
 - @local_multiplayer
-- @online_multiplayer
+#- @online_multiplayer
 
 @single_player
 title: Single Player

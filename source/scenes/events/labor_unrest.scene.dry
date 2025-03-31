@@ -1,0 +1,35 @@
+title: Labor Unrest
+subtitle: A wave of strikes affecting industry.
+new-page: true
+view-if: labor_unrest_timer = 0 and labor_unrest >= 10
+on-arrival: labor_unrest_timer += 6; industry *= 0.98;
+tags: event
+
+= Labor Unrest
+
+A wave of strikes is roiling Russia's factories. The revolution has given workers the right to organize and strike, and pent-up economic demands are finally expressing themselves. The ongoing inflation is a great source of concern among workers, along with the stagnation of industrial wages. Workers also seek more control over the means of production.
+
+What can we do?
+
+- @8_hour
+- @soviet_help
+- @nothing
+
+@8_hour
+title: Give workers the 8-hour workday.
+view-if: ((player_party = "k" and k_in_prov_gov) or (player_party = "m" and m_in_prov_gov) or (player_party = "sr" and sr_in_prov_gov)) and workday = 0
+
+@soviet_help
+title: Support the workers' demands for higher wages and improved working conditions.
+view-if: ((player_party = "b" and b_in_exco) or (player_party = "m" and m_in_exco) or (player_party = "sr" and sr_in_exco) or (player_party = "k" and k_in_exco))
+on-arrival: monthly_inflation += 0.2; capital_flight_progress += 1; workers_m += 5*(1-m_dissent) if m_in_exco; workers_sr += 5*(1-sr_dissent) if sr_in_exco; workers_b += 5*(1-b_dissent) if b_in_exco; m_k_relation -= 4 if m_in_exco; sr_k_relation -= 4 if sr_in_exco; prov_gov_soviet_cooperation -= 0.02; income += 1; labor_unrest -= 3;
+
+We have supported the workers in their economic demands and their struggles with their employers. Strikes are ended with agreements favorable to workers. The employers are somewhat displeased, and higher wages without increased production can lead to more inflation.
+
+
+
+@nothing
+title: There is nothing we can do.
+on-arrival: workers_m -= 5 if player_party = "m"; workers_sr -= 5 if player_party = "sr"; workers_b -= 5 if player_party = "b"
+
+There is nothing we can do.

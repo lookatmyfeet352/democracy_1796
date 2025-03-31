@@ -2,7 +2,7 @@ title: Agriculture and Land Reform
 new-page: true
 is-card: true
 on-arrival: agricultural_policy_timer += 3; week_actions += 1
-view-if: agricultural_policy_timer == 0 and ((player_party = "k" and k_in_prov_gov and (agriculture_minister_party = "Kadet" or agriculture_minister_party = "Independent" or agriculture_minister_party = "Progressive" or agriculture_minister_party = "Octobrist" or agriculture_minister_party = "Trudovik" or agriculture_minister_party = "Popular Socialist")) or (player_party = "sr" and sr_in_prov_gov and (agriculture_minister_party = "SR" or agriculture_minister_party = "Trudovik" or agriculture_minister_party = "Popular Socialist")) or (player_party = "m" and m_in_prov_gov and agriculture_minister_party = "Menshevik"))
+view-if: agricultural_policy_timer == 0 and ((player_party = "k" and k_in_prov_gov and (prime_minister_party = "Kadet" or agriculture_minister_party = "Kadet" or agriculture_minister_party = "Independent" or agriculture_minister_party = "Progressive" or agriculture_minister_party = "Octobrist" or agriculture_minister_party = "Trudovik" or agriculture_minister_party = "Popular Socialist")) or (player_party = "sr" and sr_in_prov_gov and (prime_minister_party = "SR" or agriculture_minister_party = "SR" or agriculture_minister_party = "Trudovik" or agriculture_minister_party = "Popular Socialist")) or (player_party = "m" and m_in_prov_gov and (prime_minister_party = "Menshevik" or agriculture_minister_party = "Menshevik")))
 card-image: img/peasant_2.jpg
 tags: prov_gov
 
@@ -18,9 +18,8 @@ The peasants are hungry for land, and the workers are hungry for bread. There mu
 # recruit pows and other atypical employees for farms
 
 - @land_reform
-- @agricultural_finance
-- @pro_consumer
-- @state_buyer
+- @food_policy.state_buyer
+- @food_policy.increase_price
 - @root: Do not enact any policies for now.
 - @easy_discard
 
@@ -28,34 +27,32 @@ The peasants are hungry for land, and the workers are hungry for bread. There mu
 title: Land Reform
 subtitle: -1 budget - Start the land reform process by creating land committees.
 view-if: land_reform = 0
-on-arrival: budget -= 1; land_reform += 1;
-max-visits: 3
-
-With our policy of land reform, we are acquiring farmland from large estates, and giving the land to farmworkers' associations and small peasants. In essence, this brings class struggle to the countryside, breaking the semi-feudal property relations present in East Prussia and other areas with large estates. The bourgeois parties and large farmers despise our intrusion into the sacredness of private property, while leftists are cautiously optimistic.
-
-
-@agricultural_finance
-title: Agricultural Financing
-subtitle: -1 budget - Increase financing for agricultural credit and insurance.
-choose-if: budget >= 1
-on-arrival: budget -= 1; agricultural_finance += 1; rural_spd += 5*(1-dissent); rural_nsdap -= 3*(1-dissent); peoples_party_support += 1; center_dissent += 5; left_dissent += 4; rural_sol += 4; rural_policy += 1;
-
-We have increased financial support for small farmers, providing access to credit and insurance, saving them from privation. The left and center of our party are opposed to our rural policy, seeing these policies as giveaways to petit-bourgeois farmers.
-
-
-@pro_consumer
-title: Food Procurement
-subtitle: -1 budget - Provide inexpensive food for workers.
-choose-if: budget >= 1
-on-arrival: budget -= 1; pro_consumer += 1; workers_spd += 4*(1-dissent); unemployed_spd += 4*(1-dissent); workers_sol += 4; coalition_dissent += 1 if black_thursday_seen
-
-We have increased state purchasing of food staples to provide to urban workers and the poor. This benefits workers more than it benefits farmers, as we are negotiating for lower purchase prices. [? if black_thursday_seen and (in_weimar_coalition or in_grand_coalition) : Our coalition partners consider this policy to be a wasteful handout. ?]
-
-@state_buyer
-title: State Buyer
-subtitle: -2 budget - Create a state monopoly for grain purchases, guaranteeing prices for farmers and stable prices for consumers. [? if judicial_reform < 2 : The judiciary would never allow this. ?]
-choose-if: budget >= 2 and judicial_reform >= 2
-on-arrival: budget -= 2; state_buyer = 1; rural_spd += 5*(1-dissent); rural_nsdap -= 3*(1-dissent); workers_spd += 4*(1-dissent); unemployed_spd += 5*(1-dissent); coalition_dissent += 1 if (in_grand_coalition or in_weimar_coalition); dvp_relation -= 5; z_relation -= 3; peoples_party_support += 1; rural_policy += 2; capital_strike_progress += 1
+on-arrival: budget -= 1; land_reform += 1; peasants_sr += 5*(1-sr_dissent); peasant_unrest -= 1;
 max-visits: 1
 
-Our new purchasing agency guarantees fair prices for farmers, while also providing lower food prices for workers and the urban poor. This policy necessitates heavy spending and an unprecedented level of state intervention in the economy, raising the ire of conservative economists.
+We have started the land reform process by creating land committees to redistribute land to the poor peasants.
+
+@land_reform_paid
+title: Legally acquire land to redistribute.
+subtitle: -2 budget
+view-if: land_reform = 1
+on-arrival: land_reform = 2; budget -= 2; peasants_sr += 5*(1-sr_dissent); peasant_unrest -= 1;
+
+We have paid the 
+
+@land_refurm_unpaid
+title: Legalize uncompensated seizures of land.
+unavailable-subtitle: Our party would not support this.
+view-if: land_reform = 1
+choose-if: (player_party = "sr" and sr_land_policy >= 2)
+on-arrival: land_reform = 3; peasants_sr += 5*(1-sr_dissent); peasant_unrest -= 1; food_production *= 0.98; coup_progress += 2; capital_flight_progress += 2
+
+@voluntary_privatization
+title: Begin the sale of large estates to individual peasants.
+subtitle: This is arguably a capitalist measure, breaking up the inefficient traditional villages.
+on-arrival: land_reform = 4;
+
+@redistribute
+title: Redistribute state land to the peasant communes.
+subtitle: This continues the traditional communal farming methods.
+on-arrival: land_reform = 5

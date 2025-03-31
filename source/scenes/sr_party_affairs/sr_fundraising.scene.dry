@@ -1,10 +1,10 @@
 title: Fundraising
 new-page: true
-view-if: fundraising_timer <= 0
-on-arrival: fundraising_timer = 6; week_actions += 1
+view-if: sr_fundraising_timer <= 0
+on-arrival: sr_fundraising_timer += 4; week_actions += 1
 frequency: 300
 is-card: true
-card-image: img/poster_2.jpg
+card-image: img/sr_poster.jpg
 tags: sr_party
 
 = Fundraising
@@ -24,7 +24,7 @@ We maintain our current dues.
 @reduce
 subtitle: [+ sr_dues - 1 +] resources gained.
 choose-if: sr_dues > 1
-on-arrival: sr_dues -= 1; sr_resources += sr_dues; leninist_dissent -= 10; center_dissent -= 8; moderate_dissent -= 8;
+on-arrival: sr_dues -= 1; sr_resources += sr_dues; right_sr_dissent -= 10; center_sr_dissent -= 8; left_sr_dissent -= 10;
 
 Our current members appreciate this, but no one decides to join a party because of the low dues.
 

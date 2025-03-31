@@ -1,8 +1,7 @@
 
-(-1..-1) no policy, illegal seizures
 (0..0) no policy
-(1..1) uncompensated seizures
-(2..2) compensated seizures
-(3..3) privatization
-(4..4) communal property
-(5..5) collectivization
+(1..1) Land Committees
+(2..2) Compensated seizures
+(3..3) Uncompensated seizures
+(4..4) Individual farming
+(5..5) Communal farming

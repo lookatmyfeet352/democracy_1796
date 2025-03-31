@@ -1,4 +1,36 @@
 title: Bolshevik Coup
-view-if: player_party != "b"
+subtitle: All the government needs to collapse is a slight topple...
+new-page: True
+view-if: player_party != "b" and month >= 9 and prov_gov_legitimacy < 40 and workers_b >= 25 and soldiers_b >= 25 and b_in_exco and workers_militia_b_loyalty >= workers_militia_m_loyalty + workers_militia_sr_loyalty and garrison_b_loyalty >= garrison_m_loyalty + garrison_k_loyalty + garrison_sr_loyalty
+
+# only do this if the Bolsheviks think they'll win.
 
 # TODO:
+
+@battle_menu
+
+
+- @m: What about the Mensheviks?
+- @workers_militias: Call up the Worker's Militias!
+
+@m
+max-visits: 1
+
+@workers_militias
+max-visits: 1
+
+@battle_outcome
+on-arrival: {!
+// bolshevik strength
+Q.b_strength = 0;
+// prov gov strength
+Q.pg_strength = 0;
+// worker's militias
+
+// garrisons
+
+// city militias
+
+// loyal troops
+
+!}

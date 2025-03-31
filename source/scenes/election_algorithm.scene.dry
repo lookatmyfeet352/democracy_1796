@@ -90,7 +90,6 @@ for (var c of petrograd_classes) {
         if (party == "none") {
             continue;
         }
-
         if (!Q[c+'_'+party] || Q[c+'_'+party] < 0) {
             Q[c+'_'+party] = 0;
         }
