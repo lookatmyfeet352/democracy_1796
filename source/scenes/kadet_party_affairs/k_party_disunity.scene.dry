@@ -5,7 +5,7 @@ on-arrival: k_party_disunity_timer += 3; week_actions += 1
 frequency: 200
 is-card: true
 card-image: img/rsdlp_2.jpg
-tags: k_party
+#tags: k_party
 
 = Party Disunity
 

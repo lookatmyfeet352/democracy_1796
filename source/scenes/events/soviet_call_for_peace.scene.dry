@@ -1,7 +1,11 @@
 title: Soviet Call for Peace
 subtitle: The Petrograd Soviet issues a proclamation to the workers of the world.
 new-page: true
-view-if: (allied_demands_seen = 1 or k_is_player = 0) and (player_party = "m" or player_party = "sr") and april_days_seen = 0 and ((month = 4 and week >= 3) or month > 4)
-on-arrival: april_days_seen += 1
+view-if: soviet_call = 0 and (month = 3 and week >= 3)
+on-arrival: soviet_call += 1
 max-visits-var: n_players 
 tags: event
+
+= Soviet Call for Peace
+
+The Petrograd Soviet has issued a declaration to the workers of the world, especially to the workers living in the belligerents of the Great War. It calls for a general peace among the nations, without annexations or indemnities.

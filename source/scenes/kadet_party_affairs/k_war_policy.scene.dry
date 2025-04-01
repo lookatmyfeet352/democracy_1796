@@ -7,22 +7,62 @@ on-arrival: k_war_policy_timer = 6;
 
 = War Policy
 
-The war is the greatest question in politics at this moment. What should be our policy regarding the war?
+The Kadets have always been Russian patriots who support the war effort. Will that change in the name of cooperation with the left?
 
-- @rd
-- @rd_2
-- @i_1
-- @i_2
-- @i_3
+- @im
+- @im_2
+- @support_left
 - @sp_1
 - @sp_2
-- @sp_3
+- @rd
+- @rd_2
+
+@support_left
+title: Try to move the Kadets to the left on the war.
+subtitle: Support a policy that is more anti-war than our current one.
+view-if: k_war_policy < 1
+on-arrival: left_kadet_strength += 4;
+
+We have supported more left-wing war policy.
+
+
+@im
+title: Continue a policy of expansionism.
+subtitle: Support a policy of expanding Russia through war, until we reach Constantinople. [? if k_war_policy = -1: This is our current position. ?]
+view-if: k_war_policy = -1
+
+We are continuing to support a policy of expansionism.
+
+@im_2
+title: Adopt a policy of expansionism.
+subtitle: Support a policy of expanding Russia through war, until we reach Constantinople. [? if k_war_policy = -1: This is our current position. ?]
+view-if: k_war_policy != -1
+on-arrival: k_war_policy = -1
+
+We have adopted a policy of expansionism.
+
+@sp_1
+title: Adopt a social patriot position.
+subtitle: We must fight the war until we win.
+unavailable-subtitle: There is not enough support for this position within the party.
+view-if: k_war_policy != 0 
+choose-if: left_kadet_strength >= right_kadet_strength
+on-arrival: k_war_policy = 0
+
+We have adopted a social patriot position, calling for the victory of the Allies without territorial ambitions.
+
+@sp_2
+title: Continue to support a social patriot position.
+subtitle: We must fight the war until we win.
+view-if: k_war_policy = 0
+
+We are continuing a a social patriot position, calling for the victory of the Allies without territorial ambitions.
+
 
 @rd
 title: Continue a policy of revolutionary defensism.
 subtitle: Support an international peace without annexations or indemnities, but fight to defend the revolution in the meantime. [? if k_war_policy = 1: This is our current position. ?]
 view-if: k_war_policy = 1
-on-arrival: defensist_strength += 5; defensist_dissent -= 4; internationalist_dissent += 5
 
 We are continuing to support a policy of revolutionary defensism.
 
@@ -31,60 +71,7 @@ title: Adopt a policy of revolutionary defensism.
 subtitle: Support an international peace without annexations or indemnities, but fight to defend the revolution in the meantime.
 unavailable-subtitle: There is not enough support for this position within the party.
 view-if: k_war_policy != 1
-choose-if: defensist_strength >= internationalist_strength and defensist_strength >= social_patriot_strength
-on-arrival: k_war_policy = 1; defensist_strength += 10; internationalist_dissent += 20 if k_war_policy > 1
+choose-if: left_kadet_strength >= 80
+on-arrival: k_war_policy = 1; right_kadet_dissent += 50; middle_k -= 5; elites_k -= 5;
 
-We have adopted a revolutionary defensist position, calling on continued support of the war effort while negotiating for a general peace.
-
-
-@i_1
-title: Adopt an internationalist position.
-subtitle: Support an immediate end to the war, even a separate peace if necessary.
-unavailable-subtitle: There is not enough support for this position within the party.
-view-if: k_war_policy != 2
-choose-if: internationalist_strength >= defensist_strength + social_patriot_strength
-on-arrival: k_war_policy = 2; internationalist_strength += 5; internationalist_dissent -= 5; defensist_dissent += 15; social_patriot_dissent += 30
-
-We have adopted an internationalist position, calling for an immediate end to the war.
-
-@i_2
-title: Increase support for an internationalist position.
-subtitle: Support an immediate end to the war, even a separate peace if necessary.
-view-if: k_war_policy != 2 and internationalist_strength < defensist_strength + social_patriot_strength
-on-arrival: internationalist_strength += 4; internationalist_dissent -= 3; defensist_dissent += 5
-
-We are building up support for internationalism within the party, so that we may eventually adopt this position.
-
-@i_3
-title: Continue to support an internationalist position.
-subtitle: Support an immediate end to the war, even a separate peace if necessary.
-view-if: k_war_policy = 2
-on-arrival: internationalist_strength += 4; internationalist_dissent -= 3; social_patriot_dissent += 4; defensist_dissent += 4
-
-We are continuing to support an internationalist position.
-
-@sp_1
-title: Adopt a social patriot position.
-subtitle: We must fight the war until we win.
-unavailable-subtitle: There is not enough support for this position within the party.
-view-if: k_war_policy > 0 
-choose-if: social_patriot_strength >= internationalist_strength
-on-arrival: k_war_policy = 0; social_patriot_strength += 10; internationalist_dissent += 30
-
-We have adopted a social patriot position, calling for the victory of the Allies.
-
-@sp_2
-title: Support a social patriot position.
-subtitle: We must fight the war until we win.
-view-if: k_war_policy < 0 and social_patriot_strength < internationalist_strength
-on-arrival: social_patriot_strength += 4; social_patriot_dissent -= 5; internationalist_dissent += 5; defensist_dissent += 4
-
-We are building up support for social patriotism within the party, so that we may eventually adopt this position.
-
-@sp_3
-title: Continue to support a social patriot position.
-subtitle: We must fight the war until we win.
-view-if: k_war_policy = 0
-on-arrival: social_patriot_strength += 4; social_patriot_dissent -= 5; internationalist_dissent += 5; defensist_dissent += 4
-
-We are continuing to support a social patriot position.
+We have adopted a revolutionary defensist position, calling on continued support of the war effort while negotiating for a general peace. This position is closer to the socialists, but very unpopular with the middle-class nationalists who make up our base.

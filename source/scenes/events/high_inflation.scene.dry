@@ -57,7 +57,7 @@ There is nothing we can do about this.
 
 @campaign
 title: Campaign against the ineptitude of the Provisional Government!
-choose-if: player_party = "b"
+view-if: player_party = "b"
 on-arrival: workers_b += 4*(1-b_dissent)
 
 We use the issue of inflation to campaign against the Provisional Government.

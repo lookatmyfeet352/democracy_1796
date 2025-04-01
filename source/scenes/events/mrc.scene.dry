@@ -1,9 +1,11 @@
 title: Military-Revolutionary Committee
 subtitle: The Bolsheviks are organizing for an uprising...
 new-page: True
-view-if: b_in_exco and prov_gov_legitimacy <= 50
-on-arrival: soldiers_b += 25; workers_militia_b_loyalty += 25; mrc = 1
+view-if: b_in_exco and prov_gov_legitimacy <= 50 and mrc_timer = 0 and player_party != "b"
+on-arrival: soldiers_b += 15; workers_militia_b_loyalty += 25; mrc = 1; bolshevik_coup_timer = 4
 tags: event
 max-visits: 1
 
 = Military-Revolutionary Committee
+
+The Bolshevik-led Petrograd Soviet has formed the Military-Revolutionary Committee, a committee to organize the workers' militias and garrison troops for the defense of the revolution.

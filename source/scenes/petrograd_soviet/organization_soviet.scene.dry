@@ -34,3 +34,7 @@ on-arrival: soviet_organization += 1; soviet_efficacy += 0.05
 We are continuing to build up economic coordination infrastructure.
 
 # options: 
+
+@administrative
+title: Build up a Soviet administrative apparatus.
+subtitle: -2 resources

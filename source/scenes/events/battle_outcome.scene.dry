@@ -1,7 +1,7 @@
 title: Battle Outcome
 subtitle: The outcome of our offensive...
 new-page: true
-view-if: in_offensive_battle = 1
+view-if: in_offensive_battle = 1 and not in_june_offensive
 set-jump: battle_outcome.post_battle
 go-to: battle
 face-image: offensive.jpg
@@ -34,7 +34,7 @@ Enemy casualties: [+ hostile_casualties +] divisions
 The Central Powers have inflicted a defeat upon us. Our forces have retreated to their starting positions. The defeat has accelerated the trend towards anti-war sentiment.
 
 @victory_1
-on-arrival: defensist_strength += 10; social_patriot_strength += 10; right_sr_strength += 10; morale *= 1.05; discipline *= 0.9; defense_bonus = 0; train_capacity *= 0.9999; military_progress -= 1; coup_progress += 1
+on-arrival: defensist_strength += 10; social_patriot_strength += 10; right_sr_strength += 10; morale *= 1.05; discipline *= 0.9; defense_bonus = 0; train_capacity *= 0.9999; military_progress += 1; 
 achievement: victory
 
 = Victory
@@ -46,7 +46,7 @@ Enemy casualties: [+ hostile_casualties +] divisions
 We have achieved a victory over the enemy! We have gained some territory.
 
 @victory_2
-on-arrival: defensist_strength += 10; social_patriot_strength += 10; right_sr_strength += 10; morale *= 1.05; discipline *= 0.9; defense_bonus = 0; train_capacity *= 0.9999; military_progress -= 2; coup_progress += 2
+on-arrival: defensist_strength += 10; social_patriot_strength += 10; right_sr_strength += 10; morale *= 1.05; discipline *= 0.9; defense_bonus = 0; train_capacity *= 0.9999; military_progress += 2; coup_progress += 2
 achievement: victory
 
 = Total Victory

@@ -12,22 +12,22 @@ Vladimir Voitinsky is an Menshevik recolutionary who returned from exile in Sibe
 # organizing soldiers, worker's militias, trade ministry, finance ministry, foreign ministry
 # soviet labor affairs
 
-- @plan
-- @carry_out_policy
+- @soviet_organizing
+- @finance
 - @depression
 - @root: Return to main
 
-@plan
-title: Adopt the WTB-plan!
-subtitle: Convincing the rest of the party to support the WTB-plan.
+@soviet_organizing
+title: Soviet Organizations
+subtitle: Build institutions in the Soviet for economic coordination.
 choose-if: advisor_action_timer <= 0 and wtb_adopted == 0 and wtb_support >= 3 and black_thursday_seen and (not historical_mode or ((labor_strength >= center_strength) and (labor_strength >= left_strength) and (labor_strength >= reformist_strength)))
 on-arrival: advisor_action_timer = 6;
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?][? if black_thursday_seen == 0 : We are not currently in an economic crisis. ?][? if wtb_adopted > 0 : We have already adopted the WTB-Plan. ?][? if wtb_support < 3 : There is not enough support for the WTB-Plan. ?][? if (labor_strength < center_strength or labor_strength < left_strength or labor_strength < reformist_strength) and historical_mode : The labor faction is not strong enough. ?]
 
-@carry_out_policy
-title: Carry out the economic plan.
-subtitle: If we are in government, we can carry out a public works program such as the WTB-Plan.
-unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?][? if wtb_adopted == 0 : We have not yet adopted an economic plan. ?][? if spd_in_government == 0 : The SPD is not in government. ?][? if works_program >= 2 : We have already started implementing the plan. ?]
+@finance
+title: Fiscal Policy 
+subtitle: As Minister of Finance, Voitinsky can carry out the Provisional Government's fiscal policy.
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?][? if wtb_adopted == 0 : We have not yet adopted an economic plan. ?][? if spd_in_government == 0 : The SPD is not in government. ?][? if works_program >= 2 : We have already started implementing the plan. ?]
 choose-if: advisor_action_timer <= 0 and wtb_adopted and spd_in_government and wtb_implemented <= 1
 on-arrival: advisor_action_timer = 6; economic_policy_timer -= 12
 

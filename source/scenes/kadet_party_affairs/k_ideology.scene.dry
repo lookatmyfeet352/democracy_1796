@@ -13,10 +13,10 @@ The revolution has opened up a space for raucous debate on the future of the cou
 
 
 - @k_war_policy: War policy
-- @k_prov_gov_policy: The Provisional Government
+#- @k_prov_gov_policy: The Provisional Government
 - @k_industrial_policy: Industrial policy
-- @k_rural_policy: Rural policy
-- @k_nationalities: The nationalities
+#- @k_rural_policy: Rural policy
+#- @k_nationalities: The nationalities
 - @root: No, we will not change any of our ideological positions.
 - @easy_discard
 

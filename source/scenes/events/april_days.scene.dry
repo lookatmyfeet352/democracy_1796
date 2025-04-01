@@ -29,7 +29,7 @@ The Kadets in the Provisional Government are ready to be rid of Milyukov and all
 
 @join_govt_m
 view-if: player_party = "m"
-on-arrival: m_influence = m_k_relation; m_in_prov_gov = 1; sr_in_prov_gov = 1; agriculture_minister = "Chernov"; agriculture_minister_party = "SR"; war_minister = "Kerensky"; war_minister_party = "SR"; post_minister = "Tsereteli"; post_minister_party = "Menshevik"; foreign_minister = "Tereshchenko";
+on-arrival: m_influence = m_k_relation/2 + 5; m_in_prov_gov = 1; sr_in_prov_gov = 1; agriculture_minister = "Chernov"; agriculture_minister_party = "SR"; war_minister = "Kerensky"; war_minister_party = "SR"; post_minister = "Tsereteli"; post_minister_party = "Menshevik"; foreign_minister = "Tereshchenko";
 
 # TODO: event to join cabinet
 
@@ -47,7 +47,7 @@ on-arrival: prime_minister = "Tsereteli"; prime_minister_party = "Menshevik"; m_
 
 @join_govt_sr
 view-if: player_party = "sr"
-on-arrival: sr_influence = sr_k_relation; sr_in_prov_gov = 1; m_in_prov_gov = 1; labor_minister = "Skobelev"; labor_minister_party = "Menshevik"; post_minister = "Tsereteli"; post_minister_party = "Menshevik"; foreign_minister = "Tereshchenko";
+on-arrival: sr_influence = sr_k_relation/2 + 5; sr_in_prov_gov = 1; m_in_prov_gov = 1; labor_minister = "Skobelev"; labor_minister_party = "Menshevik"; post_minister = "Tsereteli"; post_minister_party = "Menshevik"; foreign_minister = "Tereshchenko";
 
 We have accepted the Kadets' offer to join the Provisional Government, as have the Mensheviks. Milyukov has resigned, replaced by Tereshchenko, also Kadet-aligned. The Menshevik leader Irakli Tsereteli has been given the Ministry of Posts and Telegraph.
 

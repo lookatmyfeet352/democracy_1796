@@ -1,7 +1,71 @@
-title: [+ month +] Crisis
-subtitle: The people demand all power to the Soviets and an end to the war...
+title: [+ month : month +] Crisis
+subtitle: The people demand "All Power to the Soviets" and an end to the war...
 new-page: true 
-view-if: month >= 7 and offensive_started = 1 and july_days_seen = 0
-on-arrival: july_days_seen += 1
+view-if: month >= 7 and (june_offensive_defeat = 1 or military_progress < 0) and war_weariness >= 60 and july_days_seen = 0
+on-arrival: july_days_seen += 1; workers_b += 10; soldiers_b += 10
+face-image: img/riot.jpg
 tags: event 
 
+= [+ month : month +] Crisis
+
+The workers and soldiers of Petrograd are increasingly tired of the war; our recent defeats have not helped. The soldiers still in the garrison and the sailors of Kronstadt are demanding that the Soviet take power over the Provisional Government.
+
+- @take_power
+- @negotiate
+- @nothing
+- @support
+- @chaos
+
+@take_power
+title: We will take power.
+unavailable-subtitle: Our party does not support this.
+view-if: (player_party = "b" and b_in_exco) or (player_party = "m" and m_in_exco) or (player_party = "sr" and sr_in_exco)
+choose-if: (player_party = "b" and b_in_exco) or (player_party = "m" and m_in_exco and m_prov_gov_policy >= 3) or (player_party = "sr" and sr_in_exco and sr_prov_gov_policy >= 3) 
+
+The Provisional Government will defend itself, of course.
+
+# TODO: battle
+
+@negotiate
+title: We can negotiate and wait out the demonstrators.
+view-if: (player_party = "b" and b_in_exco) or (player_party = "m" and m_in_exco) or (player_party = "sr" and sr_in_exco) or (player_party = "k")
+on-arrival: kadets_resign = 1 if prime_minister = "Lvov"; prime_minister = "Kerensky" if prime_minister = "Lvov"; prime_minister_party = "SR" if prime_minister_party = "Independent"; prov_gov_legitimacy -= 8; workers_militia_strength -= 5;
+
+After some streetfighting and arrests, the protestors eventually grow tired, and return to their homes and barracks.
+
+[? if kadets_resign: Due to the protests, and the earlier response to the Ukrainian Central Rada, the government of Prime Minister Lvov has resigned. Alexander Kerensky uses this as an opportunity to gather more power - he is now Prime Minister. ?]
+
+- @shuffle_cabinet
+- @root: Continue...
+
+@nothing
+title: We are paralyzed by indecision!
+view-if: player_party = "b"
+on-arrival: kadets_resign = 1 if prime_minister = "Lvov"; prime_minister = "Kerensky" if prime_minister = "Lvov"; prime_minister_party = "SR" if prime_minister_party = "Independent";
+
+After some streetfighting and arrests, the protestors eventually grow tired, and return to their homes and barracks.
+
+[? if kadets_resign: Due to the protests, and the earlier response to the Ukrainian Central Rada, the government of Prime Minister Lvov has resigned. Alexander Kerensky uses this as an opportunity to gather more power - he is now Prime Minister. ?]
+
+
+@support
+title: Support the protestors!
+view-if: player_party = "b"
+on-arrival: kadets_resign = 1 if prime_minister = "Lvov"; prime_minister = "Kerensky" if prime_minister = "Lvov"; prime_minister_party = "SR" if prime_minister_party = "Independent";
+
+After some streetfighting and arrests, the protestors eventually grow tired, and return to their homes and barracks.
+
+[? if kadets_resign: Due to the protests, and the earlier response to the Ukrainian Central Rada, the government of Prime Minister Lvov has resigned. Alexander Kerensky uses this as an opportunity to gather more power - he is now Prime Minister. ?]
+
+
+@chaos
+title: Utter chaos...
+view-if: player_party = "k" and not k_in_prov_gov
+on-arrival: kadets_resign = 1 if prime_minister = "Lvov"; prime_minister = "Kerensky" if prime_minister = "Lvov"; prime_minister_party = "SR" if prime_minister_party = "Independent"; prov_gov_legitimacy -= 8; workers_militia_strength -= 5;
+
+After some streetfighting and arrests, the protestors eventually grow tired, and return to their homes and barracks.
+
+@shuffle_cabinet
+title: We can use this opportunity to increase our participation in the Provisional Government...
+view-if: prime_minister = "Kerensky" and (player_party = "sr" or (player_party = "m" and m_sr_relation >= 50))
+go-to: sr_join_prov_gov if player_party = "sr"; m_join_prov_gov if player_party = "m"

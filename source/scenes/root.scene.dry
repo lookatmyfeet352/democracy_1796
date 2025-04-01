@@ -65,7 +65,7 @@ Q.sr_resources = 2;
 // party dues
 Q.b_dues = 2;
 Q.m_dues = 2;
-Q.kadet_dues = 3;
+Q.k_dues = 3;
 Q.sr_dues = 2;
 
 // the state of the party
@@ -473,11 +473,13 @@ Q.attacking = 1;
 // are we currently in an offensive or defensive battle?
 Q.in_offensive_battle = 0;
 Q.in_defensive_battle = 0;
-// special case for the Kerensky offensive
-Q.in_kerensky_offensive = 0;
+// special case for the Kerensky offensive/June offensive
+Q.in_june_offensive = 0;
 
 // battle outcomes: 1 = victory, -1 = defeat, -2 = major defeat
 Q.battle_outcome = 0;
+// number of battles
+Q.battle_count = 0;
 // Militias
 
 // 100k
@@ -776,6 +778,8 @@ Q.timers = [//m_party
             'm_war_policy',
             //sr_party
             'sr_enemies', 'sr_fundraising', 'sr_ideology',
+            'sr_prov_gov_policy', 'sr_industrial_policy',
+            'sr_war_policy',
             'sr_inter_party_relationships', 'sr_media',
             'sr_organizing', 'sr_party_unity', 'sr_shuffle_leadership',
             //b_party
@@ -784,7 +788,9 @@ Q.timers = [//m_party
             'b_organizing', 'b_party_unity', 'b_shuffle_leadership',
             'b_reunify',
             //k_party
-            'shuffle_leadership', 'streetfighting', 'peoples_party',
+            'k_enemies', 'k_fundraising', 'k_ideology',
+            'k_inter_party_relationships', 'k_media',
+            'k_organizing', 'k_party_unity', 'k_shuffle_leadership',
             // prov_gov
             'agricultural_policy', 'food_policy', 'fiscal_policy',
             'foreign_policy', 'judiciary', 'labor_affairs',
@@ -801,7 +807,10 @@ Q.timers = [//m_party
             // events
             'food_shortages', 'high_inflation',
             'prov_gov_policies', 'land_seizures',
-            'labor_unrest',
+            'labor_unrest', 'mrc', 'bolshevik_coup',
+            'capital_flight', 'offensive_demand',
+            'june_offensive_conclusion',
+            'advisor_action'
             ];
 Q.advisor_action_timer = 0;
 
@@ -861,14 +870,14 @@ Q.kerensky_advisor = 1;
 // kadet advisors
 // right-kadet
 Q.milyukov_advisor = 1; // Pavel Milyukov
-Q.panina_advisor = 0; // Sofia Panina
-Q.shingarev_advisor = 0; // Andrey Shingarev
+Q.panina_advisor = 1; // Sofia Panina
+Q.shingarev_advisor = 1; // Andrey Shingarev
 // left-kadet
 Q.nekrasov_advisor = 1; // Nikolai Nekrasov
 Q.oldenburg_advisor = 0; // Sergey Oldenburg
 // Kadet-aligned liberals
-Q.lvov_advisor = 1; // Prince Georgy Lvov
-Q.tereshchenko_advisor = 0; // Mikhail Tereshchenko
+Q.lvov_advisor = 0; // Prince Georgy Lvov
+Q.tereshchenko_advisor = 1; // Mikhail Tereshchenko
 // Kadet-aligned conservatives
 Q.rodzianko_advisor = 0; // Mikhail Rodzianko
 

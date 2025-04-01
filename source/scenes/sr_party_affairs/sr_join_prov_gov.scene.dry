@@ -72,30 +72,36 @@ Nikolai Avksentiev has been appointed Interior Minister.
 title: Finance Ministry
 tags: sr_mins
 choose-if: sr_influence >= 15
+view-if: finance_minister_party != "SR"
 go-to: menu
-on-arrival: sr_influence -= 15; finance_minister = "Voitinsky"; finance_minister_party = "SR"
+on-arrival: sr_influence -= 15; finance_minister = "Kondratiev"; finance_minister_party = "SR"
 
-Vladimir Voitinsky has been appointed Finance Minister.
+Nikolai Kondratiev has been appointed Finance Minister.
+
+# lol basically I don't have suitable ministers so it's just Kerensky appointing himself to everything
 
 @war
 title: War Ministry
 tags: sr_mins
 choose-if: sr_influence >= 15
+view-if: war_minister_party != "SR"
 go-to: menu
-on-arrival: sr_influence -= 15; war_minister = "Tsereteli"; war_minister_party = "SR"
+on-arrival: sr_influence -= 15; war_minister = "Kerensky"; war_minister_party = "SR"
 
-Irakli Tsereteli has been appointed War Minister.
+Alexander Kerensky has been appointed War Minister.
 
+# TODO: Verkhovsky should have this under circumstances
 
 
 @foreign
 title: Foreign Ministry
 tags: sr_mins
 choose-if: sr_influence >= 15
+view-if: foreign_minister_party != "SR"
 go-to: menu
-on-arrival: sr_influence -= 15; foreign_minister = "Tsereteli" if not defensist_split; foreign_minister = "Martov" if defensist_split; foreign_minister_party = "SR"
+on-arrival: sr_influence -= 15; foreign_minister = "Kerensky"; foreign_minister_party = "SR"
 
-[? if not defensist_split : Irakli Tsereteli ?][? if defensist_split: Julius Martov ?] has been appointed Foreign Minister.
+Alexander Kerensky has been appointed Foreign Minister.
 
 
 @transport
@@ -103,21 +109,24 @@ title: Transportation Ministry
 subtitle: This ministry manages the railroads.
 tags: sr_mins
 choose-if: sr_influence >= 10
+view-if: transport_minister_party != "SR"
 go-to: menu
-on-arrival: sr_influence -= 10; transport_minister = "Voitinsky"; transport_minister_party = "SR"
+on-arrival: sr_influence -= 10; transport_minister = "Kerensky"; transport_minister_party = "SR"
 
-Vladimir Voitinsky has been appointed Transportation Minister.
+Alexander Kerensky has been appointed Transportation Minister.
 
 
 @trade
 title: Industry and Trade Ministry
+unavailable-subtitle: Not enough influence.
 subtitle: This ministry manages industrial production.
+view-if: trade_minister_party != "SR"
 tags: sr_mins
 choose-if: sr_influence >= 10
 go-to: menu
-on-arrival: sr_influence -= 10; trade_minister = "Groman"; trade_minister_party = "SR"
+on-arrival: sr_influence -= 10; trade_minister = "Kondratiev"; trade_minister_party = "SR"
 
-Vladimir Groman has been appointed Trade and Industry Minister.
+Nikolai Kondratiev been appointed Trade and Industry Minister.
 
 
 
@@ -127,13 +136,8 @@ view-if: agriculture_minister_party = "SR"
 tags: sr_drop_mins
 go-to: menu
 on-arrival: {!
-if (Q.sr_in_prov_gov) {
-    Q.agriculture_minister = "Chernov";
-    Q.agriculture_minister_party = "SR";
-} else {
-    Q.agriculture_minister = "Shingarev";
-    Q.agriculture_minister_party = "Kadet";
-}
+Q.agriculture_minister = "Shingarev";
+Q.agriculture_minister_party = "Kadet";
 Q.sr_influence += 10;
 !}
 
@@ -160,8 +164,8 @@ view-if: agriculture_minister_party = "SR"
 tags: sr_drop_mins
 go-to: menu
 on-arrival: {!
-Q.justice_minister = "Kerensky";
-Q.justice_minister_party = "SR";
+Q.justice_minister = "Tereshchenko";
+Q.justice_minister_party = "Kadet";
 Q.sr_influence += 10;
 !}
 
@@ -229,11 +233,11 @@ tags: sr_drop_mins
 go-to: menu
 on-arrival: {!
 if (Q.kadets_resigned) {
-    Q.war_minister = "Verkhovsky";
-    Q.war_minister_party = "SR";
+    Q.war_minister = "Tereshchenko";
+    Q.war_minister_party = "Kadet";
 } else {
-    Q.war_minister = "Kerensky";
-    Q.war_minister_party = "SR";
+    Q.war_minister = "Tereshchenko";
+    Q.war_minister_party = "Kadet";
 }
 Q.sr_influence += 15;
 !}

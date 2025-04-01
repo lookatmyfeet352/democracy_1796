@@ -1,8 +1,8 @@
 title: Land Seizures
 subtitle: Peasants are taking land reform into their own hands.
 new-page: true
-view-if: land_seizures_timer = 0 and ((land_reform = 0) or (land_reform <= 2 and rural_militia_strength <= 20))
-on-arrival: land_seizures_timer += 6; food_production *= 0.95; peasants_conservative -= 6; peasants_popular_socialist -= 6;
+view-if: land_seizures_timer = 0 and ((land_reform = 0) or (land_reform <= 4 and rural_militia_strength <= 20))
+on-arrival: land_seizures_timer += 6; food_production *= 0.98; peasants_conservative -= 6; peasants_popular_socialist -= 6; food_sold -= 0.005 if food_sold > 0.05
 tags: event
 
 = Land Seizures
@@ -60,6 +60,7 @@ unavailable-subtitle: We do not have a strong enough rural militia.
 on-arrival: peasants_m -= 5 if player_party = "m"; peasants_sr -= 5 if player_party = "sr"; peasants_k -= 5 if player_party = "k"; food_production *= 1.01; land_seizuers_timer += 4;
 
 We have called the newfound rural militia to restore order to the countryside, stopping the land seizures.
+
 
 @nothing
 title: There is nothing we can do.

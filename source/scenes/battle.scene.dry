@@ -73,4 +73,5 @@ if (Q.attacking) {
     Q[Q.enemy_front + '_enemy_soldiers'] -= Q.hostile_casualties;
 }
 
+Q.battle_count += 1;
 !}

@@ -23,7 +23,7 @@ title: Emergency fundraising
 subtitle: An emergency infusion of resources.
 choose-if: advisor_action_timer <= 0
 on-arrival: advisor_action_timer = 4; m_resources += m_dues
-unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?]
 
 We have gained [+ m_dues +] additional resources.
 
@@ -32,7 +32,7 @@ We have gained [+ m_dues +] additional resources.
 title: Soviet-Government Cooperation
 subtitle: Improve cooperation between the Petrograd Soviet and the Provisional Government.
 choose-if: advisor_action_timer <= 0
-unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?]
 on-arrival: advisor_action_timer = 4; soviet_cooperation += 0.05; m_k_relation += 5*(1-m_dissent) if k_in_prov_gov; soviet_efficacy += 0.01
 
 We have increased cooperation between the Soviet and the Provisional Government. This also improves our relations with the Kadets.
@@ -41,7 +41,7 @@ We have increased cooperation between the Soviet and the Provisional Government.
 title: Support Revolutionary Defensism
 subtitle: Increase support for revolutionary defensism within our party.
 choose-if: advisor_action_timer <= 0
-unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?]
 on-arrival: advisor_action_timer = 4; defensist_strength += 5; defensist_dissent -= 5; internationalist_strength -= 4;
 
 Tsereteli is advocating in favor of the Revolutionary Defensist position.
@@ -51,7 +51,7 @@ Tsereteli is advocating in favor of the Revolutionary Defensist position.
 title: Inter-party Relations
 subtitle: Improve cooperation with the moderate pro-government parties.
 choose-if: advisor_action_timer <= 0
-unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?]
 on-arrival: advisor_action_timer = 4; soviet_cooperation += 0.05; m_k_relation += 5*(1-m_dissent); m_sr_relation += 5*(1-m_dissent) if not right_sr_split; soviet_efficacy += 0.01
 
 We have improved relations with the Kadets[? if right_sr_split:. ?][? if not right_sr_split: and the SRs. ?]
@@ -60,7 +60,7 @@ We have improved relations with the Kadets[? if right_sr_split:. ?][? if not rig
 title: Media Campaigning
 subtitle: Use our media apparatus to support the Mensheviks. -1 resource
 choose-if: advisor_action_timer <= 0
-unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?][? if m_resources < 1: Not enough resources. ?]
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?][? if m_resources < 1: Not enough resources. ?]
 on-arrival: advisor_action_timer = 4; workers_m += 4*(1-m_dissent); soldiers_m += 4*(1-m_dissent); soldiers_m -= 2 if (war_weariness >= 60 and m_war_policy <= 1);
 
 Our propaganda campaign encourages support for the Menshevik party among the workers and soldiers.

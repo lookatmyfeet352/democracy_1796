@@ -27,16 +27,16 @@ The peasants are hungry for land, and the workers are hungry for bread. There mu
 title: Land Reform
 subtitle: -1 budget - Start the land reform process by creating land committees.
 view-if: land_reform = 0
-on-arrival: budget -= 1; land_reform += 1; peasants_sr += 5*(1-sr_dissent); peasant_unrest -= 1;
+on-arrival: budget -= 1; land_reform += 1; peasants_sr += 5*(1-sr_dissent); peasant_unrest -= 1; land_reform_progress += 1;
 max-visits: 1
 
 We have started the land reform process by creating land committees to redistribute land to the poor peasants.
 
 @land_reform_paid
 title: Legally acquire land to redistribute.
-subtitle: -2 budget
+subtitle: -3 budget
 view-if: land_reform = 1
-on-arrival: land_reform = 2; budget -= 2; peasants_sr += 5*(1-sr_dissent); peasant_unrest -= 1;
+on-arrival: land_reform = 2; budget -= 3; peasants_sr += 5*(1-sr_dissent); peasant_unrest -= 1; land_reform_progress += 1
 
 We have paid the 
 
@@ -45,14 +45,14 @@ title: Legalize uncompensated seizures of land.
 unavailable-subtitle: Our party would not support this.
 view-if: land_reform = 1
 choose-if: (player_party = "sr" and sr_land_policy >= 2)
-on-arrival: land_reform = 3; peasants_sr += 5*(1-sr_dissent); peasant_unrest -= 1; food_production *= 0.98; coup_progress += 2; capital_flight_progress += 2
+on-arrival: land_reform = 3; peasants_sr += 5*(1-sr_dissent); peasant_unrest -= 1; food_production *= 0.98; coup_progress += 2; capital_flight_progress += 2; land_reform_progress += 1
 
 @voluntary_privatization
 title: Begin the sale of large estates to individual peasants.
 subtitle: This is arguably a capitalist measure, breaking up the inefficient traditional villages.
-on-arrival: land_reform = 4;
+on-arrival: land_reform = 4; land_reform_progress += 1; peasant_unrest += 2; food_production *= 1.03;
 
 @redistribute
 title: Redistribute state land to the peasant communes.
 subtitle: This continues the traditional communal farming methods.
-on-arrival: land_reform = 5
+on-arrival: land_reform = 5; land_reform_progress += 1;

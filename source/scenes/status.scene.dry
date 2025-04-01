@@ -38,6 +38,8 @@ Unemployment: [+ unemployed +]%
 
 Hunger: [+ hunger : hunger +]
 
+War weariness: [+ war_weariness : war_weariness +]
+
 
 @politics
 title: Politics
@@ -154,7 +156,10 @@ Industry and Trade Minister: [+ trade_minister +] ([+ trade_minister_party +])
 
 Education Minister: [+ education_minister +] ([+ education_minister_party +])
 
+
 [? if post_minister: Posts and Telegraph Minister: [+ post_minister +] ([+ post_minister_party +]) ?]
+
+[? if labor_minister: Labor Minister: [+ labor_minister +] ([+ labor_minister_party +]) ?]
 
 Provisional government efficacy: [+ prov_gov_efficacy : efficacy +]
 

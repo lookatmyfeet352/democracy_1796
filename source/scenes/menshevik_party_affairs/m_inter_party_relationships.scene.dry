@@ -1,8 +1,8 @@
 title: Inter-Party Relationships
 new-page: true
-view-if: m_inter_party_relationships_timer <= 0 and player_party = "m"
+view-if: m_inter_party_relationships_timer <= 0
 is-card: true
-on-arrival: inter_party_relationships_timer += 4; week_actions += 1
+on-arrival: m_inter_party_relationships_timer += 4; week_actions += 1
 card-image: img/rsdlp.jpg
 max-visits: 12
 tags: m_party
