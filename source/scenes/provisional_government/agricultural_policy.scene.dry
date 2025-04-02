@@ -18,6 +18,10 @@ The peasants are hungry for land, and the workers are hungry for bread. There mu
 # recruit pows and other atypical employees for farms
 
 - @land_reform
+- @land_reform_paid
+- @land_reform_unpaid
+- @voluntary_privatization
+- @redistribute
 - @food_policy.state_buyer
 - @food_policy.increase_price
 - @root: Do not enact any policies for now.
@@ -27,7 +31,7 @@ The peasants are hungry for land, and the workers are hungry for bread. There mu
 title: Land Reform
 subtitle: -1 budget - Start the land reform process by creating land committees.
 view-if: land_reform = 0
-on-arrival: budget -= 1; land_reform += 1; peasants_sr += 5*(1-sr_dissent); peasant_unrest -= 1; land_reform_progress += 1;
+on-arrival: budget -= 1; land_reform += 1; peasants_sr += 5*(1-sr_dissent); peasants_k += 3*(1-k_dissent) if k_in_prov_gov; peasant_unrest -= 1; land_reform_progress += 1;
 max-visits: 1
 
 We have started the land reform process by creating land committees to redistribute land to the poor peasants.
@@ -38,21 +42,32 @@ subtitle: -3 budget
 view-if: land_reform = 1
 on-arrival: land_reform = 2; budget -= 3; peasants_sr += 5*(1-sr_dissent); peasant_unrest -= 1; land_reform_progress += 1
 
-We have paid the 
+We are purchasing plots of land from major landowners for distribution to the peasants. *How* we distribute this land is still an open question.
 
-@land_refurm_unpaid
+@land_reform_unpaid
 title: Legalize uncompensated seizures of land.
 unavailable-subtitle: Our party would not support this.
 view-if: land_reform = 1
 choose-if: (player_party = "sr" and sr_land_policy >= 2)
-on-arrival: land_reform = 3; peasants_sr += 5*(1-sr_dissent); peasant_unrest -= 1; food_production *= 0.98; coup_progress += 2; capital_flight_progress += 2; land_reform_progress += 1
+on-arrival: land_reform = 3; peasants_sr += 6*(1-sr_dissent); peasant_unrest -= 3; food_production *= 0.97; coup_progress += 2; capital_flight_progress += 2; land_reform_progress += 1
+
+Uncompensated seizures of land are popular among the radicalized peasantry, but this has a deleterious effect on food production, at least for now.
 
 @voluntary_privatization
 title: Begin the sale of large estates to individual peasants.
 subtitle: This is arguably a capitalist measure, breaking up the inefficient traditional villages.
-on-arrival: land_reform = 4; land_reform_progress += 1; peasant_unrest += 2; food_production *= 1.03;
+view-if: land_reform >= 2
+on-arrival: land_reform = 4; land_reform_progress += 1; peasant_unrest += 2; food_production *= 1.03; prov_gov_legitimacy += 4; peasants_sr -= 4 if sr_in_prov_gov; peasants_k -= 4 if k_in_prov_gov;
+
+Privatizing land results in the accumulation of land in the hands of wealthy peasants. These peasants are better placed to make use of modern agricultural techniques and improved production techniques. However, the peasants do not like the intrusion of modern capitalism in their lives, and resentment builds towards wealthier peasants and small-time landowners.
 
 @redistribute
 title: Redistribute state land to the peasant communes.
-subtitle: This continues the traditional communal farming methods.
-on-arrival: land_reform = 5; land_reform_progress += 1;
+subtitle: This continues the traditional communal farming methods. -1 budget
+view-if: land_reform >= 2
+on-arrival: budget -= 1; land_reform = 5; land_reform_progress += 1; peasant_unrest -= 3; peasants_sr += 7*(1-sr_dissent) if sr_in_prov_gov; peasants_k += 5*(1-k_dissent) if k_in_prov_gov; prov_gov_legitimacy += 5; food_production *= 1.01;
+
+We are redistributing land to the traditional peasant communes, to be repartitioned among the households depending on how much they can work. This is what the peasants have always demanded, and they are pleased at these changes.
+
+@collectivize
+title: Form collective farms.

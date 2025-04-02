@@ -31,7 +31,7 @@ Attacking the Kadets is popular among the left-wing Internationalists, but it mi
 
 @bolsheviks
 title: Bolsheviks and anarchists, who seek to subvert the revolution from within.
-on-arrival: m_b_relation -= 8; m_k_relation += 4*(1-m_dissent); internationalist_dissent += 4;
+on-arrival: m_b_relation -= 8; m_k_relation += 4*(1-m_dissent); internationalist_dissent += 4; b_threat += 1
 
 Attacking our former Bolshevik comrades is unpopular with the Internationalists.
 

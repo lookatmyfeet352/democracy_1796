@@ -13,6 +13,10 @@ As the Provisional Government pursues a pro-war policy, it is incumbent upon the
 # issue a general call for peace. (1 visit)
 # continue to enforce Order Number 1 against reactionary attempts to impose discipline.
 
+- @root: No action is needed.
+- @easy_discard
+- @cancel_advisor_action
+
 @soviet_peace
 title: Issue a call for international peace.
 max-visits: 1
@@ -25,4 +29,4 @@ on-arrival: discipline += 0.05*soviet_efficacy;
 title: Work on preventing abuses by officers.
 on-arrival: morale += 0.05*soviet_efficacy;
 
-We must continue to enforce Order No. 1, our order aimed at giving the soldiers equal rights.
+We must continue to enforce Order No. 1, our order aimed at giving the soldiers equal rights. This might reduce discipline, but increase morale.

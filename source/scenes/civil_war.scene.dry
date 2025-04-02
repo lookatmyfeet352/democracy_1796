@@ -1,0 +1,58 @@
+title: Civil War
+go-to: jumpScene
+on-arrival: {!
+// balance of strength...
+
+// revolutionary forces - Bolsheviks and others
+Q.revolutionary_strength = 0;
+// workers militias
+Q.revolutionary_strength += Q.workers_militia_strength*Q.workers_militia_militancy*Q.workers_militia_b_loyalty/100;
+// garrison
+Q.revolutionary_strength += Q.garrison_strength*Q.garrison_militancy*Q.garrison_b_loyalty/100;
+// M + SR support
+if (Q.m_prov_gov_policy >= 4) {
+    Q.revolutionary_strength += Q.workers_militia_strength*Q.workers_militia_militancy*Q.workers_militia_m_loyalty/100;
+    Q.revolutionary_strength += Q.garrison_strength*Q.garrison_militancy*Q.garrison_m_loyalty/100;
+}
+if (Q.sr_prov_gov_policy >= 4) {
+    Q.revolutionary_strength += Q.workers_militia_strength*Q.workers_militia_militancy*Q.workers_militia_sr_loyalty/100;
+    Q.revolutionary_strength += Q.garrison_strength*Q.garrison_militancy*Q.garrison_sr_loyalty/100;
+} else {
+    Q.revolutionary_strength += Q.workers_militia_strength*Q.workers_militia_militancy*Q.workers_militia_sr_loyalty/100*(Q.left_sr_strength)/100;
+    Q.revolutionary_strength += Q.garrison_strength*Q.garrison_militancy*Q.garrison_sr_loyalty/100*Q.left_sr_strength/100;
+}
+
+// TODO: anarchists will always support the revolution.
+
+// Provisional Government forces - Kadets, city militias, loyal troops
+Q.prov_gov_strength = 0;
+// loyal troops
+Q.prov_gov_strength += Q.loyal_troops_strength*Q.loyal_troops_militancy;
+// K support - city militias
+Q.prov_gov_strength += Q.city_militia_strength*Q.city_militia_militancy*Q.city_militia_k_loyalty/100;
+// Garrison support
+Q.prov_gov_strength += Q.garrison_strength*Q.garrison_militancy*Q.garrison_k_loyalty/100;
+// support from M + SRs
+if (Q.m_in_prov_gov && Q.m_prov_gov_policy <= 1) {
+    Q.prov_gov_strength += Q.city_militia_strength*Q.city_militia_militancy*Q.city_militia_m_loyalty/100;
+    Q.prov_gov_strength += Q.workers_militia_strength*Q.workers_militia_militancy*Q.workers_militia_m_loyalty/100;
+    Q.prov_gov_strength += Q.garrison_strength*Q.garrison_militancy*Q.garrison_m_loyalty/100;
+}
+if (Q.sr_in_prov_gov && Q.sr_prov_gov_policy <= 1) {
+    Q.prov_gov_strength += Q.city_militia_strength*Q.city_militia_militancy*Q.city_militia_sr_loyalty/100*Q.right_sr_strength/100;
+    Q.prov_gov_strength += Q.workers_militia_strength*Q.workers_militia_militancy*Q.workers_militia_sr_loyalty/100*Q.right_sr_strength/100;
+    Q.prov_gov_strength += Q.garrison_strength*Q.garrison_militancy*Q.garrison_sr_loyalty/100*Q.right_sr_strength/100;
+}
+// modifier based on legitimacy
+Q.prov_gov_modifier = 0.2 + Q.prov_gov_legitimacy/125;
+Q.prov_gov_strength *= Q.prov_gov_modifier;
+
+Q.revolutionary_victory = 0;
+Q.civil_war = 0;
+Q.prov_gov_victory = 0;
+if (Q.revolutionary_strength >= Q.prov_gov_strength) {
+    Q.revolutionary_victory = 1;
+} else {
+    Q.prov_gov_victory = 1;
+}
+!}

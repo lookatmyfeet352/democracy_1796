@@ -11,32 +11,30 @@ tags: prov_gov
 The workers are expecting great things from the post-revolutionary government - higher wages, an 8-hour workday, an end to abuses by supervisors, and more control over the means of production. Time will tell if we are able to grant any of these goals.
 
 - @8_hour
-- @increase_price
+- @safety
+- @return_to_work
 - @root: No action is needed.
 - @easy_discard
 - @cancel_advisor_action
 
 @8_hour
 title: Impose an 8-hour workday.
-subtitle: -2 budget
-on-arrival: budget -= 2; grain_price += 1; food_sold += 0.01; grain_monopoly = 1; monthly_inflation += 0.1;
-view-if: grain_monopoly = 0
+subtitle: -1 budget
+on-arrival: budget -= 1; industry *= 0.95; workday = 1; labor_unrest -= 4; workers_m += 7*(1-m_dissent) if m_in_prov_gov; capital_flight_progress += 2
+view-if: workday = 0
 
-We have created a state monopoly for grain purchasing. The goal is to provide both good prices for farmers as well as acquire enough food to feed the cities, and to sell the food at affordable prices.
+We have declared an 8-hour workday! This fulfills a longstanding demand of the labor movement. Production might suffer, however.
 
-@increase_price
-title: Increase the price of grain paid out to farmers.
-subtitle: -2 budget
-on-arrival: budget -= 2; grain_price += 1; food_sold += 0.01; monthly_inflation += 0.1;
-view-if: grain_monopoly = 1
+@safety
+title: Enforce safety regulations.
+subtitle: -1 budget
+on-arrival: budget -= 1; labor_unrest -= 2; workers_m += 5*(1-m_dissent)*prov_gov_efficacy if m_in_prov_gov; workers_sr += 5*(1-sr_dissent)*prov_gov_efficacy if sr_in_prov_gov;
 
-We have increased the price of grain paid out to farmers. This is a strain on our budget, but it could induce more farmers to sell.
+We have started to enforce safety regulations at factories, and worked to change working conditions to ameliorate safety issues.
 
-@reduce_rations
-title: Reduce food rations.
+@return_to_work
+title: Stop the waves of strikes!
+subtitle: The workers may not agree with the Provisional Government's demands.
+on-arrival: labor_unrest -= 2; workers_m -= 5 if m_in_prov_gov; workers_sr -= 4 if sr_in_prov_gov; workers_k -= 4 if k_in_prov_gov; workers_b += 5*(1-b_dissent) if not b_in_prov_gov; industry *= (1+0.02*prov_gov_efficacy);
 
-@tax_in_kind
-title: Impose a tax-in-kind of grain on farmers.
-view-if: grain_tax_available = 1
-
-# this is a NEP idea I think
+We issue an order for the workers to return to work. [? if prov_gov_efficacy <= 0.5 : The workers mostly do not accede to our demands. ?]

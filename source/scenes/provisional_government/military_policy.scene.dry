@@ -35,7 +35,7 @@ Military transportation capacity: [+ movement_capacity +]
 - @reallocate: Shift the distribution of forces among the fronts and garrisons.
 - @prepare: Prepare for an offensive!
 - @defense: Build up our defenses.
-#- @soldiers: Change our policies regarding the rights of soldiers.
+- @restore_discipline
 - @loyal_soldiers
 - @loyal_soldiers_2
 - @womens_battalion
@@ -48,8 +48,11 @@ title: Do something else.
 
 - @reallocate: Shift the distribution of forces among the fronts and garrisons.
 - @prepare: Prepare for an offensive!
-- @defense: Shift to a defensive posture.
-- @soldiers: Change our policies regarding the rights of soldiers.
+- @defense: Build up our defenses.
+- @restore_discipline
+- @loyal_soldiers
+- @loyal_soldiers_2
+- @womens_battalion
 - @root: No further change in policy is needed.
 
 @reallocate
@@ -175,11 +178,15 @@ We have added [+ sm +] divisions to the Caucasus Front.
 
 @demobilize
 title: Demobilize some reserve troops, returning them to civilian life.
-on-arrival: reserve_soldiers -= sm; soldiers_moved += sm;
+subtitle: If we demobilize enough soldiers, we can save some budget.
+on-arrival: reserve_soldiers -= sm; soldiers_moved += sm; soldiers_demobilized += sm; budget += 1 if soldiers_demobilized >= 30;
 choose-if: remaining_movement_capacity > 0 and reserve_soldiers > sm
+on-departure: soldiers_demobilized = 0 if soldiers_demobilized >= 30
 go-to: reallocate
 
 We have demobilized [+ sm +] divisions from the reserve.
+
+[? if soldiers_demobilized >= 30 : By demobilizing so many soldiers, we have saved 1 budget. ?]
 
 
 @prepare
@@ -312,20 +319,16 @@ on-arrival: soldiers_moved += 50; budget -= 2; remaining_movement_capacity = mov
 
 We have built up our defenses along all fronts.
 
-@soldiers
-
-Since the Petrograd Soviet's Order No. 1, the soldiers' discipline has fallen. Should we continue democratizing the army, or restore discipline even at the cost of inciting conflict among the ranks?
-
 @restore_discipline
 title: Restore military discipline.
-on-arrival: discipline += 0.04; morale -= 0.01
+on-arrival: discipline += 0.05; morale -= 0.01; soldiers_m -= 5 if m_in_prov_gov; soldiers_k -= 5 if k_in_prov_gov; soldiers_sr -= 5 if sr_in_prov_gov
 
-We have restored some measure of military discipline to the ranks.
+We have restored some measure of military discipline to the ranks. This can raise discipline, but lowers morale slightly, and angers the soldiers.
 
 @loyal_soldiers
 title: Recruit "Battalions of Death".
 subtitle: These will be loyal and disciplined units aimed at reinforcing morale. -1 budget.
-on-arrival: budget -= 1; reserve_soldiers += 5; morale += 0.05; discipline += 0.05; loyal_troops_strength += 10; loyal_troops_militancy += 4; death_battalions += 1
+on-arrival: budget -= 1; reserve_soldiers += 5; morale += 0.05; discipline += 0.05; loyal_troops_strength += 10; loyal_troops_militancy = 4; death_battalions += 1
 max-visits: 1
 
 We have recruited "Battalions of Death", units of dedicated volunteers loyal to the cause of defending the homeland.

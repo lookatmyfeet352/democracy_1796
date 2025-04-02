@@ -21,7 +21,7 @@ During the February Revolution, the workers of Petrograd organized militias for 
 
 @loyalty
 title: Increase militia cooperation with the Soviet.
-on-arrival: workers_militia_m += 0.05
+on-arrival: workers_militia_m += 5 if player_party = "m"; workers_militia_sr += 5 if player_party = "sr";
 
 # TODO: max recruitment depends on support
 
@@ -39,4 +39,8 @@ on-arrival: workers_militia_militancy += 0.05; sr_resources -= 1 if player_party
 
 We have spent resources on purchasing more armaments for the workers' militias.
 
-
+@mrc
+title: Form a Military-Revolutionary Committee!
+subtitle: We will organize the workers' militias for the defense of the revolution against all enemies.
+unavailable-subtitle: [? if ((player_party = "m" and m_resources >= 1) or (player_party = "sr" and sr_resources >= 1) or (player_party = "b" and b_resources >= 1)): We do not have enough resources. ?][? if ((player_party = "m" and m_prov_gov_policy < 3) or (player_party = "sr" and sr_prov_gov_policy < 3) or (player_party = "b" and b_prov_gov_policy < 3)): We do not support overthrowing the Provisional Government. ?]
+choose-if: ((player_party = "m" and m_resources >= 1 and m_prov_gov_policy >= 4) or (player_party = "sr" and sr_resources >= 1 and sr_prov_gov_policy >= 4) or (player_party = "b" and b_resources >= 1 and b_prov_gov_policy >= 3))

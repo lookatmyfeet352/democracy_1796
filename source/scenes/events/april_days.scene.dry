@@ -2,7 +2,7 @@ title: [+ month : month +] Crisis
 subtitle: The people are outraged about the Provisional Government's war policy...
 new-page: true
 view-if: ((allied_demands_seen = 1 and not allied_demands_rejected) or k_is_player = 0) and april_days_seen = 0 and ((month = 4 and week >= 3) or month > 4)
-on-arrival: april_days_seen += 1; b_k_relation -= 10;
+on-arrival: april_days_seen += 1; b_k_relation -= 10; b_threat += 1;
 max-visits-var: n_players
 face-image: womens_day.jpg
 tags: event
@@ -29,7 +29,7 @@ The Kadets in the Provisional Government are ready to be rid of Milyukov and all
 
 @join_govt_m
 view-if: player_party = "m"
-on-arrival: m_influence = m_k_relation/2 + 5; m_in_prov_gov = 1; sr_in_prov_gov = 1; agriculture_minister = "Chernov"; agriculture_minister_party = "SR"; war_minister = "Kerensky"; war_minister_party = "SR"; post_minister = "Tsereteli"; post_minister_party = "Menshevik"; foreign_minister = "Tereshchenko";
+on-arrival: m_influence = m_k_relation/2 + 5; m_in_prov_gov = 1; sr_in_prov_gov = 1; agriculture_minister = "Chernov"; agriculture_minister_party = "SR"; war_minister = "Kerensky"; war_minister_party = "SR"; post_minister = "Tsereteli"; post_minister_party = "Menshevik"; foreign_minister = "Tereshchenko"; m_prov_gov_policy = 0;
 
 # TODO: event to join cabinet
 
@@ -47,7 +47,7 @@ on-arrival: prime_minister = "Tsereteli"; prime_minister_party = "Menshevik"; m_
 
 @join_govt_sr
 view-if: player_party = "sr"
-on-arrival: sr_influence = sr_k_relation/2 + 5; sr_in_prov_gov = 1; m_in_prov_gov = 1; labor_minister = "Skobelev"; labor_minister_party = "Menshevik"; post_minister = "Tsereteli"; post_minister_party = "Menshevik"; foreign_minister = "Tereshchenko";
+on-arrival: sr_influence = sr_k_relation/2 + 5; sr_in_prov_gov = 1; m_in_prov_gov = 1; labor_minister = "Skobelev"; labor_minister_party = "Menshevik"; post_minister = "Tsereteli"; post_minister_party = "Menshevik"; foreign_minister = "Tereshchenko"; sr_prov_gov_policy = 0; left_sr_dissent += 8;
 
 We have accepted the Kadets' offer to join the Provisional Government, as have the Mensheviks. Milyukov has resigned, replaced by Tereshchenko, also Kadet-aligned. The Menshevik leader Irakli Tsereteli has been given the Ministry of Posts and Telegraph.
 
@@ -117,6 +117,6 @@ Eventually, the protests die down on their own, but the Provisional Government's
 @april_days_b
 on-arrival: defensist_strength += 5; right_sr_strength += 5; sr_in_prov_gov = 1; m_in_prov_gov = 1; war_minister = "Kerensky"; war_minister_party = "SR"; labor_minister = "Skobelev"; labor_minister_party = "Menshevik"; agriculture_minister = "Chernov"; agriculture_minister_party = "SR"; post_minister = "Tsereteli"; post_minister_party = "Menshevik"; foreign_minister = "Tereshchenko"; finance_minister = "Shingarev"; finance_minister_party = "Kadet";
 
-The Kadets have let the bourgeois socialists, the Mensheviks and SRs, join the government. For the SRs, Viktor Chernov is Minister of Agriculture and Alexander Kerensky is Minister of War. For the Mensheviks, Irakli Tsereteli is Minister of Posts and Telegraph and Matvey Skobelev is Minister of Labor. Milyukov has resigned, and the position of Foreign Minister is filled by Mikhail Tereshchenko.
+In response to the protests, the Kadets have let the bourgeois socialists, the Mensheviks and SRs, join the government. For the SRs, Viktor Chernov is Minister of Agriculture and Alexander Kerensky is Minister of War. For the Mensheviks, Irakli Tsereteli is Minister of Posts and Telegraph and Matvey Skobelev is Minister of Labor. Milyukov has resigned, and the position of Foreign Minister is filled by Mikhail Tereshchenko.
 
 This is an opportunity for the Bolsheviks to recruit and organize among the workers, who might become disillusioned by the failure of the moderate socialists.

@@ -271,3 +271,22 @@ Garrison: [+ garrison_strength +] thousand
 Garrison allegiance: Mensheviks: [+ garrison_m_loyalty : strength +], Bolsheviks: [+ garrison_b_loyalty : strength +], Kadets: [+ garrison_k_loyalty : strength +], SRs: [+ garrison_sr_loyalty : strength +], Independent: [+ garrison_independent : strength +]
 
 [? if loyal_troops > 0 : Loyal troops (Battalions of Death): [+ loyal_troops_strength +] thousand ?]
+
+@policy
+title: Policy
+
+= Foreign Relations
+
+Relations with the West: [+ west_relation : relationships +]
+
+[? if not is_armistice: Armistice negotiations: [+ armistice_progress +] ?]
+
+[? if is_armistice: We are currently in an armistice. ?]
+
+[? if is_armistice: Peace negotiations: [+ central_negotiations +]?]
+
+= Land Reform
+
+Land reform policy: [+ land_reform : land_reform +]
+
+Land reform progress: [+ land_reform_progress : land_reform_progress +]

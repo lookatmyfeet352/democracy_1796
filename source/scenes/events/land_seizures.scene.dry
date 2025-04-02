@@ -30,8 +30,8 @@ In response to the unauthorized seizures, we have formed land committees to regu
 @continue
 title: Continue the land reform program to meet peasant demands.
 subtitle: -1 budget
-view-if: land_reform >= 1 and ((player_party = "m" and agriculture_minister_party = "Menshevik") or (player_party = "k" and (agriculture_minister_party = "Kadet" or agriculture_minister_party = "Popular Socialist")) or (player_party = "sr" and (agriculture_minister_party = "SR" or agriculture_minister_party = "Popular Socialist")))
-on-arrival: land_reform += 1; budget -= 1; peasants_sr += 5*(1-sr_dissent) + sr_rural_org if player_party = "sr"; peasants_k += 2 if player_party = "k"; land_seizures_timer += 6;
+view-if: land_reform_progress >= 1 and ((player_party = "m" and agriculture_minister_party = "Menshevik") or (player_party = "k" and (agriculture_minister_party = "Kadet" or agriculture_minister_party = "Popular Socialist")) or (player_party = "sr" and (agriculture_minister_party = "SR" or agriculture_minister_party = "Popular Socialist")))
+on-arrival: land_reform_progress += 1; budget -= 1; peasants_sr += 5*(1-sr_dissent) + sr_rural_org if player_party = "sr"; peasants_k += 2 if player_party = "k"; land_seizures_timer += 6;
 
 In response to the unauthorized seizures, we have continued to support the land committees and their regularization of the process of land redistribution.
 
@@ -52,14 +52,16 @@ on-arrival: peasants_m -= 2 if player_party = "m"; peasants_b -= 2 if player_par
 
 We have publicly criticized the peasants for their actions. What more can we do?
 
+[? if player_party = "sr": Many of our supporters view us as somewhat hypocritical given our program's previous calls for uncompensated land redistribution. ?]
+
 @suppress_2
 title: Call the militia to suppress the peasants.
 choose-if: rural_militia_strength >= 10
 view-if: ((player_party = "m" and interior_minister_party = "Menshevik") or (player_party = "k" and (interior_minister_party = "Kadet" or interior_minister_party = "Popular Socialist")) or (player_party = "sr" and (interior_minister_party = "SR" or interior_minister_party = "Popular Socialist")))
 unavailable-subtitle: We do not have a strong enough rural militia.
-on-arrival: peasants_m -= 5 if player_party = "m"; peasants_sr -= 5 if player_party = "sr"; peasants_k -= 5 if player_party = "k"; food_production *= 1.01; land_seizuers_timer += 4;
+on-arrival: peasants_m -= 5 if player_party = "m"; peasants_sr -= 5 if player_party = "sr"; peasants_k -= 5 if player_party = "k"; food_production *= 1.01; land_seizures_timer += 4;
 
-We have called the newfound rural militia to restore order to the countryside, stopping the land seizures.
+We have called the newfound rural militia to restore order to the countryside, stopping the land seizures. Violence continues in the countryside.
 
 
 @nothing

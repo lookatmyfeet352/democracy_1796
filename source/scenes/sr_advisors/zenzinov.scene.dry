@@ -1,0 +1,31 @@
+title: Vladimir Zenzinov
+is-pinned-card: true
+tags: advisor
+card-image: img/portraits/sr/zenzinov.jpg
+view-if: zenzinov_advisor = 1 and player_party = "sr"
+new-page: true 
+
+= Vladimir Zenzinov
+
+Zenzinov was one of the few SR leaders who remained free in Russia instead of going into exile or imprisonment.
+
+- @organizing_peasants
+- @ag_
+- @party_unity
+- @root: Return to main
+
+@organizing_peasants
+title: Literary Activity
+
+@ag_
+title: Agricultural Policy
+subtitle: Chernov is the Agriculture Minister.
+choose-if: advisor_action_timer = 0 and agriculture_minister = "Chernov"
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?] [? if agriculture_minister != "Chernov" : Chernov is not the Agriculture Minister. ?]
+on-arrival: advisor_action_timer = 4; agricultural_policy_timer -= 4; last_advisor_action = 1
+go-to: agricultural_policy
+
+
+@party_unity
+title: Party Unity
+

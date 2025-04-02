@@ -432,6 +432,7 @@ Q.morale = 0.5;
 Q.defense_bonus = 1;
 
 // The war has 5 fronts, plus a bunch of reserves
+Q.fronts = ['northern', 'western', 'southwestern', 'romanian', 'caucasus'];
 // numbers mostly from wikipedia, with some making stuff up
 // numbers are the number of divisions
 // (also based on the number of votes in the Constituent Assembly elections)
@@ -447,8 +448,10 @@ Q.reserve_soldiers = 100;
 Q.movement_capacity = Math.round(0.001*Q.military_trains*Q.train_capacity/100);
 Q.soldiers_moved = 0;
 
+Q.fronts_to_enemy = {'northern': 'northwestern', 'western': 'northwestern', 'southwestern': 'southwestern', 'romanian': 'southwestern', 'caucasus': 'caucasus'};
+Q.enemy_fronts = ['northwestern', 'southwestern'];
 // The opposing side
-Q.northwestern_enemy_soldiers = 60;
+Q.northwestern_enemy_soldiers = 80;
 Q.northwestern_enemy_morale = 0.75;
 Q.northwestern_enemy_discipline = 0.9;
 Q.northwestern_enemy_supply_quality = 0.9;
@@ -541,6 +544,7 @@ Q.usa_loan_cap = 5;
 Q.general_negotiations = 0;
 // negotiations for a separate peace with the Central Powers
 Q.central_negotiations = 0;
+Q.armistice_progress = 0;
 // has an armistice been signed?
 Q.is_armistice = 0;
 // has a peace treaty been signed?
@@ -624,7 +628,7 @@ Q.soldiers_petrograd = 8;
 Q.underclass_petrograd = 10;
 Q.elites_petrograd = 5;
 
-// quality of life
+// quality of life (currently unused)
 Q.workers_qol = 100;
 Q.peasants = 100;
 
@@ -810,6 +814,7 @@ Q.timers = [//m_party
             'labor_unrest', 'mrc', 'bolshevik_coup',
             'capital_flight', 'offensive_demand',
             'june_offensive_conclusion',
+            'war_or_peace',
             'advisor_action'
             ];
 Q.advisor_action_timer = 0;

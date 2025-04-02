@@ -1,0 +1,14 @@
+title: Minority Party Affairs
+new-page: true
+view-if: minority_party_soviet_timer = 0 and ((player_party = "b" and not b_in_exco) or (player_party = "m" and not m_in_exco) or (player_party = "sr" and not sr_in_exco))
+on-arrival: week_activity += 1; minority_party_soviet_timer += 3
+tags: soviet
+is-card: true
+card-image: img/red_guard_1.jpg
+
+= Minority Party Affairs
+
+As a minority party in the Soviet not represented in the Executive Committee, we have a limited range of potential actions.
+
+@takeover
+title: Force a vote to create a new Executive Committee!

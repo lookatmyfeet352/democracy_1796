@@ -1,20 +1,20 @@
-title: Viktor Chernov
+title: Alexander Kerensky
 is-pinned-card: true
 tags: advisor
-card-image: img/portraits/sr/chernov.jpg
-view-if: chernov_advisor = 1 and player_party = "sr"
+card-image: img/portraits/sr/kerensky.jpg
+view-if: kerensky_advisor = 1 and player_party = "sr"
 new-page: true 
 
-= Viktor Chernov
+= Alexander Kerensky
 
-Chernov is a founder of the Socialist-Revolutionary Party, and its chief theoretician.
+Kerensky is a 
 
-- @literary_activity
+- @organizing_peasants
 - @ag_
 - @party_unity
 - @root: Return to main
 
-@literary_activity
+@organizing_peasants
 title: Literary Activity
 
 @ag_
