@@ -1,12 +1,63 @@
 title: Status
 new-page: true
 is-special: true
+on-arrival: {!
+Q.position = "";
+if (Q.player_party = 'm') {
+    if (Q.m_in_exco) {
+        Q.position = 'Soviet Executive Committee';
+        if (Q.m_in_prov_gov) {
+            Q.position += ', in government';
+        }
+    } else if (Q.m_in_prov_gov) {
+        Q.position = 'in government';
+    } else {
+        Q.position = 'in opposition';
+    }
+} else if (Q.player_party = 'b') {
+    if (Q.b_in_exco) {
+        Q.position = 'Soviet Executive Committee';
+        if (Q.b_in_prov_gov) {
+            Q.position += ', in government';
+        }
+    } else if (Q.b_in_prov_gov) {
+        Q.position = 'in government';
+    } else {
+        Q.position = 'in opposition';
+    }
+} else if (Q.player_party = 'sr') {
+    if (Q.sr_in_exco) {
+        Q.position = 'Soviet Executive Committee';
+        if (Q.sr_in_prov_gov) {
+            Q.position += ', in government';
+        }
+    } else if (Q.sr_in_prov_gov) {
+        Q.position = 'in government';
+    } else {
+        Q.position = 'in opposition';
+    }
+} else if (Q.player_party = 'k') {
+    if (Q.k_in_prov_gov) {
+        Q.position += 'in government';
+    } else {
+        Q.position = 'in oppsition';
+    }
+}
+!}
 
 = Status
 
 Week [+ week +], [+ month : month +] [+ year +]
 
 Party: [+ player_party_name +]
+
+[+ player_party_name +] Position:
+[? if player_party == "b" and b_in_exco: [+ b_resources +] ?]
+[? if player_party == "m" and m_in_exco: [+ m_resources +] ?]
+[? if player_party == "k" and k_in_exco: [+ k_resources +] ?]
+[? if player_party == "sr" and k_in_exco: [+ sr_resources +] ?]
+
+
 
 Party resources available:
 [? if player_party == "b": [+ b_resources +] ?]
@@ -175,6 +226,7 @@ Overal composition:
 Mensheviks: [+ m_soviet +] %
 Bolsheviks: [+ b_soviet +] %
 SRs: [+ sr_soviet +] %
+Anarchists: [+ anarchist_soviet +] %
 Others: [+ other_soviet +] %
 
 Soviet efficacy: [+ soviet_efficacy : efficacy +]

@@ -20,7 +20,7 @@ This coalition arrangement is tolerable to all the parties.
 title: Agriculture Ministry
 tags: m_mins
 choose-if: m_rural_policy != 0 and m_influence >= 10
-unavailable-subtitle: We do not have a rural policy.
+unavailable-subtitle: We do not have a rural policy. Viktor Chernov of the SRs is expected to take this position.
 go-to: menu
 
 @food
@@ -37,7 +37,7 @@ Vladimir Groman, a Menshevik-affiliated economist, has been appointed Food Minis
 @justice
 title: Justice Ministry
 tags: m_mins
-choose-if: m_influence <= 10
+choose-if: m_influence >= 10
 view-if: justice_minister_party != "Menshevik"
 go-to: menu
 on-arrival: m_influence -= 10; justice_minister = "Malyantovich"; justice_minister_party = "Menshevik"
@@ -68,6 +68,7 @@ Irakli Tsereteli has been appointed Interior Minister.
 
 @finance
 title: Finance Ministry
+subtitle: The Finance Ministry controls taxation and spending.
 tags: m_mins
 choose-if: m_influence >= 15
 view-if: finance_minister_party != "Menshevik"
@@ -78,6 +79,7 @@ Vladimir Voitinsky has been appointed Finance Minister.
 
 @war
 title: War Ministry
+subtitle: The War Ministry controls military affairs and directs the war.
 tags: m_mins
 choose-if: m_influence >= 15
 view-if: war_minister_party != "Menshevik"
@@ -90,6 +92,7 @@ Irakli Tsereteli has been appointed War Minister.
 
 @foreign
 title: Foreign Ministry
+subtitle: The Foreign Ministry controls our relations with both our allies and enemies.
 tags: m_mins
 choose-if: m_influence >= 15
 view-if: foreign_minister_party != "Menshevik"
@@ -101,14 +104,14 @@ on-arrival: m_influence -= 15; foreign_minister = "Tsereteli" if not defensist_s
 
 @transport
 title: Transportation Ministry
-subtitle: This ministry manages the railroads.
+subtitle: The Transportation Ministry manages the railroads.
 tags: m_mins
 choose-if: m_influence >= 10
 view-if: transport_minister_party != "Menshevik"
 go-to: menu
-on-arrival: m_influence -= 10; transport_minister = "Voitinsky"; transport_minister_party = "Menshevik"
+on-arrival: m_influence -= 10; transport_minister = "Plekhanov"; transport_minister_party = "Menshevik"
 
-Vladimir Voitinsky has been appointed Transportation Minister.
+Georgi Plekhanov has been appointed Transportation Minister.
 
 
 @trade

@@ -47,6 +47,6 @@ The middle class has never been a subject of our organizing efforts, but that ma
 subtitle: -1 resource
 choose-if: sr_resources >= 1
 unavailable-subtitle: [? if sr_resources < 1 : Not enough resources. ?][? if sr_rural_policy = 0 : We do not have a rural policy. ?]
-on-arrival: sr_resources -= 1; sr_peasants += 5*(1-sr_dissent); sr_peasants_org += 1
+on-arrival: sr_resources -= 1; sr_peasants += 6*(1-sr_dissent); sr_peasants_org += 1
 
 We have organized among the peasants.

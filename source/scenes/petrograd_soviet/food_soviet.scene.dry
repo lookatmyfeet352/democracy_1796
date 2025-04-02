@@ -1,10 +1,10 @@
 title: Food Policy
 new-page: true
 view-if: food_soviet_timer = 0 and ((player_party = "b" and b_in_exco) or (player_party = "m" and m_in_exco) or (player_party = "sr" and sr_in_exco) or (player_party = "k" and kadet_in_exco)) and hunger >= 20
-on-arrival: week_activity += 1; food_soviet_timer += 3
+on-arrival: week_actions += 1; food_soviet_timer += 3
 tags: soviet
 is-card: true
-card-image: img/bread_lines.jpg
+card-image: img/breadlines.jpg
 
 = Food Policy
 

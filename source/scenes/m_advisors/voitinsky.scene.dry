@@ -12,31 +12,33 @@ Vladimir Voitinsky is an Menshevik recolutionary who returned from exile in Sibe
 # organizing soldiers, worker's militias, trade ministry, finance ministry, foreign ministry
 # soviet labor affairs
 
-- @soviet_organizing
-- @finance
-- @depression
+- @organizing_
+- @militias_
+- @finance_
 - @root: Return to main
 
-@soviet_organizing
+@organizing_
 title: Soviet Organizations
-subtitle: Build institutions in the Soviet for economic coordination.
-choose-if: advisor_action_timer <= 0 and wtb_adopted == 0 and wtb_support >= 3 and black_thursday_seen and (not historical_mode or ((labor_strength >= center_strength) and (labor_strength >= left_strength) and (labor_strength >= reformist_strength)))
-on-arrival: advisor_action_timer = 6;
-unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?][? if black_thursday_seen == 0 : We are not currently in an economic crisis. ?][? if wtb_adopted > 0 : We have already adopted the WTB-Plan. ?][? if wtb_support < 3 : There is not enough support for the WTB-Plan. ?][? if (labor_strength < center_strength or labor_strength < left_strength or labor_strength < reformist_strength) and historical_mode : The labor faction is not strong enough. ?]
+subtitle: Voitinsky can help build the Soviet's organizational infrastructure.
+choose-if: advisor_action_timer = 0 and m_in_exco
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?] [? if not m_in_exco : We are not in the Soviet Executive Committee. ?]
+on-arrival: advisor_action_timer = 4; organization_soviet_timer -= 4; last_advisor_action = 1
+go-to: organization_soviet
 
-@finance
-title: Fiscal Policy 
-subtitle: As Minister of Finance, Voitinsky can carry out the Provisional Government's fiscal policy.
-unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?][? if wtb_adopted == 0 : We have not yet adopted an economic plan. ?][? if spd_in_government == 0 : The SPD is not in government. ?][? if works_program >= 2 : We have already started implementing the plan. ?]
-choose-if: advisor_action_timer <= 0 and wtb_adopted and spd_in_government and wtb_implemented <= 1
-on-arrival: advisor_action_timer = 6; economic_policy_timer -= 12
+@militias_
+title: Workers' Militias
+subtitle: Build up the Workers' Militias.
+choose-if: advisor_action_timer = 0 and m_in_exco
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?] [? if not m_in_exco : We are not in the Soviet Executive Committee. ?]
+on-arrival: advisor_action_timer = 4; militias_timer -= 4; last_advisor_action = 1
+go-to: militias
+
+@finance_
+title: Fiscal Policy
+subtitle: Voitinsky is the Finance Minister.
+choose-if: advisor_action_timer = 0 and finance_minister = "Voitinsky"
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?] [? if finance_minister != "Voitinsky" : Voitinsky is not the Finance Minister. ?]
+on-arrival: advisor_action_timer = 4; fiscal_policy_timer -= 4; last_advisor_action = 1
+go-to: fiscal_policy 
 
 
-@depression
-title: Addressing the economic crisis
-subtitle: Formulate a plan to get us out of the economic crisis.
-choose-if: advisor_action_timer <= 0 and wtb_adopted == 0 and black_thursday_seen == 1 and wtb_support <= 3
-unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?][? if black_thursday_seen == 0 : We are not currently in an economic crisis. ?][? if wtb_adopted > 0 : We have already adopted the WTB-Plan. ?]
-on-arrival: advisor_action_timer = 6; wtb_support += 2; center_dissent += 10; labor_strength += 1
-
-The WTB-plan, named for its primary supporters Woytinsky, Tarnow, and Baade, has been adopted as the unions' plan for getting us out of the depression. Woytinsky canvasses in favor of this policy through the SPD and the unions.

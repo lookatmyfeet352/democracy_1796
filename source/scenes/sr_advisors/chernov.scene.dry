@@ -1,0 +1,43 @@
+title: Viktor Chernov
+is-pinned-card: true
+tags: advisor
+card-image: img/portraits/sr/chernov.jpg
+view-if: chernov_advisor = 1 and player_party = "sr"
+new-page: true 
+
+= Viktor Chernov
+
+Chernov is one of the founders of the Socialist-Revolutionary Party, and has been its chief theoretician.
+
+- @emergency_fundraising
+- @ag_
+- @party_unity
+- @root: Return to main
+
+@emergency_fundraising
+title: Emergency Fundraising
+subtitle: An emergency infusion of resources.
+choose-if: advisor_action_timer = 0
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?]
+on-arrival: advisor_action_timer = 6; sr_resources += sr_dues
+
+We have gained +[+ sr_dues +] resources.
+
+
+@ag_
+title: Agricultural Policy
+subtitle: Chernov is the Agriculture Minister.
+choose-if: advisor_action_timer = 0 and agriculture_minister = "Chernov"
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?] [? if agriculture_minister != "Chernov" : Chernov is not the Agriculture Minister. ?]
+on-arrival: advisor_action_timer = 4; agricultural_policy_timer -= 4; last_advisor_action = 1
+go-to: agricultural_policy
+
+
+@party_unity
+title: Party Unity
+subtitle: Reduce dissent across the party.
+choose-if: advisor_action_timer = 0
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?]
+on-arrival: advisor_action_timer = 4; left_sr_dissent -= 6; right_sr_dissent -= 6; center_sr_dissent -= 10;
+
+With Chernov's help, we have reduced dissent across the party.

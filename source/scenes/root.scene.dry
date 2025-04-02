@@ -483,6 +483,9 @@ Q.in_june_offensive = 0;
 Q.battle_outcome = 0;
 // number of battles
 Q.battle_count = 0;
+Q.victory_count = 0;
+Q.defeat_count = 0;
+
 // Militias
 
 // 100k

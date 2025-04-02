@@ -7,25 +7,45 @@ new-page: true
 
 = Alexander Kerensky
 
-Kerensky is a 
+Kerensky is a Duma member for the Trudovik, or Labor, faction, and is affiliated with Socialist-Revolutionary circles. He has built a great deal of esteem as a lawyer for the common people, and is working as a bridge between the Provisional Government and the Soviet. [? if prime_minister = "Kerensky": Currently, he serves as the Prime Minister of the Provisional Government. ?]
 
-- @organizing_peasants
-- @ag_
-- @party_unity
+- @civil_rights_
+- @military_policy_
+- @elections_
+- @troops
 - @root: Return to main
 
-@organizing_peasants
-title: Literary Activity
 
-@ag_
-title: Agricultural Policy
-subtitle: Chernov is the Agriculture Minister.
-choose-if: advisor_action_timer = 0 and agriculture_minister = "Chernov"
-unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?] [? if agriculture_minister != "Chernov" : Chernov is not the Agriculture Minister. ?]
-on-arrival: advisor_action_timer = 4; agricultural_policy_timer -= 4; last_advisor_action = 1
-go-to: agricultural_policy
+@civil_rights_
+title: Civil Rights
+subtitle: Kerensky is the Justice Minister.
+choose-if: advisor_action_timer = 0 and justice_minister = "Kerensky"
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?] [? if justice_minister != "Kerensky" : Kerensky is not the Justice Minister. ?]
+on-arrival: advisor_action_timer = 4; justice_policy_timer -= 4; last_advisor_action = 1
+go-to: civil_rights
+
+@military_policy_
+title: Military Policy
+subtitle: Kerensky is the War Minister.
+choose-if: advisor_action_timer = 0 and war_minister = "Kerensky"
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?] [? if war_minister != "Kerensky" : Kerensky is not the Justice Minister. ?]
+on-arrival: advisor_action_timer = 4; war_policy_timer -= 4; last_advisor_action = 1
+go-to: military_policy
+
+@elections_
+title: Preparing for Constituent Assembly Elections
+subtitle: We should prepare to hold Constituent Assembly elections soon.
+choose-if: advisor_action_timer = 0 and (war_minister = "Kerensky" or justice_minister = "Kerensky" or prime_minister = "Kerensky" or sr_in_prov_gov)
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?] [? if not sr_in_prov_gov : We are not in the Provisional Government. ?]
+on-arrival: advisor_action_timer = 4; prepare_ca_timer -= 4; last_advisor_action = 1
+go-to: prepare_ca
 
 
-@party_unity
-title: Party Unity
+@troops
+title: Motivating the Troops
+subtitle: Kerensky enjoys touring the front and giving motivational speeches to the troops.
+choose-if: advisor_action_timer = 0 and war_minister = "Kerensky"
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?] [? if war_minister != "Kerensky" : Kerensky is not the Justice Minister. ?]
+on-arrival: advisor_action_timer = 4; morale += 0.1*(1-war_weariness/100);
 
+Kerensky launches a tour of the front, giving speeches to the troops to motivate them to fight for Russia. [? if war_weariness >= 50 : Our high war weariness impedes the effectiveness of Kerensky's tour. ?]

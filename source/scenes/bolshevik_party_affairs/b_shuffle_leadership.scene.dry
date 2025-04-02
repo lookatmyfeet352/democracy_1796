@@ -1,11 +1,11 @@
 title: Shuffle Leadership
 new-page: true
-view-if: m_shuffle_leadership_timer <= 0 and m_siberians_return_seen = 1
-on-arrival: m_shuffle_leadership_timer += 4; week_actions += 1
+view-if: b_shuffle_leadership_timer <= 0 and b_siberians_return_seen = 1
+on-arrival: b_shuffle_leadership_timer += 4; week_actions += 1
 frequency: 100
 is-card: true
 card-image: img/soviet_leaders.jpg
-tags: m_party
+tags: b_party
 
 = Shuffle Leadership
 
@@ -13,56 +13,56 @@ changing the leadership of the party might be necessary to adapt to the changing
 
 Removing advisors will increase dissent from their faction of the party, while selecting advisors will increase a faction's strength.
 
-- @rm_main: Remove advisors.
+- @rb_main: Remove advisors.
 - @add_advisors: Add advisors.
 - @root: Don't change the party leadership.
 - @easy_discard
 
-@rm_main
+@rb_main
 title: Remove advisors.
-tags: m_defensist, m_internationalist, m_social_patriot, m_nonfactional
+tags: b_defensist, b_internationalist, b_social_patriot, b_nonfactional
 frequency: 1
 
-- #m_rm_advisor
+- #b_rb_advisor
 - @add_advisors: Add advisors.
 
 @remove_none
 title: Stop changing advisors.
 go-to: root
-tags: m_rm_advisor
+tags: b_rb_advisor
 
 
 @add_advisors
 title: Add advisors
 unavailable-subtitle: Maximum of 4 advisors.
-choose-if: m_n_advisors < 4
+choose-if: b_n_advisors < 4
 go-to: advisor_menu
 
 @advisor_menu
 title: Add other advisors.
-tags: m_defensist, m_internationalist, m_social_patriot, m_nonfactional
+tags: b_defensist, b_internationalist, b_social_patriot, b_nonfactional
 frequency: 1
 
 - @defensist: Add Revolutionary Defensist advisors.
 - @internationalist: Add Internationalist advisors.
 - @social_patriot: Add Social Patriot advisors.
-- @rm_main: Remove advisors instead.
+- @rb_main: Remove advisors instead.
 - @remove_none: Stop changing advisors.
 
 @defensist
-view-if: m_n_advisors < 4 and defensist_split = 0
+view-if: b_n_advisors < 4 and defensist_split = 0
 
-- #m_defensist
+- #b_defensist
 
 @internationalist
-view-if: m_n_advisors < 4 and internationalist_split = 0
+view-if: b_n_advisors < 4 and internationalist_split = 0
 
-- #m_internationalist
+- #b_internationalist
 
 @social_patriot
-view-if: m_n_advisors < 4 and defensist_split = 0
+view-if: b_n_advisors < 4 and defensist_split = 0
 
-- #m_social_patriot
+- #b_social_patriot
 
 ########################################## adding advisors
 
@@ -72,8 +72,8 @@ view-if: m_n_advisors < 4 and defensist_split = 0
 title: Irakli Tsereteli
 subtitle: Revolutionary Defensist
 view-if: tsereteli_advisor = 0 and n_advisors < 4 and defensist_split = 0 and tsereteli_available = 1
-on-arrival: tsereteli_advisor = 1; m_n_advisors += 1; 
-tags: m_advisor, m_defensist
+on-arrival: tsereteli_advisor = 1; b_n_advisors += 1; 
+tags: b_advisor, b_defensist
 go-to: advisor_menu
 
 Tsereteli has been added as an advisor.
@@ -82,8 +82,8 @@ Tsereteli has been added as an advisor.
 title: Nikolai Chkheidze
 subtitle: A Menshevik member of the Duma and one of the founding members of the Petrograd Soviet.
 view-if: chkheidze_advisor = 0 and n_advisors < 4 and defensist_split = 0
-on-arrival: chkheidze_advisor = 1; m_n_advisors += 1; 
-tags: m_advisor, m_defensist
+on-arrival: chkheidze_advisor = 1; b_n_advisors += 1; 
+tags: b_advisor, b_defensist
 go-to: advisor_menu
 
 Chkheidze has been added as an advisor.
@@ -92,8 +92,8 @@ Chkheidze has been added as an advisor.
 title: Matvei Skobelev
 subtitle: A Menshevik member of the Duma.
 view-if: skobelev_advisor = 0 and n_advisors < 4 and defensist_split = 0
-on-arrival: skobelev_advisor = 1; m_n_advisors += 1; 
-tags: m_advisor, m_defensist
+on-arrival: skobelev_advisor = 1; b_n_advisors += 1; 
+tags: b_advisor, b_defensist
 go-to: advisor_menu
 
 Matvei Skobelev has been added as an advisor.
@@ -103,8 +103,8 @@ Matvei Skobelev has been added as an advisor.
 title: Vladimir Voitinsky
 subtitle: An economist who has just returned from Siberian exile.
 view-if: voitinsky_advisor = 0 and n_advisors < 4 and defensist_split = 0 and voitinsky_available = 1
-on-arrival: voitinsky_advisor = 1; m_n_advisors += 1; 
-tags: m_advisor, m_defensist
+on-arrival: voitinsky_advisor = 1; b_n_advisors += 1; 
+tags: b_advisor, b_defensist
 go-to: advisor_menu
 
 Vladimir Voitinsky has been added as an advisor.
@@ -115,8 +115,8 @@ Vladimir Voitinsky has been added as an advisor.
 title: Julius Martov
 subtitle: Martov is a long-time Menshevik leader who has led the Internationalists, and is known for his principled position in factional debates.
 view-if: martov_advisor = 0 and n_advisors < 4 and internationalist_split = 0 and martov_available = 1
-on-arrival: martov_advisor = 1; m_n_advisors += 1; 
-tags: m_advisor, m_internationalist
+on-arrival: martov_advisor = 1; b_n_advisors += 1; 
+tags: b_advisor, b_internationalist
 go-to: advisor_menu
 
 Julius Martov has been added as an advisor.
@@ -127,8 +127,8 @@ Julius Martov has been added as an advisor.
 title: Nikolai Sukhanov
 subtitle: Sukhanov worked as a bureaucrat in the Tsarist government.
 view-if: sukhanov_advisor = 0 and n_advisors < 4 and internationalist_split = 0 and sukhanov_available = 1
-on-arrival: sukhanov_advisor = 1; m_n_advisors += 1; 
-tags: m_advisor, m_internationalist
+on-arrival: sukhanov_advisor = 1; b_n_advisors += 1; 
+tags: b_advisor, b_internationalist
 go-to: advisor_menu
 
 Nikolai Sukhanov has been added as an advisor.
@@ -140,8 +140,8 @@ Nikolai Sukhanov has been added as an advisor.
 title: Pavel Axelrod
 subtitle: One of the earliest Russian Marxists, he was a companion of Martov in exile.
 view-if: axelrod_advisor = 0 and n_advisors < 4 and internationalist_split = 0 and axelrod_available = 1
-on-arrival: axelrod_advisor = 1; m_n_advisors += 1; 
-tags: m_advisor, m_internationalist
+on-arrival: axelrod_advisor = 1; b_n_advisors += 1; 
+tags: b_advisor, b_internationalist
 go-to: advisor_menu
 
 Pavel Axelrod has been added as an advisor.
@@ -153,9 +153,9 @@ Pavel Axelrod has been added as an advisor.
 title: Alexander Martynov
 subtitle: Martynov is a Menshevik-Internationalist.
 view-if: martynov_advisor = 0 and n_advisors < 4 and internationalist_split = 0 and martynov_available = 1
-on-arrival: martynov_advisor = 1; m_n_advisors += 1; 
+on-arrival: martynov_advisor = 1; b_n_advisors += 1; 
 go-to: advisor_menu
-#tags: m_advisor, m_internationalist
+#tags: b_advisor, b_internationalist
 
 Alexander Martynov has been added as an advisor.
 
@@ -166,8 +166,8 @@ Alexander Martynov has been added as an advisor.
 title: Georgi Plekhanov
 subtitle: Plekhanov is the venerable founder of Russian Marxism, who has taken a pro-war turn.
 view-if: plekhanov_advisor = 0 and n_advisors < 4 and defensist_split = 0 and plekhanov_available = 1
-on-arrival: plekhanov_advisor = 1; m_n_advisors += 1; 
-tags: m_advisor, m_social_patriot
+on-arrival: plekhanov_advisor = 1; b_n_advisors += 1; 
+tags: b_advisor, b_social_patriot
 go-to: advisor_menu
 
 Plekhanov has been added as an advisor.
@@ -177,8 +177,8 @@ Plekhanov has been added as an advisor.
 title: Alexander Potresov
 subtitle: Potresov is a long-time Menshevik leader.
 view-if: potresov_advisor = 0 and n_advisors < 4 and defensist_split = 0 and potresov_available = 1
-on-arrival: potresov_advisor = 1; m_n_advisors += 1; 
-tags: m_advisor, m_social_patriot
+on-arrival: potresov_advisor = 1; b_n_advisors += 1; 
+tags: b_advisor, b_social_patriot
 go-to: advisor_menu
 
 Potresov has been added as an advisor.
@@ -189,8 +189,8 @@ Potresov has been added as an advisor.
 title: Vera Zasulich
 subtitle: Zasulich is a former revolutionary terrorist who came to a political position similar to Plekhanov over the years.
 view-if: zasulich_advisor = 0 and n_advisors < 4 and defensist_split = 0 and zasulich_available = 1
-on-arrival: zasulich_advisor = 1; m_n_advisors += 1; 
-tags: m_advisor, m_social_patriot
+on-arrival: zasulich_advisor = 1; b_n_advisors += 1; 
+tags: b_advisor, b_social_patriot
 go-to: advisor_menu
 
 Zasulich has been added as an advisor.
@@ -205,8 +205,8 @@ title: Remove Tsereteli
 view-if: tsereteli_advisor = 1
 choose-if: defensist_strength < 50
 unavailable-subtitle: The Defensist faction is too strong.
-on-arrival: tsereteli_advisor = 0; defensist_dissent += 10; m_n_advisors -= 1
-tags: m_rm_advisor
+on-arrival: tsereteli_advisor = 0; defensist_dissent += 10; b_n_advisors -= 1
+tags: b_rb_advisor
 
 Tsereteli is no longer an advisor. The Revolutionary Defensists are not pleased.
 
@@ -215,24 +215,24 @@ title: Remove Chkheidze
 view-if: chkheidze_advisor = 1
 choose-if: defensist_strength < 50
 unavailable-subtitle: The Defensist faction is too strong.
-on-arrival: chkheidze_advisor = 0; defensist_dissent += 10; m_n_advisors -= 1
-tags: m_rm_advisor
+on-arrival: chkheidze_advisor = 0; defensist_dissent += 10; b_n_advisors -= 1
+tags: b_rb_advisor
 
 Chkheidze is no longer an advisor. The Revolutionary Defensists are not pleased.
 
 @remove_skobelev
 title: Remove Skobelev
 view-if: skobelev_advisor = 1
-on-arrival: skobelev_advisor = 0; defensist_dissent += 5; m_n_advisors -= 1
-tags: m_rm_advisor
+on-arrival: skobelev_advisor = 0; defensist_dissent += 5; b_n_advisors -= 1
+tags: b_rb_advisor
 
 Skobelev is no longer an advisor. The Revolutionary Defensists are not pleased.
 
 @remove_voitinsky
 title: Remove Voitinsky
 view-if: voitinsky_advisor = 1
-on-arrival: voitinsky_advisor = 0; defensist_dissent += 5; m_n_advisors -= 1
-tags: m_rm_advisor
+on-arrival: voitinsky_advisor = 0; defensist_dissent += 5; b_n_advisors -= 1
+tags: b_rb_advisor
 
 Voitinsky is no longer an advisor. The Revolutionary Defensists are not pleased.
 
@@ -241,24 +241,24 @@ title: Remove Martov
 view-if: martov_advisor = 1
 choose-if: internationalist_strength < 50
 unavailable-subtitle: The Internationalist faction is too strong.
-on-arrival: martov_advisor = 0; internationalist_dissent += 10; m_n_advisors -= 1
-tags: m_rm_advisor
+on-arrival: martov_advisor = 0; internationalist_dissent += 10; b_n_advisors -= 1
+tags: b_rb_advisor
 
 Martov is no longer an advisor. The Internationalists are not pleased.
 
 @remove_sukhanov
 title: Remove Sukhanov
 view-if: sukhanov_advisor = 1
-on-arrival: sukhanov_advisor = 0; internationalist_dissent += 5; m_n_advisors -= 1
-tags: m_rm_advisor
+on-arrival: sukhanov_advisor = 0; internationalist_dissent += 5; b_n_advisors -= 1
+tags: b_rb_advisor
 
 Sukhanov is no longer an advisor. The Internationalists are not pleased.
 
 @remove_axelrod
 title: Remove Axelrod
 view-if: axelrod_advisor = 1
-on-arrival: axelrod_advisor = 0; internationalist_dissent += 5; m_n_advisors -= 1
-tags: m_rm_advisor
+on-arrival: axelrod_advisor = 0; internationalist_dissent += 5; b_n_advisors -= 1
+tags: b_rb_advisor
 
 Axelrod is no longer an advisor. The Internationalists are not pleased.
 
@@ -267,8 +267,8 @@ title: Remove Plekhanov
 view-if: plekhanov_advisor = 1
 choose-if: defensist_strength < 50
 unavailable-subtitle: The Defensist faction is too strong.
-on-arrival: plekhanov_advisor = 0; defensist_dissent += 10; m_n_advisors -= 1
-tags: m_rm_advisor
+on-arrival: plekhanov_advisor = 0; defensist_dissent += 10; b_n_advisors -= 1
+tags: b_rb_advisor
 
 Plekhanov is no longer an advisor. The Defensists are not pleased.
 
@@ -277,8 +277,8 @@ title: Remove Potresov
 view-if: potresov_advisor = 1
 choose-if: defensist_strength < 50
 unavailable-subtitle: The Defensist faction is too strong.
-on-arrival: potresov_advisor = 0; defensist_dissent += 10; m_n_advisors -= 1
-tags: m_rm_advisor
+on-arrival: potresov_advisor = 0; defensist_dissent += 10; b_n_advisors -= 1
+tags: b_rb_advisor
 
 Potresov is no longer an advisor. The Defensists are not pleased.
 
@@ -287,7 +287,7 @@ title: Remove Zasulich
 view-if: zasulich_advisor = 1
 choose-if: defensist_strength < 50
 unavailable-subtitle: The Defensist faction is too strong.
-on-arrival: zasulich_advisor = 0; defensist_dissent += 10; m_n_advisors -= 1
-tags: m_rm_advisor
+on-arrival: zasulich_advisor = 0; defensist_dissent += 10; b_n_advisors -= 1
+tags: b_rb_advisor
 
 Zasulich is no longer an advisor. The Defensists are not pleased.

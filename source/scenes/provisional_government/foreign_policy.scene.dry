@@ -65,11 +65,12 @@ on-arrival: armistice_progress += 1; west_relation -= 10;
 We have opened ceasefire negotiations with the Central Powers.
 
 @peace_negotiate_2
-title: Sign a temporary ceasefire with the Central Powers.
+title: Sign a ceasefire with the Central Powers.
 choose-if: (player_party = "m" and m_war_policy >= 2) or (player_party = "sr" and sr_war_policy >= 2) or (player_party = "k" and k_war_policy >= 1)
 unavailable-subtitle: Our party does not support this.
 view-if: armistice_progress = 1 and is_armistice = 0
 on-arrival: armistice_progress += 1; west_relation -= 30; is_armistice = 1; prov_gov_legitimacy += 20; war_or_peace_timer = 8;
+achievement: peace
 
 # begin timers - war or peace: either peace treaty or war begins anew.
 

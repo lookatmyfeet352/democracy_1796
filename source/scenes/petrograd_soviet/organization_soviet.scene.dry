@@ -1,7 +1,7 @@
 title: Soviet Organizations
 new-page: true
 view-if: organization_soviet_timer = 0 and ((player_party = "b" and b_in_exco) or (player_party = "m" and m_in_exco) or (player_party = "sr" and sr_in_exco) or (player_party = "k" and kadet_in_exco))
-on-arrival: week_activity += 1; organization_soviet_timer += 3
+on-arrival: week_actions += 1; organization_soviet_timer += 3
 tags: soviet
 is-card: true
 card-image: img/soviet_2.jpg

@@ -2,9 +2,9 @@ title: Defensive Battle Outcome
 subtitle: The outcome of our defense...
 new-page: true
 set-jump: defense_outcome.post_battle
+view-if: in_defensive_battle
 go-to: battle
 face-image: offensive.jpg
-tags: event
 
 @post_battle
 go-to: defeat_2 if battle_outcome = -2; defeat_1 if battle_outcome = -1; victory_1 if battle_outcome = 1; victory_2 if battle_outcome = 2

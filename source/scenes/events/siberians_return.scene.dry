@@ -1,7 +1,7 @@
 title: Siberian Exiles Return
 subtitle: Socialist exiles return from Siberia.
 new-page: true
-view-if: year = 1917 and month = 3 and week = 4
+view-if: year = 1917 and month = 3 and week = 3
 tags: event
 max-visits-var: n_players
 go-to: siberians_return_m if player_party = "m"; siberians_return_b if player_party = "b"; siberians_return_sr if player_party = "sr"

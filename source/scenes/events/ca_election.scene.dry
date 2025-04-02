@@ -1,6 +1,17 @@
 title: Constituent Assembly Elections
+subtitle: Finally, the elections are held, and the results are arriving...
 new-page: true
 view-if: (month = next_election_month and week >= next_election_week) or month > next_election_month
+on-arrival: ca_held = 1
+set-jump: ca_election.election_results
+max-visits: 1
+tags: event
+
+= Constituent Assembly Elections
+
+Finally, the long-awaited Constituent Assembly elections are being held!
+
+- @election_algorithm: May we do our best...
 
 @election_results
 on-arrival: {!
@@ -54,7 +65,7 @@ Jewish National List: [+ jewish_national_list_assembly_votes_dec +]%
 
 Other: [+ other_assembly_votes_dec +]%
 
-Now, the Provisional Government's time is coming to an end. Soon, Russia will enter a new era, a post-revolutionary government decided upon by the Constituent Assembly.
+Now, the Provisional Government's time is coming to an end. The challenges are not over; let's hope that the Constituent Assembly is up to the task of creating a new Russia.
 
 - @game_over: Game Over
 

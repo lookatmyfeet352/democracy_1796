@@ -13,6 +13,7 @@ What should we do?
 
 - @initiate
 - @continue
+- @support
 - @suppress
 - @suppress_2
 - @nothing
@@ -41,18 +42,24 @@ subtitle: This is more propaganda support than practical support.
 unavailable-subtitle: [? if player_party = "k": The Kadets will never support this anarchy. ?][? if player_party = "m": The Mensheviks do not have a rural policy yet. ?]
 choose-if: (player_party = "m" and m_land_policy > 1) or (player_party = "b") or (player_party = "sr")
 on-arrival: peasants_b += 5 if player_party = "b"; peasants_sr += 5*(1-sr_dissent) + sr_rural_org if player_party = "sr"; food_production *= 0.99;
+on-departure: land_reform = 1 if sr_in_prov_gov and land_reform = 0 and player_party != "sr"; land_reform_progress += 1 if sr_in_prov_gov and land_reform_progress = 0 and player_party != "sr"
 
 [? if player_party = "sr": Our rural organizations are supporting the peasants in their struggle. This raises the status of the SRs among the peasants. ?]
 [? if player_party = "b": Our support for the peasants raises our status in the villages, perhaps finally giving the Bolsheviks a foothold in the countryside. ?]
+
+[? if sr_in_prov_gov and land_reform_progress = 0 and player_party != "sr" : The SRs in the Provisional Government have initiated a land reform program, forming land committees to allocate acquired land. ?]
 
 @suppress
 title: This is too much! The peasants must stop.
 subtitle: [? if player_party = "m" and not m_in_prov_gov: There is nothing we can do, practically, besides publish articles against the peasants. ?]
 on-arrival: peasants_m -= 2 if player_party = "m"; peasants_b -= 2 if player_party = "b"; peasants_sr -= 2 if player_party = "sr"; peasants_k -= 2 if player_party = "k"
+on-departure: land_reform = 1 if sr_in_prov_gov and land_reform = 0 and player_party != "sr"; land_reform_progress += 1 if sr_in_prov_gov and land_reform_progress = 0 and player_party != "sr"
 
 We have publicly criticized the peasants for their actions. What more can we do?
 
 [? if player_party = "sr": Many of our supporters view us as somewhat hypocritical given our program's previous calls for uncompensated land redistribution. ?]
+
+[? if sr_in_prov_gov and land_reform_progress = 0 and player_party != "sr" : The SRs in the Provisional Government have initiated a land reform program, forming land committees to allocate acquired land. ?]
 
 @suppress_2
 title: Call the militia to suppress the peasants.
@@ -66,5 +73,8 @@ We have called the newfound rural militia to restore order to the countryside, s
 
 @nothing
 title: There is nothing we can do.
+on-departure: land_reform = 1 if sr_in_prov_gov and land_reform = 0 and player_party != "sr"; land_reform_progress += 1 if sr_in_prov_gov and land_reform_progress = 0 and player_party != "sr"
 
 There is nothing we can do. For now, the peasants' fate is out of our hands.
+
+[? if sr_in_prov_gov and land_reform_progress = 0 and player_party != "sr" : The SRs in the Provisional Government have initiated a land reform program, forming land committees to allocate acquired land. ?]

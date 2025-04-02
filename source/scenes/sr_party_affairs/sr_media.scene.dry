@@ -41,22 +41,14 @@ Our propaganda campaign encourages support for the SR party among the workers, s
 title: Support the ideology of revolutionary defensism - defending a defensive war effort as necessary for peace.
 subtitle: -1 resource
 choose-if: sr_resources >= 1
-on-arrival: defensist_strength += 6*(1-sr_dissent); 
+on-arrival: right_sr_strength += 6*(1-sr_dissent); 
 
-Our newspapers print editorials in support of revolutionary defensism, arguing that a defensive war is necessary for a peace without annexations and indemnities.
+Our newspapers print editorials in support of revolutionary defensism, arguing that a defensive war is necessary for a peace without annexations and indemnities. This benefits the Right-SRs.
 
 @support_id
 title: Support the ideology of internationalism - support immediate negotiations for a peace.
 subtitle: -1 resource
 choose-if: sr_resources >= 1
-on-arrival: internationalist_strength += 6*(1-sr_dissent); internationalist_dissent -= 5*(1-sr_dissent); social_patriot_dissent += 5; defensist_dissent += 4; soldiers_sr += 3*(1-sr_dissent);
+on-arrival: left_sr_strength += 6*(1-sr_dissent); left_sr_dissent -= 5*(1-sr_dissent); right_sr_dissent += 4; soldiers_sr += 3*(1-sr_dissent);
 
-Our newspapers print editorials in support of internationalism, arguing that an immediate peace is necessary. This bolsters the Internationalist faction within the party while upsetting the defensists, and raises our standing with the soldiers.
-
-@support_pat
-title: Support the war effort from a social-patriot standpoint.
-subtitle: -1 resource
-choose-if: sr_resources >= 1
-on-arrival: social_patriot_strength += 6*(1-sr_dissent); social_patriot_dissent -= 5*(1-sr_dissent); internationalist_dissent += 5; war_weariness -= 3*(1-sr_dissent); 
-
-Our newspapers print editorials in support of the war effort, without any of the revolutionary defensist conditions. This bolsters the Social Patriot faction.
+Our newspapers print editorials in support of internationalism, arguing that an immediate peace is necessary. This bolsters the internationalist Left-SR faction within the party while upsetting the defensist Right-SRs, and raises our standing with the soldiers.

@@ -1,23 +1,32 @@
 title: Questions of Ideology
 new-page: true
-view-if: m_ideology_timer <= 0
-on-arrival: m_ideology_timer += 2; week_actions += 1
+view-if: b_ideology_timer <= 0
+on-arrival: b_ideology_timer += 2; week_actions += 1
 frequency: 100
 is-card: true
-card-image: img/rsdlp_2.jpg
-tags: m_party
+card-image: img/portraits/taburin_sd.jpg
+tags: b_party
 
 = Questions of Ideology
 
-The revolution has opened up a space for raucous debate on the future of the country. Within the Social Democrats, many questions are hotly contested.
+Within the Bolsheviks, there are two major ideological currents - a "moderate" current that argues for cooperation with the other socialist parties and possibly even the Provisional Government, and a more radical Leninist current that argues for a Bolshevik seizure of power on behalf of the Soviets. Most Bolsheviks will follow the predominant mood of the party, whatever that happens to be.
 
-Should we change the party's position on any of these issues?
+Which ideological current should be supported?
 
-- @m_war_policy: War policy
-- @m_prov_gov_policy: The Provisional Government
-- @m_industrial_policy: Industrial policy
-- @m_rural_policy: Rural policy
-- @m_nationalities: The nationalities
+- @moderate
+- @leninist
 - @root: No, we will not change any of our ideological positions.
 - @easy_discard
 
+
+@moderate
+title: Support the moderate course of Kamenev and Zinoviev.
+on-arrival: b_war_policy = 2; b_industrial_policy = 1; b_prov_gov_policy = 3; b_land_policy = 1; moderate_strength += 10; leninist_dissent += 10;
+
+The moderates support an internationalist war policy (i.e. negotiations to end the war), workers' councils, and the formation of an all-socialist provisional government until the Constituent Assembly.
+
+@leninist
+title: Support Lenin's radical plans.
+on-arrival: b_war_policy = 3; b_industrial_policy = 3; b_prov_gov_policy = 4; b_land_policy = 2; leninist_strength += 10; moderate_dissent += 10;
+
+Lenin supports an immediate end to the war without conditions, state or collective ownership of industries, and the overthrow of the Provisional Government in favor of one based on the Soviet of Workers' and Soldiers' Deputies.

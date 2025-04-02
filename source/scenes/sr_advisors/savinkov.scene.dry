@@ -1,13 +1,13 @@
-title: Vladimir Zenzinov
+title: Boris Savinkov
 is-pinned-card: true
 tags: advisor
-card-image: img/portraits/sr/zenzinov.jpg
-view-if: zenzinov_advisor = 1 and player_party = "sr"
+card-image: img/portraits/sr/savinkov.jpg
+view-if: savinkov_advisor = 1 and player_party = "sr"
 new-page: true 
 
-= Vladimir Zenzinov
+= Boris Savinkov
 
-Zenzinov was one of the few SR leaders who remained free in Russia instead of going into exile or imprisonment.
+Savinkov was a former leader of the SR Combat Organization, the terroristic assassination group. He has become disillusioned with violent revolution after the Azev Affair, and is now a very strong supporter of defensism and the war.
 
 - @organizing_peasants
 - @root: Return to main

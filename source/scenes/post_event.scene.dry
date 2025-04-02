@@ -15,6 +15,7 @@ if (Q.prov_gov_legitimacy < 1) Q.prov_gov_legitimacy = 1;
 if (Q.soviet_cooperation < 0.01) Q.soviet_cooperation = 0.01;
 if (Q.prov_gov_efficacy < 0.01) Q.prov_gov_efficacy = 0.01;
 if (Q.soviet_efficacy < 0.01) Q.soviet_efficacy = 0.01;
+if (Q.war_weariness >= 99) Q.war_weariness = 99;
 
 // round to integers...
 Q.train_capacity = Math.round(Q.train_capacity);
@@ -241,7 +242,7 @@ if (Q.week_actions >= 1 && Q.current_player >= Q.n_players) {
     Q.sr_soviet = Q.sr_soviet_votes_dec;
     Q.b_soviet = Q.b_soviet_votes_dec;
     Q.anarchist_soviet = Q.anarchist_soviet_votes_dec;
-    Q.other_soviet = Math.round(10*(Q.popuar_socialist_soviet_votes_dec + Q.other_soviet_votes_dec + Q.k_soviet_votes_dec + Q.conservative_soviet_votes_dec))/10;
+    Q.other_soviet = Math.round(10*(Q.popular_socialist_soviet_votes_dec + Q.other_soviet_votes_dec + Q.k_soviet_votes_dec + Q.conservative_soviet_votes_dec))/10;
 
     // decrement timers
     for (timer of Q.timers) {
@@ -325,7 +326,6 @@ if (Q.week_actions >= 1 && Q.current_player >= Q.n_players) {
 
     // Effects of hunger, inflation, and war exhaustion on party support /////////////////////////////////////////////////
     if (Q.hunger >= 10 && (Q.war_weariness >= 60 || Q.monthly_inflation >= 6.5)) {
-        Q.prov_gov_legitimacy -= 1;
         Q.workers_b += 0.3;
         Q.soldiers_b += 0.5;
         if (Q.m_in_prov_gov) {
@@ -338,7 +338,7 @@ if (Q.week_actions >= 1 && Q.current_player >= Q.n_players) {
         }
     }
     if (Q.hunger >= 20 && (Q.war_weariness >= 50 || Q.monthly_inflation >= 5.5)) {
-        Q.prov_gov_legitimacy -= 1;
+        Q.prov_gov_legitimacy -= 0.5;
         Q.workers_b += 0.3;
         Q.soldiers_b += 0.5;
         if (Q.m_in_prov_gov) {
@@ -351,7 +351,7 @@ if (Q.week_actions >= 1 && Q.current_player >= Q.n_players) {
         }
     }
     if (Q.hunger >= 30 && (Q.war_weariness >= 40 || Q.monthly_inflation >= 5)) {
-        Q.prov_gov_legitimacy -= 1;
+        Q.prov_gov_legitimacy -= 0.5;
         Q.workers_b += 0.3;
         Q.soldiers_b += 0.5;
         if (Q.b_in_prov_gov) {
@@ -371,7 +371,7 @@ if (Q.week_actions >= 1 && Q.current_player >= Q.n_players) {
         }
     }
     if (Q.hunger >= 40 && (Q.war_weariness >= 30 || Q.monthly_inflation >= 4)) {
-        Q.prov_gov_legitimacy -= 1;
+        Q.prov_gov_legitimacy -= 0.5;
         Q.workers_b += 0.3;
         Q.soldiers_b += 0.5;
         if (Q.b_in_prov_gov) {
@@ -430,7 +430,7 @@ if (Q.week_actions >= 1 && Q.current_player >= Q.n_players) {
         var attacking_morale = Q[ef + '_enemy_morale'];
         var attacking_discipline = Q[ef + '_enemy_discipline'];
         var attacking_supply = Q[ef + '_enemy_supply_quality'];
-        Q[front + 'attack_strength'] = attacking_soldiers*attacking_morale*attacking_discipline*Math.pow(attacking_supply, 1.5);
+        Q[ef + 'attack_strength'] = attacking_soldiers*attacking_morale*attacking_discipline*Math.pow(attacking_supply, 1.5);
     }
     for (var front of Q.fronts) {
         var defending_soldiers = Q[front + '_front_soldiers'];
@@ -446,7 +446,7 @@ if (Q.week_actions >= 1 && Q.current_player >= Q.n_players) {
     Q.best_enemy_front = "northwestern";
     Q.best_front_ratio = 0;
     for (var front of Q.fronts) {
-        if (Q[front + "_ratio"] > best_front_ratio) {
+        if (Q[front + "_ratio"] > Q.best_front_ratio) {
             Q.best_front = front;
             Q.best_enemy_front = Q.fronts_to_enemy[front];
             Q.best_front_ratio = Q[front + "_ratio"];

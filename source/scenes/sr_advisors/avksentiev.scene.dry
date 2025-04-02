@@ -1,0 +1,30 @@
+title: Nikoali Avksentiev
+is-pinned-card: true
+tags: advisor
+card-image: img/portraits/sr/avksentiev.jpg
+view-if: avksentiev_advisor = 1 and player_party = "sr"
+new-page: true 
+
+= Nikolai Avksentiev
+
+Avksentiev is a.
+
+- @organizing_peasants
+- @interior_
+- @root: Return to main
+
+@organizing_peasants
+title: Organizing Peasants
+
+@interior_
+title: Internal Security
+subtitle: Avksentiev is the Interior Minister.
+choose-if: advisor_action_timer = 0 and interior_minister = "Avksentiev"
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?] [? if interior_minister != "Avksentiev" : Avksentiev is not the Interior Minister. ?]
+on-arrival: advisor_action_timer = 4; internal_security_timer -= 4; last_advisor_action = 1
+go-to: internal_security
+
+
+@party_unity
+title: Party Unity
+

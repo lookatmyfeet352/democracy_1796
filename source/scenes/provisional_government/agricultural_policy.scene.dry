@@ -12,6 +12,12 @@ Russia is an agrarian country, so rural policy is a crucial part of the provisio
 
 The peasants are hungry for land, and the workers are hungry for bread. There must be a way to satisfy these demands, or the country will collapse.
 
+Urban food demand: [+ food_demand_urban +] million kg/year
+
+Urban food supply: [+ food_supply_urban +] million kg/year
+
+Food shortage: [+ hunger +]%
+
 # options: start land committees
 # - create a state buyer for grain, with a fixed price
 # state farms

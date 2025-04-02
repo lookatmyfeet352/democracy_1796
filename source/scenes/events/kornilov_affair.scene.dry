@@ -17,18 +17,32 @@ tags: event
 # for kadets only: We will welcome Kornilov as a liberator.
 
 - @defense
+- @nothing
 - @liberator
 
 @defense
 title: Prepare for the defense of Petrograd and the revolution!
 view-if: player_party != "k"
+on-arrival: workers_militia_strength += 10; workers_militia_militancy += 0.1;
+
+All socialist forces are uniting against Kornilov. The railway workers have called a strike to prevent Kornilov's forces from advancing. Kerensky is distributing arms to workers' militias.
+
+Eventually, Kornilov's army is stopped without a fight.
+
+@nothing
+title: This is not our fight.
+view-if: player_party != "b"
+on-arrival: workers_militia_strength += 10; workers_militia_militancy += 0.1;
+
+[? if player_party != "k": We do not give any instructions to our supporters, but that simply opens a space for the Bolsheviks. The workers are with the Bolsheviks against the supposed threat of Kornilov. A railway strike is called, and arms are being distributed to workers' militias. Eventually, Kornilov's army has stopped, and he is arrested. ?]
+
+[? if player_party = "k": The socialists are digging in, and even the moderate SRs and Mensheviks are uniting with the Bolsheviks against the supposed threat of Kornilov. They have called a general strike, and are building trenches and stopping trains, while arms are being distributed to workers' militias. Eventually, Kornilov's army has stopped, and he is arrested. ?]
 
 @liberator
 title: We will welcome Kornilov as a liberator.
 view-if: player_party = "k"
+on-arrival: workers_militia_strength += 10; workers_militia_militancy += 0.1;
 
-The socialists are digging in, and even the moderate SRs and Mensheviks are uniting with the Bolsheviks against the supposed threat of Kornilov. They have called a general strike, and are building trenches and stopping trains, while arms are being distributed to workers' militias.
+The socialists are digging in, and even the moderate SRs and Mensheviks are uniting with the Bolsheviks against the supposed threat of Kornilov. They have called a general strike, and are building trenches and stopping trains, while arms are being distributed to workers' militias. Eventually, Kornilov's army has stopped, and he is arrested.
 
-Kornilov's army has stopped, and he is arrested.
-
-For better or for worse, Kornilov will not be our savior.
+For better or for worse, Kornilov will not be Russia's savior.

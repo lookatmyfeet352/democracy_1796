@@ -3,7 +3,7 @@ new-page: true
 view-if: b_enemies_timer <= 0 and month < 9
 on-arrival: b_enemies_timer = 6; week_actions += 1
 is-card: true
-card-image: img/menshevik_2.jpg
+card-image: img/soviet_leaders.jpg
 tags: b_party
 
 = Choosing Our Enemies
@@ -37,6 +37,5 @@ Attacking the bourgeois socialists reduces their standing among the working clas
 
 @imperialists
 title: The imperialist powers - Britain and France primarily.
-on-arrival: 
+on-arrival: b_k_relation -= 20;
 
-Nationalistic propaganda is highly unpopular among the Internationalists, and among the soldiers who wish to stop the war. However, it raises our standing with the Kadets, and improves the position of the Defensists within the party.

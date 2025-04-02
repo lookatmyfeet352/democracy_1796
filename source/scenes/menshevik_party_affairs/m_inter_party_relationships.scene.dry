@@ -30,7 +30,7 @@ subtitle: -1 resource
 We have improved our relations with the Party of Socialist-Revolutionaries.
 
 @k
-title: Improve our relations with the Kadets, the middle_class liberal party.
+title: Improve our relations with the Kadets, the middle class liberal party.
 on-arrival: m_k_relation += 5*(1-m_dissent); m_k_relation -= 3 if internationalist_strength >= defensist_strength + social_patriot_strength or m_prov_gov_policy >= 2 or m_war_policy >= 2; m_resources -= 1;
 choose-if: m_resources >= 1
 subtitle: -1 resource

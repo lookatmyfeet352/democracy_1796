@@ -4,7 +4,7 @@ view-if: sr_shuffle_leadership_timer <= 0 and sr_siberians_return_seen = 1
 on-arrival: sr_shuffle_leadership_timer += 4; week_actions += 1
 frequency: 100
 is-card: true
-card-image: img/soviet_leaders.jpg
+card-image: img/sr_poster_2.jpg
 tags: sr_party
 
 = Shuffle Leadership
@@ -20,7 +20,7 @@ Removing advisors will increase dissent from their faction of the party, while s
 
 @rm_main
 title: Remove advisors.
-tags: sr_defensist, sr_internationalist, sr_social_patriot, sr_nonfactional
+tags: right_sr, left_sr, center_sr
 frequency: 1
 
 - #sr_rm_advisor
@@ -40,254 +40,250 @@ go-to: advisor_menu
 
 @advisor_menu
 title: Add other advisors.
-tags: sr_defensist, sr_internationalist, sr_social_patriot, sr_nonfactional
+tags: left_sr, right_sr, center_sr
 frequency: 1
 
-- @defensist: Add Revolutionary Defensist advisors.
-- @internationalist: Add Internationalist advisors.
-- @social_patriot: Add Social Patriot advisors.
+- @right_sr: Add Right-SR advisors.
+- @left_sr: Add Left-SR advisors.
+- @center_sr: Add Center-SR advisors.
 - @rm_main: Remove advisors instead.
 - @remove_none: Stop changing advisors.
 
-@defensist
-view-if: sr_n_advisors < 4 and defensist_split = 0
+@right_sr
+view-if: sr_n_advisors < 4 and right_sr_split = 0
 
-- #sr_defensist
+- #right_sr
 
-@internationalist
-view-if: sr_n_advisors < 4 and internationalist_split = 0
+@left_sr
+view-if: sr_n_advisors < 4 and left_sr_split = 0
 
-- #sr_internationalist
+- #left_sr
 
-@social_patriot
-view-if: sr_n_advisors < 4 and defensist_split = 0
+@center_sr
+view-if: sr_n_advisors < 4
 
-- #sr_social_patriot
+- #center_sr
 
 ########################################## adding advisors
 
-# revolutionary defensists
+# right-sr
 
-@add_tsereteli
-title: Irakli Tsereteli
-subtitle: Revolutionary Defensist
-view-if: tsereteli_advisor = 0 and n_advisors < 4 and defensist_split = 0 and tsereteli_available = 1
-on-arrival: tsereteli_advisor = 1; sr_n_advisors += 1; 
-tags: sr_advisor, sr_defensist
+@add_kerensky
+title: Alexander Kerensky
+subtitle: Longtime Duma member, revolutionary lawyer.
+view-if: kerensky_advisor = 0 and n_advisors < 4 and right_sr_split = 0 and kerensky_available = 1
+on-arrival: kerensky_advisor = 1; sr_n_advisors += 1; 
+tags: sr_advisor, right_sr
 go-to: advisor_menu
 
-Tsereteli has been added as an advisor.
+Kerensky has been added as an advisor.
 
-@add_chkheidze
-title: Nikolai Chkheidze
-subtitle: A Menshevik member of the Duma and one of the founding members of the Petrograd Soviet.
-view-if: chkheidze_advisor = 0 and n_advisors < 4 and defensist_split = 0
-on-arrival: chkheidze_advisor = 1; sr_n_advisors += 1; 
-tags: sr_advisor, sr_defensist
+@add_avksentiev
+title: Nikolai Avksentiev
+subtitle: A Right-SR leader.
+view-if: avksentiev_advisor = 0 and n_advisors < 4 and right_sr_split = 0
+on-arrival: avksentiev_advisor = 1; sr_n_advisors += 1; 
+tags: sr_advisor, right_sr
 go-to: advisor_menu
 
-Chkheidze has been added as an advisor.
+Avksentiev has been added as an advisor.
 
-@add_skobelev
-title: Matvei Skobelev
+@add_zenzinov
+title: Vladimir Zenzinov
 subtitle: A Menshevik member of the Duma.
-view-if: skobelev_advisor = 0 and n_advisors < 4 and defensist_split = 0
-on-arrival: skobelev_advisor = 1; sr_n_advisors += 1; 
-tags: sr_advisor, sr_defensist
+view-if: zenzinov_advisor = 0 and n_advisors < 4 and right_sr_split = 0
+on-arrival: zenzinov_advisor = 1; sr_n_advisors += 1; 
+tags: sr_advisor, right_sr
 go-to: advisor_menu
 
-Matvei Skobelev has been added as an advisor.
+Vladimir Zenzinov has been added as an advisor.
 
 
-@add_voitinsky
-title: Vladimir Voitinsky
-subtitle: An economist who has just returned from Siberian exile.
-view-if: voitinsky_advisor = 0 and n_advisors < 4 and defensist_split = 0 and voitinsky_available = 1
-on-arrival: voitinsky_advisor = 1; sr_n_advisors += 1; 
-tags: sr_advisor, sr_defensist
+@add_savinkov
+title: Boris Savinkov
+subtitle: A former SR terrorist and leader of the SR Combat Organization, he has become a strong defensist following the war.
+view-if: savinkov_advisor = 0 and n_advisors < 4 and right_sr_split = 0 and savinkov_available = 1
+on-arrival: savinkov_advisor = 1; sr_n_advisors += 1; 
+tags: sr_advisor, right_sr
 go-to: advisor_menu
 
-Vladimir Voitinsky has been added as an advisor.
+Boris Savinkov has been added as an advisor.
 
-# internationalists
-
-@add_martov
-title: Julius Martov
-subtitle: Martov is a long-time Menshevik leader who has led the Internationalists, and is known for his principled position in factional debates.
-view-if: martov_advisor = 0 and n_advisors < 4 and internationalist_split = 0 and martov_available = 1
-on-arrival: martov_advisor = 1; sr_n_advisors += 1; 
-tags: sr_advisor, sr_internationalist
+@add_breshkovskaya
+title: Catherine Breshko-Breshkovskaya
+subtitle: Sometimes called the "Grandmother of the Revolution", she has been working for the SR cause for decades in Russia and in exile.
+view-if: breshkovskaya_advisor = 0 and n_advisors < 4 and right_sr_split = 0 and breshkovskaya_available = 1
+on-arrival: breshkovskaya_advisor = 1; sr_n_advisors += 1; 
+tags: sr_advisor, right_sr
 go-to: advisor_menu
 
-Julius Martov has been added as an advisor.
+Catherine Breshko-Breshkovskaya has been added as an advisor.
 
-# sukhanov
-
-@add_sukhanov
-title: Nikolai Sukhanov
-subtitle: Sukhanov worked as a bureaucrat in the Tsarist government.
-view-if: sukhanov_advisor = 0 and n_advisors < 4 and internationalist_split = 0 and sukhanov_available = 1
-on-arrival: sukhanov_advisor = 1; sr_n_advisors += 1; 
-tags: sr_advisor, sr_internationalist
+@add_kondratiev
+title: Nikolai Kondratiev
+subtitle: Kondratiev is a young SR economist.
+view-if: kondratiev_advisor = 0 and n_advisors < 4 and right_sr_split = 0 and kondratiev_available = 1
+on-arrival: kondratiev_advisor = 1; sr_n_advisors += 1; 
+tags: sr_advisor, right_sr
 go-to: advisor_menu
 
-Nikolai Sukhanov has been added as an advisor.
+Kondratiev has been added as an advisor.
 
 
-# axelrod
 
-@add_axelrod
-title: Pavel Axelrod
-subtitle: One of the earliest Russian Marxists, he was a companion of Martov in exile.
-view-if: axelrod_advisor = 0 and n_advisors < 4 and internationalist_split = 0 and axelrod_available = 1
-on-arrival: axelrod_advisor = 1; sr_n_advisors += 1; 
-tags: sr_advisor, sr_internationalist
+
+# left_srs
+
+@add_spiridonova
+title: Maria Spiridonova
+subtitle: Spiridonova is a former assassin who was imprisoned in Siberia for decades, and has now become a Left-SR leader.
+view-if: spiridonova_advisor = 0 and n_advisors < 4 and left_sr_split = 0 and spiridonova_available = 1
+on-arrival: spiridonova_advisor = 1; sr_n_advisors += 1; 
+tags: sr_advisor, left_sr
 go-to: advisor_menu
 
-Pavel Axelrod has been added as an advisor.
+Maria Spiridonova has been added as an advisor.
 
+# kamkov
 
-# martynov - temporarily disable for now
-
-@add_martynov
-title: Alexander Martynov
-subtitle: Martynov is a Menshevik-Internationalist.
-view-if: martynov_advisor = 0 and n_advisors < 4 and internationalist_split = 0 and martynov_available = 1
-on-arrival: martynov_advisor = 1; sr_n_advisors += 1; 
-go-to: advisor_menu
-#tags: sr_advisor, sr_internationalist
-
-Alexander Martynov has been added as an advisor.
-
-
-# patriots
-
-@add_plekhanov
-title: Georgi Plekhanov
-subtitle: Plekhanov is the venerable founder of Russian Marxism, who has taken a pro-war turn.
-view-if: plekhanov_advisor = 0 and n_advisors < 4 and defensist_split = 0 and plekhanov_available = 1
-on-arrival: plekhanov_advisor = 1; sr_n_advisors += 1; 
-tags: sr_advisor, sr_social_patriot
+@add_kamkov
+title: Boris Kamkov
+subtitle: Kamkov is .
+view-if: kamkov_advisor = 0 and n_advisors < 4 and left_sr_split = 0 and kamkov_available = 1
+on-arrival: kamkov_advisor = 1; sr_n_advisors += 1; 
+tags: sr_advisor, left_sr
 go-to: advisor_menu
 
-Plekhanov has been added as an advisor.
+Boris Kamkov has been added as an advisor.
 
 
-@add_potresov
-title: Alexander Potresov
-subtitle: Potresov is a long-time Menshevik leader.
-view-if: potresov_advisor = 0 and n_advisors < 4 and defensist_split = 0 and potresov_available = 1
-on-arrival: potresov_advisor = 1; sr_n_advisors += 1; 
-tags: sr_advisor, sr_social_patriot
+# natanson
+
+@add_natanson
+title: Mark Natanson
+subtitle: Natanson is a venerable Narodnik and Left-SR leader.
+view-if: natanson_advisor = 0 and n_advisors < 4 and left_sr_split = 0 and natanson_available = 1
+on-arrival: natanson_advisor = 1; sr_n_advisors += 1; 
+tags: sr_advisor, left_sr
 go-to: advisor_menu
 
-Potresov has been added as an advisor.
+Mark Natanson has been added as an advisor.
 
-# potresov, zasulich
 
-@add_zasulich
-title: Vera Zasulich
-subtitle: Zasulich is a former revolutionary terrorist who came to a political position similar to Plekhanov over the years.
-view-if: zasulich_advisor = 0 and n_advisors < 4 and defensist_split = 0 and zasulich_available = 1
-on-arrival: zasulich_advisor = 1; sr_n_advisors += 1; 
-tags: sr_advisor, sr_social_patriot
+# verkhovsky - temporarily disable for now
+
+@add_verkhovsky
+title: Alexander Verkhovsky
+subtitle: Verkhovsky is an SR-affiliated military officer who leans towards internationalism.
+view-if: verkhovsky_advisor = 0 and n_advisors < 4 and left_sr_split = 0 and verkhovsky_available = 1
+on-arrival: verkhovsky_advisor = 1; sr_n_advisors += 1; 
+go-to: advisor_menu
+#tags: sr_advisor, left_sr
+
+Alexander Verkhovsky has been added as an advisor.
+
+
+# center-SRs
+
+@add_chernov
+title: Viktor Chernov
+subtitle: Chernov is a founder and lead theoretician of the SRs.
+view-if: chernov_advisor = 0 and n_advisors < 4 and right_sr_split = 0 and chernov_available = 1
+on-arrival: chernov_advisor = 1; sr_n_advisors += 1; 
+tags: sr_advisor, center_sr
 go-to: advisor_menu
 
-Zasulich has been added as an advisor.
-
-
+Chernov has been added as an advisor.
 
 
 #################################### removing advisors
 
-@remove_tsereteli
-title: Remove Tsereteli
-view-if: tsereteli_advisor = 1
-choose-if: defensist_strength < 50
-unavailable-subtitle: The Defensist faction is too strong.
-on-arrival: tsereteli_advisor = 0; defensist_dissent += 10; sr_n_advisors -= 1
+@remove_kerensky
+title: Remove Kerensky
+view-if: kerensky = 1
+choose-if: right_sr_strength < 50
+unavailable-subtitle: The Right-SR faction is too strong.
+on-arrival: kerensky = 0; right_sr_dissent += 10; sr_n_advisors -= 1
 tags: sr_rm_advisor
 
-Tsereteli is no longer an advisor. The Revolutionary Defensists are not pleased.
+Kerensky is no longer an advisor. The Right-SRs are not pleased.
 
-@remove_chkheidze
-title: Remove Chkheidze
-view-if: chkheidze_advisor = 1
-choose-if: defensist_strength < 50
-unavailable-subtitle: The Defensist faction is too strong.
-on-arrival: chkheidze_advisor = 0; defensist_dissent += 10; sr_n_advisors -= 1
+@remove_avksentiev
+title: Remove Avksentiev
+view-if: avksentiev_advisor = 1
+choose-if: right_sr_strength < 50
+unavailable-subtitle: The Right-SR faction is too strong.
+on-arrival: avksentiev_advisor = 0; right_sr_dissent += 10; sr_n_advisors -= 1
 tags: sr_rm_advisor
 
-Chkheidze is no longer an advisor. The Revolutionary Defensists are not pleased.
+Avksentiev is no longer an advisor. The Right-SRs are not pleased.
 
-@remove_skobelev
-title: Remove Skobelev
-view-if: skobelev_advisor = 1
-on-arrival: skobelev_advisor = 0; defensist_dissent += 5; sr_n_advisors -= 1
+@remove_zenzinov
+title: Remove Zenzinov
+view-if: zenzinov_advisor = 1
+on-arrival: zenzinov_advisor = 0; right_sr_dissent += 5; sr_n_advisors -= 1
 tags: sr_rm_advisor
 
-Skobelev is no longer an advisor. The Revolutionary Defensists are not pleased.
+Zenzinov is no longer an advisor. The Right-SRs are not pleased.
 
-@remove_voitinsky
-title: Remove Voitinsky
-view-if: voitinsky_advisor = 1
-on-arrival: voitinsky_advisor = 0; defensist_dissent += 5; sr_n_advisors -= 1
+@remove_savinkov
+title: Remove Savinkov
+view-if: savinkov_advisor = 1
+on-arrival: savinkov_advisor = 0; right_sr_dissent += 5; sr_n_advisors -= 1
 tags: sr_rm_advisor
 
-Voitinsky is no longer an advisor. The Revolutionary Defensists are not pleased.
+Savinkov is no longer an advisor. The Right-SRs are not pleased.
 
-@remove_martov
-title: Remove Martov
-view-if: martov_advisor = 1
-choose-if: internationalist_strength < 50
+@remove_breshkovskaya
+title: Remove Breshkovskaya
+view-if: breshkovskaya_advisor = 1
+on-arrival: breshkovskaya_advisor = 0; right_sr_dissent += 5; sr_n_advisors -= 1
+tags: sr_rm_advisor
+
+Breshkovskaya is no longer an advisor. The Right-SRs are not pleased.
+
+
+@remove_spiridonova
+title: Remove Spiridonova
+view-if: spiridonova_advisor = 1
+choose-if: left_sr_strength < 50
 unavailable-subtitle: The Internationalist faction is too strong.
-on-arrival: martov_advisor = 0; internationalist_dissent += 10; sr_n_advisors -= 1
+on-arrival: spiridonova_advisor = 0; left_sr_dissent += 10; sr_n_advisors -= 1
 tags: sr_rm_advisor
 
-Martov is no longer an advisor. The Internationalists are not pleased.
+Spiridonova is no longer an advisor. The Left-SRs are not pleased.
 
-@remove_sukhanov
-title: Remove Sukhanov
-view-if: sukhanov_advisor = 1
-on-arrival: sukhanov_advisor = 0; internationalist_dissent += 5; sr_n_advisors -= 1
+@remove_kamkov
+title: Remove Kamkov
+view-if: kamkov_advisor = 1
+on-arrival: kamkov_advisor = 0; left_sr_dissent += 5; sr_n_advisors -= 1
 tags: sr_rm_advisor
 
-Sukhanov is no longer an advisor. The Internationalists are not pleased.
+Kamkov is no longer an advisor. The Left-SRs are not pleased.
 
-@remove_axelrod
-title: Remove Axelrod
-view-if: axelrod_advisor = 1
-on-arrival: axelrod_advisor = 0; internationalist_dissent += 5; sr_n_advisors -= 1
+@remove_natanson
+title: Remove Natanson
+view-if: natanson_advisor = 1
+on-arrival: natanson_advisor = 0; left_sr_dissent += 5; sr_n_advisors -= 1
 tags: sr_rm_advisor
 
-Axelrod is no longer an advisor. The Internationalists are not pleased.
+Natanson is no longer an advisor. The Left-SRs are not pleased.
 
-@remove_plekhanov
-title: Remove Plekhanov
-view-if: plekhanov_advisor = 1
-choose-if: defensist_strength < 50
-unavailable-subtitle: The Defensist faction is too strong.
-on-arrival: plekhanov_advisor = 0; defensist_dissent += 10; sr_n_advisors -= 1
+@remove_chernov
+title: Remove Chernov
+view-if: chernov_advisor = 1
+choose-if: 1 = 0
+unavailable-subtitle: We cannot simply remove Chernov!
+on-arrival: chernov_advisor = 0; right_sr_dissent += 10; sr_n_advisors -= 1
 tags: sr_rm_advisor
 
-Plekhanov is no longer an advisor. The Defensists are not pleased.
+Chernov is no longer an advisor.
 
-@remove_potresov
-title: Remove Potresov
-view-if: potresov_advisor = 1
-choose-if: defensist_strength < 50
-unavailable-subtitle: The Defensist faction is too strong.
-on-arrival: potresov_advisor = 0; defensist_dissent += 10; sr_n_advisors -= 1
+@remove_kondratiev
+title: Remove Kondratiev
+view-if: kondratiev_advisor = 1
+on-arrival: kondratiev_advisor = 0; right_sr_dissent += 10; sr_n_advisors -= 1
 tags: sr_rm_advisor
 
-Potresov is no longer an advisor. The Defensists are not pleased.
+Kondratiev is no longer an advisor. The Right-SRs are not pleased.
 
-@remove_zasulich
-title: Remove Zasulich
-view-if: zasulich_advisor = 1
-choose-if: defensist_strength < 50
-unavailable-subtitle: The Defensist faction is too strong.
-on-arrival: zasulich_advisor = 0; defensist_dissent += 10; sr_n_advisors -= 1
-tags: sr_rm_advisor
-
-Zasulich is no longer an advisor. The Defensists are not pleased.
