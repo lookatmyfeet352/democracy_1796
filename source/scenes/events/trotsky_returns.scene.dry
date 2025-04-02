@@ -3,7 +3,7 @@ subtitle: The Social Democrat leader returns from exile.
 new-page: true
 view-if: year = 1917 and month = 5 and week = 3
 tags: event
-max-visits-var: n_players
+max-visits: 1
 on-arrival: trotsky_available = 1; leninist_strength += 8; workers_b += 4; soldiers_b += 5;
 
 = Trotsky Returns

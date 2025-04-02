@@ -10,15 +10,80 @@ Herein contains relevant information about revolutionary Russia in 1917.
 @menu
 
 - @government: Provisional Government
+- @soviet_: Petrograd Soviet
 - @demographics: Demographics
 - @parties: Parties
 - @economy: Economics
 - @paramilitaries: Paramilitary groups
 - @factions: Internal Factions
+- @timeline: Timeline of recent Russian history
 - @backSpecialScene: Exit library.
 
 @government
 go-to: menu
+
+= The Provisional Government
+
+With the abdication of the Tsar, power in Russia has been transferred to the Provisional Government, comprised primarily of liberal members of the Duma and led by Prince Georgy Lvov, a reformist noble. The government has already been recognized by the powers of the Entente.
+
+The leaders of the Provisional Government see its role as continuing to persecute the war and maintaining stability until an elected Constituent Assembly is ready to decide Russia's final form of government.
+
+[? if m_in_prov_gov or sr_in_prov_gov: Recently, socialist parties have joined the Provisional Government as a way to shore up its stability. ?]
+
+Prime Minister: [+ prime_minister +] ([+ prime_minister_party +])
+
+Interior Minister: [+ interior_minister +] ([+ interior_minister_party +])
+
+Foreign Minister: [+ foreign_minister +] ([+ foreign_minister_party +])
+
+War Minister: [+ war_minister +] ([+ war_minister_party +])
+
+Finance Minister: [+ finance_minister +] ([+ finance_minister_party +])
+
+Justice Minister: [+ justice_minister +] ([+ justice_minister_party +])
+
+Agriculture Minister: [+ agriculture_minister +] ([+ agriculture_minister_party +])
+
+Transport Minister: [+ transport_minister +] ([+ transport_minister_party +])
+
+Industry and Trade Minister: [+ trade_minister +] ([+ trade_minister_party +])
+
+Education Minister: [+ education_minister +] ([+ education_minister_party +])
+
+[? if post_minister: Posts and Telegraph Minister: [+ post_minister +] ([+ post_minister_party +]) ?]
+
+[? if labor_minister: Labor Minister: [+ labor_minister +] ([+ labor_minister_party +]) ?]
+
+Provisional government efficacy: [+ prov_gov_efficacy : efficacy +]
+
+Provisional government legitimacy: [+ prov_gov_legitimacy : legitimacy +]
+
+@soviet_
+go-to: menu
+
+= Petrograd Soviet
+
+The Petrograd Soviet of Workers' and Soldiers' Deputies is an elected council comprised of representatives of workers and soldiers throughout the city. Organized in the wake of the general strike and the breakdown of the established order, it harkens back to the Petrograd Soviet of 1905, which functioned as an alternative government in the city during the revolution of that year.
+
+The leaders of the Soviet were mostly Social Democrat and SR intellectuals who organized an Executive Committee, and elected the Menshevik Nikolai Chkheidze as the chairman. They see its role as acting as a watchdog over the Provisional Government, accepting its authority insofar as it does not contradict the directives of the Soviet.
+
+Chair: [+ soviet_chair +] ([+ soviet_chair_party +])
+
+Executive committee: [? if m_in_exco: Mensheviks, ?] [? if sr_in_exco: SRs ?] [? if b_in_exco: Bolsheviks ?]
+
+Overal composition:
+Mensheviks: [+ m_soviet +] %
+Bolsheviks: [+ b_soviet +] %
+SRs: [+ sr_soviet +] %
+Anarchists: [+ anarchist_soviet +] %
+Others: [+ other_soviet +] %
+
+Soviet efficacy: [+ soviet_efficacy : efficacy +]
+
+Soviet cooperation with Provisional Government: [+ soviet_cooperation : efficacy +]
+
+
+
 
 @timeline
 go-to: menu
@@ -37,7 +102,7 @@ go-to: menu
 
 **1881**: People's Will assassinates Tsar Alexander II. Now, Tsar Alexander III takes power, beginning an era of reaction, a return to "Orthodoxy, Autocracy, and Nationality".
 
-**1891**: A great famine occurs centered in the Volga region. Bad weather is exacerbated by primitive agricultural techniques and government mismanagement, leading to hundreds of thousands of deaths.
+#**1891**: A great famine occurs centered in the Volga region. Bad weather is exacerbated by primitive agricultural techniques and government mismanagement, leading to hundreds of thousands of deaths.
 
 **1894**: Tsar Alexander III passes away at the age of 49, and Tsar Nicholas II takes the throne at the age of 26. Soon after, he marries Alexandra, who was originally a German princess. She is not liked by the Russian people.
 
@@ -50,20 +115,15 @@ go-to: menu
 
 **1903**: At the Second Congress of the RSDLP, the division between Bolsheviks and Mensheviks develops, as Vladimir Lenin and Julius Martov clash over various ideological questions.
 
-**1904**: The Russo-Japanese War begins.
+**1904**: The Russo-Japanese War begins, due to imperialist competition over northeastern China.
 
-**1905**: The Russo-Japanese War ends in major defeats for Russia. Largely due to the privations and defeats of the war, the Revolution of 1905 erupts, starting with the "Bloody Sunday" massacre in St. Petersburg.
+**1905**: The Russo-Japanese War ends in major defeats for Russia. Largely due to the privations and defeats of the war, the Revolution of 1905 erupts, starting with the "Bloody Sunday" massacre in St. Petersburg. In response to the Revolution, the tsar issues the October Manifesto, proclaiming some form of constitutional government for Russia and the creation of a Duma, or national legislature. The Constitutional Democratic Party (Kadets) were formed to run for the Duma.
 
-# October Manifesto
+**1906-1907**: The first and second Dumas were held, based on elections with biased voting rules. Despite the electoral system favoring the wealthy, liberal and socialist parties comprise a majority of the members. The second Duma ends with a coup by Prime Minister Stolypin, with changed voting rules creating a much more conservative Duma. 
 
-# First Duma, etc.
+**1906**: Stolypin reforms begin, breaking up the traditional agrarian communes and creating private land ownership. The goal is to improve agricultural productivity.
 
-# Stolypin Reforms, assassinations
-
-# Rasputin
-
-# Great War
-
+**1900s**: Grigori Rasputin becomes acquainted with the imperial family, and a becomes a strong influence on Empress Alexandra. 
 
 **1914**: The Great War begins with the assassination of Archduke Franz Ferdinand of Austria in Sarajevo, and the Austrian declaration of war on Serbia, leading to a cascading series of war declarations and mobilizations that encompasses all of Europe. The two sides are the Entente of France, Britain, and Russia, and the Central Powers of Germany, Austria, and Turkey (and other countries on both sides). The war goes terribly for Russia, with the defeat in the Battle of Tannenberg.
 
@@ -71,7 +131,7 @@ go-to: menu
 **1915**: The Zimmerwald Conference is held in Switzerland, bringing together a group of anti-war socialists, including many Russian exiles such as Lenin. They draft a statement against the war. The Russian Empire faces a series of military defeats, culminating in the Great Retreat from all of Poland.
 
 # Brusilov Offensive
-**1916**: The Brusilov Offensive is the most successful Russian operation in the war, leading to advances against Austria before stalling out. Despite the success, millions of casualties are taken by Russia.
+**1916**: The Brusilov Offensive is the most successful Russian operation in the war, leading to advances against Austria before stalling out. Despite the success, millions of casualties are taken by Russia. In December, Rasputin is assassinated by a group of nationalist nobles.
 
 
 @demographics
@@ -88,24 +148,6 @@ go-to: menu
 **Soldiers**: There are nearly 10 million men who serve in the armies and fleets. Most of them were conscripted from the peasantry.
 
 **Minority nationalities**: At the last census, non-Russian-speakers made up a majority of the population of the empire. The largest minority group are the Ukrainians.
-
-
-@public_opinion
-on-arrival: {!
-Q.pro_republic = Math.round(Q.pro_republic);
-Q.nationalism = Math.round(Q.nationalism);
-Q.socialism = Math.round(Q.socialism);
-!}
-go-to: election_algorithm
-set-jump: election_projections
-
-**Public Opinion**
-
-#Support for Socialism: [+ socialism +]%
-
-#Support for Nationalism: [+ nationalism +]%
-
-#Support for the Republic: [+ pro_republic +]%
 
 @economy
 on-arrival: {!
@@ -203,6 +245,8 @@ go-to: menu
 **Popular Socialists** and **Trudoviks** ware rooted in the same *narodist* ideology as the SRs, but argued for a non-revolutionary path to socialism. Alexander Kerensky is the most well-known Trudovik.
 
 **Conservatives** have been largely marginalized since the February Revolution. The **Octobrists** are a conservative-liberal faction
+
+**Anarchists** are not a formally organized party, but they are prevalent among some of the workers. They are the most radical group and seek to replace the Provisional Government with a federation of free soviets.
 
 There are many **minority nationality parties**, based in the Empire's various nationalities. Some are autonomous branches of broader parties, such as the Ukrainian SRs and Social Democrats. Others are autonomous national movements (often having some national-liberal influences), such as the Kazakh Alash party or the Azeri Musavat party.
 

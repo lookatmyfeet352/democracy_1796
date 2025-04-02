@@ -1,7 +1,7 @@
 title: Media
 new-page: true
 view-if: k_media_timer <= 0 and not k_media_banned
-on-arrival: k_media_timer += 4; week_actions += 1
+on-arrival: k_media_timer += 3; week_actions += 1
 frequency: 100
 is-card: true
 card-image: img/kadet_3.jpg

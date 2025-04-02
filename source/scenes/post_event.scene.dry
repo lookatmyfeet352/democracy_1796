@@ -269,6 +269,9 @@ if (Q.week_actions >= 1 && Q.current_player >= Q.n_players) {
     // agricultural industry effects on food acquisition
     if (Q.agricultural_industry_production >= 5) {
         Q.food_production *= 1.001;
+        if (Q.agricultural_industry_production >= 10) {
+            Q.food_production *= 1.003;
+        }
         if (Q.food_sold < 0.07 + (Q.agricultural_industry_production - 3)/100 && Q.rural_hunger <= 0) {
             Q.food_sold += 0.002;
         }
@@ -430,7 +433,8 @@ if (Q.week_actions >= 1 && Q.current_player >= Q.n_players) {
         var attacking_morale = Q[ef + '_enemy_morale'];
         var attacking_discipline = Q[ef + '_enemy_discipline'];
         var attacking_supply = Q[ef + '_enemy_supply_quality'];
-        Q[ef + 'attack_strength'] = attacking_soldiers*attacking_morale*attacking_discipline*Math.pow(attacking_supply, 1.5);
+        Q[ef + '_attack_strength'] = attacking_soldiers*attacking_morale*attacking_discipline*Math.pow(attacking_supply, 1.5);
+        console.log(Q[ef + '_attack_strength']);
     }
     for (var front of Q.fronts) {
         var defending_soldiers = Q[front + '_front_soldiers'];

@@ -945,7 +945,7 @@ TODO
 
 @bolsheviks
 title: Russian Social-Democratic Labor Party (Bolshevik)
-choose-if: achievement_game_completed
+choose-if: achievement_game_completed and bolshevik_available = 1
 unavailable-subtitle: Complete the game as one of the other parties first.
 
 - @bolsheviks_2: Yes, I am a Bolshevik!
@@ -981,7 +981,7 @@ title: Party of Socialist-Revolutionaries (SRs)
 
 
 @sr_2
-on-arrival: player_party_name = "SR"; player_party = "sr"; sr_is_player = 1; m_is_player = 0;
+on-arrival: player_party = "sr"; player_party_name = "SR"; sr_is_player = 1; m_is_player = 0;
 go-to: intros
 
 @kadets
@@ -994,6 +994,6 @@ title: Constitutional Democratic Party (Kadets)
 
 
 @kadets_2
-on-arrival: player_party_name = "Kadet"; player_party = "k"; k_is_player = 1; m_is_player = 0;
+on-arrival: player_party = "k"; player_party_name = "Kadet"; k_is_player = 1; m_is_player = 0;
 go-to: intros
 

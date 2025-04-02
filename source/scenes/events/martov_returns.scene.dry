@@ -3,7 +3,7 @@ subtitle: The Menshevik leader returns from Switzerland.
 new-page: true
 view-if: year = 1917 and month = 5 and week = 1
 tags: event
-max-visits-var: n_players
+max-visits: 1
 on-arrival: martov_available = 1; axelrod_available = 1; martynov_available = 1; internationalist_strength += 5; 
 
 = Martov Returns

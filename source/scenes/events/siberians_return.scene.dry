@@ -3,7 +3,7 @@ subtitle: Socialist exiles return from Siberia.
 new-page: true
 view-if: year = 1917 and month = 3 and week = 3
 tags: event
-max-visits-var: n_players
+max-visits: 1
 go-to: siberians_return_m if player_party = "m"; siberians_return_b if player_party = "b"; siberians_return_sr if player_party = "sr"
 on-arrival: tsereteli_available = 1; dan_available = 1; voitinsky_available = 1; gots_available = 1; tsereteli_advisor = 1; stalin_available = 1; kamenev_available = 1; muranov_available = 1; spiridonova_available = 1; gots_available = 1; breshkovskaya_available = 1; 
 

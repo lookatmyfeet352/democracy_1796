@@ -3,7 +3,7 @@ new-page: true
 is-special: true
 on-arrival: {!
 Q.position = "";
-if (Q.player_party = 'm') {
+if (Q.player_party == 'm') {
     if (Q.m_in_exco) {
         Q.position = 'Soviet Executive Committee';
         if (Q.m_in_prov_gov) {
@@ -14,7 +14,7 @@ if (Q.player_party = 'm') {
     } else {
         Q.position = 'in opposition';
     }
-} else if (Q.player_party = 'b') {
+} else if (Q.player_party == 'b') {
     if (Q.b_in_exco) {
         Q.position = 'Soviet Executive Committee';
         if (Q.b_in_prov_gov) {
@@ -25,7 +25,7 @@ if (Q.player_party = 'm') {
     } else {
         Q.position = 'in opposition';
     }
-} else if (Q.player_party = 'sr') {
+} else if (Q.player_party == 'sr') {
     if (Q.sr_in_exco) {
         Q.position = 'Soviet Executive Committee';
         if (Q.sr_in_prov_gov) {
@@ -36,7 +36,7 @@ if (Q.player_party = 'm') {
     } else {
         Q.position = 'in opposition';
     }
-} else if (Q.player_party = 'k') {
+} else if (Q.player_party == 'k') {
     if (Q.k_in_prov_gov) {
         Q.position += 'in government';
     } else {
@@ -342,3 +342,5 @@ Relations with the West: [+ west_relation : relationships +]
 Land reform policy: [+ land_reform : land_reform +]
 
 Land reform progress: [+ land_reform_progress : land_reform_progress +]
+
+

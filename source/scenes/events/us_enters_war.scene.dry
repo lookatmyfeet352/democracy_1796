@@ -3,7 +3,7 @@ subtitle: The United States has entered the Great War on the side of the Entente
 new-page: true 
 view-if: month = 4
 on-arrival: us_enters_war += 1
-max-visits-var: n_players
+max-visits: 1
 tags: event 
 
 = America Enters the War!

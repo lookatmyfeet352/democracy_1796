@@ -7,15 +7,15 @@ on-arrival: {!
 // Eiserne Front - Form the Iron Front.
 this.achieve('game_completed');
 
-if (Q.rev_win && Q.player_party != 'b' && !Q.join_bolshevik) {
+if (Q.revolutionary_victory && Q.player_party != 'b' && !Q.join_bolshevik) {
     this.achieve('dustbin');
 }
 
-if (Q.rev_win && Q.player_party != 'b' && Q.join_bolshevik) {
+if (Q.revolutionary_victory && Q.player_party != 'b' && Q.join_bolshevik) {
     this.achieve('junior_partner');
 }
 
-if (Q.rev_win && Q.player_party == 'b') {
+if (Q.revolutionary_victory && Q.player_party == 'b') {
     this.achieve('red_october');
 }
 
@@ -41,7 +41,7 @@ if (Q.ca_held) {
 
 @red_october
 title: Red October
-view-if: rev_win and player_party = "b"
+view-if: revolutionary_victory and player_party = "b"
 tags: endings
 go-to: eg_menu
 
@@ -49,7 +49,7 @@ The Bolshevik Revolution has won! Now, it is up to the Bolsheviks to bring forth
 
 @junior_partner
 title: A junior partner
-view-if: rev_win and player_party != "b" and join_bolshevik
+view-if: revolutionary_victory and player_party != "b" and join_bolshevik
 tags: endings
 go-to: eg_menu
 
@@ -57,7 +57,7 @@ The Bolsheviks, with our assistance, have won the revolution! Hopefully we will 
 
 @dustbin_of_history
 title: The dustbin of history
-view-if: rev_win and player_party != "b" and not join_bolshevik
+view-if: revolutionary_victory and player_party != "b" and not join_bolshevik
 tags: endings
 go-to: eg_menu
 
@@ -69,7 +69,7 @@ view-if: not is_armistice and not is_peace
 tags: endings
 go-to: eg_menu
 
-The war continues unabated. [? if rev_win: Now, it will be the task of the Bolsheviks to end the war. ?][? if ca_held: It will be the task of the Constituent Assembly to end the war. ?]
+The war continues unabated. [? if revolutionary_victory: Now, it will be the task of the Bolsheviks to end the war. ?][? if ca_held: It will be the task of the Constituent Assembly to end the war. ?]
 
 @armistice_
 title: A fragile peace
@@ -77,7 +77,7 @@ view-if: is_armistice and not is_peace
 tags: endings
 go-to: eg_menu
 
-An armistice has been signed with the Central Powers, but it is not a permanent peace treaty. [? if ca_held: It will be the task of the Constituent Assembly to sign the peace. ?][? if rev_win: It will be the task of the Bolsheviks to sign the peace. ?]
+An armistice has been signed with the Central Powers, but it is not a permanent peace treaty. [? if ca_held: It will be the task of the Constituent Assembly to sign the peace. ?][? if revolutionary_victory: It will be the task of the Bolsheviks to sign the peace. ?]
 
 @peace_
 title: A peace treaty!

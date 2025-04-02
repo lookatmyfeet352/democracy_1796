@@ -22,7 +22,7 @@ The war is the greatest question in politics at this moment. What should be our 
 title: Continue a policy of revolutionary defensism.
 subtitle: Support an international peace without annexations or indemnities, but fight to defend the revolution in the meantime. [? if sr_war_policy = 1: This is our current position. ?]
 view-if: sr_war_policy = 1
-on-arrival: defensist_strength += 5; defensist_dissent -= 4; internationalist_dissent += 5
+on-arrival: right_sr_strength += 5; right_sr_dissent -= 4; left_sr_dissent += 5
 
 We are continuing to support a policy of revolutionary defensism.
 
@@ -31,8 +31,8 @@ title: Adopt a policy of revolutionary defensism.
 subtitle: Support an international peace without annexations or indemnities, but fight to defend the revolution in the meantime.
 unavailable-subtitle: There is not enough support for this position within the party.
 view-if: sr_war_policy != 1
-choose-if: defensist_strength >= internationalist_strength and defensist_strength >= social_patriot_strength
-on-arrival: sr_war_policy = 1; defensist_strength += 10; internationalist_dissent += 20 if sr_war_policy > 1
+choose-if: right_sr_strength >= left_sr_strength
+on-arrival: sr_war_policy = 1; right_sr_strength += 10; left_sr_dissent += 20 if sr_war_policy > 1
 
 We have adopted a revolutionary defensist position, calling on continued support of the war effort while negotiating for a general peace.
 
@@ -42,16 +42,16 @@ title: Adopt an internationalist position.
 subtitle: Support an immediate end to the war, even a separate peace if necessary.
 unavailable-subtitle: There is not enough support for this position within the party.
 view-if: sr_war_policy != 2
-choose-if: internationalist_strength >= defensist_strength + social_patriot_strength
-on-arrival: sr_war_policy = 2; internationalist_strength += 5; internationalist_dissent -= 5; defensist_dissent += 15; social_patriot_dissent += 30
+choose-if: left_sr_strength >= right_sr_strength
+on-arrival: sr_war_policy = 2; left_sr_strength += 5; left_sr_dissent -= 5; right_sr_dissent += 15
 
 We have adopted an internationalist position, calling for an immediate end to the war.
 
 @i_2
 title: Increase support for an internationalist position.
 subtitle: Support an immediate end to the war, even a separate peace if necessary.
-view-if: sr_war_policy != 2 and internationalist_strength < defensist_strength + social_patriot_strength
-on-arrival: internationalist_strength += 4; internationalist_dissent -= 3; defensist_dissent += 5
+view-if: sr_war_policy != 2 and left_sr_strength < right_sr_strength
+on-arrival: left_sr_strength += 4; left_sr_dissent -= 3; right_sr_dissent += 5
 
 We are building up support for internationalism within the party, so that we may eventually adopt this position.
 
@@ -59,7 +59,7 @@ We are building up support for internationalism within the party, so that we may
 title: Continue to support an internationalist position.
 subtitle: Support an immediate end to the war, even a separate peace if necessary.
 view-if: sr_war_policy = 2
-on-arrival: internationalist_strength += 4; internationalist_dissent -= 3; social_patriot_dissent += 4; defensist_dissent += 4
+on-arrival: left_sr_strength += 4; left_sr_dissent -= 3; right_sr_dissent += 4
 
 We are continuing to support an internationalist position.
 
@@ -68,16 +68,16 @@ title: Adopt a social patriot position.
 subtitle: We must fight the war until we win.
 unavailable-subtitle: There is not enough support for this position within the party.
 view-if: sr_war_policy > 0 
-choose-if: social_patriot_strength >= internationalist_strength
-on-arrival: sr_war_policy = 0; social_patriot_strength += 10; internationalist_dissent += 30
+choose-if: right_sr_strength >= left_sr_strength
+on-arrival: sr_war_policy = 0; right_sr_strength += 10; left_sr_dissent += 30
 
 We have adopted a social patriot position, calling for the victory of the Allies.
 
 @sp_2
 title: Support a social patriot position.
 subtitle: We must fight the war until we win.
-view-if: sr_war_policy < 0 and social_patriot_strength < internationalist_strength
-on-arrival: social_patriot_strength += 4; social_patriot_dissent -= 5; internationalist_dissent += 5; defensist_dissent += 4
+view-if: sr_war_policy < 0 and right_sr_strength < left_sr_strength
+on-arrival: left_sr_dissent += 5;
 
 We are building up support for social patriotism within the party, so that we may eventually adopt this position.
 
@@ -85,6 +85,6 @@ We are building up support for social patriotism within the party, so that we ma
 title: Continue to support a social patriot position.
 subtitle: We must fight the war until we win.
 view-if: sr_war_policy = 0
-on-arrival: social_patriot_strength += 4; social_patriot_dissent -= 5; internationalist_dissent += 5; defensist_dissent += 4
+on-arrival: left_sr_dissent += 5;
 
 We are continuing to support a social patriot position.

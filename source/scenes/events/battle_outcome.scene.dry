@@ -16,9 +16,9 @@ on-arrival: defensist_strength -= 6; social_patriot_strength -= 10; right_sr_str
 
 = Total Defeat
 
-Our casualties: [+ friendly_casualties +] divisions
+Our casualties: [+ friendly_casualties +]0,000 troops
 
-Enemy casualties: [+ hostile_casualties +] divisions
+Enemy casualties: [+ hostile_casualties +]0,000 troops
 
 Our forces have been totally defeated by the Central Powers armies, and are retreating behind their starting positions.
 
@@ -29,9 +29,9 @@ on-arrival: defensist_strength -= 6; social_patriot_strength -= 10; right_sr_str
 
 = Defeat
 
-Our casualties: [+ friendly_casualties +] divisions
+Our casualties: [+ friendly_casualties +]0,000 troops
 
-Enemy casualties: [+ hostile_casualties +] divisions
+Enemy casualties: [+ hostile_casualties +]0,000 troops
 
 The Central Powers have inflicted a defeat upon us. Our forces have retreated to their starting positions.
 
@@ -43,9 +43,9 @@ achievement: victory
 
 = Victory
 
-Our casualties: [+ friendly_casualties +] divisions
+Our casualties: [+ friendly_casualties +]0,000 troops
 
-Enemy casualties: [+ hostile_casualties +] divisions
+Enemy casualties: [+ hostile_casualties +]0,000 troops
 
 We have achieved a victory over the enemy! We have gained some territory.
 
@@ -55,8 +55,8 @@ achievement: victory
 
 = Total Victory
 
-Our casualties: [+ friendly_casualties +] divisions
+Our casualties: [+ friendly_casualties +]0,000 troops
 
-Enemy casualties: [+ hostile_casualties +] divisions
+Enemy casualties: [+ hostile_casualties +]0,000 troops
 
 We have achieved a total victory over the enemy! We have gained a great deal of teritory.

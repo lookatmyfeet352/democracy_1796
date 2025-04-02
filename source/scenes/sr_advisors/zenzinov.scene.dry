@@ -14,16 +14,10 @@ Zenzinov was one of the few SR leaders who remained free in Russia instead of go
 
 @organizing_peasants
 title: Organizing Peasants
+subtitle: Zenzinov seeks to organize a Peasants' Soviet.
+choose-if: advisor_action_timer = 0
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?]
+on-arrival: advisor_action_timer = 4; last_advisor_action = 1; sr_peasants += 6*(1-sr_dissent); sr_peasants_org += 1
 
-@ag_
-title: Agricultural Policy
-subtitle: Chernov is the Agriculture Minister.
-choose-if: advisor_action_timer = 0 and agriculture_minister = "Chernov"
-unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?] [? if agriculture_minister != "Chernov" : Chernov is not the Agriculture Minister. ?]
-on-arrival: advisor_action_timer = 4; agricultural_policy_timer -= 4; last_advisor_action = 1
-go-to: agricultural_policy
-
-
-@party_unity
-title: Party Unity
+We have organized among the peasants.
 

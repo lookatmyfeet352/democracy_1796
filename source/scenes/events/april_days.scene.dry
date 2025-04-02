@@ -3,7 +3,7 @@ subtitle: The people are outraged about the Provisional Government's war policy.
 new-page: true
 view-if: ((allied_demands_seen = 1 and not allied_demands_rejected) or k_is_player = 0) and april_days_seen = 0 and ((month = 4 and week >= 3) or month > 4)
 on-arrival: april_days_seen += 1; b_k_relation -= 10; b_threat += 1;
-max-visits-var: n_players
+max-visits: 1
 face-image: womens_day.jpg
 tags: event
 go-to: april_days_k if player_party = "k"; april_days_m if player_party = "m"; april_days_sr if player_party = "sr"; april_days_b if player_party = "b"

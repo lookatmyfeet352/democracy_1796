@@ -1,4 +1,4 @@
-title: Nikoali Avksentiev
+title: Nikolai Avksentiev
 is-pinned-card: true
 tags: advisor
 card-image: img/portraits/sr/avksentiev.jpg
@@ -7,14 +7,11 @@ new-page: true
 
 = Nikolai Avksentiev
 
-Avksentiev is a.
+Avksentiev is a right-wing defensist SR leader.
 
-- @organizing_peasants
 - @interior_
 - @root: Return to main
 
-@organizing_peasants
-title: Organizing Peasants
 
 @interior_
 title: Internal Security
@@ -24,7 +21,12 @@ unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +
 on-arrival: advisor_action_timer = 4; internal_security_timer -= 4; last_advisor_action = 1
 go-to: internal_security
 
+@support_defensism_
+title: Support Revolutionary Defensism
+subtitle: Support the continuation of the war for national defense.
+choose-if: advisor_action_timer = 0 
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?]
+on-arrival: advisor_action_timer = 4; internal_security_timer -= 4; last_advisor_action = 1
+go-to: internal_security
 
-@party_unity
-title: Party Unity
 
