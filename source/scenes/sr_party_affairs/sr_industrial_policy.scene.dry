@@ -22,14 +22,14 @@ on-arrival: sr_industrial_policy = 0;
 Our policy is to maintain a capitalist ownership and management structure for now, but that workers should have the right to organize and strike.
 
 @supervision
-title: Workers' councils should supervise management.
+title: In addition to trade union rights, workers' councils should supervise management.
 subtitle: [? if sr_industrial_policy = 1 : This is our current position. ?]
 on-arrival: right_sr_dissent += 5 if sr_industrial_policy = 0; sr_industrial_policy = 1;
 
 Our policy is that workers' councils should have the right to supervise management decisions.
 
 @syndicalism
-title: Workers' councils should take over management and ownership.
+title: In addition to the above, workers' councils should take over management and ownership.
 choose-if: sr_industrial_policy >= 1
 subtitle: [? if sr_industrial_policy = 2 : This is our current position. ?]
 unavailable-subtitle: This position is currently too radical for our party.

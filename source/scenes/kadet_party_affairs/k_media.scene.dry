@@ -11,7 +11,7 @@ tags: k_party
 
 What should be our strategy for newspapers and media?
 
-# media strategies: support prov gov, support soviet policies, support Menshevik campaigning, support revolutionary defensism
+# media strategies: support prov gov, support soviet policies, support Kadet campaigning, support revolutionary defensism
 
 - @support_prov_gov
 - @support_k
@@ -34,7 +34,7 @@ subtitle: -1 resource
 choose-if: k_resources >= 1
 on-arrival: middle_k += 5*(1-k_dissent);
 
-Our media campaign encourages support for the Menshevik party among the workers and soldiers.
+Our media campaign encourages support for the Constitutional Democrat party among the middle class.
 
 @support_war
 title: Support the war effort.

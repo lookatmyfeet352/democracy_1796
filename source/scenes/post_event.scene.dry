@@ -317,7 +317,11 @@ if (Q.week_actions >= 1 && Q.current_player >= Q.n_players) {
         Q.industry *= 0.995;
     }
     if (Q.capital_production > 0.05*Q.industry) {
-        Q.industry *= 1.001;
+        if (Q.industry < 100) {
+            Q.industry *= 1.007;
+        } else {
+            Q.industry *= 1.001;
+        }
     }
     // transport capacity can be expanded with transport industry (but degrades under some circumstances)
     if (Q.transportation_production < 1) {
@@ -478,6 +482,24 @@ if (choices && choices[0].title != "Continue...") {
     has_event = 0;
 }
 
+// update player details
+if (Q.player_party == "m") {
+    Q.player_in_exco = Q.m_in_exco;
+    Q.player_in_prov_gov = Q.m_in_prov_gov;
+    Q.player_in_soviet = Q.m_in_soviet;
+} else if (Q.player_party == "b") {
+    Q.player_in_exco = Q.b_in_exco;
+    Q.player_in_prov_gov = Q.b_in_prov_gov;
+    Q.player_in_soviet = Q.b_in_soviet;
+} else if (Q.player_party == "sr") {
+    Q.player_in_exco = Q.sr_in_exco;
+    Q.player_in_prov_gov = Q.sr_in_prov_gov;
+    Q.player_in_soviet = Q.sr_in_soviet;
+} else if (Q.player_party == "k") {
+    Q.player_in_exco = Q.k_in_exco;
+    Q.player_in_prov_gov = Q.k_in_prov_gov;
+    Q.player_in_soviet = Q.k_in_soviet;
+}
 !}
 go-to: events_choice if has_event = 1; main if has_event = 0
 

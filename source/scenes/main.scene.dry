@@ -85,7 +85,7 @@ view-if: player_party = "k"
 
 @prov_gov
 title: Provisional Government
-view-if: player_party = "k" or (player_party = "m" and m_in_prov_gov) or (player_party = "SR" and sr_in_prov_gov)
+view-if: player_party = "k" or (player_party = "m" and m_in_prov_gov) or (player_party = "sr" and sr_in_prov_gov)
 card-image: img/prov_gov_1.jpg
 is-deck: true
 

@@ -1,0 +1,36 @@
+title: Vladimir Lenin
+is-pinned-card: true
+tags: advisor
+card-image: img/portraits/b/lenin.jpg
+view-if: lenin_advisor = 1 and player_party = "b"
+new-page: true 
+
+= Vladimir Lenin
+
+Vladimir Lenin is the undisputed leader of the Bolshevik party, and its chief theoretician and organizer.
+
+# actions: organizing (same as card), agitation against the provisional government, 
+
+- @support_leninist
+- @organize_soldiers
+- @polemics
+- @radicalization
+- @root: Return to main
+
+@support_leninist
+title: Support or adopt Leninist ideology.
+subtitle: Reduce dissent across the party.
+choose-if: advisor_action_timer = 0
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?]
+on-arrival: advisor_action_timer = 4; leninist_dissent -= 5; center_dissent -= 10; moderate_dissent -= 10;
+
+We have enforced party discipline to reduce dissent across all factions.
+
+@organize_soldiers
+title: Organize soldiers
+
+@polemics
+title: Polemics
+
+@radicalization
+title: Radicalization

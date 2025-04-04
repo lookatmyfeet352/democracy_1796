@@ -145,9 +145,33 @@ go-to: menu
 
 **Middle Class**: Urban traders and merchants, bureaucrats, professionals, and the intelligensia. At most 10% of the population, but more common in Petrograd.
 
-**Soldiers**: There are nearly 10 million men who serve in the armies and fleets. Most of them were conscripted from the peasantry.
+**Soldiers**: There are nearly 10 million men [? if womens_battalion: (and some women) ?] who serve in the armies and fleets. Most of them were conscripted from the peasantry.
 
 **Minority nationalities**: At the last census, non-Russian-speakers made up a majority of the population of the empire. The largest minority group are the Ukrainians.
+
+Here is the population by native language as of the 1897 census:
+
+{!<table>
+<tr><td>Russian</td><td>44.31</td></tr>
+<tr><td>Ukrainian</td><td>17.81</td></tr>
+<tr><td>Polish</td><td>6.31</td></tr>
+<tr><td>Belarusian</td><td>4.68</td></tr>
+<tr><td>Jewish</td><td>4.03</td></tr>
+<tr><td>Kyrgyz-Kazakh</td><td>3.25</td></tr>
+<tr><td>Tatar</td><td>2.97</td></tr>
+<tr><td>German</td><td>1.43</td></tr>
+<tr><td>Latvian</td><td>1.14</td></tr>
+<tr><td>Bashkir</td><td>1.05</td></tr>
+<tr><td>Lithuanian</td><td>0.96</td></tr>
+<tr><td>Armenian</td><td>0.93</td></tr>
+<tr><td>Romanian</td><td>0.89</td></tr>
+<tr><td>Mordovian</td><td>0.81</td></tr>
+<tr><td>Estonian</td><td>0.80</td></tr>
+<tr><td>Sartic</td><td>0.77</td></tr>
+<tr><td>Chuvash</td><td>0.67</td></tr>
+<tr><td>Georgian</td><td>0.66</td></tr>
+<tr><td>Uzbek</td><td>0.58</td></tr>
+</table>!}
 
 @economy
 on-arrival: {!
@@ -244,7 +268,7 @@ go-to: menu
 
 **Popular Socialists** and **Trudoviks** ware rooted in the same *narodist* ideology as the SRs, but argued for a non-revolutionary path to socialism. Alexander Kerensky is the most well-known Trudovik.
 
-**Conservatives** have been largely marginalized since the February Revolution. The **Octobrists** are a conservative-liberal faction
+**Conservatives** have been largely marginalized since the February Revolution. The **Octobrists** are a conservative-liberal faction that supports constitutional monarchy. Much more radical were the **Union of the Russian People** and the **Black Hundreds**, extremist nationalist and antisemitic groups that were suppressed following the February Revolution.
 
 **Anarchists** are not a formally organized party, but they are prevalent among some of the workers. They are the most radical group and seek to replace the Provisional Government with a federation of free soviets.
 

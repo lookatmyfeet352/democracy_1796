@@ -1,7 +1,7 @@
 
 # War weariness
 
-(0..15) very low
+(..15) very low
 (15..30) low
 (30..39) medium-low
 (39..49) medium

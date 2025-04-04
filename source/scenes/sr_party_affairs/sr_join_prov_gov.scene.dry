@@ -31,11 +31,11 @@ title: Food Ministry
 subtitle: The Food ministry deals with food procurement.
 tags: sr_mins
 choose-if: sr_influence >= 10
-view-if: food_minister_party != "Popular Socialist"
-on-arrival: sr_influence -= 10; food_minister = "Peshekhonov"; food_minister_party = "Popular Socialist"
+view-if: food_minister_party != "SR"
+on-arrival: sr_influence -= 10; food_minister = "Kondratiev"; food_minister_party = "SR"
 go-to: menu
 
-Alexey Peshekhonov has been appointed Food Minister.
+Nokolai Kondratiev has been appointed Food Minister.
 
 @justice
 title: Justice Ministry
@@ -45,7 +45,7 @@ view-if: justice_minister_party != "SR"
 go-to: menu
 on-arrival: sr_influence -= 10; justice_minister = "Kerensky"; justice_minister_party = "SR"
 
-Pavel Malyantovich has been appointed Justice Minister.
+Alexander Kerensky has been appointed Justice Minister.
 
 @labor
 title: Labor Ministry
@@ -145,7 +145,7 @@ We have dropped the Agriculture Ministry, and the position has been assigned to 
 
 @drop_food
 title: Drop the Food Ministry.
-view-if: agriculture_minister_party = "SR"
+view-if: food_minister_party = "SR"
 tags: sr_drop_mins
 go-to: menu
 on-arrival: {!
@@ -160,7 +160,7 @@ We have dropped the Food Ministry, and the position has been assigned to [+ food
 
 @drop_justice
 title: Drop the Justice Ministry.
-view-if: agriculture_minister_party = "SR"
+view-if: justice_minister_party = "SR"
 tags: sr_drop_mins
 go-to: menu
 on-arrival: {!
@@ -174,7 +174,7 @@ We have dropped the Justice Ministry, and the position has been assigned to [+ j
 
 @drop_labor
 title: Drop the Labor Ministry.
-view-if: agriculture_minister_party = "SR"
+view-if: labor_minister_party = "SR"
 tags: sr_drop_mins
 go-to: menu
 on-arrival: {!

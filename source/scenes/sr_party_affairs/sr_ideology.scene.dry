@@ -16,7 +16,7 @@ Should we change the party's position on any of these issues?
 - @sr_war_policy: War policy
 - @sr_prov_gov_policy: The Provisional Government
 - @sr_industrial_policy: Industrial policy
-- @sr_rural_policy: Rural policy
+#- @sr_rural_policy: Rural policy
 #- @sr_nationalities: The nationalities
 - @root: No, we will not change any of our ideological positions.
 - @easy_discard

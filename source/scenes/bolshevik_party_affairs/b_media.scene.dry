@@ -13,37 +13,46 @@ What should be our strategy for our newspapers and party organs?
 
 # media strategies: support prov gov, support soviet policies, support Menshevik campaigning, support revolutionary defensism
 
-- @support_prov_gov
-- @support_m
-- @support_rd
-- @support_id
+- @support_socialist_unity
+- @oppose_prov_gov
+- @support_b
+- @support_radicalism
 - @root: We do not need more propaganda.
 - @easy_discard
 - @cancel_advisor_action
 
-@support_prov_gov
-title: Support the Provisional Government.
+@support_socialist_unity
+title: Support socialist unity.
+subtitle: -1 resource - Support a united front of all the socialist parties against the bourgeoisie.
+choose-if: b_resources >= 1
+on-arrival: b_resources -= 1; internationalist_strength += 8; left_sr_strength += 8; defensist_dissent += 5; internationalist_dissent += 5; left_sr_dissent += 5; right_sr_dissent += 5
+
+Our propaganda campaign is aimed at supporting a united front of all socialist parties against the bourgeoisie. This is embarrassing for the socialists who cooperate with the Provisional Government, and encouraged left-leaning factions within them.
+
+@oppose_prov_gov
+title: Oppose the Provisional Government.
+subtitle: -1 resource - Attack the legitimacy of the Provisional Government and the Soviet's cooperation.
+choose-if: b_resources >= 1
+on-arrival: b_resources -= 1; prov_gov_legitimacy -= 6; soviet_cooperation -= 0.05;
+
+Our propaganda is aimed at attacking the Provisional Government, and driving a weege between it and the Soviet.
+
+@support_b
+title: Support the Bolshevik party.
 subtitle: -1 resource
 choose-if: b_resources >= 1
-on-arrival: b_k_relation += 6*(1-b_dissent); soviet_cooperation += 0.04*(1-b_dissent);
+on-arrival: workers_b += 4*(1-b_dissent); soldiers_b += 4*(1-b_dissent); soldiers_b -= 2 if (war_weariness >= 60 and b_war_policy <= 1);
 
-Our propaganda campaign is aimed at supporting the Provisional Government and Soviet cooperation with the Provisional Government. This raises our relations with the Kadets.
+Our propaganda campaign encourages support for the Bolshevik party among the workers and soldiers.
 
-@support_m
-title: Support the Menshevik party.
-subtitle: -1 resource
-choose-if: b_resources >= 1
-on-arrival: workers_m += 4*(1-b_dissent); soldiers_m += 4*(1-b_dissent); soldiers_m -= 2 if (war_weariness >= 60 and b_war_policy <= 1);
+@support_radicalism
+title: Support revolution and radicalism.
+subtitle: -1 resource - Support strikes among workers, land seizure among peasants, and anti-war sentiment among soldiers.
+unavailable-subtitle: [? if b_resources < 1: Not enough resources. ?][? if b_leadership = 1: The Bolshevik leadership is not radical enough. ?]
+choose-if: b_resources >= 1 and b_leadership = 2
+on-arrival: b_resources -= 1; worker_unrest += 2; 
 
-Our propaganda campaign encourages support for the Menshevik party among the workers and soldiers.
-
-@support_rd
-title: Support the ideology of revolutionary defensism - defending a defensive war effort as necessary for peace.
-subtitle: -1 resource
-choose-if: b_resources >= 1
-on-arrival: defensist_strength += 6*(1-b_dissent); 
-
-Our newspapers print editorials in support of revolutionary defensism, arguing that a defensive war is necessary for a peace without annexations and indemnities.
+Our newspapers print savage attacks on the entire established order.
 
 @support_id
 title: Support the ideology of internationalism - support immediate negotiations for a peace.

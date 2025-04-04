@@ -1,0 +1,52 @@
+title: Leon Trotsky
+is-pinned-card: true
+tags: advisor
+card-image: img/portraits/b/trotsky.jpg
+view-if: trotsky_advisor = 1 and player_party = "b"
+new-page: true 
+
+= Leon Trotsky
+
+Leon Trotsky is a relative newcomer to the Bolsheviks but a long-time nonpartisan Social Democrat, who recently returned from exile in America. He has become closely aligned with Lenin on political matters, including on the urgent need for revolution against the bourgeois government.
+
+# actions: organizing (same as card), agitation against the provisional government, 
+
+- @media
+- @support_leninist
+- @preparing_rev
+- @agitation
+- @root: Return to main
+
+@media
+title: Media
+subtitle: Use our party's newspapers.
+choose-if: advisor_action_timer = 0
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?]
+on-arrival: advisor_action_timer = 4
+go-to: b_media
+
+@militia_
+title: Worker's Militias
+subtitle: Work with the workers' militias.
+choose-if: advisor_action_timer = 0
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?]
+on-arrival: advisor_action_timer = 4;
+go-to: b_workers_militias
+
+
+@support_leninist
+title: Party Leadership 
+subtitle: Support or adopt Leninist ideology within the party.
+choose-if: advisor_action_timer = 0
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?]
+on-arrival: advisor_action_timer = 4; leninist_dissent -= 5; center_dissent -= 10; moderate_dissent -= 10;
+
+
+@preparing_rev
+title: Preparing for Revolution
+subtitle: Increase our preparations
+
+# raise loyalty of troops,
+
+@agitation
+title: Agitation

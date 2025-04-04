@@ -51,13 +51,7 @@ Week [+ week +], [+ month : month +] [+ year +]
 
 Party: [+ player_party_name +]
 
-[+ player_party_name +] Position:
-[? if player_party == "b" and b_in_exco: [+ b_resources +] ?]
-[? if player_party == "m" and m_in_exco: [+ m_resources +] ?]
-[? if player_party == "k" and k_in_exco: [+ k_resources +] ?]
-[? if player_party == "sr" and k_in_exco: [+ sr_resources +] ?]
-
-
+[+ player_party_name +] position: [+ position +]
 
 Party resources available:
 [? if player_party == "b": [+ b_resources +] ?]
@@ -77,7 +71,7 @@ Prime Minister: [+ prime_minister +] ([+ prime_minister_party +])
 
 Budget: [+ budget +]
 
-Constituent Assembly elections: [? if ca_election_scheduled: [+ next_election_month : month +] [+ next_election_year +] ?] [? if not ca_election_scheduled: Not scheduled ?]
+Constituent Assembly elections: [? if ca_scheduled: [+ next_election_month : month +] [+ next_election_year +] ?] [? if not ca_scheduled: Not scheduled ?]
 
 = Economy and Society
 
@@ -272,6 +266,12 @@ Food sold to cities and towns: [+ food_sold_disp +]%
 
 Food requisitioned by the military: [+ food_requisitioned_disp +]%
 
+= Land Reform
+
+Land reform policy: [+ land_reform : land_reform +]
+
+Land reform progress: [+ land_reform_progress : land_reform_progress +]
+
 = Finances and Debt
 
 Budget balance: [+ budget +]
@@ -324,6 +324,17 @@ Garrison allegiance: Mensheviks: [+ garrison_m_loyalty : strength +], Bolsheviks
 
 [? if loyal_troops > 0 : Loyal troops (Battalions of Death): [+ loyal_troops_strength +] thousand ?]
 
+= Foreign Relations
+
+Relations with the West: [+ west_relation : relationships +]
+
+[? if not is_armistice: Armistice negotiations: [+ armistice_progress +] ?]
+
+[? if is_armistice: We are currently in an armistice. ?]
+
+[? if is_armistice: Peace negotiations: [+ central_negotiations +]?]
+
+
 @policy
 title: Policy
 
@@ -336,11 +347,4 @@ Relations with the West: [+ west_relation : relationships +]
 [? if is_armistice: We are currently in an armistice. ?]
 
 [? if is_armistice: Peace negotiations: [+ central_negotiations +]?]
-
-= Land Reform
-
-Land reform policy: [+ land_reform : land_reform +]
-
-Land reform progress: [+ land_reform_progress : land_reform_progress +]
-
 

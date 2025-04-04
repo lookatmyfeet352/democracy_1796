@@ -46,6 +46,10 @@ Q.sr_is_player = 0;
 Q.b_is_player = 0;
 Q.k_is_player = 0;
 
+Q.player_in_exco = 1;
+Q.player_in_prov_gov = 0;
+Q.player_in_soviet = 1;
+
 // multiplayer stuff
 Q.current_player = 1;
 Q.n_players = 1;
@@ -81,6 +85,8 @@ Q.sr_dissent_percent = 15;
 
 // factions
 // bolshevik internals
+// leadership: 1 = moderate internationalists, 2 = leninists
+Q.b_leadership = 1;
 Q.b_factions = ['leninist', 'center', 'moderate'];
 Q.leninist_strength = 20;
 Q.leninist_dissent = 10;
@@ -101,6 +107,9 @@ Q.b_soldiers_org = 1;
 // menshevik internals
 Q.m_factions = ['social_patriot', 'defensist', 'internationalist'];
 // unity is the group led by Plekhanov, the "social patriots"
+// leadership for all soviet parties can be either internationalist or defensist.
+// defensist = 0, internationalist = 1
+Q.m_leadership = 0;
 Q.social_patriot_strength = 20;
 Q.social_patriot_dissent = 30;
 Q.defensist_strength = 80;
@@ -127,6 +136,8 @@ Q.m_workers_org = 1;
 Q.m_soldiers_org = 0;
 
 // sr internals
+// sr leadership is defensist
+Q.sr_leadership = 0;
 Q.sr_factions = ['left_sr', 'center_sr', 'right_sr'];
 Q.left_sr_strength = 20;
 Q.left_sr_dissent = 40;
@@ -258,6 +269,8 @@ Q.civilian_trains = 60;
 Q.train_capacity = 140000;
 
 
+Q.land_reform = 0;
+Q.land_reform_progress = 0;
 
 // agricultural production
 // source: https://encyclopedia.1914-1918-online.net/article/food-and-nutrition-russian-empire/ Table 3
@@ -533,6 +546,14 @@ Q.loyal_troops_militancy = 0;
 // somewhat arbitrary number...
 Q.crime = 10;
 
+// bolshevik threat
+Q.b_threat = 0;
+// coup progress basically determines whether the Kornilov affair is a fake coup or a real coup attempt.
+Q.coup_progress = 0;
+
+// revolutionary preparations...
+Q.rev_progress = 0;
+
 
 // Foreign relations ////////////////////////////////
 
@@ -581,7 +602,7 @@ Bashkir 1.05
 Lithuanian 0.96
 Armenian 0.93
 Romanian 0.89
-Mordovian 0.81  (???)
+Mordovian 0.81
 Estonian 0.80
 Sartic 0.77
 Chuvash 0.67
@@ -638,6 +659,8 @@ Q.peasants = 100;
 Q.classes = ['workers', 'middle', 'elites', 'peasants', 'soldiers', 'underclass'];
 Q.minorities = ['ukrainians', 'kyrgyz_kazakh', 'tatar', 'other_turkic', 'jews', 'latvians', 'estonians', 'georgians', 'armenians', 'others'];
 Q.major_parties = ['m', 'b', 'sr', 'k'];
+// parties represented in the soviets
+Q.soviet_parties = ['m', 'b', 'sr', 'anarchist', 'other'];
 Q.parties = ['m', 'b', 'sr', 'k', 'popular_socialist', 'conservative', 'other', 'anarchist', 'none'];
 Q.minority_parties = ['ukrainian_sr', 'alash', 'musavat', 'dashnak', 'jewish_socialists', 'jewish_national_list', 'muslim_socialists', 'turkic_muslim_parties', 'cossacks'];
 
@@ -733,7 +756,6 @@ Q.latvians_b = 75;
 Q.armenians_m = 25;
 Q.armenians_dashnak = 50;
 Q.jews_jewish_national_list = 40;
-Q.jews_jewish_socialists = 25;
 Q.jews_m = 20;
 Q.kyrgyz_kazakh_alash = 50;
 Q.tatar_musavat = 30;
@@ -779,7 +801,7 @@ Q.k_n_advisors = 3;
 Q.timers = [//m_party
             'm_enemies', 'm_fundraising', 'm_ideology',
             'm_inter_party_relationships', 'm_media',
-            'm_organizing', 'm_party_unity', 'm_shuffle_leadership',
+            'm_organizing', 'm_party_disunity', 'm_shuffle_leadership',
             'm_reunify',
             'm_prov_gov_policy', 'm_industrial_policy',
             'm_war_policy',
@@ -788,7 +810,7 @@ Q.timers = [//m_party
             'sr_prov_gov_policy', 'sr_industrial_policy',
             'sr_war_policy',
             'sr_inter_party_relationships', 'sr_media',
-            'sr_organizing', 'sr_party_unity', 'sr_shuffle_leadership',
+            'sr_organizing', 'sr_party_disunity', 'sr_shuffle_leadership',
             //b_party
             'b_enemies', 'b_fundraising', 'b_ideology',
             'b_inter_party_relationships', 'b_media',
@@ -798,12 +820,13 @@ Q.timers = [//m_party
             'k_enemies', 'k_fundraising', 'k_ideology',
             'k_inter_party_relationships', 'k_media',
             'k_organizing', 'k_party_unity', 'k_shuffle_leadership',
+            'k_international',
             // prov_gov
             'agricultural_policy', 'food_policy', 'fiscal_policy',
             'foreign_policy', 'judiciary', 'labor_affairs',
             'military_policy', 'education_policy',
             'internal_security', 'transportation_policy',
-            'industrial_policy', 'nationalities',
+            'industrial_policy', 'civil_rights',
             'shuffle_cabinet', 'social_policy',
             'education_policy', 'economic_policy', 'coalition_affairs',
             'womens_rights', 'offensive',
@@ -855,6 +878,8 @@ Q.voitinsky_advisor = 0; // Vladimir Voitinsky - arrive March week 3 (defensist-
 Q.martov_advisor = 0; // Julius Martov - arrive April week 4
 Q.axelrod_advisor = 0; // Pavel Axelrod
 Q.sukhanov_advisor = 1; // Nikolai Sukhanov
+
+Q.sukhanov_available = 1;
 
 
 // sr advisors
@@ -952,7 +977,7 @@ unavailable-subtitle: Complete the game as one of the other parties first.
 - @party_selection: No, select a different party.
 
 @bolsheviks_2
-on-arrival: player_party_name = "Bolshevik"; player_party = "b"; b_is_player = 1; m_is_player = 0;
+on-arrival: player_party_name = "Bolshevik"; player_party = "b"; b_is_player = 1; m_is_player = 0; player_in_soviet = 1; player_in_exco = 0; player_in_prov_gov = 0;
 go-to: intros
 
 
@@ -966,7 +991,7 @@ title: Russian Social-Democratic Labor Party (Menshevik)
 
 
 @mensheviks_2
-on-arrival: player_party_name = "Menshevik"; player_party = "m"; m_is_player = 1
+on-arrival: player_party_name = "Menshevik"; player_party = "m"; m_is_player = 1; player_in_soviet = 1; player_in_exco = 1; player_in_prov_gov = 0;
 go-to: intros
 
 
@@ -981,7 +1006,7 @@ title: Party of Socialist-Revolutionaries (SRs)
 
 
 @sr_2
-on-arrival: player_party = "sr"; player_party_name = "SR"; sr_is_player = 1; m_is_player = 0;
+on-arrival: player_party = "sr"; player_party_name = "SR"; sr_is_player = 1; m_is_player = 0; player_in_soviet = 1; player_in_exco = 1; player_in_prov_gov = 0;
 go-to: intros
 
 @kadets
@@ -994,6 +1019,6 @@ title: Constitutional Democratic Party (Kadets)
 
 
 @kadets_2
-on-arrival: player_party = "k"; player_party_name = "Kadet"; k_is_player = 1; m_is_player = 0;
+on-arrival: player_party = "k"; player_party_name = "Kadet"; k_is_player = 1; m_is_player = 0; player_in_soviet = 0; player_in_prov_gov = 1; player_in_exco = 0;
 go-to: intros
 

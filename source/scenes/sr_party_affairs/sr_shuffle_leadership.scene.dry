@@ -71,7 +71,7 @@ view-if: sr_n_advisors < 4
 @add_kerensky
 title: Alexander Kerensky
 subtitle: Longtime Duma member, revolutionary lawyer.
-view-if: kerensky_advisor = 0 and n_advisors < 4 and right_sr_split = 0 and kerensky_available = 1
+view-if: kerensky_advisor = 0 and sr_n_advisors < 4 and right_sr_split = 0
 on-arrival: kerensky_advisor = 1; sr_n_advisors += 1; 
 tags: sr_advisor, right_sr
 go-to: advisor_menu
@@ -81,7 +81,7 @@ Kerensky has been added as an advisor.
 @add_avksentiev
 title: Nikolai Avksentiev
 subtitle: A Right-SR leader.
-view-if: avksentiev_advisor = 0 and n_advisors < 4 and right_sr_split = 0
+view-if: avksentiev_advisor = 0 and sr_n_advisors < 4 and right_sr_split = 0 and avksentiev_available = 1
 on-arrival: avksentiev_advisor = 1; sr_n_advisors += 1; 
 tags: sr_advisor, right_sr
 go-to: advisor_menu
@@ -91,7 +91,7 @@ Avksentiev has been added as an advisor.
 @add_zenzinov
 title: Vladimir Zenzinov
 subtitle: A Menshevik member of the Duma.
-view-if: zenzinov_advisor = 0 and n_advisors < 4 and right_sr_split = 0
+view-if: zenzinov_advisor = 0 and sr_n_advisors < 4 and right_sr_split = 0 and zenzinov_available = 0
 on-arrival: zenzinov_advisor = 1; sr_n_advisors += 1; 
 tags: sr_advisor, right_sr
 go-to: advisor_menu
@@ -102,17 +102,17 @@ Vladimir Zenzinov has been added as an advisor.
 @add_savinkov
 title: Boris Savinkov
 subtitle: A former SR terrorist and leader of the SR Combat Organization, he has become a strong defensist following the war.
-view-if: savinkov_advisor = 0 and n_advisors < 4 and right_sr_split = 0 and savinkov_available = 1
+view-if: savinkov_advisor = 0 and sr_n_advisors < 4 and right_sr_split = 0 and savinkov_available = 1
 on-arrival: savinkov_advisor = 1; sr_n_advisors += 1; 
-tags: sr_advisor, right_sr
 go-to: advisor_menu
+#tags: sr_advisor, right_sr
 
 Boris Savinkov has been added as an advisor.
 
 @add_breshkovskaya
 title: Catherine Breshko-Breshkovskaya
 subtitle: Sometimes called the "Grandmother of the Revolution", she has been working for the SR cause for decades in Russia and in exile.
-view-if: breshkovskaya_advisor = 0 and n_advisors < 4 and right_sr_split = 0 and breshkovskaya_available = 1
+view-if: breshkovskaya_advisor = 0 and sr_n_advisors < 4 and right_sr_split = 0 and breshkovskaya_available = 1
 on-arrival: breshkovskaya_advisor = 1; sr_n_advisors += 1; 
 tags: sr_advisor, right_sr
 go-to: advisor_menu
@@ -122,7 +122,7 @@ Catherine Breshko-Breshkovskaya has been added as an advisor.
 @add_kondratiev
 title: Nikolai Kondratiev
 subtitle: Kondratiev is a young SR economist.
-view-if: kondratiev_advisor = 0 and n_advisors < 4 and right_sr_split = 0 and kondratiev_available = 1
+view-if: kondratiev_advisor = 0 and sr_n_advisors < 4 and right_sr_split = 0 and kondratiev_available = 1
 on-arrival: kondratiev_advisor = 1; sr_n_advisors += 1; 
 tags: sr_advisor, right_sr
 go-to: advisor_menu
@@ -137,7 +137,7 @@ Kondratiev has been added as an advisor.
 @add_spiridonova
 title: Maria Spiridonova
 subtitle: Spiridonova is a former assassin who was imprisoned in Siberia for decades, and has now become a Left-SR leader.
-view-if: spiridonova_advisor = 0 and n_advisors < 4 and left_sr_split = 0 and spiridonova_available = 1
+view-if: spiridonova_advisor = 0 and sr_n_advisors < 4 and left_sr_split = 0 and spiridonova_available = 1
 on-arrival: spiridonova_advisor = 1; sr_n_advisors += 1; 
 tags: sr_advisor, left_sr
 go-to: advisor_menu
@@ -149,10 +149,10 @@ Maria Spiridonova has been added as an advisor.
 @add_kamkov
 title: Boris Kamkov
 subtitle: Kamkov is .
-view-if: kamkov_advisor = 0 and n_advisors < 4 and left_sr_split = 0 and kamkov_available = 1
+view-if: kamkov_advisor = 0 and sr_n_advisors < 4 and left_sr_split = 0 and kamkov_available = 1
 on-arrival: kamkov_advisor = 1; sr_n_advisors += 1; 
-tags: sr_advisor, left_sr
 go-to: advisor_menu
+#tags: sr_advisor, left_sr
 
 Boris Kamkov has been added as an advisor.
 
@@ -162,10 +162,10 @@ Boris Kamkov has been added as an advisor.
 @add_natanson
 title: Mark Natanson
 subtitle: Natanson is a venerable Narodnik and Left-SR leader.
-view-if: natanson_advisor = 0 and n_advisors < 4 and left_sr_split = 0 and natanson_available = 1
+view-if: natanson_advisor = 0 and sr_n_advisors < 4 and left_sr_split = 0 and natanson_available = 1
 on-arrival: natanson_advisor = 1; sr_n_advisors += 1; 
-tags: sr_advisor, left_sr
 go-to: advisor_menu
+#tags: sr_advisor, left_sr
 
 Mark Natanson has been added as an advisor.
 
@@ -175,7 +175,7 @@ Mark Natanson has been added as an advisor.
 @add_verkhovsky
 title: Alexander Verkhovsky
 subtitle: Verkhovsky is an SR-affiliated military officer who leans towards internationalism.
-view-if: verkhovsky_advisor = 0 and n_advisors < 4 and left_sr_split = 0 and verkhovsky_available = 1
+view-if: verkhovsky_advisor = 0 and sr_n_advisors < 4 and left_sr_split = 0 and verkhovsky_available = 1
 on-arrival: verkhovsky_advisor = 1; sr_n_advisors += 1; 
 go-to: advisor_menu
 #tags: sr_advisor, left_sr
@@ -188,7 +188,7 @@ Alexander Verkhovsky has been added as an advisor.
 @add_chernov
 title: Viktor Chernov
 subtitle: Chernov is a founder and lead theoretician of the SRs.
-view-if: chernov_advisor = 0 and n_advisors < 4 and right_sr_split = 0 and chernov_available = 1
+view-if: chernov_advisor = 0 and sr_n_advisors < 4 and right_sr_split = 0 and chernov_available = 1
 on-arrival: chernov_advisor = 1; sr_n_advisors += 1; 
 tags: sr_advisor, center_sr
 go-to: advisor_menu

@@ -1,10 +1,28 @@
 title: Rural Policy
-choose-if: m_rural_policy_available = 1
-unavailable-subtitle: Rural policy is not a Menshevik priority.
+choose-if: sr_rural_policy_available = 1
+#unavailable-subtitle: Rural policy is not a Menshevik priority.
 
 = Rural Policy
 
-The Mensheviks have not had a well-defined rural or agrarian policy platform. We have always been a party of the urban proletariat, not the peasantry. Now, with the revolution, our campaigns and government policies must address this area.
+There are two components of our land reform policy: how we acquire land to redistribute, and how we redistribute that land.
+
+Historically, the SRs have supported uncompensated redistribution, but that may change in light of the present hunger crisis. In terms of redistribution, the SRs historically supported giving land to the agrarian communes to repartition in the traditional way, based on need and labor ability.
+
+@compensated
+title: Support compensated seizures.
+
+@uncompensated
+title: Support uncompensated land seizures.
+
+@voluntary
+title: Support voluntary privatization of land.
+subtitle: This is the Kadet policy.
+
+@communes
+title: Support redistributing land based on labor and need, in the traditional way.
+
+@collective_farming
+title: Support collective farming.
 
 # land redistribution -> privatization
 # land redistribution -> communization
@@ -19,8 +37,7 @@ The Mensheviks have not had a well-defined rural or agrarian policy platform. We
 @privatize
 subtitle: The poor peasants are generally opposed.
 
-@voluntary
-subtitle: This is the Kadet policy.
+
 
 # this is the kadet policy.
 
@@ -30,9 +47,5 @@ subtitle: This is the Kadet policy.
 subtitle: This is the SR policy.
 
 # this is the moderate SR policy.
-
-@communes
-
-# this is the left sr / bolshevik policy.
 
 

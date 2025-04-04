@@ -230,6 +230,7 @@ go-to: 1917_main
 view-if: o1_seen = 1
 #view-if: o1_seen = 1 and ps_seen = 1 and abdi_seen = 1 and pg_seen = 1 and war_seen = 1
 
+
 @1917_main
 new-page: true
 go-to: main
@@ -237,3 +238,4 @@ audio: shuffle music/TchaikovskyQuartet.mp3 music/AyUchniem.mp3 music/SwetitMies
 
 = Week 1, March 1917
 
+The goal of all Russian revolutionaries, liberal or socialist, is to hold elections for the Constituent Assembly, the representative body that will decide Russia's new form of government. Until then, the Provisional Government's leaders must decide how to deal with the myriad problems facing the country today.

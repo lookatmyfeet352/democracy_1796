@@ -15,13 +15,14 @@ During the February Revolution, the workers of Petrograd organized militias for 
 - @loyalty
 - @recruitment
 - @arming
+- @mrc
 - @root: No action is needed.
 - @easy_discard
 - @cancel_advisor_action
 
 @loyalty
 title: Increase militia cooperation with the Soviet.
-on-arrival: workers_militia_m_loyalty += 5 if player_party = "m"; workers_militia_sr_loyalty += 5 if player_party = "sr"; workers_militia_b_loyalty += 5 if player_party = "b"
+on-arrival: workers_militia_m_loyalty += 10*soviet_efficacy if m_in_exco; workers_militia_sr_loyalty += 10*soviet_efficacy if sr_in_exco; workers_militia_b_loyalty += 10*soviet_efficacy if b_in_exco
 
 We have increased the direction of the Soviet parties over the workers' militias.
 
@@ -31,7 +32,7 @@ We have increased the direction of the Soviet parties over the workers' militias
 title: Recruit more workers into the militias.
 choose-if: workers_militia_strength <= 80 
 unavailable-subtitle: There are not enough willing workers to recruit.
-on-arrival: workers_militia_strength += 5;
+on-arrival: workers_militia_strength += 8;
 
 We have increased recruitment into the workers' militias.
 
@@ -40,7 +41,7 @@ title: Increase armaments for the militias.
 subtitle: -1 resource
 choose-if: workers_militia_militancy < 0.7 and ((player_party = "m" and m_resources >= 1) or (player_party = "sr" and sr_resources >= 1) or (player_party = "b" and b_resources >= 1))
 unavailable-subtitle: [? if ((player_party = "m" and m_resources < 1) or (player_party = "sr" and sr_resources < 1) or (player_party = "b" and b_resources < 1)): We do not have enough resources. ?]
-on-arrival: workers_militia_militancy += 0.05; sr_resources -= 1 if player_party = "sr"; b_resources -= 1 if player_party = "b"; m_resources -= 1 if player_party = "m";
+on-arrival: workers_militia_militancy += 0.06; sr_resources -= 1 if player_party = "sr"; b_resources -= 1 if player_party = "b"; m_resources -= 1 if player_party = "m";
 
 We have spent resources on purchasing more armaments for the workers' militias.
 
@@ -48,10 +49,10 @@ We have spent resources on purchasing more armaments for the workers' militias.
 title: Form a Military-Revolutionary Committee!
 subtitle: We will organize the workers' militias for the defense of the revolution against all enemies. -2 resources
 unavailable-subtitle: -2 resources 
-view-if: player_party = "b"
+view-if: player_party = "b" and mrc = 0
 choose-if: b_resources >= 2
 on-arrival: soldiers_b += 15; workers_militia_b_loyalty += 25; mrc = 1;
 max-visits: 1
 
-The Petrograd Soviet has formed the Military-Revolutionary Committee, a committee to organize the workers' militias and garrison troops for the defense of the revolution.
-
+The Petrograd Soviet has formed the Military-Revolutionary Committee, a committee to organize the workers' militias and garrison troops for the defense of the revolution. This ties togethe
+r the workers' militias, the soldiers, and the Bolshevik party. 

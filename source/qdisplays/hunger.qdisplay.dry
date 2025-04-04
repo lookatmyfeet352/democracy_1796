@@ -1,5 +1,5 @@
 
-(0..11) low
+(..11) low
 (11..25) noticeable
 (25..35) high
 (35..45) very high

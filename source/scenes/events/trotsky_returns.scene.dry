@@ -4,7 +4,7 @@ new-page: true
 view-if: year = 1917 and month = 5 and week = 3
 tags: event
 max-visits: 1
-on-arrival: trotsky_available = 1; leninist_strength += 8; workers_b += 4; soldiers_b += 5;
+on-arrival: trotsky_available = 1; leninist_strength += 8 if not b_is_player; workers_b += 4 if not b_is_player; soldiers_b += 5 if not b_is_player;
 
 = Trotsky Returns
 

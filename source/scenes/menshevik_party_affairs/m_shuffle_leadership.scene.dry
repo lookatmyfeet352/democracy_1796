@@ -71,7 +71,7 @@ view-if: m_n_advisors < 4 and defensist_split = 0
 @add_tsereteli
 title: Irakli Tsereteli
 subtitle: Revolutionary Defensist
-view-if: tsereteli_advisor = 0 and n_advisors < 4 and defensist_split = 0 and tsereteli_available = 1
+view-if: tsereteli_advisor = 0 and m_n_advisors < 4 and defensist_split = 0 and tsereteli_available = 1
 on-arrival: tsereteli_advisor = 1; m_n_advisors += 1; 
 tags: m_advisor, m_defensist
 go-to: advisor_menu
@@ -81,7 +81,7 @@ Tsereteli has been added as an advisor.
 @add_chkheidze
 title: Nikolai Chkheidze
 subtitle: A Menshevik member of the Duma and one of the founding members of the Petrograd Soviet.
-view-if: chkheidze_advisor = 0 and n_advisors < 4 and defensist_split = 0
+view-if: chkheidze_advisor = 0 and m_n_advisors < 4 and defensist_split = 0
 on-arrival: chkheidze_advisor = 1; m_n_advisors += 1; 
 tags: m_advisor, m_defensist
 go-to: advisor_menu
@@ -91,7 +91,7 @@ Chkheidze has been added as an advisor.
 @add_skobelev
 title: Matvei Skobelev
 subtitle: A Menshevik member of the Duma.
-view-if: skobelev_advisor = 0 and n_advisors < 4 and defensist_split = 0
+view-if: skobelev_advisor = 0 and m_n_advisors < 4 and defensist_split = 0
 on-arrival: skobelev_advisor = 1; m_n_advisors += 1; 
 tags: m_advisor, m_defensist
 go-to: advisor_menu
@@ -102,7 +102,7 @@ Matvei Skobelev has been added as an advisor.
 @add_voitinsky
 title: Vladimir Voitinsky
 subtitle: An economist who has just returned from Siberian exile.
-view-if: voitinsky_advisor = 0 and n_advisors < 4 and defensist_split = 0 and voitinsky_available = 1
+view-if: voitinsky_advisor = 0 and m_n_advisors < 4 and defensist_split = 0 and voitinsky_available = 1
 on-arrival: voitinsky_advisor = 1; m_n_advisors += 1; 
 tags: m_advisor, m_defensist
 go-to: advisor_menu
@@ -114,7 +114,7 @@ Vladimir Voitinsky has been added as an advisor.
 @add_martov
 title: Julius Martov
 subtitle: Martov is a long-time Menshevik leader who has led the Internationalists, and is known for his principled position in factional debates.
-view-if: martov_advisor = 0 and n_advisors < 4 and internationalist_split = 0 and martov_available = 1
+view-if: martov_advisor = 0 and m_n_advisors < 4 and internationalist_split = 0 and martov_available = 1
 on-arrival: martov_advisor = 1; m_n_advisors += 1; 
 tags: m_advisor, m_internationalist
 go-to: advisor_menu
@@ -125,13 +125,24 @@ Julius Martov has been added as an advisor.
 
 @add_sukhanov
 title: Nikolai Sukhanov
-subtitle: Sukhanov worked as a bureaucrat in the Tsarist government.
-view-if: sukhanov_advisor = 0 and n_advisors < 4 and internationalist_split = 0 and sukhanov_available = 1
+subtitle: Sukhanov worked as a bureaucrat in the Tsarist government, while supporting the Social Democratic cause.
+view-if: sukhanov_advisor = 0 and m_n_advisors < 4 and internationalist_split = 0
 on-arrival: sukhanov_advisor = 1; m_n_advisors += 1; 
 tags: m_advisor, m_internationalist
 go-to: advisor_menu
 
 Nikolai Sukhanov has been added as an advisor.
+
+@add_groman
+title: Vladimir Groman
+subtitle: Groman is a Menshevik-aligned economist.
+view-if: groman_advisor = 0 and m_n_advisors < 4 and internationalist_split = 0
+on-arrival: groman_advisor = 1; m_n_advisors += 1; 
+tags: m_advisor, m_internationalist
+go-to: advisor_menu
+
+Vladimir Groman has been added as an advisor.
+
 
 
 # axelrod
@@ -139,7 +150,7 @@ Nikolai Sukhanov has been added as an advisor.
 @add_axelrod
 title: Pavel Axelrod
 subtitle: One of the earliest Russian Marxists, he was a companion of Martov in exile.
-view-if: axelrod_advisor = 0 and n_advisors < 4 and internationalist_split = 0 and axelrod_available = 1
+view-if: axelrod_advisor = 0 and m_n_advisors < 4 and internationalist_split = 0 and axelrod_available = 1
 on-arrival: axelrod_advisor = 1; m_n_advisors += 1; 
 tags: m_advisor, m_internationalist
 go-to: advisor_menu
@@ -152,7 +163,7 @@ Pavel Axelrod has been added as an advisor.
 @add_martynov
 title: Alexander Martynov
 subtitle: Martynov is a Menshevik-Internationalist.
-view-if: martynov_advisor = 0 and n_advisors < 4 and internationalist_split = 0 and martynov_available = 1
+view-if: martynov_advisor = 0 and m_n_advisors < 4 and internationalist_split = 0 and martynov_available = 1
 on-arrival: martynov_advisor = 1; m_n_advisors += 1; 
 go-to: advisor_menu
 #tags: m_advisor, m_internationalist
@@ -165,7 +176,7 @@ Alexander Martynov has been added as an advisor.
 @add_plekhanov
 title: Georgi Plekhanov
 subtitle: Plekhanov is the venerable founder of Russian Marxism, who has taken a pro-war turn.
-view-if: plekhanov_advisor = 0 and n_advisors < 4 and defensist_split = 0 and plekhanov_available = 1
+view-if: plekhanov_advisor = 0 and m_n_advisors < 4 and defensist_split = 0 and plekhanov_available = 1
 on-arrival: plekhanov_advisor = 1; m_n_advisors += 1; 
 tags: m_advisor, m_social_patriot
 go-to: advisor_menu
@@ -176,7 +187,7 @@ Plekhanov has been added as an advisor.
 @add_potresov
 title: Alexander Potresov
 subtitle: Potresov is a long-time Menshevik leader.
-view-if: potresov_advisor = 0 and n_advisors < 4 and defensist_split = 0 and potresov_available = 1
+view-if: potresov_advisor = 0 and m_n_advisors < 4 and defensist_split = 0 and potresov_available = 1
 on-arrival: potresov_advisor = 1; m_n_advisors += 1; 
 tags: m_advisor, m_social_patriot
 go-to: advisor_menu
@@ -188,7 +199,7 @@ Potresov has been added as an advisor.
 @add_zasulich
 title: Vera Zasulich
 subtitle: Zasulich is a former revolutionary terrorist who came to a political position similar to Plekhanov over the years.
-view-if: zasulich_advisor = 0 and n_advisors < 4 and defensist_split = 0 and zasulich_available = 1
+view-if: zasulich_advisor = 0 and m_n_advisors < 4 and defensist_split = 0 and zasulich_available = 1
 on-arrival: zasulich_advisor = 1; m_n_advisors += 1; 
 tags: m_advisor, m_social_patriot
 go-to: advisor_menu
@@ -253,6 +264,15 @@ on-arrival: sukhanov_advisor = 0; internationalist_dissent += 5; m_n_advisors -=
 tags: m_rm_advisor
 
 Sukhanov is no longer an advisor. The Internationalists are not pleased.
+
+@remove_groman
+title: Remove Groman
+view-if: groman_advisor = 1
+on-arrival: groman_advisor = 0; internationalist_dissent += 5; m_n_advisors -= 1
+tags: m_rm_advisor
+
+Groman is no longer an advisor. The Internationalists are not pleased.
+
 
 @remove_axelrod
 title: Remove Axelrod

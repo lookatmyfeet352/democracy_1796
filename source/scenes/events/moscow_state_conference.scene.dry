@@ -1,5 +1,6 @@
 title: Conference of Public Figures
 new-page: True
 subtitle: How can the Provisional Government regain its legitimacy?
-view-if: month >= 8 and prov_gov_legitimacy <= 55
+view-if: month >= 8 and prov_gov_legitimacy <= 50
 
+= Conference of Public Figures

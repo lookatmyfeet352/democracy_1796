@@ -1,7 +1,7 @@
 title: Constituent Assembly Elections
 subtitle: Finally, the elections are held, and the results are arriving...
 new-page: true
-view-if: (month = next_election_month and week >= next_election_week) or month > next_election_month
+view-if: ((month = next_election_month and week >= next_election_week) or month > next_election_month) and ca_scheduled = 1
 on-arrival: ca_held = 1
 set-jump: ca_election.election_results
 max-visits: 1
@@ -18,90 +18,197 @@ on-arrival: {!
 Q.k_r = Math.round(800*Q.k_assembly_votes_dec/100);
 Q.b_r = Math.round(800*Q.b_assembly_votes_dec/100);
 Q.m_r = Math.round(800*Q.m_assembly_votes_dec/100);
+if (Q.internationalist_assembly_votes_dec) {
+}
 Q.sr_r = Math.round(800*Q.sr_assembly_votes_dec/100);
 Q.ukrainian_sr_r = Math.round(800*Q.ukrainian_sr_assembly_votes_dec/100);
 Q.cossacks_r = Math.round(800*Q.cossacks_assembly_votes_dec/100);
 Q.popular_socialist_r = Math.round(800*Q.popular_socialist_assembly_votes_dec/100);
 Q.muslim_socialists_r = Math.round(800*Q.muslim_socialists_assembly_votes_dec/100);
 Q.conservative_r = Math.round(800*Q.conservative_assembly_votes_dec/100);
-Q.other_r = Q.other_assembly_votes_dec;
-Q.muslim_national_assembly_votes_dec = Q.musavat_assembly_votes_dec + Q.alash_assembly_votes_dec + Q.turkic_muslim_parties_assembly_votes_dec;
+Q.other_r = Math.round(800*Q.other_assembly_votes_dec/100);
+Q.muslim_national_assembly_votes_dec = Math.round(10*(Q.musavat_assembly_votes_dec + Q.alash_assembly_votes_dec + Q.turkic_muslim_parties_assembly_votes_dec))/10;
 Q.muslim_national_r = Math.round(800*(Q.musavat_assembly_votes_dec + Q.alash_assembly_votes_dec + Q.turkic_muslim_parties_assembly_votes_dec)/100);
+Q.dashnaks_r = Math.round(800*Q.dashnak_assembly_votes_dec/100);
+Q.jewish_national_r = Math.round(Q.jewish_national_assembly_votes_dec/100);
+!}
+on-display: {!
+// do the graphs
+var data = [
+{"id": "b",
+ "legend": "Bolshevik",
+ "name": "Bolshevik",
+ "seats": Math.round(Q.b_assembly_votes_dec*8)},
+];
+if (Q.internationalist_assembly_votes_dec) {
+    data.push({
+            "id": "internationalist",
+            "legend": "Menshevik-Internationalist",
+            "name": "Menshevik-Internationalist",
+            "seats": Math.round(Q.internationalist_assembly_votes_dec*8)
+            });
+}
+data.push({
+    "id": "m",
+    "legend": "Menshevik",
+    "name": "Menshevik",
+    "seats": Math.round(Q.m_assembly_votes_dec*8)
+});
+if (Q.defensist_assembly_votes_dec) {
+    data.push({
+            "id": "defensist",
+            "legend": "Menshevik-Defensist",
+            "name": "Menshevik-Defensist",
+            "seats": Math.round(Q.defensist_assembly_votes_dec*8)
+            });
+}
+if (Q.left_sr_assembly_votes_dec) {
+    data.push({
+            "id": "left_sr",
+            "legend": "Left-SR",
+            "name": "Left-SR",
+            "seats": Math.round(Q.left_sr_assembly_votes_dec*8)
+            });
+}
+data.push({
+    "id": "sr",
+    "legend": "SR",
+    "name": "SR",
+    "seats": Math.round(Q.sr_assembly_votes_dec*8)
+});
+if (Q.right_sr_assembly_votes_dec) {
+    data.push({
+            "id": "right_sr",
+            "legend": "Right-SR",
+            "name": "Right-SR",
+            "seats": Math.round(Q.right_sr_assembly_votes_dec*8)
+            });
+}
+data = data.concat([
+{
+  "id": "ukrainian_sr",
+  "legend": "Ukrainian SR",
+  "name": "Ukrainian SR",
+  "seats": Math.round(Q.ukrainian_sr_assembly_votes_dec*8)
+},
+{
+  "id": "popular_socialist",
+  "legend": "Popular Socialist",
+  "name": "Popular Socialist",
+  "seats": Math.round(Q.popular_socialist_assembly_votes_dec*8)
+},
+{
+  "id": "muslim_socialist",
+  "legend": "Muslim Socialist",
+  "name": "Muslim Socialist",
+  "seats": Math.round(Q.muslim_socialists_assembly_votes_dec*8)
+},
+{
+  "id": "dashnak",
+  "legend": "Dashnak",
+  "name": "Dashnak",
+  "seats": Math.round(Q.dashnak_assembly_votes_dec*8)
+},
+{
+  "id": "jewish_national",
+  "legend": "Jewish National",
+  "name": "Jewish National",
+  "seats": Math.round(Q.jewish_national_list_assembly_votes_dec*8)
+},
+{
+  "id": "muslim_national",
+  "legend": "Muslim National",
+  "name": "Muslim National",
+  "seats": Math.round(Q.muslim_national_assembly_votes_dec*8)
+},
+{
+  "id": "k",
+  "legend": "Kadet",
+  "name": "Kadet",
+  "seats": Math.round(Q.k_assembly_votes_dec*8)
+},
+{
+  "id": "other",
+  "legend": "Others",
+  "name": "Others",
+  "seats": Math.round(Q.other_assembly_votes_dec*8)
+},
+{
+  "id": "conservative",
+  "legend": "Conservative",
+  "name": "Conservative",
+  "seats": Math.round(Q.conservative_assembly_votes_dec*8)
+},
+{
+  "id": "cossack",
+  "legend": "Cossack",
+  "name": "Cossack",
+  "seats": Math.round(Q.cossacks_assembly_votes_dec*8)
+},
+]);
+if (window && d3) {
+    console.log(data);
+    var width = 500;
+    var height = 500;
+    var screenWidth = document.getElementById('content').offsetWidth;
+    if (screenWidth < width - 50) {
+        width = screenWidth - 50;
+        height = width;
+        document.getElementById("constituent_assembly").style.height = screenWidth/2 + "px";
+    }
+    var parliament = d3.parliament();
+    parliament.width(width).height(height).innerRadiusCoef(0.4);
+    parliament.enter.fromCenter(true).smallToBig(true);
+    parliament.exit.toCenter(false).bigToSmall(true);
+    d3.select("#constituent_assembly").datum(data).call(parliament);
+}
 !}
 
 # Yes I know the distribution of seats was not at all proportional on a national level but let's pretend they are. Maybe sometime later we'll have all of the districts.
 
-Results:
+= Constituent Assembly Results
 
-SR: [+ sr_assembly_votes_dec +]%
+{!<svg id="constituent_assembly" style="width: 500px; height: 250px;"> </svg>!}
 
-[? if left_sr_split: Left-SR: [+ left_sr_assembly_votes_dec +]% ?]
-[? if right_sr_split: Right-SR: [+ right_sr_assembly_votes_dec +]% ?]
+{!<table>!}
+{!<tr><td>Party</td><td>Vote share</td></tr>!}
 
-Ukrainian SRs: [+ ukrainian_sr_assembly_votes_dec +]%
+{!<tr><td><div class="box b"> </div> !} Bolsheviks: {!</td><td>!} [+ b_assembly_votes_dec +]% {!</td>!}
 
-Mensheviks: [+ m_assembly_votes_dec +]%
+[? if internationalist_assembly_votes_dec : {!<tr><td><div class="box internationalist"></div> Menshevik-Internationalists: </td><td>!} [+ internationalist_assembly_votes_dec +]% {!</td>!} ?]
 
-[? if defensist_split: Menshevik-Defensists: [+ defensist_assembly_votes_dec +]% ?]
-[? if internationalist_split: Menshevik-Internationalists: [+ internationalist_assembly_votes_dec +]% ?]
+{!<tr><td><div class="box m"> </div> !} Mensheviks: {!</td><td>!} [+ m_assembly_votes_dec +]% {!</td>!}
 
-Bolsheviks: [+ b_assembly_votes_dec +]%
+[? if defensist_assembly_votes_dec : {!<tr><td><div class="box defensist"></div> Menshevik-Defensists: </td><td>!} [+ defensist_assembly_votes_dec +]% {!</td>!} ?]
 
-Kadets: [+ k_assembly_votes_dec +]%
+[? if left_sr_assembly_votes_dec : {!<tr><td><div class="box left_sr"></div> !}Left-SRs: {!</td><td>!} [+ left_sr_assembly_votes_dec +]% {!</td>!} ?]
 
-Conservatives: [+ conservative_assembly_votes_dec +]%
+{!<tr><td><div class="box sr"> </div> !} SRs: {!</td><td>!} [+ sr_assembly_votes_dec +]% {!</td>!}
 
-Popular Socialists: [+ popular_socialist_assembly_votes_dec +]%
+[? if right_sr_assembly_votes_dec : {!<tr><td><div class="box right_sr"></div> !}Right-SRs: {!</td><td>!} [+ right_sr_assembly_votes_dec +]% {!</td>!} ?]
 
-Cossacks: [+ cossacks_assembly_votes_dec +]%
+{!<tr><td><div class="box ukrainian_sr"> </div> !} Ukrainian SRs: {!</td><td>!} [+ ukrainian_sr_assembly_votes_dec +]% {!</td>!}
 
-Muslim Socialists: [+ muslim_socialists_assembly_votes_dec +]%
+{!<tr><td><div class="box popular_socialist"> </div> !} Popular Socialists: {!</td><td>!} [+ popular_socialist_assembly_votes_dec +]% {!</td>!}
 
-Muslim national parties (Alash, Musavat, others): [+ muslim_national_assembly_votes_dec +]%
+{!<tr><td><div class="box muslim_socialist"> </div> !} Muslim Socialists: {!</td><td>!} [+ muslim_socialists_assembly_votes_dec +]% {!</td>!}
 
-Armenian Revolutionary Federation (Dashnaks): [+ dashnak_assembly_votes_dec +]%
+{!<tr><td><div class="box dashnak"> </div> !} Armenian Revolutionary Federation (Dashnaks): {!</td><td>!} [+ dashnak_assembly_votes_dec +]% {!</td>!}
 
-Jewish National List: [+ jewish_national_list_assembly_votes_dec +]%
+{!<tr><td><div class="box jewish_national"> </div> !} Jewish National List: {!</td><td>!} [+ jewish_national_list_assembly_votes_dec +]% {!</td>!}
 
-Other: [+ other_assembly_votes_dec +]%
+{!<tr><td><div class="box muslim_national"> </div> !} Muslim national parties (Alash, Musavat, others): {!</td><td>!} [+ muslim_national_assembly_votes_dec +]% {!</td>!}
+
+{!<tr><td><div class="box k"> </div> !} Kadets: {!</td><td>!} [+ k_assembly_votes_dec +]% {!</td>!}
+
+{!<tr><td><div class="box other"> </div> !} Others: {!</td><td>!} [+ other_assembly_votes_dec +]% {!</td>!}
+
+{!<tr><td><div class="box conservative"> </div> !} Conservatives: {!</td><td>!} [+ conservative_assembly_votes_dec +]% {!</td>!}
+
+{!<tr><td><div class="box cossack"> </div> !} Cossacks: {!</td><td>!} [+ cossacks_assembly_votes_dec +]% {!</td>!}
+{!</table>!}
 
 Now, the Provisional Government's time is coming to an end. The challenges are not over; let's hope that the Constituent Assembly is up to the task of creating a new Russia.
 
 - @game_over: Game Over
 
-
-@tabular_view
-
-# TODO: fully implement this
-
-
-{!<table>!}
-{!<tr><td>Party</td><td>Vote share</td><td>Seats</td></tr>!}
-{!<tr><td><div class="box" style='background-color:#E3000F; outline: 2px; outline-style: solid;'> </div> !} **SR:** {!</td><td>!} **[+ sr_assembly_votes_dec +]%** {!</td><td>!} **[+ sr_r +]** {!</td></tr>!}
-
-[? if left_sr_split : {!<tr><td><div class="box" style='background-color:#C40000'> </div> !}Left-SR: {!</td><td>!} [+ left_sr_assembly_votes_dec +]% {!</td><td>!} [+ left_sr_r +] {!</td></tr>!} ?]
-
-[? if right_sr_split : {!<tr><td><div class="box" style='background-color:#C40000'> </div> !}Right-SR: {!</td><td>!} [+ right_sr_assembly_votes_dec +]% {!</td><td>!} [+ right_sr_r +] {!</td></tr>!} ?]
-
-{!<tr><td><div class="box" style='background-color:#E3000F; outline: 2px; outline-style: solid;'> </div> !} **Ukrainian SR:** {!</td><td>!} **[+ ukrainian_sr_assembly_votes_dec +]%** {!</td><td>!} **[+ ukrainian_sr_r +]** {!</td></tr>!}
-
-{!<tr><td><div class="box" style='background-color:#8B0000'> </div> !}Mensheviks: {!</td><td>!} [+ m_assembly_votes_dec +]% {!</td><td>!} [+ m_r +] {!</td></tr>!}
-
-{!<tr><td><div class="box" style='background-color:#DCCA4A'> </div> !}Bolsheviks: {!</td><td>!} [+ b_assembly_votes_dec +]% {!</td><td>!} [+ b_r +] {!</td></tr>!}
-
-{!<tr><td><div class="box" style='background-color:#000'> </div> !}Kadets: {!</td><td>!} [+ k_assembly_votes_dec +]% {!</td><td>!} [+ k_r +] {!</td></tr>!}
-
-{!<tr><td><div class="box" style='background-color:#69A2BE'> </div> !}Conservatives: {!</td><td>!} [+ conservative_assembly_votes_dec +] {!</td><td>!} [+ conservatives_r +] {!</td></tr>!}
-
-{!<tr><td><div class="box" style='background-color:#D5AC27'> </div> !} Popular Socialists: {!</td><td>!} [+ popular_socialist_assembly_votes_dec +]% {!</td><td>!} [+ popular_socialist_r +] {!</td></tr>!}
-
-{!<tr><td><div class="box" style='background-color:#a0a0a0'> </div> !} Cossacks: {!</td><td>!} [+ cossacks_assembly_votes_dec +] % {!</td><td>!} [+ cossacks_r +] {!</td></tr>!}
-
-{!<tr><td><div class="box" style='background-color:#3f7bc1'> </div> !} Muslim Socialists: {!</td><td>!} [+ muslim_socialists_assembly_votes_dec +]% {!</td><td>!} [+ muslim_socialists_r +] {!</td></tr>!}
-
-{!<tr><td><div class="box" style='background-color:#000'> </div> !} Muslim national parties: {!</td><td>!} [+ muslim_national_assembly_votes_dec +]% {!</td><td>!} [+ muslim_national_r +] {!</td></tr>!}
-
-{!<tr><td><div class="box" style='background-color:#000'> </div> !} Dashnaks: {!</td><td>!} [+ dashnak_assembly_votes_dec +]% {!</td><td>!} [+ dashnak_r +] {!</td></tr>!}
-
-{!<tr><td><div class="box" style='background-color:#000'> </div> !} Jewish national lists: {!</td><td>!} [+ jewish_national_list_assembly_votes_dec +]% {!</td><td>!} [+ jewish_national_list_r +] {!</td></tr>!}
-{!</table>!}

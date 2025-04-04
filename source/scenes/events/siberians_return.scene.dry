@@ -19,7 +19,7 @@ For the Mensheviks, the most significant is a group from Irkutsk led by Irakli T
 @siberians_return_b
 on-arrival: b_siberians_return_seen = 1;
 
-For the Bolsheviks, the returned exiles include Josef Stalin and Lev Kamenev. Kamenev follows a somewhat moderate line among the Bolsheviks, while Stalin is ideologically amorphous.
+For the Bolsheviks, the returned exiles include Josef Stalin, Yakov Sverdlov, and Lev Kamenev. Kamenev follows a moderate line among the Bolsheviks, while Sverdlov and Stalin are ideologically amorphous.
 
 @siberians_return_sr
 on-arrival: sr_siberians_return_seen = 1;

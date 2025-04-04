@@ -22,9 +22,9 @@ The Socialist-Revolutionary Party has a history of organizing among the peasants
 subtitle: -1 resource
 choose-if: sr_resources >= 1
 unavailable-subtitle: Not enough resources.
-on-arrival: sr_resources -= 1; soldiers_sr += 6*(1-sr_dissent); soldiers_sr -= 2 if war_weariness >= 50 and sr_war_policy <= 0; soldiers_sr -= 2 if war_weariness >= 60 and sr_war_policy <= 1; sr_soldiers_org += 1 if war_weariness <= 50 or sr_war_policy > 1
+on-arrival: sr_resources -= 1; soldiers_sr += 5*(1-sr_dissent); soldiers_sr -= 4 if war_weariness >= 50 and sr_war_policy <= 1; sr_soldiers_org += 1 if war_weariness <= 50 or sr_war_policy > 1
 
-We have increased our organizing among the soldiers. [? if (war_weariness >= 50 and sr_war_policy <= 0) or (war_weariness >= 60 and sr_war_policy <= 1): Our policy is viewed as too pro-war, and makes it harder to organize among the soldiers. ?]
+We have increased our organizing among the soldiers. [? if war_weariness >= 50 and sr_war_policy <= 1 : Our policy is viewed as too pro-war, and makes it harder to organize among the soldiers. ?]
 
 @workers
 subtitle: -1 resource

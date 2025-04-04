@@ -32,7 +32,7 @@ subtitle: Support an international peace without annexations or indemnities, but
 unavailable-subtitle: There is not enough support for this position within the party.
 view-if: m_war_policy != 1
 choose-if: defensist_strength >= internationalist_strength and defensist_strength >= social_patriot_strength
-on-arrival: m_war_policy = 1; defensist_strength += 10; internationalist_dissent += 20 if m_war_policy > 1
+on-arrival: m_war_policy = 1; defensist_strength += 10; internationalist_dissent += 20 if m_war_policy > 1; m_leadership = 0;
 
 We have adopted a revolutionary defensist position, calling on continued support of the war effort while negotiating for a general peace.
 
@@ -43,15 +43,21 @@ subtitle: Support an immediate end to the war, even a separate peace if necessar
 unavailable-subtitle: There is not enough support for this position within the party.
 view-if: m_war_policy != 2
 choose-if: internationalist_strength >= defensist_strength + social_patriot_strength
-on-arrival: m_war_policy = 2; internationalist_strength += 5; internationalist_dissent -= 5; defensist_dissent += 15; social_patriot_dissent += 30
+on-arrival: m_war_policy = 2; internationalist_strength += 5; internationalist_dissent -= 5; defensist_dissent += 20; social_patriot_dissent += 30; m_leadership = 1;
 
 We have adopted an internationalist position, calling for an immediate end to the war.
+
+[? if defensist_dissent > 50 : The Defensists are deeply upset at this decision, and thus are splitting from the party. ?]
+
+- @m_defensist_split
+
+# TODO: go to defensist split
 
 @i_2
 title: Increase support for an internationalist position.
 subtitle: Support an immediate end to the war, even a separate peace if necessary.
 view-if: m_war_policy != 2 and internationalist_strength < defensist_strength + social_patriot_strength
-on-arrival: internationalist_strength += 4; internationalist_dissent -= 3; defensist_dissent += 5
+on-arrival: internationalist_strength += 6; internationalist_dissent -= 4; defensist_dissent += 10; social_patriot_dissent += 10
 
 We are building up support for internationalism within the party, so that we may eventually adopt this position.
 

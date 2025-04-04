@@ -1,0 +1,277 @@
+title: Soviet Leadership Election
+go-to: election_algorithm.petrograd_soviet
+set-jump: soviet_leadership_election.post_election
+new-page: true
+
+@post_election
+on-arrival: {!
+Q.soviet_efficacy -= 0.05;
+Q.m_in_exco = 0;
+Q.sr_in_exco = 0;
+Q.b_in_exco = 0;
+
+Q.m_soviet = Q.m_soviet_votes_dec;
+Q.sr_soviet = Q.sr_soviet_votes_dec;
+Q.b_soviet = Q.b_soviet_votes_dec;
+Q.anarchist_soviet = Q.anarchist_soviet_votes_dec;
+Q.other_soviet = Math.round(10*(Q.popular_socialist_soviet_votes_dec + Q.other_soviet_votes_dec + Q.k_soviet_votes_dec + Q.conservative_soviet_votes_dec))/10;
+
+Q.defensist_bloc = 0;
+Q.internationalist_bloc = Q.b_soviet + Q.anarchist_soviet;
+Q.moderate_internationalist_bloc = 0;
+
+if (Q.m_leadership == 1) {
+    Q.internationalist_bloc += Q.m_soviet;
+    Q.moderate_internationalist_bloc += Q.m_soviet;
+} else {
+    Q.defensist_bloc += Q.m_soviet;
+}
+if (Q.sr_leadership == 1) {
+    Q.internationalist_bloc += Q.sr_soviet;
+    Q.moderate_internationalist_bloc += Q.sr_soviet;
+} else {
+    Q.defensist_bloc += Q.sr_soviet;
+}
+if (Q.internationalist_split && Q.internationalist_soviet_votes_dec) {
+    Q.internationalist_bloc += Q.internationalist_soviet_votes_dec;
+    Q.moderate_internationalist_bloc += Q.internationalist_soviet_votes_dec;
+}
+if (Q.defensist_split && Q.defensist_soviet_votes_dec) {
+    Q.defensist_bloc += Q.defensist_soviet_votes_dec;
+}
+if (Q.left_sr_split && Q.left_sr_soviet_votes_dec) {
+    Q.internationalist_bloc += Q.left_sr_soviet_votes_dec;
+    Q.moderate_internationalist_bloc += Q.left_sr_soviet_votes_dec;
+}
+if (Q.right_sr_split && Q.right_sr_soviet_votes_dec) {
+    Q.defensist_bloc += Q.right_sr_soviet_votes_dec;
+}
+Q.defensist_bloc = Math.round(Q.defensist_bloc*10)/10;
+Q.internationalist_bloc = Math.round(Q.internationalist_bloc*10)/10;
+!}
+on-display: {!
+// do the graphs
+var data = [
+{"id": "anarchist",
+ "legend": "Anarchist",
+ "name": "Anarchist",
+ "seats": Math.round(Q.anarchist_soviet*10)},
+{"id": "b",
+ "legend": "Bolshevik",
+ "name": "Bolshevik",
+ "seats": Math.round(Q.b_soviet*10)},
+];
+if (Q.internationalist_soviet_votes_dec) {
+    data.push({
+            "id": "internationalist",
+            "legend": "Menshevik-Internationalist",
+            "name": "Menshevik-Internationalist",
+            "seats": Math.round(Q.internationalist_soviet_votes_dec*10)
+            });
+}
+data.push({
+    "id": "m",
+    "legend": "Menshevik",
+    "name": "Menshevik",
+    "seats": Math.round(Q.m_soviet*10)
+});
+if (Q.defensist_soviet_votes_dec) {
+    data.push({
+            "id": "defensist",
+            "legend": "Menshevik-Defensist",
+            "name": "Menshevik-Defensist",
+            "seats": Math.round(Q.defensist_soviet_votes_dec*10)
+            });
+}
+if (Q.left_sr_soviet_votes_dec) {
+    data.push({
+            "id": "left_sr",
+            "legend": "Left-SR",
+            "name": "Left-SR",
+            "seats": Math.round(Q.left_sr_soviet_votes_dec*10)
+            });
+}
+data.push({
+    "id": "sr",
+    "legend": "SR",
+    "name": "SR",
+    "seats": Math.round(Q.sr_soviet*10)
+});
+if (Q.right_sr_soviet_votes_dec) {
+    data.push({
+            "id": "right_sr",
+            "legend": "Right-SR",
+            "name": "Right-SR",
+            "seats": Math.round(Q.right_sr_soviet_votes_dec*10)
+            });
+}
+data.push({
+    "id": "other",
+    "legend": "Others",
+    "name": "Others",
+    "seats": Math.round(Q.other_soviet*10)
+});
+if (window && d3) {
+    var width = 500;
+    var height = 500;
+    var screenWidth = document.getElementById('content').offsetWidth;
+    if (screenWidth < width - 50) {
+        width = screenWidth - 50;
+        height = width;
+        document.getElementById("soviet").style.height = screenWidth/2 + "px";
+    }
+    var parliament = d3.parliament();
+    parliament.width(width).height(height).innerRadiusCoef(0.4);
+    parliament.enter.fromCenter(true).smallToBig(true);
+    parliament.exit.toCenter(false).bigToSmall(true);
+    d3.select("#soviet").datum(data).call(parliament);
+}
+!}
+
+= Soviet Leadership Election
+
+{!<svg id="soviet" style="width: 500px; height: 250px;"> </svg>!}
+
+{!<table>!}
+{!<tr><td>Party</td><td>Vote share</td></tr>!}
+
+{!<tr><td><div class="box b"> </div> !} Bolsheviks: {!</td><td>!} [+ b_soviet +]% {!</td>!}
+
+[? if internationalist_soviet_votes_dec : {!<tr><td><div class="box internationalist"></div> Menshevik-Internationalists: </td><td>!} [+ internationalist_soviet_votes_dec +]% {!</td>!} ?]
+
+{!<tr><td><div class="box m"> </div> !} Mensheviks: {!</td><td>!} [+ m_soviet +]% {!</td>!}
+
+[? if defensist_soviet_votes_dec : {!<tr><td><div class="box defensist"></div> Menshevik-Defensists: </td><td>!} [+ defensist_soviet_votes_dec +]% {!</td>!} ?]
+
+[? if left_sr_soviet_votes_dec : {!<tr><td><div class="box left_sr"></div> !}Left-SRs: {!</td><td>!} [+ left_sr_soviet_votes_dec +]% {!</td>!} ?]
+
+{!<tr><td><div class="box sr"> </div> !} SRs: {!</td><td>!} [+ sr_soviet +]% {!</td>!}
+
+[? if right_sr_soviet_votes_dec : {!<tr><td><div class="box right_sr"></div> !}Right-SRs: {!</td><td>!} [+ right_sr_soviet_votes_dec +]% {!</td>!} ?]
+
+{!<tr><td><div class="box a"> </div> !} Anarchists: {!</td><td>!} [+ anarchist_soviet +]% {!</td>!}
+
+{!<tr><td><div class="box other"> </div> !} Others: {!</td><td>!} [+ other_soviet +]% {!</td>!}
+{!</table>!}
+
+**Blocs:**
+
+Internationalist bloc - Bolsheviks + Anarchists [? if m_leadership = 1 : + Mensheviks ?][? if sr_leadership = 1 : + SRs ?][? if left_sr_soviet_votes_dec: + Left-SRs ?][? if internationalist_soviet_votes_dec: + Menshevik-Internationalists ?] : [+ internationalist_bloc +]%
+
+Defensist bloc - [? if m_leadership = 0 and sr_leadership = 0 : Mensheviks + SRs ?][? if m_leadership = 0 and sr_leadership = 1 : Mensheviks ?][? if m_leadership = 1 and sr_leadership = 0 : SRs ?][? if right_sr_soviet_votes_dec: + Right-SRs ?][? if defensist_soviet_votes_dec: + Menshevik-Defensists ?] : [+ defensist_bloc +]%
+
+# note - this is not an autonomous scene; it's used as a redirect from other events.
+
+[? if internationalist_bloc > defensist_bloc : The internationalists have a plurality, and can thus choose leadership. ?]
+
+[? if defensist_bloc >= internationalist_bloc : The defensists have a plurality, and can thus choose leadership. ?]
+
+- @defensist_leadership
+- @internationalist_leadership
+- @internationalist_bloc_no_bolsheviks
+- @switch_positions
+
+@defensist_leadership
+title: The Defensists will lead.
+view-if: defensist_bloc >= internationalist_bloc
+on-arrival: soviet_chair = "Chkheidze"; soviet_chair_party = "Menshevik" if m_leadership = 0 else soviet_chair_party = "Menshevik-Defensist"; m_in_exco = 1 if m_leadership = 0; sr_in_exco = 1 if sr_leadership = 0;
+
+The Defensist bloc be the leaders of the Soviet. Nikolai Chkheidze, a Menshevik Defensist, has become the Soviet chairman.
+
+@internationalist_leadership
+title: The Internationalists will lead.
+view-if: internationalist_bloc > defensist_bloc
+on-arrival: m_in_exco = 1 if m_leadership = 1; sr_in_exco = 1 if sr_leadership = 1; b_in_exco = 1;
+go-to: trotsky_chair if ((player_party = "m" and m_leadership = 0) or (player_party = "sr" and sr_leadership = 0) or player_party = "k"); choose_i_chair if ((player_party = "m" and m_leadership = 1) or (player_party = "sr" and sr_leadership = 1) or player_party = "b")
+
+The Internationalist bloc will be the leaders of the Soviet.
+
+@internationalist_bloc_no_bolsheviks
+title: Can we form a "moderate Internationalist" bloc without the Bolsheviks and anarchists?
+unavailable-subtitle: This bloc is not large enough.
+view-if: (player_party = "m" and m_leadership = 1) or (player_party = "sr" and sr_leadership = 1)
+choose-if: moderate_internationalist_bloc >= defensist_bloc
+on-arrival: m_in_exco = 1 if m_leadership = 1; sr_in_exco = 1 if sr_leadership = 1
+go-to: choose_i_chair
+
+We have formed a "moderate Internationalist" executive committee of the Petrograd Soviet, consisting of the [? if m_leadership = 1 and sr_leadership = 1 : Mensheviks and SRs ?][? if m_leadership = 0 and sr_leadership = 1 : SRs ?][? if m_leadership = 1 and sr_leadership = 0 : Mensheviks ?] but not the Bolsheviks or anarchists.
+
+@choose_i_chair
+
+Who should be the Soviet chair?
+
+- @trotsky_chair: Leon Trotsky, the Bolshevik.
+- @martov_chair: Julius Martov, the Menshevik.
+- @spiridonova_chair: Maria Spiridonova, the Left-SR.
+
+@trotsky_chair
+view-if: b_in_exco = 1 and trotsky_available = 1
+on-arrival: soviet_chair = "Trotsky"; soviet_chair_party = "Bolshevik";
+
+Leon Trotsky, a Bolshevik, has been elected as chair of the Petrograd Soviet.
+
+@martov_chair
+view-if: martov_available = 1
+on-arrival: soviet_chair = "Martov"; soviet_chair_party = "Menshevik"; soviet_chair_party = "Menshevik-Internationalist" if m_leadership = 0
+
+Julius Martov, a Menshevik Internationalist, has been elected as chair of the Petrograd Soviet.
+
+@sukhanov_chair
+on-arrival: soviet_chair = "Sukhanov"; soviet_chair_party = "Menshevik"; soviet_chair_party = "Menshevik-Internationalist" if m_leadership = 0
+
+Nikolai Sukhanov, a Menshevik Internationalist, has been elected as chair of the Petrograd Soviet.
+
+@spiridonova_chair
+view-if: spiridonova_available = 1
+on-arrival: soviet_chair = "Spiridonova"; soviet_chair_party = "SR"; soviet_chair_party = "Left-SR" if sr_leadership = 0
+
+Maria Spiridonova, a Left-SR, has been elected as chair of the Petrograd Soviet.
+
+
+@switch_positions
+title: Can we switch our party's positions?
+view-if: (player_party = "m") or (player_party = "sr")
+
+Can we switch our party's alignment on the defensist-internationalist scale?
+
+- @m_switch_defensist
+- @m_switch_internationalist
+- @sr_switch_defensist
+- @sr_switch_internationalist
+- @defensist_leadership
+- @internationalist_leadership
+- @internationalist_bloc_no_bolsheviks
+
+@m_switch_defensist
+title: Switch to a defensist position.
+view-if: player_party = "m" and m_leadership = 1
+choose-if: m_internationalist_strength <= m_defensist_strength
+unavailable-subtitle: The defensists are not strong enough.
+on-arrival: m_leadership = 0; m_internationalist_dissent += 20; m_defensist_dissent -= 10; m_defensist_strength += 10
+
+- @soviet_leadership_election: Re-do the leadership vote?
+
+@m_switch_internationalist
+title: Switch to an internationalist position.
+view-if: player_party = "m" and m_leadership = 0
+choose-if: m_internationalist_strength >= m_defensist_strength
+unavailable-subtitle: The internationalists are not strong enough.
+on-arrival: m_leadership = 1; m_internationalist_strength += 10; m_internationalist_dissent -= 10; m_defensist_dissent += 20;
+go-to: m_defensist_split if m_defensist_dissent > 50
+
+We have officially switched our party to a defensist position.
+
+- @soviet_leadership_election: Re-do the leadership vote?
+
+@sr_switch_defensist
+title: Switch to a defensist position.
+view-if: player_party = "sr" and sr_leadership = 1
+choose-if: right_sr_strength >= left_sr_strength
+unavailable-subtitle: The Right-SRs are not strong enough.
+on-arrival: sr_leadership = 0; right_sr_strength += 10; right_sr_dissent -= 10; left_sr_dissent += 20;
+
+- @soviet_leadership_election: Re-do the leadership vote?
+
+@sr_switch_internationalist
+title: Switch to an internationalist position.
+view-if: player_party = "sr" and sr_leadership = 0

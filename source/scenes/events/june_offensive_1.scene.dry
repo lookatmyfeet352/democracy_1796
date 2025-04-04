@@ -1,7 +1,7 @@
 title: [+ war_minister +] Offensive
 subtitle: Finally, the long-awaited offensive is near...
 new-page: true
-view-if: month = 6 and week = 2 and ((player_party = "m" and war_minister_party != "Menshevik") or (player_party = "k" and war_minister_party != "Kadet") or (player_party = "sr" and war_minister_party != "SR") or player_party = "b")
+view-if: month = 6 and week >= 2 and offensive_timer = 0 and ((player_party = "m" and war_minister_party != "Menshevik") or (player_party = "k" and war_minister_party != "Kadet") or (player_party = "sr" and war_minister_party != "SR") or player_party = "b") and not is_armistice and not is_peace
 on-arrival: southwestern_front_soldiers += 50; reserve_soldiers -= 50; morale += 0.1; discipline += 0.1; civilian_industry -= 5; military_industry += 5; military_trains += 5; civilian_trains -= 5;
 max-visits: 1
 tags: event
@@ -25,7 +25,7 @@ Is there anything we can do to stop the offensive?
 - @convince
 - @protest
 - @resign
-- @continue: Never mind;
+- @continue: Never mind; there is nothing we can do.
 
 @convince
 title: Convince the War Minister to cancel the offensive.
@@ -37,9 +37,9 @@ We have successfully convinced War Minister [+ war_minister +] to cancel the pla
 
 @protest
 title: Protest on the streets against the planned offensive.
-on-arrival: in_june_offensive = 1; june_offensive_conclusion_timer = 1; offensive_timer += 8;
+on-arrival: in_june_offensive = 1; june_offensive_conclusion_timer = 1; offensive_timer += 8; attacking = 1; prov_gov_legitimacy -= 3;
 
-Our street protests are large, but the offensive will continue.
+We hold large street demonstrations, but they fail to sway the Provisional Government. The offensive will continue.
 
 
 @resign

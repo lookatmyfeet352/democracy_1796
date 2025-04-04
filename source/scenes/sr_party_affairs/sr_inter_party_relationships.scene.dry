@@ -14,6 +14,7 @@ We can improve our relations with the other democratic or socialist parties.
 - @m
 - @k
 - @b
+- @influence_m
 - @root: We do not need to improve our relations.
 - @easy_discard
 - @cancel_advisor_action
@@ -25,7 +26,13 @@ on-arrival: m_sr_relation += 6*(1-sr_dissent); sr_resources -= 1;
 choose-if: sr_resources >= 1
 subtitle: -1 resource
 
-We have improved our relations with the Party of Socialist-Revolutionaries.
+We have improved our relations with the Mensheviks.
+
+@influence_m
+title: Influence the Mensheviks to be closer to our ideological alignment.
+view-if: sr_leadership = 1 and m_leadership = 0
+
+# TODO
 
 @k
 title: Improve our relations with the Kadets, the middle_class liberal party.

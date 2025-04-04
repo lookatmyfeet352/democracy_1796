@@ -23,6 +23,8 @@ Transportation equipment: [+ transportation_industry +]%
 Capital goods: [+ capital_industry +]%
 
 - @ind_menu: Change industrial production.
+- @improve
+- @demilitarization: Return the industries to civilian footing.
 - @root: No production changes are necessary.
 - @easy_discard
 - @cancel_advisor_action
@@ -137,3 +139,34 @@ choose-if: unused_industry >= 5 and capital_industry < 80
 on-arrival: capital_industry += 5; unused_industry -= 5
 go-to: ind_menu
 
+@improve
+title: Improve industrial production with the aid of the Soviet.
+subtitle: Success depends on our level of cooperation with the Soviet and its efficacy.
+choose-if: soviet_cooperation >= 0.7 and soviet_efficacy >= 0.7 and improve_production_count <= capital_industry
+unavailable-subtitle: [? if soviet_cooperation <= 0.7: The Provisional Government does not have enough cooperation with the Soviet. ?][? if soviet_efficacy < 0.7 : The Soviet does not have the administrative capacity to help. ?][? if improve_production_count >= capital_industry : There is not much room to improve without more capital production. ?]
+on-arrival: improve_production_count += 1; industry += 10*soviet_efficacy*soviet_cooperation*prov_gov_efficacy;
+
+With the cooperation of the Petrograd Soviet, We have embarked on a project to organize industrial production and improve the efficiency of our industry. [? if prov_gov_efficacy < 0.6 : The inefficiency of our own government is a hindrance here. ?]
+
+
+@demilitarization
+title: Return the industries to civilian footing.
+subtitle: This is a major undertaking - we will shift all of our military industries to various civilian uses.
+view-if: (is_armistice or is_peace) and not is_demilitarized
+on-arrival: {!
+Q.is_demilitarized = 1;
+var mil = Q.military_industry;
+// distribute half to other stuff...
+Q.civilian_industry += Math.round(mil*3/4);
+Q.agricultural_industry += Math.round(mil*1/8);
+Q.capital_industry += Math.round(mil*1/8);
+Q.transportation_industry += Math.round(mil*1/16);
+var total = Q.civilian_industry + Q.agricultural_industry + Q.capital_industry + Q.transportation_industry;
+if (total < 100) {
+    Q.civilian_industry += 100 - total;
+} else if (total > 100) {
+    Q.civilian_industry -= total - 100;
+}
+!}
+
+We are rapidly demilitarizing our industries, shifting everything to various forms of civilian production.

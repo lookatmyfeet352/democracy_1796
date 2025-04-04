@@ -1,6 +1,5 @@
 title: Rural Policy
 choose-if: k_rural_policy_available = 1
-unavailable-subtitle: Rural policy is not a Menshevik priority.
 
 = Rural Policy
 

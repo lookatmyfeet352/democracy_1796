@@ -191,8 +191,8 @@ We have demobilized [+ sm +] divisions from the reserve.
 
 @prepare
 subtitle: -2 budget, -40 movement capacity
-unavailable-subtitle: [? if remaining_movement_capacity < 40 : We do not have enough movement capacity. ?] [? if offensive_timer > 0 : It is too soon to launch another offensive. ?]
-choose-if: remaining_movement_capacity >= 40 and offensive_timer <= 0
+unavailable-subtitle: [? if remaining_movement_capacity < 40 : We do not have enough movement capacity. ?] [? if offensive_timer > 0 : It is too soon to launch another offensive. ?] [? if is_armistice or is_peace : We have an armistice. ?]
+choose-if: remaining_movement_capacity >= 40 and offensive_timer <= 0 and not is_armistice and not is_peace
 
 Which front should prepare for an offensive?
 
@@ -327,8 +327,8 @@ We have restored some measure of military discipline to the ranks. This can rais
 
 @loyal_soldiers
 title: Recruit "Battalions of Death".
-subtitle: These will be loyal and disciplined units aimed at reinforcing morale. -1 budget.
-on-arrival: budget -= 1; reserve_soldiers += 5; morale += 0.05; discipline += 0.05; loyal_troops_strength += 10; loyal_troops_militancy = 4; death_battalions += 1
+subtitle: These will be loyal and disciplined units aimed at reinforcing morale. -2 budget.
+on-arrival: budget -= 2; reserve_soldiers += 5; morale += 0.05; discipline += 0.05; loyal_troops_strength += 10; loyal_troops_militancy = 4; death_battalions += 1
 max-visits: 1
 
 We have recruited "Battalions of Death", units of dedicated volunteers loyal to the cause of defending the homeland.

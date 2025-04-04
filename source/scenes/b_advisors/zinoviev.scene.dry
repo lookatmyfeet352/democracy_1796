@@ -1,0 +1,35 @@
+title: Grigory Zinoviev
+is-pinned-card: true
+tags: advisor
+card-image: img/portraits/b/zinoviev.jpg
+view-if: zinoviev_advisor = 1 and player_party = "b"
+new-page: true 
+
+= Grigory Zinoviev
+
+Grigory Zinoviev wass one of Lenin's closest companions in exile, but he has taken a more moderate approach.
+
+# actions: organizing (same as card), agitation against the provisional government, 
+
+- @support_moderate
+- @organize_soldiers
+- @polemics
+- @radicalization
+- @root: Return to main
+
+@support_moderate
+title: Support or adopt Moderate ideology.
+choose-if: advisor_action_timer = 0
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?]
+on-arrival: advisor_action_timer = 4; zinovievist_dissent -= 5; center_dissent -= 10; moderate_dissent -= 10;
+go-to: b_ideology.support_moderate if moderate_strength <= 40; b_ideology.adopt_moderate if moderate_strength > 40
+
+
+@organize_soldiers
+title: Organize soldiers
+
+@polemics
+title: Polemics
+
+@radicalization
+title: Radicalization

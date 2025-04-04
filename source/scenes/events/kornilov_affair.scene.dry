@@ -1,11 +1,13 @@
 title: Kornilov Affair
 subtitle: An attempted coup by General Lavr Kornilov?
 new-page: true
-view-if: (month >= 8 and week >= 3) and prime_minister = "Kerensky" and not b_in_prov_gov and coup_progress > 2
+view-if: (month >= 8 and week >= 3) and prime_minister = "Kerensky" and not b_in_prov_gov and coup_progress < 10
 on-arrival: kornilov_affair_seen += 1
 max-visits: 1
 face-image: img/kornilov_2.jpg
 tags: event
+
+# TODO: fake kornilov affair if coup_progress < 10, real kornilov coup if coup_progress >= 10
 
 = Kornilov Affair
 

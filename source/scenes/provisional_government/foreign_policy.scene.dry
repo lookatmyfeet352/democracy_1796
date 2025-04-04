@@ -45,6 +45,7 @@ We have gotten new loans from the allies.
 
 @technical_assistance
 title: Negotiate for more technical assistance.
+unavailable-subtitle: We do not have good enough relations with the Allies.
 choose-if: west_relation >= 55
 
 Unfortunately, all foreign shipments must go through either Vladivostok in the Far East, where it has to be transported via the rickety Trans-Siberian Railroad, or Arkhangel'sk in the far north, where there is only a single train line leading to central Russia.
@@ -62,7 +63,7 @@ unavailable-subtitle: Our party does not support this.
 view-if: armistice_progress = 0
 on-arrival: armistice_progress += 1; west_relation -= 10;
 
-We have opened ceasefire negotiations with the Central Powers.
+We have opened ceasefire negotiations with the Central Powers. We should be able to sign a ceasefire soon...
 
 @peace_negotiate_2
 title: Sign a ceasefire with the Central Powers.
@@ -87,4 +88,40 @@ We are continuing with the negotiations for a permanent peace.
 
 @sign_peace
 title: We are ready for a peace treaty.
+view-if: central_negotiations >= 3 and not is_peace
+go-to: treaty_neutral if military_progress >= 0; treaty_harsh if military_progress < 0 and military_progress >= -2; treaty_harsh if military_progress < -2
+
 # only viewable if internationalists are in power
+
+@treaty_neutral
+on-arrival: peace_terms = 0;
+
+= A relatively neutral treaty
+
+The proposed peace treaty essentially recognizes Germany's existing territorial gains in Poland and the Baltic states, without any harsh indemnities.
+
+- @sign_peace_2: Sign the peace!
+- @renegotiate: Can we renegotiate the peace?
+
+@treaty_harsh
+on-arrival: peace_terms = -1;
+
+= A harsh treaty
+
+The proposed treaty is somewhat harsh. It recognizes Germany's territorial gains in Poland and the Baltic states, and also includes payments of 
+
+@treaty_severe
+on-arrival: peace_terms = -2;
+
+= A severe treaty
+
+The proposed treaty is severe enough to cause a backlash in public opinion.
+
+@sign_peace_2
+
+We have signed the Treaty of Brest-Litovsk.
+
+@renegotiate
+on-arrival: central_negotiations = 0;
+
+

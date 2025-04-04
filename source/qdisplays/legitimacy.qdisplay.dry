@@ -1,5 +1,5 @@
 
-(0..14.9) nonexistent
+(..14.9) nonexistent
 (14.9..29.9) very low
 (29.9..39.9) low
 (39.9..54.9) medium

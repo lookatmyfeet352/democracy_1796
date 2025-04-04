@@ -21,11 +21,11 @@ if (Q.revolutionary_victory && Q.player_party == 'b') {
 
 
 if (Q.ca_held) {
-    if (Q.player_party = "m") {
+    if (Q.player_party == "m") {
         this.achieve('historical_materialism');
-    } else if (Q.player_party = "sr") {
+    } else if (Q.player_party == "sr") {
         this.achieve('land_and_liberty');
-    } else if (Q.player_party = "k") {
+    } else if (Q.player_party == "k") {
         this.achieve('constitutional_democracy');
     }
 }
@@ -38,6 +38,14 @@ if (Q.ca_held) {
 
 - #endings
 - @end_game: End game.
+
+@ca_held
+title: Constituent Assembly elections held!
+view-if: ca_held
+tags: endings
+go-to: eg_menu
+
+The Constituent Assembly elections have been held! So much is riding on this new assembly to solve all of Russia's problems.
 
 @red_october
 title: Red October
@@ -95,6 +103,21 @@ go-to: eg_menu
 
 We have won at least one battle with our democratized army!
 
+@hunger_abated
+title: Hunger has been abated somewhat.
+view-if: hunger <= 20
+tags: endings
+go-to: eg_menu
+
+There is still a long way to go, but we have successfully ameliorated the food shortages.
+
+@inflation_lowered
+title: Inflation has been lowered.
+view-if: monthly_inflation < 3
+tags: endings
+go-to: eg_menu
+
+Inflation is still far too high, but it has been successfully reduced.
 
 
 @achievements
@@ -120,6 +143,7 @@ go-to: eg_menu if started == 1; root.start_menu_2 if started == 0
 
 [? if game_achievement_victory : **Victory** - win at least one battle in the Great War. ?]
 
+[? if game_achievement_womens_battalion : **Women's Battalion** - form the Women's Battalion of Death. ?]
 
 = Completed Achievements Overall
 
@@ -136,8 +160,9 @@ go-to: eg_menu if started == 1; root.start_menu_2 if started == 0
 
 [? if achievement_peace : **Zimmerwald** - sign an armistice with the Central Powers. ?]
 
-
 [? if achievement_victory : **Victory** - win at least one battle in the Great War. ?]
+
+[? if achievement_womens_battalion : **Women's Battalion** - form the Women's Battalion of Death. ?]
 
 
 = Incomplete Achievements
@@ -156,6 +181,8 @@ go-to: eg_menu if started == 1; root.start_menu_2 if started == 0
 
 
 [? if not achievement_victory : **Victory** - win at least one battle in the Great War. ?]
+
+[? if not achievement_womens_battalion : **Women's Battalion** - form the Women's Battalion of Death. ?]
 
 @end_game
 game-over: true

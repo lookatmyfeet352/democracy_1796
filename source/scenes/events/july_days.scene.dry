@@ -2,7 +2,7 @@ title: [+ month : month +] Crisis
 subtitle: The people demand "All Power to the Soviets" and an end to the war...
 new-page: true 
 view-if: month >= 7 and (june_offensive_defeat = 1 or military_progress < 0) and war_weariness >= 60 and july_days_seen = 0
-on-arrival: july_days_seen += 1; workers_b += 10; soldiers_b += 10; b_threat += 1;
+on-arrival: july_days_seen += 1; workers_b += 12*(1-b_dissent); soldiers_b += 15*(1-b_dissent); b_threat += 1;
 face-image: img/riot.jpg
 tags: event 
 
@@ -20,7 +20,7 @@ The workers and soldiers of Petrograd are increasingly tired of the war; our rec
 title: We will take power.
 unavailable-subtitle: Our party does not support this.
 view-if: (player_party = "b" and b_in_exco) or (player_party = "m" and m_in_exco) or (player_party = "sr" and sr_in_exco)
-choose-if: (player_party = "b" and b_in_exco) or (player_party = "m" and m_in_exco and m_prov_gov_policy >= 3) or (player_party = "sr" and sr_in_exco and sr_prov_gov_policy >= 3) 
+choose-if: (player_party = "b" and b_in_exco) or (player_party = "m" and m_in_exco and m_prov_gov_policy >= 4) or (player_party = "sr" and sr_in_exco and sr_prov_gov_policy >= 4)
 
 The Provisional Government will defend itself, of course.
 
@@ -68,5 +68,5 @@ After some streetfighting and arrests, the protestors eventually grow tired, and
 @shuffle_cabinet
 title: We can use this opportunity to increase our participation in the Provisional Government...
 view-if: prime_minister = "Kerensky" and (player_party = "sr" or (player_party = "m" and m_sr_relation >= 50))
-on-arrival: m_influence += 15; sr_influence += 15;
+on-arrival: m_influence += 15; sr_influence += 15; m_in_prov_gov = 1; sr_in_prov_gov = 1;
 go-to: sr_join_prov_gov if player_party = "sr"; m_join_prov_gov if player_party = "m"

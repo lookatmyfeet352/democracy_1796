@@ -4,7 +4,7 @@ view-if: sr_party_disunity_timer <= 0 and (sr_dissent >= 0.3 or ((left_sr_dissen
 on-arrival: sr_party_disunity_timer += 3; week_actions += 1
 frequency: 200
 is-card: true
-card-image: img/rsdlp_2.jpg
+card-image: img/soviet_leaders.jpg
 tags: sr_party
 
 = Party Disunity
@@ -16,7 +16,12 @@ The Socialist-Revolutionary Party is being torn apart by internal dissent. Upset
 [? if right_sr_dissent > 30 : The Right-SRs are upset at the direction of the party, arguing that it is too radical. ?]
 
 - @party_discipline
+- @concessions_left_srs
+- @concessions_right_srs
+- @expel_left_srs
+- @expel_right_srs
 - @do_nothing
+- @easy_discard
 
 @party_discipline
 title: Enforce party discipline.
@@ -27,17 +32,26 @@ Enforcing party discipline reduces dissent, but it leads to demoralization among
 @concessions_left_srs
 title: Give concessions to the Left-SRs.
 view-if: left_sr_dissent > 30
+on-arrival: left_sr_dissent -= 6; right_sr_dissent += 6;
+
+We have responded by adopting more Left-SR positions. The right wing is somewhat displeased.
+
 
 @concessions_right_srs
 title: Give concessions to the Right-SRs.
 view-if: right_sr_dissent > 30
+on-arrival: right_sr_dissent -= 6; left_sr_dissent += 6;
+
+We have responded by adopting more Right-SR positions. The left wing are somewhat displeased.
+
 
 @expel_left_srs
 title: Expel the Left-SRs.
-view-if: left_sr_dissent > 30
+view-if: left_sr_dissent > 40
 choose-if: left_sr_strength <= right_sr_strength
 unavailable-subtitle: The Left-SRs are too strong.
 on-arrival: left_sr_split = 1;
+go-to: sr_left_split
 
 @expel_right_srs
 title: Expel the Right-SRs.
@@ -45,11 +59,11 @@ view-if: right_sr_dissent > 30
 choose-if: right_sr_strength <= left_sr_strength
 unavailable-subtitle: The Right-SRs are too strong.
 on-arrival: right_sr_split = 1;
-
-We have expelled most of the dissenting Right-SRs and Social-Patriot! They respond by forming their own "Menshevik-Right-SR" party. This costs us a great deal of support, and tanks our relations with the Kadets.
+go-to: sr_right_split
 
 
 @do_nothing
 title: Let the factions argue with themselves.
+on-arrival: right_sr_dissent += 4; left_sr_dissent += 4;
 
 Let the factions bicker; perhaps dissent is healthy for the party.

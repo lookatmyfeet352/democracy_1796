@@ -2,7 +2,7 @@ title: April Theses
 subtitle: Vladimir Lenin has a radical set of ideas.
 new-page: true
 view-if: year = 1917 and month = 4 and week = 2 and player_party = "b" and lenin_available
-on-arrival: leninist_strength += 20; workers_b += 6; soldiers_b += 6; peasants_b += 3; b_prov_gov_policy = 4; b_war_policy = 3;
+on-arrival: leninist_strength += 20 if not b_is_player; workers_b += 6 if not b_is_player; soldiers_b += 6 if not b_is_player; peasants_b += 3 if not b_is_player; b_prov_gov_policy = 4 if not b_is_player; b_war_policy = 3 if not b_is_player;
 tags: event
 max-visits: 1
 

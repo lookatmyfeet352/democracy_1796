@@ -518,38 +518,138 @@ table {
     border-spacing: 0.5em;
 }
 
-/* Styles for parties */
-.seat.kpd {
-    fill: #8B0000;
+/* Styles for parties - TODO: have the player party be highlighted. */
+/* Use CSS variables for the colors... */
+:root {
+  --anarchist: #000000;
+  --b: #8B0000;
+  --m: #E3000F;
+  --d: #fc7a82;
+  --i: #ff3c00;
+  --k: #DCCA4A;
+  --sr: #c700a2;
+  --lsr: #c00050;
+  --rsr: #c268ff;
+  --usr: #FFBB5A;
+  --ps: #fcc761;
+  --m_n: #00780A;
+  --m_s: #76f981;
+  --j_n: #3F7BC1;
+  --other: #919191;
+  --dashnak: #fe67ff;
+  --conservative: #0030ff;
+  --cossack: #758fff;
 }
-.seat.spd {
-    fill: #E3000F;
-    stroke: #000;
-    stroke-width: 1.5px;
+
+.seat.anarchist {
+    fill: var(--anarchist);
 }
-.seat.ddp {
-    fill: #DCCA4A;
+.seat.b {
+    fill: var(--b);
 }
-.seat.z {
-    fill: #000;
+.seat.m {
+    fill: var(--m);
 }
-.seat.bvp {
-    fill: #69A2BE;
+.seat.defensist {
+    fill: var(--d);
 }
-.seat.dvp {
-    fill: #D5AC27;
+.seat.internationalist {
+    fill: var(--i);
+}
+.seat.k {
+    fill: var(--k);
+}
+.seat.sr {
+    fill: var(--sr);
+}
+.seat.left_sr {
+    fill: var(--lsr);
+}
+.seat.right_sr {
+    fill: var(--rsr);
+}
+.seat.ukrainian_sr {
+    fill: var(--usr);
+}
+.seat.popular_socialist {
+    fill: var(--ps);
+}
+.seat.muslim_national {
+    fill: var(--m_n);
+}
+.seat.muslim_socialist {
+    fill: var(--m_s);
+}
+.seat.jewish_national {
+    fill: var(--j_n);
 }
 .seat.other {
-    fill: #909090;
+    fill: var(--other);
 }
-.seat.dnvp {
-    fill: #3F7BC1;
+.seat.dashnak {
+    fill: var(--dashnak);
 }
-.seat.nsdap {
-    fill: #954B00;
+.seat.conservative {
+    fill: var(--conservative);
 }
-.seat.sapd {
-    fill: #C40000;
+.seat.cossack {
+    fill: var(--cossack);
+}
+
+/* boxes... */
+.box.a {
+    background-color: var(--anarchist);
+}
+.box.b {
+    background-color: var(--b);
+}
+.box.m {
+    background-color: var(--m);
+}
+.box.defensist {
+    background-color: var(--d);
+}
+.box.internationalist {
+    background-color: var(--i);
+}
+.box.k {
+    background-color: var(--k);
+}
+.box.sr {
+    background-color: var(--sr);
+}
+.box.left_sr {
+    background-color: var(--lsr);
+}
+.box.right_sr {
+    background-color: var(--rsr);
+}
+.box.ukrainian_sr {
+    background-color: var(--usr);
+}
+.box.popular_socialist {
+    background-color: var(--ps);
+}
+.box.muslim_national {
+    background-color: var(--m_n);
+}
+.box.muslim_socialist {
+    background-color: var(--m_s);
+}
+.box.jewish_national {
+    background-color: var(--j_n);
+}
+.box.other {
+    background-color: var(--other);
+}
+.box.dashnak {
+    background-color: var(--dashnak);
+}
+.box.conservative {
+    background-color: var(--conservative);
+}
+.box.cossack {
+    background-color: var(--cossack);
 }
 
 .tooltip-text {

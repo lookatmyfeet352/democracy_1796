@@ -13,20 +13,40 @@ Within the Bolsheviks, there are two major ideological currents - a "moderate" c
 
 Which ideological current should be supported?
 
-- @moderate
-- @leninist
+- @support_moderate
+- @adopt_moderate
+- @support_leninist
+- @adopt_leninist
 - @root: No, we will not change any of our ideological positions.
 - @easy_discard
 
 
-@moderate
+
+@support_moderate
 title: Support the moderate course of Kamenev and Zinoviev.
+view-if: moderate_strength < leninist_strength
+on-arrival: moderate_strength += 10; leninist_dissent += 10;
+
+The moderates support an internationalist war policy (i.e. negotiations to end the war), workers' councils, and the formation of an all-socialist provisional government until the Constituent Assembly.
+
+
+@adopt_moderate
+title: Adopt the moderate course of Kamenev and Zinoviev.
+view-if: moderate_strength >= leninist_strength
 on-arrival: b_war_policy = 2; b_industrial_policy = 1; b_prov_gov_policy = 3; b_land_policy = 1; moderate_strength += 10; leninist_dissent += 10;
 
 The moderates support an internationalist war policy (i.e. negotiations to end the war), workers' councils, and the formation of an all-socialist provisional government until the Constituent Assembly.
 
-@leninist
+@support_leninist
 title: Support Lenin's radical plans.
+view-if: leninist_strength < moderate_strength
+on-arrival: b_war_policy = 3; b_industrial_policy = 3; b_prov_gov_policy = 4; b_land_policy = 2; leninist_strength += 10; moderate_dissent += 10;
+
+Lenin supports an immediate end to the war without conditions, state or collective ownership of industries, and the overthrow of the Provisional Government in favor of one based on the Soviet of Workers' and Soldiers' Deputies.
+
+@adopt_leninist
+title: Support Lenin's radical plans.
+view-if: leninist_strength >= moderate_strength
 on-arrival: b_war_policy = 3; b_industrial_policy = 3; b_prov_gov_policy = 4; b_land_policy = 2; leninist_strength += 10; moderate_dissent += 10;
 
 Lenin supports an immediate end to the war without conditions, state or collective ownership of industries, and the overthrow of the Provisional Government in favor of one based on the Soviet of Workers' and Soldiers' Deputies.

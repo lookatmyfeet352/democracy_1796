@@ -29,20 +29,23 @@ Food shortage: [+ hunger +]%
 
 @crackdown
 title: Crack down on black markets.
+on-arrival: workers_m += 3*(1-m_dissent)*soviet_efficacy if m_in_exco; workers_sr += 3*(1-sr_dissent)*soviet_efficacy if sr_in_exco; workers_b += 2*(1-b_dissent)*soviet_efficacy if b_in_exco
+
+Cracking down on black markets, hoarders, and profiteers is politically popular, but it does not actually substantially improve the food situation.
 
 @coops
 title: Work with the cooperatives to organize food acquisition and distribution.
 unavailable-subtitle: The Soviet does not have the efficacy to do this.
 choose-if: soviet_organization >= 1 or soviet_efficacy >= 0.6
-on-arrival: food_coops += 1; food_sold += 0.01;
+on-arrival: food_coops += 1; food_sold += 0.01; workers_m += 2*soviet_efficacy if m_in_exco; workers_sr += 2*soviet_efficacy if sr_in_exco; workers_b += 2*soviet_efficacy if b_in_exco
 
-We are working with the cooperatives to accelerate the 
+We are working with the cooperatives to improve the food purchasing and distribution process.
 
 @acquire
 title: Send teams into the countryside to acquire food.
 subtitle: -1 resource
 unavailable-subtitle: [? if soviet_organization < 2 and soviet_efficacy < 0.7 : The Soviet does not have the efficacy to do this. ?][? if (player_party = "sr" and sr_resources < 1) or (player_party = "m" and m_resources < 1) or (player_party = "b" and b_resources < 1) : Not enough resources. ?]
 choose-if: (soviet_organization >= 2 or soviet_efficacy >= 0.7) and ((player_party = "sr" and sr_resources >= 1) or (player_party = "m" and m_resources >= 1) or (player_party = "b" and b_resources >= 1))
-on-arrival: food_teams += 1; food_sold += 0.02;
+on-arrival: food_teams += 1; b_resources -= 1 if player_party = "b"; m_resources -= 1 if player_party = "m"; sr_resources -= 1 if player_party = "sr"; food_sold += 0.02*soviet_efficacy; workers_m += 4*soviet_efficacy if m_in_exco; workers_sr += 4*soviet_efficacy if sr_in_exco; workers_b += 4*soviet_efficacy if b_in_exco
 
 We have sent teams into the countryside to acquire food. These teams are received with hostility by the peasantry, leading to tensions between the Soviets and the countryside.

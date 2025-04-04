@@ -28,7 +28,7 @@ go-to: civil_rights
 title: Military Policy
 subtitle: Kerensky is the War Minister.
 choose-if: advisor_action_timer = 0 and war_minister = "Kerensky"
-unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?] [? if war_minister != "Kerensky" : Kerensky is not the Justice Minister. ?]
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?] [? if war_minister != "Kerensky" : Kerensky is not the War Minister. ?]
 on-arrival: advisor_action_timer = 4; war_policy_timer -= 4; last_advisor_action = 1
 go-to: military_policy
 

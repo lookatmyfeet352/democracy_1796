@@ -1,7 +1,7 @@
 title: German Offensive
 subtitle: The enemy is making their move...
 new-page: true
-view-if: month >= 9 and best_front_ratio > 1 and not is_armistice and armistice_progress = 0
+view-if: month >= 9 and best_front_ratio > 1 and not is_armistice and armistice_progress = 0 and not is_peace
 on-arrival: enemy_front = best_enemy_front; front = best_front; attacking = 0; in_defensive_battle = 1;
 max-visits: 1
 tags: event
