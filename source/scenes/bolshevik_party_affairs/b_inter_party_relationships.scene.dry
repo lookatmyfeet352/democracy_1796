@@ -12,8 +12,7 @@ tags: b_party
 We can improve our relations with the other democratic or socialist parties.
 
 - @sr
-- @k
-- @b
+- @m
 - @root: We do not need to improve our relations.
 - @easy_discard
 - @cancel_advisor_action
@@ -27,18 +26,10 @@ subtitle: -1 resource
 
 We have improved our relations with the Party of Socialist-Revolutionaries.
 
-@k
-title: Improve our relations with the Kadets, the middle_class liberal party.
-on-arrival: b_k_relation += 5*(1-b_dissent); b_k_relation -= 3 if internationalist_strength >= defensist_strength + social_patriot_strength or b_prov_gov_policy >= 2 or b_war_policy >= 2; b_resources -= 1;
+@m
+title: Can we repair our relations with the Mensheviks?
+on-arrival: m_b_relation += 5*(1-b_dissent); m_b_relation -= 3 if leninist_strength >= moderate_strength; b_resources -= 1;
 choose-if: b_resources >= 1
 subtitle: -1 resource
 
-We are building our ties with the Kadets. [? if internationalist_strength >= defensist_strength + social_patriot_strength or b_war_policy >= 2 : Our support of Internationalism makes it more difficult to build relationships, as they consider our anti-war ideas to be treasonous. ?][? if b_prov_gov_policy >= 2: Our opposition to the Provisional Government makes improving relations difficult. ?]
-
-@b
-title: Can we repair our relations with the Bolsheviks?
-on-arrival: b_b_relation += 5*(1-b_dissent); b_b_relation -= 3 if leninist_strength >= moderate_strength or b_war_policy <= 1 or b_prov_gov_policy <= 1; b_resources -= 1;
-choose-if: b_resources >= 1
-subtitle: -1 resource
-
-We have attempted to build closer ties with the Bolsheviks, our wayward cousins in the RSDLP. [? if leninist_strength >= moderate_strength : The influence of Lenin makes it difficult for us to build these relationships. ?][? if b_war_policy <= 1 : Our defensist war policy makes it difficult to improve relations. ?][? if b_prov_gov_policy <= 1: Our support of the Provisional Government makes it difficult to improve relations. ?]
+We have attempted to build closer ties with the Mensheviks, our wayward cousins in the RSDLP. [? if leninist_strength >= moderate_strength : The influence of Lenin makes it difficult for us to build these relationships. ?]

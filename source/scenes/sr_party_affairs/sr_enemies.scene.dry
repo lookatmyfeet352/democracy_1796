@@ -19,13 +19,13 @@ In our media and campaign materials, who should we consider our primary enemies?
 
 @counterrevolutionaries
 title: Counterrevolutionary forces, Black Hundreds, [? if kornilov_affair_seen : Kornilovites, ?] and the like.
-on-arrival: workers_sr += 3*(1-sr_dissent); sr_b_relation += 3*(1-sr_dissent); sr_m_relation += 3*(1-sr_dissent); left_sr_dissent -= 2; right_sr_dissent -= 2;
+on-arrival: workers_sr += 3*(1-sr_dissent); b_sr_relation += 3*(1-sr_dissent); sr_m_relation += 3*(1-sr_dissent); left_sr_dissent -= 2; right_sr_dissent -= 2;
 
 Attacking counterrevolutionary forces is popular among all factions of the SRs.
 
 @bourgeois
 title: The Kadets and other bourgeois parties.
-on-arrival: sr_k_relation -= 8; left_sr_dissent -= 4; left_sr_strength += 5*(1-sr_dissent); right_sr_dissent += 4; sr_b_relation += 5*(1-sr_dissent); soviet_cooperation -= 0.05;
+on-arrival: sr_k_relation -= 8; left_sr_dissent -= 4; left_sr_strength += 5*(1-sr_dissent); right_sr_dissent += 4; b_sr_relation += 5*(1-sr_dissent); soviet_cooperation -= 0.05;
 
 Attacking the Kadets is popular among the Left-SRs, but it might implede the cooperation between the Soviet and the Provisional Government.
 
@@ -37,6 +37,6 @@ Attacking the Bolsheviks is unpopular with the Left-SRs, but popular among the r
 
 @germany
 title: The only enemies should be the Germans!
-on-arrival: right_sr_strength += 5*(1-sr_dissent); right_sr_dissent -= 3; left_sr_dissent += 7; sr_k_relation += 4*(1-sr_dissent); sr_b_relation -= 4; soldiers_sr -= 2; soviet_cooperation += 0.05*(1-sr_dissent);
+on-arrival: right_sr_strength += 5*(1-sr_dissent); right_sr_dissent -= 3; left_sr_dissent += 7; sr_k_relation += 4*(1-sr_dissent); b_sr_relation -= 4; soldiers_sr -= 2; soviet_cooperation += 0.05*(1-sr_dissent);
 
 Nationalistic propaganda is highly unpopular among the Left-SRs, and among the soldiers who wish to stop the war. However, it raises our standing with the Kadets, and improves the position of the defensist Right-SRs within the party.

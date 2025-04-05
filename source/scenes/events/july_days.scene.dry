@@ -8,7 +8,7 @@ tags: event
 
 = [+ month : month +] Crisis
 
-The workers and soldiers of Petrograd are increasingly tired of the war; our recent defeats have not helped. The soldiers still in the garrison and the sailors of Kronstadt are demanding that the Soviet take power over the Provisional Government.
+The workers and soldiers of Petrograd are increasingly tired of the war; our recent defeats have not helped. Hundreds of thousands of workers, soldiers, and sailors have marched upon the Soviet, demanding that the Soviet take power over the Provisional Government.
 
 - @take_power
 - @negotiate
@@ -17,17 +17,68 @@ The workers and soldiers of Petrograd are increasingly tired of the war; our rec
 - @chaos
 
 @take_power
-title: We will take power.
-unavailable-subtitle: Our party does not support this.
-view-if: (player_party = "b" and b_in_exco) or (player_party = "m" and m_in_exco) or (player_party = "sr" and sr_in_exco)
-choose-if: (player_party = "b" and b_in_exco) or (player_party = "m" and m_in_exco and m_prov_gov_policy >= 4) or (player_party = "sr" and sr_in_exco and sr_prov_gov_policy >= 4)
+title: This is an opportunity to finally take power for the Soviet!
+unavailable-subtitle: [? if (player_party = "b" and b_prov_gov_policy >= 4) or (player_party = "m" and m_in_exco and m_prov_gov_policy >= 4) or (player_party = "sr" and sr_in_exco and sr_prov_gov_policy >= 4): Our party does not support this. ?][? if player_party = "b" and not b_in_exco: We must be in the Soviet executive committee. ?]
+view-if: (player_party = "b") or (player_party = "m" and m_in_exco) or (player_party = "sr" and sr_in_exco)
+choose-if: (player_party = "b" and b_in_exco and b_prov_gov_policy >= 4) or (player_party = "m" and m_in_exco and m_prov_gov_policy >= 4) or (player_party = "sr" and sr_in_exco and sr_prov_gov_policy >= 4)
 
-The Provisional Government will defend itself, of course.
+Many Bolsheviks would use this crisis as an opportunity to fight and overthrow the Provisional Government.
+
+[? if rev_progress < 4: Our revolutionary preparations are inadequate. Can we really take power at this moment? ?]
+
+- @info: What is the distribution of forces?
+- @nothing: No, we are not ready...
+
+@info
+
+On our side are the troops of the garrison, [+ garrison_strength +] thousand in total. Support for the Bolsheviks is [+ garrison_b_loyalty : strength_2 +], although the our leadership will raise this. The workers' militia has [+ workers_militia_strength +] thousand members, and support for the Bolsheviks is [+ workers_militia_b_loyalty : strength_2 +]. 
+
+[? if rev_progress < 4: Despite our popular support, we have not yet made tactical preparations for this action. Our leadership and organization are not yet in place. ?]
+
+Opposing us will be the city militias, the loyal troops (Cossacks and Death Battalions), and the Mensheviks and SRs, most of whose members will oppose us (with the exception of the Left-SRs. [? if prov_gov_legitimacy < 40: The Provisional Government is weak and seen as illegitimate. This is good for us. ?]
+
+- @take_power_2: Yes, we are ready to fight!
+- @nothing: No, we are not ready...
+
+@take_power_2
+on-arrival: soldiers_b += 5*(1-b_dissent); workers_militia_b_loyalty += 5*(1-b_dissent);
+
+Finally, our organization acts. The armed demonstrators are given direction, and turned against the Winter Palace...
+
+- @the_battle: There will be a battle...
+
+@the_battle
+go-to: civil_war
+set-jump: post_battle
+
+@post_battle
+go-to: prov_gov_win if prov_gov_victory; rev_win if revolutionary_victory
+
+@prov_gov_win
+on-arrival: workers_b -= 15; soldiers_b -= 15; workers_militia_b_loyalty -= 15;
+achievement: rev_failed
+
+= Provisional Government Victory
+
+In the end, our forces were not strong enough to take on the Provisional Government. With many casualties, our troops scattered, and our leadership arrested. This is the end of the Bolsheviks, for now.
+
+- @game_over
+
+@rev_win
+achievement: red_october
+
+= Bolshevik Victory
+
+We have won! Our forces have taken control of key government locations, and arrested their leaders. The bourgeois government will be consigned to the dustbin of history, and the dictatorship of the proletariat will commence.
+
+- @game_over
+
 
 # TODO: battle
 
 @negotiate
 title: We can negotiate and wait out the demonstrators.
+subtitle: The Soviet is not ready to take power right now.
 view-if: (player_party = "b" and b_in_exco) or (player_party = "m" and m_in_exco) or (player_party = "sr" and sr_in_exco) or (player_party = "k")
 on-arrival: kadets_resign = 1 if prime_minister = "Lvov"; prime_minister = "Kerensky" if prime_minister = "Lvov"; prime_minister_party = "SR" if prime_minister_party = "Independent"; prov_gov_legitimacy -= 8; workers_militia_strength -= 5;
 
@@ -40,8 +91,8 @@ After some streetfighting and arrests, the protestors eventually grow tired, and
 
 @nothing
 title: We are paralyzed by indecision!
-view-if: player_party = "b"
-on-arrival: kadets_resign = 1 if prime_minister = "Lvov"; prime_minister = "Kerensky" if prime_minister = "Lvov"; prime_minister_party = "SR" if prime_minister_party = "Independent";
+view-if: player_party = "b" or (player_party = "sr" and not sr_in_prov_gov) or (player_party = "m" and not m_in_prov_gov)
+on-arrival: kadets_resign = 1 if prime_minister = "Lvov"; prime_minister = "Kerensky" if prime_minister = "Lvov"; prime_minister_party = "SR" if prime_minister_party = "Independent"; prime_minister_party = "Right-SR" if right_sr_split;
 
 After some streetfighting and arrests, the protestors eventually grow tired, and return to their homes and barracks.
 
@@ -50,8 +101,8 @@ After some streetfighting and arrests, the protestors eventually grow tired, and
 
 @support
 title: Support the protestors!
-view-if: player_party = "b"
-on-arrival: kadets_resign = 1 if prime_minister = "Lvov"; prime_minister = "Kerensky" if prime_minister = "Lvov"; prime_minister_party = "SR" if prime_minister_party = "Independent";
+view-if: player_party = "b" or (player_party = "sr" and not sr_in_prov_gov) or (player_party = "m" and not m_in_prov_gov)
+on-arrival: kadets_resign = 1 if prime_minister = "Lvov"; prime_minister = "Kerensky" if prime_minister = "Lvov"; prime_minister_party = "SR" if prime_minister_party = "Independent"; prime_minister_party = "Right-SR" if right_sr_split;
 
 After some streetfighting and arrests, the protestors eventually grow tired, and return to their homes and barracks.
 
@@ -64,6 +115,7 @@ view-if: player_party = "k" and not k_in_prov_gov
 on-arrival: kadets_resign = 1 if prime_minister = "Lvov"; prime_minister = "Kerensky" if prime_minister = "Lvov"; prime_minister_party = "SR" if prime_minister_party = "Independent"; prov_gov_legitimacy -= 8; workers_militia_strength -= 5;
 
 After some streetfighting and arrests, the protestors eventually grow tired, and return to their homes and barracks.
+
 
 @shuffle_cabinet
 title: We can use this opportunity to increase our participation in the Provisional Government...

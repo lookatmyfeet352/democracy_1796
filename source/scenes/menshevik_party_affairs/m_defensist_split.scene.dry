@@ -5,6 +5,7 @@ on-arrival: {!
 Q.defensist_split = 1;
 Q.m_leadership = 1;
 Q.parties.push('defensist');
+Q.garrison_parties.push('defensist');
 
 Q.m_k_relation -= 8;
 

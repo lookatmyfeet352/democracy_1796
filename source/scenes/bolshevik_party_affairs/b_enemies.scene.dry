@@ -37,5 +37,6 @@ Attacking the bourgeois socialists reduces their standing among the working clas
 
 @imperialists
 title: The imperialist powers - Britain and France primarily.
-on-arrival: b_k_relation -= 20;
+on-arrival: b_k_relation -= 10; war_weariness += 5; prov_gov_legitimacy -= 5; leninist_strength += 8;
 
+Attacking the "Allies" raises doubts about the Provisional Government's policy, and reduces its legitimacy.

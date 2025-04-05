@@ -36,7 +36,7 @@ choose-if: (player_party = "b" and b_soviet >= 25) or (player_party = "m" and m_
 
 @s_campaign
 title: Campaign among the Soviet delegates.
-subtitle: -1 resources - increase our vote share in the Soviet.
+subtitle: -1 resource - increase our vote share in the Soviet.
 choose-if: (player_party = "b" and b_resources >= 1) or (player_party = "m" and m_resources >= 1) or (player_party = "sr" and sr_resources >= 1)
 on-arrival: b_resources -= 1 if player_party = "b"; m_resources -= 1 if player_party = "m"; sr_resources -= 1 if player_party = "sr"; b_soviet_bonus += 100 if player_party = "b"; m_soviet_bonus += 100 if player_party = "m"; sr_soviet_bonus += 100 if player_party = "sr";
 

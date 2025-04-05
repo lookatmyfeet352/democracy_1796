@@ -43,7 +43,7 @@ subtitle: Support an immediate end to the war, even a separate peace if necessar
 unavailable-subtitle: There is not enough support for this position within the party.
 view-if: sr_war_policy != 2
 choose-if: left_sr_strength >= right_sr_strength
-on-arrival: sr_war_policy = 2; left_sr_strength += 10; left_sr_dissent -= 10; right_sr_dissent += 25; sr_leadership = 1
+on-arrival: sr_war_policy = 2; left_sr_strength += 10; left_sr_dissent -= 10; right_sr_dissent += 25; sr_leadership = 1; b_sr_relation += 10;
 
 We have adopted an internationalist position, calling for an immediate end to the war.
 

@@ -1,36 +1,42 @@
-title: Vladimir Lenin
+title: Lev Kamenev
 is-pinned-card: true
 tags: advisor
-card-image: img/portraits/b/lenin.jpg
-view-if: lenin_advisor = 1 and player_party = "b"
+card-image: img/portraits/b/kamenev.jpg
+view-if: kamenev_advisor = 1 and player_party = "b"
 new-page: true 
 
-= Vladimir Lenin
+= Lev Kamenev
 
-Vladimir Lenin is the undisputed leader of the Bolshevik party, and its chief theoretician and organizer.
+Lev Kamenev is a Bolshevik leader who has a more conciliatory position towards the other socialists.
 
 # actions: organizing (same as card), agitation against the provisional government, 
 
-- @support_leninist
-- @organize_soldiers
-- @polemics
-- @radicalization
+- @support_moderate
+- @m_relations
+- @soviet_campaigning
 - @root: Return to main
 
-@support_leninist
-title: Support or adopt Leninist ideology.
-subtitle: Reduce dissent across the party.
+@support_moderate
+title: Moderate Ideology
+subtitle: Support the moderate position.
 choose-if: advisor_action_timer = 0
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?]
-on-arrival: advisor_action_timer = 4; leninist_dissent -= 5; center_dissent -= 10; moderate_dissent -= 10;
+on-arrival: advisor_action_timer = 4;
+go-to: b_ideology.support_moderate if moderate_strength <= 40; b_ideology.adopt_moderate if moderate_strength > 40 and b_leadership != 1; b_ideology.moderate_continue if b_leadership = 1
 
-We have enforced party discipline to reduce dissent across all factions.
+@m_relations
+title: Menshevik Relations
+subtitle: Work with the Mensheviks, and increase Internationalist support. -1 resource
+choose-if: advisor_action_timer = 0 and b_resources >= 1
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?][? if b_resources < 1: Not enough resources. ?]
+on-arrival: advisor_action_timer = 4; b_resources -= 1; m_b_relation += 7*(1-b_dissent);
 
-@organize_soldiers
-title: Organize soldiers
+@soviet_campaigning
+title: Soviet Campaigning
+subtitle: Increase our vote share in the Petrograd Soviet. -1 resource
+choose-if: advisor_action_timer = 0 and b_resources >= 1
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?][? if b_resources < 1: Not enough resources. ?]
+on-arrival: advisor_action_timer = 4
+go-to: minority_party_soviet.s_campaign
 
-@polemics
-title: Polemics
 
-@radicalization
-title: Radicalization

@@ -14,14 +14,11 @@ The Bolsheviks are calling for a vote in the Soviet to approve one of their prop
 - @b_k
 
 @vote
-view-if: player_party = "m" or player_party = "sr"
-on-arrival: b_in_exco = 1; left_sr_in_exco = 1; m_in_exco = 0; sr_in_exco = 0; workers_milita_b_loyalty += 15; soldiers_b += 10; workers_b += 10; soviet_chair = "Trotsky"; soviet_chair_party = "Bolshevik";
-
-The Bolsheviks have won, with the help of the Left-SRs. They are now in control of the Executive Committee of the Petrograd Soviet. This is a consequence of the Bolsheviks' rise in popularity, and a harbinger of their future growth.
+go-to: soviet_leadership_election
 
 @b_k
 title: This is none of our business...
 view-if: player_party = "k"
 on-arrival: b_in_exco = 1; left_sr_in_exco = 1; m_in_exco = 0; sr_in_exco = 0; workers_milita_b_loyalty += 15; soldiers_b += 10; workers_b += 10; soviet_chair = "Trotsky"; soviet_chair_party = "Bolshevik";
 
-Whether or not the Bolsheviks take the Soviet is none of our business. But the Bolsheviks eventually do take control of the Executive Committee. 
+Whether or not the Bolsheviks take the Soviet is none of our business. But the Bolsheviks eventually do take control of the Executive Committee. This is a consequence of the Bolsheviks' rise in popularity, and a harbinger of their future growth.

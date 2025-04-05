@@ -87,7 +87,6 @@ for (var p of Q.parties) {
 
 // should we normalize militia/defense force support levels? Or should they be treated like demographic supports? Normalizing would make support changes more dramatic.
 // Normalize them, so that they're dramatic.
-Q.workers_militia_parties = ['m', 'b', 'sr'];
 var total_workers_militia_loyalty = Q.workers_militia_independent;
 for (var p of Q.workers_militia_parties) {
     total_workers_militia_loyalty += Q['workers_militia_' + p + '_loyalty'];
@@ -97,7 +96,6 @@ for (var p of Q.workers_militia_parties) {
 }
 Q.workers_militia_independent = 100*Q.workers_militia_independent/total_workers_militia_loyalty;
 // normalize city militia loyalty
-Q.city_militia_parties = ['m', 'sr', 'k'];
 var total_city_militia_loyalty = Q.city_militia_independent;
 for (var p of Q.city_militia_parties) {
     total_city_militia_loyalty += Q['city_militia_' + p + '_loyalty'];
@@ -108,7 +106,6 @@ for (var p of Q.city_militia_parties) {
 Q.city_militia_independent = 100*Q.city_militia_independent/total_city_militia_loyalty;
 
 // Garrison loyalty is the same as that for the soldiers demographic as a whole.
-Q.garrison_parties = ['m', 'sr',  'k', 'b'];
 var total_garrison_loyalty = 0;
 for (var p of Q.parties) {
     total_garrison_loyalty += Q['soldiers_' + p];
@@ -117,10 +114,8 @@ non_independent = 0;
 for (var p of Q.garrison_parties) {
     Q['garrison_' + p + '_loyalty'] = 100*Q['soldiers_' + p]/total_garrison_loyalty;
     non_independent += Q['garrison_' + p + '_loyalty'];
-    console.log('garrison_' + p + '_loyalty', Q['garrison_' + p + '_loyalty']);
 }
 Q.garrison_independent = 100*(100-non_independent)/total_garrison_loyalty;
-console.log('garrison_independent', Q.garrison_independent);
 
 if (Q.unemployed <= 1) {
     Q.unemployed = 1;

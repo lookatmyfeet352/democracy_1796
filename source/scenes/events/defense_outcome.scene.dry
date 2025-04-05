@@ -4,7 +4,7 @@ new-page: true
 set-jump: defense_outcome.post_battle
 view-if: in_defensive_battle
 go-to: battle
-face-image: offensive.jpg
+face-image: img/offensive.jpg
 
 @post_battle
 go-to: defeat_2 if battle_outcome = -2; defeat_1 if battle_outcome = -1; victory_1 if battle_outcome = 1; victory_2 if battle_outcome = 2

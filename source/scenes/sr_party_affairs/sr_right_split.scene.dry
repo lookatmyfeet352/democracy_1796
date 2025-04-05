@@ -2,8 +2,11 @@ title: Right-SR Split
 view-if: right_sr_dissent > 50
 on-arrival: {!
 Q.right_sr_split = 1;
-Q.sr_leadership = 0;
+Q.sr_leadership = 1;
 Q.parties.push('right_sr');
+Q.garrison_parties.push('right_sr');
+Q.workers_militia_parties.push('right_sr');
+Q.city_militia_parties.push('right_sr');
 
 Q.sr_k_relation -= 10;
 
@@ -16,10 +19,14 @@ Q.right_sr_strength = Q.right_sr_strength/total_support;
 Q.peasants_right_sr = Q.peasants_sr*(Q.right_sr_strength);
 Q.workers_right_sr = Q.workers_sr*((Q.right_sr_strength));
 Q.soldiers_right_sr = Q.soldiers_sr*((Q.right_sr_strength));
+Q.workers_militia_right_sr_loyalty = Q.workers_militia_sr_loyalty*((Q.right_sr_strength));
+Q.city_militia_right_sr_loyalty = Q.city_militia_sr_loyalty*((Q.right_sr_strength));
 
 Q.peasants_sr -= Q.peasants_right_sr;
 Q.workers_sr -= Q.workers_right_sr;
 Q.soldiers_sr -= Q.soldiers_right_sr;
+Q.workers_militia_sr_loyalty -= Q.workers_militia_right_sr_loyalty;
+Q.city_militia_sr_loyalty -= Q.city_militia_right_sr_loyalty;
 
 Q.right_sr_strength = 1;
 // renormalize party support again

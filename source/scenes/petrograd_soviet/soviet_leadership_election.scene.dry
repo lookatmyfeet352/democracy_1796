@@ -181,7 +181,7 @@ The Defensist bloc be the leaders of the Soviet. Nikolai Chkheidze, a Menshevik 
 @internationalist_leadership
 title: The Internationalists will lead.
 view-if: internationalist_bloc > defensist_bloc
-on-arrival: m_in_exco = 1 if m_leadership = 1; sr_in_exco = 1 if sr_leadership = 1; b_in_exco = 1;
+on-arrival: m_in_exco = 1 if m_leadership = 1; sr_in_exco = 1 if sr_leadership = 1; b_in_exco = 1; mrc_timer = 4 if mrc = 0
 go-to: trotsky_chair if ((player_party = "m" and m_leadership = 0) or (player_party = "sr" and sr_leadership = 0) or player_party = "k"); choose_i_chair if ((player_party = "m" and m_leadership = 1) or (player_party = "sr" and sr_leadership = 1) or player_party = "b")
 
 The Internationalist bloc will be the leaders of the Soviet.
@@ -275,3 +275,8 @@ on-arrival: sr_leadership = 0; right_sr_strength += 10; right_sr_dissent -= 10; 
 @sr_switch_internationalist
 title: Switch to an internationalist position.
 view-if: player_party = "sr" and sr_leadership = 0
+choose-if: left_sr_strength >= right_sr_strength
+unavailable-subtitle: The Left-SRs are not strong enough.
+on-arrival: sr_leadership = 1; left_sr_strength += 10; left_sr_dissent -= 10; right_sr_dissent += 20;
+
+- @soviet_leadership_election: Re-do the leadership vote?

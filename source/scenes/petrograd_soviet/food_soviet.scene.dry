@@ -4,7 +4,7 @@ view-if: food_soviet_timer = 0 and ((player_party = "b" and b_in_exco) or (playe
 on-arrival: week_actions += 1; food_soviet_timer += 3
 tags: soviet
 is-card: true
-card-image: img/breadlines.jpg
+card-image: img/breadline.jpg
 
 = Food Policy
 

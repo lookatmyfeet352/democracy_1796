@@ -5,7 +5,7 @@ view-if: in_june_offensive = 1 and june_offensive_conclusion_timer = 0
 on-arrival: attacking = 1; front = "southwestern"; enemey_front = "southwestern";
 set-jump: battle_outcome.post_battle
 go-to: battle
-face-image: offensive.jpg
+face-image: img/offensive.jpg
 tags: event
 max-visits: 1
 

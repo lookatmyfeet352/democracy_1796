@@ -4,7 +4,7 @@ new-page: true
 view-if: in_offensive_battle = 1 and not in_june_offensive
 set-jump: battle_outcome.post_battle
 go-to: battle
-face-image: offensive.jpg
+face-image: img/offensive.jpg
 tags: event
 
 @post_battle

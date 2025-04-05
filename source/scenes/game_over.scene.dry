@@ -1,10 +1,9 @@
 title: Game Over.
 new-page: true
 go-to: eg_menu
+audio: music/TchaikovskyQuartet2.ogg
 on-arrival: {!
 // Achievements:
-// Große Koalition - form a grand coalition
-// Eiserne Front - Form the Iron Front.
 this.achieve('game_completed');
 
 if (Q.revolutionary_victory && Q.player_party != 'b' && !Q.join_bolshevik) {
@@ -19,7 +18,6 @@ if (Q.revolutionary_victory && Q.player_party == 'b') {
     this.achieve('red_october');
 }
 
-
 if (Q.ca_held) {
     if (Q.player_party == "m") {
         this.achieve('historical_materialism');
@@ -29,7 +27,6 @@ if (Q.ca_held) {
         this.achieve('constitutional_democracy');
     }
 }
-
 !}
 
 = End
@@ -131,6 +128,10 @@ go-to: eg_menu if started == 1; root.start_menu_2 if started == 0
 
 [? if game_achievement_dustbin : **The Dustbin of History** - defeated by the Bolshevik revolution. ?]
 
+[? if game_achievement_rev_failed : **A Failed Revolution** - as the Bolsheviks, launch the revolution and fail. ?]
+
+[? if game_achievement_red_october : **Red October** - as the Bolsheviks, launch the revolution and win. ?]
+
 [? if game_achievement_junior_partner : **Junior Partner** - join the Bolshevik revolution as a junior partner. ?]
 
 [? if game_achievement_historical_materialism : **Historical Materialism** - hold the Constituent Assembly elections as the Mensheviks. ?]
@@ -150,6 +151,10 @@ go-to: eg_menu if started == 1; root.start_menu_2 if started == 0
 
 [? if achievement_dustbin : **The Dustbin of History** - defeated by the Bolshevik revolution. ?]
 
+[? if achievement_rev_failed : **A Failed Revolution** - as the Bolsheviks, launch the revolution and fail. ?]
+
+[? if achievement_red_october : **Red October** - as the Bolsheviks, launch the revolution and win. ?]
+
 [? if achievement_junior_partner : **Junior Partner** - join the Bolshevik revolution as a junior partner. ?]
 
 [? if achievement_historical_materialism : **Historical Materialism** - hold the Constituent Assembly elections as the Mensheviks. ?]
@@ -168,6 +173,10 @@ go-to: eg_menu if started == 1; root.start_menu_2 if started == 0
 = Incomplete Achievements
 
 [? if not achievement_dustbin : **The Dustbin of History** - defeated by the Bolshevik revolution. ?]
+
+[? if not achievement_rev_failed : **A Failed Revolution** - as the Bolsheviks, launch the revolution and fail. ?]
+
+[? if not achievement_red_october : **Red October** - as the Bolsheviks, launch the revolution and win. ?]
 
 [? if not achievement_junior_partner : **Junior Partner** - join the Bolshevik revolution as a junior partner. ?]
 

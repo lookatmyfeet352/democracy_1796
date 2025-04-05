@@ -502,6 +502,7 @@ Q.defeat_count = 0;
 // Militias
 
 // 100k
+Q.workers_militia_parties = ['m', 'b', 'sr'];
 Q.workers_militia_strength = 20;
 Q.workers_militia_militancy = 0.5;
 // soviet loyalty, prov gov loyalty, menshevik loyalty, bolshevik loyalty, sr loyalty, left-sr loyalty
@@ -513,6 +514,7 @@ Q.workers_militia_prov_gov_loyalty = 20;
 Q.workers_militia_independent = 25;
 
 // petrograd garrison
+Q.garrison_parties = ['m', 'b', 'k', 'sr'];
 Q.garrison_strength = 100;
 Q.garrison_militancy = 2;
 Q.garrison_m_loyalty = 20;
@@ -523,6 +525,7 @@ Q.garrison_soviet_loyalty = 20;
 Q.garrison_prov_gov_loyalty = 20;
 Q.garrison_independent = 30;
 
+Q.city_militia_parties = ['m', 'k', 'sr'];
 Q.city_militia_strength = 20;
 Q.city_militia_militancy = 0.5;
 Q.city_militia_m_loyalty = 20;
@@ -815,7 +818,7 @@ Q.timers = [//m_party
             'b_enemies', 'b_fundraising', 'b_ideology',
             'b_inter_party_relationships', 'b_media',
             'b_organizing', 'b_party_unity', 'b_shuffle_leadership',
-            'b_reunify',
+            'b_reunify', 'b_workers_militias',
             //k_party
             'k_enemies', 'k_fundraising', 'k_ideology',
             'k_inter_party_relationships', 'k_media',
@@ -833,7 +836,7 @@ Q.timers = [//m_party
             // soviet
             'food_soviet', 'labor_soviet', 'militias', 'prov_gov_relations',
             'nationalities_soviet', 'war_soviet', 'land_soviet',
-            'organization_soviet',
+            'organization_soviet', 'minority_party_soviet',
             // events
             'food_shortages', 'high_inflation',
             'prov_gov_policies', 'land_seizures',
@@ -970,7 +973,7 @@ TODO
 
 @bolsheviks
 title: Russian Social-Democratic Labor Party (Bolshevik)
-choose-if: achievement_game_completed and bolshevik_available = 1
+choose-if: achievement_game_completed
 unavailable-subtitle: Complete the game as one of the other parties first.
 
 - @bolsheviks_2: Yes, I am a Bolshevik!

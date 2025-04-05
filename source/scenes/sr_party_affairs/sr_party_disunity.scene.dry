@@ -31,7 +31,7 @@ Enforcing party discipline reduces dissent, but it leads to demoralization among
 
 @concessions_left_srs
 title: Give concessions to the Left-SRs.
-view-if: left_sr_dissent > 30
+view-if: left_sr_dissent > 30 and not left_sr_split
 on-arrival: left_sr_dissent -= 6; right_sr_dissent += 6;
 
 We have responded by adopting more Left-SR positions. The right wing is somewhat displeased.
@@ -39,7 +39,7 @@ We have responded by adopting more Left-SR positions. The right wing is somewhat
 
 @concessions_right_srs
 title: Give concessions to the Right-SRs.
-view-if: right_sr_dissent > 30
+view-if: right_sr_dissent > 30 and not right_sr_split
 on-arrival: right_sr_dissent -= 6; left_sr_dissent += 6;
 
 We have responded by adopting more Right-SR positions. The left wing are somewhat displeased.
@@ -47,7 +47,7 @@ We have responded by adopting more Right-SR positions. The left wing are somewha
 
 @expel_left_srs
 title: Expel the Left-SRs.
-view-if: left_sr_dissent > 40
+view-if: left_sr_dissent > 40 and not left_sr_split
 choose-if: left_sr_strength <= right_sr_strength
 unavailable-subtitle: The Left-SRs are too strong.
 on-arrival: left_sr_split = 1;
@@ -55,7 +55,7 @@ go-to: sr_left_split
 
 @expel_right_srs
 title: Expel the Right-SRs.
-view-if: right_sr_dissent > 30
+view-if: right_sr_dissent > 30 and not right_sr_split
 choose-if: right_sr_strength <= left_sr_strength
 unavailable-subtitle: The Right-SRs are too strong.
 on-arrival: right_sr_split = 1;

@@ -16,6 +16,8 @@ During the February Revolution, the workers of Petrograd organized militias for 
 - @recruitment
 - @arming
 - @mrc
+- @preparing
+- @revolution
 - @root: No action is needed.
 - @easy_discard
 - @cancel_advisor_action
@@ -56,3 +58,17 @@ max-visits: 1
 
 The Petrograd Soviet has formed the Military-Revolutionary Committee, a committee to organize the workers' militias and garrison troops for the defense of the revolution. This ties togethe
 r the workers' militias, the soldiers, and the Bolshevik party. 
+
+@preparing
+title: Preparing for Revolution
+subtitle: The Provisional Government is weak; we must prepare for the uprising...
+view-if: player_party = "b" and mrc = 1 and b_in_exco and rev_progress < 4
+on-arrival: rev_progress += 1
+
+We make sure our party cadres are placed within the garrison and the workers' militias. We scout out key locations in the city that we might need to capture.
+
+@revolution
+title: It is time to launch the revolution!
+view-if: player_party = "b" and mrc = 1 and b_in_exco and rev_progress >= 3
+go-to: b_revolution
+

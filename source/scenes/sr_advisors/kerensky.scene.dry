@@ -45,7 +45,7 @@ go-to: prepare_ca
 title: Motivating the Troops
 subtitle: Kerensky enjoys touring the front and giving motivational speeches to the troops.
 choose-if: advisor_action_timer = 0 and war_minister = "Kerensky"
-unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?] [? if war_minister != "Kerensky" : Kerensky is not the Justice Minister. ?]
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?] [? if war_minister != "Kerensky" : Kerensky is not the War Minister. ?]
 on-arrival: advisor_action_timer = 4; morale += 0.1*(1-war_weariness/100);
 
 Kerensky launches a tour of the front, giving speeches to the troops to motivate them to fight for Russia. [? if war_weariness >= 50 : Our high war weariness impedes the effectiveness of Kerensky's tour. ?]

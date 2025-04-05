@@ -2,12 +2,12 @@ title: Alexander Shliapnikov
 is-pinned-card: true
 tags: advisor
 card-image: img/portraits/b/shliapnikov.jpg
-view-if: shlyapnikov_advisor = 1 and player_party = "b"
+view-if: shliapnikov_advisor = 1 and player_party = "b"
 new-page: true
 
 = Alexander Shliapnikov
 
-Shliapnikov is a metalworker and labor organizer in the factories of Petrograd.
+Shliapnikov is a metalworker and labor organizer in the factories of Petrograd, and one of the Bolshevik leaders who was not in exile.
 
 - @organize_workers
 - @workers_militias_
@@ -24,9 +24,9 @@ We have increased our organizing among the workers.
 
 
 @workers_militias_
-title: Workers' Militias
-subtitle: Support and propagandize among the workers' militias.
-choose-if: advisor_action_timer = 0
-unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?]
+title: Militia Loyalty
+subtitle: Support Bolsheviks among the workers' militias. -1 resource.
+choose-if: advisor_action_timer = 0 and b_resources >= 1
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?][? if b_resources < 1 : Not enough resources. ?]
 on-arrival: advisor_action_timer = 4; 
-go-to: b_workers_militias
+go-to: b_workers_militias.loyalty

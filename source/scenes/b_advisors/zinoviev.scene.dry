@@ -9,27 +9,31 @@ new-page: true
 
 Grigory Zinoviev wass one of Lenin's closest companions in exile, but he has taken a more moderate approach.
 
-# actions: organizing (same as card), agitation against the provisional government, 
-
 - @support_moderate
-- @organize_soldiers
-- @polemics
-- @radicalization
+- @m_relations
+- @soviet_campaigning 
 - @root: Return to main
 
 @support_moderate
-title: Support or adopt Moderate ideology.
+title: Moderate Ideology
+subtitle: Support the moderate position.
 choose-if: advisor_action_timer = 0
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?]
-on-arrival: advisor_action_timer = 4; zinovievist_dissent -= 5; center_dissent -= 10; moderate_dissent -= 10;
-go-to: b_ideology.support_moderate if moderate_strength <= 40; b_ideology.adopt_moderate if moderate_strength > 40
+on-arrival: advisor_action_timer = 4;
+go-to: b_ideology.support_moderate if moderate_strength <= 40; b_ideology.adopt_moderate if moderate_strength > 40 and b_leadership != 1; b_ideology.moderate_continue if b_leadership = 1
 
+@m_relations
+title: Menshevik Relations
+subtitle: Work with the Mensheviks, and increase Internationalist support. -1 resource 
+choose-if: advisor_action_timer = 0 and b_resources >= 1 
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?][? if b_resources < 1: Not enough resources. ?]
+on-arrival: advisor_action_timer = 4; b_resources -= 1; m_b_relation += 7*(1-b_dissent); 
 
-@organize_soldiers
-title: Organize soldiers
+@soviet_campaigning
+title: Soviet Campaigning 
+subtitle: Increase our vote share in the Petrograd Soviet. -1 resource
+choose-if: advisor_action_timer = 0 and b_resources >= 1 
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?][? if b_resources < 1: Not enough resources. ?]
+on-arrival: advisor_action_timer = 4 
+go-to: minority_party_soviet.s_campaign 
 
-@polemics
-title: Polemics
-
-@radicalization
-title: Radicalization

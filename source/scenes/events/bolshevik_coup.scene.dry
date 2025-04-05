@@ -3,8 +3,11 @@ subtitle: All the government needs to collapse is a slight topple...
 new-page: True
 view-if: player_party != "b" and month >= 9 and prov_gov_legitimacy < 40 and workers_b >= 25 and soldiers_b >= 25 and b_in_exco and mrc = 1 and bolshevik_coup_timer = 0
 tags: event
+on-arrival: rev_progress += 1;
 max-visits: 1
+audio: music/RedArmy.mp3
 go-to: m_menu if player_party = "m"; sr_menu if player_party = "sr"; k_menu if player_party = "k"
+face-image: img/red_wedge.jpg
 
 # only do this if the Bolsheviks think they'll win.
 
@@ -45,7 +48,7 @@ The Mensheviks will be neutral in this fight.
 @m_rev
 title: The Mensheviks will support the Revolution!
 unavailable-subtitle: The party will never support this.
-choose-if: m_b_relation >= 60 and m_prov_gov_policy >= 3 and internationalist_strength >= defensist_strength
+choose-if: m_b_relation >= 60 and m_prov_gov_policy >= 4 and internationalist_strength >= defensist_strength
 on-arrival: m_prov_gov_policy = 4; m_support_bolshevik = 1; join_bolshevik = 1
 go-to: battle_outcome
 
@@ -65,8 +68,8 @@ The SRs will not take a position in this battle.
 
 @sr_rev
 title: The SRs will support the Revolution!
-unavailable-subtitle: The party will never support this.
-choose-if: b_sr_relation >= 60 and b_prov_gov_policy >= 3 and left_sr_strength >= right_sr_strength
+unavailable-subtitle: [? if b_sr_relation < 50: We do not have adequate relations with the Bolsheviks. ?][? if b_prov_gov_policy < 3: Our party will never support this. ?]
+choose-if: b_sr_relation >= 50 and sr_prov_gov_policy >= 4
 on-arrival: sr_prov_gov_policy = 4; sr_support_bolshevik = 1; join_bolshevik = 1
 go-to: battle_outcome
 
@@ -131,7 +134,11 @@ go-to: prov_gov_win if prov_gov_victory and not join_bolshevik; rev_win if revol
 
 @party_banned
 
-# TODO
+= Provisional Government Victory
+
+The Bolsheviks have been defeated! In the end, our forces together with the Bolsheviks were not strong enough to take on the Provisional Government. It is our end as a party.
+
+- @game_over: Game Over.
 
 @prov_gov_win
 on-arrival: workers_b -= 15; soldiers_b -= 15; workers_militia_b_loyalty -= 15;

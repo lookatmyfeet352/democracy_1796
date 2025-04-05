@@ -13,6 +13,7 @@ What should our policy be with respect to the Provisional Government?
 - @take_part
 - @opposition
 - @opposition_2
+- @overthrow
 
 @external_support
 title: We should provide external support to the Provisional Government, but will not take part in it.
@@ -41,3 +42,11 @@ subtitle: [? if sr_prov_gov_policy = 3 : This is our current position. ?]
 on-arrival: right_sr_dissent += 4 if sr_prov_gov_policy != 3; social_patriot_dissent += 6 if sr_prov_gov_policy != 3; sr_prov_gov_policy = 3; 
 
 Our policy is to aim for the replacement of the bourgeois Provisional Government by a coalition of socialist parties.
+
+@overthrow
+title: We should overthrow the government by force of arms!
+subtitle: [? if sr_prov_gov_policy = 4 : This is our current position. ?]
+view-if: sr_prov_gov_policy == 3
+on-arrival: right_sr_dissent += 6 if sr_prov_gov_policy != 4; sr_prov_gov_policy = 4; sr_k_relation -= 20;
+
+Our policy is to overthrow the bourgeois Provisional Government by force if necessary!

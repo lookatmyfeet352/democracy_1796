@@ -50,7 +50,7 @@ The leaders of the Soviet, mostly Social Democrat and SR intellectuals, have org
 @order_number_1
 title: Restoring Order to the Army
 view-if: o1_seen < n_players
-go-to: o1_soviet if player_party = "st" or player_party = "m"; o1_b if player_party = "b"; o1_k if player_party = "k"
+go-to: o1_soviet if player_party = "sr" or player_party = "m"; o1_b if player_party = "b"; o1_k if player_party = "k"
 on-arrival: o1_seen = 1
 
 = Restoring Order to the Army
@@ -112,7 +112,7 @@ on-arrival: army_discipline -= 0.15; army_morale += 0.05; order_number_1 = 1; o1
 
 In response to the soldiers' revolts, the Petrograd Soviet has issued Order Number 1, which creates soldiers' committees, gives off-duty soldiers the same rights as civilians, and bans derogatory forms of address against soldiers by their officers.
 
-The Bolsheviks are pleased with this order, as it contributes to the democratization of the army, and gives Bolshevik organizers an easier route to .
+The Bolsheviks are pleased with this order, as it contributes to the democratization of the army, and gives Bolshevik organizers an easier route to organize among the troops.
 
 @o1_k
 go-to: intro_menu
