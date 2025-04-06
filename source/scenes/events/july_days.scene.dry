@@ -31,7 +31,7 @@ Many Bolsheviks would use this crisis as an opportunity to fight and overthrow t
 
 @info
 
-On our side are the troops of the garrison, [+ garrison_strength +] thousand in total. Support for the Bolsheviks is [+ garrison_b_loyalty : strength_2 +], although the our leadership will raise this. The workers' militia has [+ workers_militia_strength +] thousand members, and support for the Bolsheviks is [+ workers_militia_b_loyalty : strength_2 +]. 
+On our side are the troops of the garrison, [+ garrison_strength +] thousand in total. Support for the Bolsheviks is [+ garrison_b_loyalty : strength_2 +]. The workers' militia has [+ workers_militia_strength +] thousand members, and support for the Bolsheviks is [+ workers_militia_b_loyalty : strength_2 +]. 
 
 [? if rev_progress < 4: Despite our popular support, we have not yet made tactical preparations for this action. Our leadership and organization are not yet in place. ?]
 
@@ -41,7 +41,7 @@ Opposing us will be the city militias, the loyal troops (Cossacks and Death Batt
 - @nothing: No, we are not ready...
 
 @take_power_2
-on-arrival: soldiers_b += 5*(1-b_dissent); workers_militia_b_loyalty += 5*(1-b_dissent);
+on-arrival: join_bolshevik = 1 if player_party = "sr" or player_party = "m"
 
 Finally, our organization acts. The armed demonstrators are given direction, and turned against the Winter Palace...
 

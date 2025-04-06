@@ -30,7 +30,7 @@ We have supported the workers in their economic demands and their struggles with
 
 @councils
 title: Support the workers' councils' supervision over management.
-choose-if: (player_party = "m" and m_industrial_policy >= 1) or (player_party = "sr" and sr_industrial_policy >= 1)
+choose-if: (player_party = "m" and m_industrial_policy >= 1) or (player_party = "sr" and sr_industrial_policy >= 1) or (player_party = "b")
 unavailable-subtitle: Our party does not support this.
 on-arrival: workers_councils += 1; monthly_inflation += 0.1; capital_flight_progress += 2; workers_m += 7*(1-m_dissent) if m_in_exco; m_k_relation -= 5 if m_in_exco; workers_sr += 7*(1-sr_dissent) if sr_in_exco; sr_k_relation -= 5 if sr_in_exco; prov_gov_soviet_cooperation -= 0.04; labor_unrest -= 3; industry += 1;
 
@@ -38,7 +38,7 @@ We support the workers' councils taking supervision over management - the counci
 
 @takeover
 title: Support workers' councils seizing control over factories.
-choose-if: (player_party = "m" and m_internationalist_strength > m_defensist_strength and m_industrial_policy >= 2) or (player_party = "sr" and left_sr_strength >= right_sr_strength and sr_industrial_policy >= 2)
+choose-if: (player_party = "m" and m_internationalist_strength > m_defensist_strength and m_industrial_policy >= 2) or (player_party = "sr" and left_sr_strength >= right_sr_strength and sr_industrial_policy >= 2) or (player_party = "b" and b_industrial_policy >= 2)
 unavailable-subtitle: Our party does not support this.
 on-arrival: factory_takeovers += 1; monthly_inflation += 0.2; capital_flight_progress += 6; workers_m += 7*(1-m_dissent) if m_in_exco; m_k_relation -= 8 if m_in_exco; workers_sr += 7*(1-sr_dissent) if sr_in_exco; sr_k_relation -= 8 if sr_in_exco; prov_gov_soviet_cooperation -= 0.15; labor_unrest -= 5; industry *= 0.95;
 

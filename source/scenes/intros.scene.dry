@@ -99,7 +99,7 @@ We have declared that soldiers will have the same rights as civilians when off-d
 view-if: o1_points > 0
 max-visits: 1
 go-to: intro_menu
-on-arrival: army_discipline -= 0.15 if o1_points = 3; army_discipline -= 0.1 if o1_points < 3; army_morale += 0.05 if o1_points = 3; army_morale += 0.3 if o1_points < 3; soldiers_pro_prov_gov += 10*o1_points; soldiers_pro_soviet += 10*o1_points; m_kadet_relation -= 2*o1_points; sr_k_relation -= 2*o1_points; k_m_relation -= 2*o1_points; k_sr_relation -= 2*o1_points
+on-arrival: army_discipline -= 0.15 if o1_points = 3; army_discipline -= 0.1 if o1_points < 3; army_morale += 0.05 if o1_points = 3; army_morale += 0.3 if o1_points < 3; soldiers_pro_prov_gov += 10*o1_points; soldiers_pro_soviet += 10*o1_points; m_k_relation -= 2*o1_points; sr_k_relation -= 2*o1_points;
 
 In addition to these points, we have declared that the orders of the Provisional Government must be carried out, unless they contradict the orders of the Soviet, and made provisions for elections of soldiers' representatives to the Soviet.
 
@@ -108,7 +108,7 @@ The order succeeds in ending the immediate chaos in the Petrograd garrison. Sold
 
 @o1_b
 go-to: intro_menu
-on-arrival: army_discipline -= 0.15; army_morale += 0.05; order_number_1 = 1; o1_points = 3; soldiers_pro_prov_gov += 10*o1_points; soldiers_pro_soviet += 10*o1_points; m_k_relation -= 2*o1_points; sr_k_relation -= 2*o1_points; k_m_relation -= 2*o1_points; k_sr_relation -= 2*o1_points
+on-arrival: army_discipline -= 0.15; army_morale += 0.05; order_number_1 = 1; o1_points = 3; soldiers_pro_prov_gov += 10*o1_points; soldiers_pro_soviet += 10*o1_points; m_k_relation -= 2*o1_points; sr_k_relation -= 2*o1_points;
 
 In response to the soldiers' revolts, the Petrograd Soviet has issued Order Number 1, which creates soldiers' committees, gives off-duty soldiers the same rights as civilians, and bans derogatory forms of address against soldiers by their officers.
 
@@ -116,7 +116,7 @@ The Bolsheviks are pleased with this order, as it contributes to the democratiza
 
 @o1_k
 go-to: intro_menu
-on-arrival: army_discipline -= 0.15; army_morale += 0.05; order_number_1 = 1; o1_points = 3; soldiers_pro_prov_gov += 10*o1_points; soldiers_pro_soviet += 10*o1_points; m_k_relation -= 2*o1_points; sr_k_relation -= 2*o1_points; k_m_relation -= 2*o1_points; k_sr_relation -= 2*o1_points
+on-arrival: army_discipline -= 0.15; army_morale += 0.05; order_number_1 = 1; o1_points = 3; soldiers_pro_prov_gov += 10*o1_points; soldiers_pro_soviet += 10*o1_points; m_k_relation -= 2*o1_points; sr_k_relation -= 2*o1_points;
 
 In response to the soldiers' disorder, the Petrograd Soviet has issued Order Number 1, which creates soldiers' committees, gives off-duty soldiers the same rights as civilians, and bans derogatory forms of address against soldiers by their officers.
 

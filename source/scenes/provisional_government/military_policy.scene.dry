@@ -227,8 +227,6 @@ on-arrival: front = "western"; enemy_front = "northwestern"; attacking = 1;
 
 The Western Front is in the direction of Belarussia.
 
-Enemy forces: 
-
 Enemy forces: [+ northwestern_enemy_soldiers +] divisions
 
 Enemy morale: [+ northwestern_enemy_morale : efficacy +]
@@ -321,7 +319,7 @@ We have built up our defenses along all fronts.
 
 @restore_discipline
 title: Restore military discipline.
-on-arrival: discipline += 0.05; morale -= 0.01; soldiers_m -= 5 if m_in_prov_gov; soldiers_k -= 5 if k_in_prov_gov; soldiers_sr -= 5 if sr_in_prov_gov
+on-arrival: discipline += 0.05; morale -= 0.03; soldiers_m -= 5 if m_in_prov_gov; soldiers_k -= 5 if k_in_prov_gov; soldiers_sr -= 5 if sr_in_prov_gov
 
 We have restored some measure of military discipline to the ranks. This can raise discipline, but lowers morale slightly, and angers the soldiers.
 
@@ -344,8 +342,9 @@ We have recruited additional soldiers into the Battalions of Death.
 
 @womens_battalion
 title: Recruit women into the Battalions of Death.
+subtitle: -1 budget.
 view-if: death_battalions >= 1 and womens_rights >= 1
-on-arrival: reserve_soldiers += 2; morale += 0.04; discipline += 0.04; loyal_troops_strength += 4; womens_battalion += 1
+on-arrival: reserve_soldiers += 2; morale += 0.04; discipline += 0.04; loyal_troops_strength += 4; womens_battalion += 1; budget -= 1
 max-visits: 2
 achievement: womens_battalion
 

@@ -167,6 +167,7 @@ if (total < 100) {
 } else if (total > 100) {
     Q.civilian_industry -= total - 100;
 }
+Q.military_industry = 0;
 !}
 
 We are rapidly demilitarizing our industries, shifting everything to various forms of civilian production.

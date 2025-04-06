@@ -6,6 +6,9 @@ max-visits: 1
 
 = First Universal of the Ukrainian Central Rada
 
-The Ukrainian Central Rada is a body of Ukrainian intellectuals and important personalities meeting in Kiev, who have made a declaration asking for more federal autonomy within the Russian state.
+The Central Rada is a council of Ukrainian representatives, elected from various parties and organizations throughout the Ukrainian territory. They have made a statement to the Provisional Government asking for more federal autonomy within the Russian state.
 
-[? if (player_party = "m" and m_in_prov_gov) or (player_party = "k" and k_in_prov_gov) or (player_party = "sr" and sr_in_prov_gov) : Should we  ?]
+[? if (player_party = "m" and m_in_prov_gov) or (player_party = "k" and k_in_prov_gov) or (player_party = "sr" and sr_in_prov_gov) : Should we accept their declaration? ?]
+
+@support_uk
+title: Support the Ukrainian 

@@ -2,7 +2,7 @@ title: Inter-Party Relationships
 new-page: true
 view-if: sr_inter_party_relationships_timer <= 0 and player_party = "m"
 is-card: true
-on-arrival: inter_party_relationships_timer += 4; week_actions += 1
+on-arrival: sr_inter_party_relationships_timer += 4; week_actions += 1
 card-image: img/sr_poster_4.jpg
 max-visits: 12
 tags: sr_party

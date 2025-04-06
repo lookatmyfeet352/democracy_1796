@@ -8,6 +8,7 @@ max-visits: 1
 audio: music/RedArmy.mp3
 go-to: m_menu if player_party = "m"; sr_menu if player_party = "sr"; k_menu if player_party = "k"
 face-image: img/red_wedge.jpg
+priority: 5
 
 # only do this if the Bolsheviks think they'll win.
 

@@ -217,11 +217,15 @@ Chair: [+ soviet_chair +] ([+ soviet_chair_party +])
 Executive committee: [? if m_in_exco: Mensheviks, ?] [? if sr_in_exco: SRs ?] [? if b_in_exco: Bolsheviks ?]
 
 Overal composition:
-Mensheviks: [+ m_soviet +] %
-Bolsheviks: [+ b_soviet +] %
-SRs: [+ sr_soviet +] %
-Anarchists: [+ anarchist_soviet +] %
-Others: [+ other_soviet +] %
+Mensheviks: [+ m_soviet +]%
+Bolsheviks: [+ b_soviet +]%
+SRs: [+ sr_soviet +]%
+Anarchists: [+ anarchist_soviet +]%
+Others: [+ other_soviet +]%
+[? if defensist_split: Menshevik-Defensists: [+ defensist_soviet_votes_dec +]% ?]
+[? if internationalist_split: Menshevik-Internationalists: [+ internationalist_soviet_votes_dec +]% ?]
+[? if right_sr_split: Right-SRs: [+ right_sr_soviet_votes_dec +]% ?]
+[? if left_sr_split: Left-SRs: [+ left_sr_soviet_votes_dec +]% ?]
 
 Soviet efficacy: [+ soviet_efficacy : efficacy +]
 
@@ -310,9 +314,11 @@ Supply quality: [+ supply_quality : efficacy +]
 
 = Petrograd Forces
 
-Worker's militias: [+ workers_militia_strength +] thousand
+Workers' militias: [+ workers_militia_strength +] thousand
 
-Worker's militia allegiance: Mensheviks: [+ workers_militia_m_loyalty : strength_2 +], Bolsheviks: [+ workers_militia_b_loyalty : strength_2 +], SRs: [+ workers_militia_sr_loyalty : strength_2 +], Independent: [+ workers_militia_independent : strength_2 +]
+Workers' militia allegiance: Mensheviks: [+ workers_militia_m_loyalty : strength_2 +], Bolsheviks: [+ workers_militia_b_loyalty : strength_2 +], SRs: [+ workers_militia_sr_loyalty : strength_2 +], Independent: [+ workers_militia_independent : strength_2 +]
+[? if right_sr_split: Right-SRs: [+ workers_militia_right_sr_loyalty : strength_2 +] ?]
+[? if left_sr_split: Left-SRs: [+ workers_militia_left_sr_loyalty : strength_2 +] ?]
 
 City militias: [+ city_militia_strength +] thousand
 
@@ -321,6 +327,12 @@ City militia allegiance: Mensheviks: [+ city_militia_m_loyalty : strength_2 +], 
 Garrison: [+ garrison_strength +] thousand
 
 Garrison allegiance: Mensheviks: [+ garrison_m_loyalty : strength +], Bolsheviks: [+ garrison_b_loyalty : strength +], Kadets: [+ garrison_k_loyalty : strength +], SRs: [+ garrison_sr_loyalty : strength +], Independent: [+ garrison_independent : strength +]
+[? if defensist_split: Menshevik-Defensists: [+ garrison_defensist_loyalty : strength_2 +] ?]
+[? if internationalist_split: Menshevik-Internationalists: [+ garrison_internationalist_loyalty : strength_2 +] ?]
+[? if right_sr_split: Right-SRs: [+ garrison_right_sr_loyalty : strength_2 +] ?]
+[? if left_sr_split: Left-SRs: [+ garrison_left_sr_loyalty : strength_2 +] ?]
+
+
 
 [? if loyal_troops > 0 : Loyal troops (Battalions of Death): [+ loyal_troops_strength +] thousand ?]
 
