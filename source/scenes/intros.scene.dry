@@ -225,7 +225,6 @@ The position of the Bolsheviks is and has always been internationalism, to end t
 
 @what_now
 title: What now?
-audio: music/TchaikovskyQuartet.mp3 
 go-to: 1917_main
 view-if: o1_seen = 1
 #view-if: o1_seen = 1 and ps_seen = 1 and abdi_seen = 1 and pg_seen = 1 and war_seen = 1
@@ -234,7 +233,6 @@ view-if: o1_seen = 1
 @1917_main
 new-page: true
 go-to: main
-audio: shuffle music/TchaikovskyQuartet.mp3 music/AyUchniem.mp3 music/SwetitMiesiatz.mp3 music/EchTyDolia.mp3 music/LongingforOurCountry.mp3 music/OdessaMama.mp3 music/VolgaBoatmen.ogg music/LomirSichIberbeiten.mp3 music/Internationale.ogg music/WorkersMarseillaise.ogg music/Kalinka.mp3 music/DearFriends.mp3
 
 = Week 1, March 1917
 
