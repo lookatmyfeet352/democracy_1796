@@ -148,7 +148,7 @@ Maria Spiridonova has been added as an advisor.
 
 @add_kamkov
 title: Boris Kamkov
-subtitle: Kamkov is .
+subtitle: Kamkov is a Left-SR leader.
 view-if: kamkov_advisor = 0 and sr_n_advisors < 4 and left_sr_split = 0 and kamkov_available = 1
 on-arrival: kamkov_advisor = 1; sr_n_advisors += 1; 
 go-to: advisor_menu

@@ -27,6 +27,18 @@ if (Q.ca_held) {
         this.achieve('constitutional_democracy');
     }
 }
+
+if (Q.hunger < 11) {
+    this.achieve('end_famine');
+}
+
+if (Q.is_armistice && Q.hunger < 20 && Q.land_reform_progress >= 3) {
+    this.achieve('peace_land_bread');
+}
+
+if (Q.monthly_inflation < 3) {
+    this.achieve('low_inflation');
+}
 !}
 
 = End
@@ -102,7 +114,7 @@ We have won at least one battle with our democratized army!
 
 @hunger_abated
 title: Hunger has been abated somewhat.
-view-if: hunger <= 20
+view-if: hunger < 20
 tags: endings
 go-to: eg_menu
 
@@ -115,6 +127,33 @@ tags: endings
 go-to: eg_menu
 
 Inflation is still far too high, but it has been successfully reduced.
+
+
+@peace_land_bread
+title: Peace, land, bread
+view-if: is_armistice and hunger < 20 and land_reform_progress >= 3
+tags: endings
+go-to: eg_menu
+
+We have made progress towards the goals of the February Revolution - signing an armistice, redistributing land, and reducing hunger.
+
+
+@kornilovite
+title: Kornilov Coup victorious
+view-if: k_coup > 0 and coup_victory = 1
+tags: endings
+go-to: eg_menu
+
+The Kornilov Coup is victorious. The Petrograd Soviet has been dissolved and the Provisional Government rules as a military dictatorship. However, forces loyal to the Soviets are rebelling, and a civil war is on the horizon.
+
+@coup_defeated
+title: Kornilov Coup defeated
+view-if: coup_defeated = 1
+tags: endings
+go-to: eg_menu
+
+We attempted to launch a coup with General Kornilov, but our attempt has failed. The Kadets are no longer a functional party in Russia.
+
 
 
 @achievements
@@ -146,8 +185,17 @@ go-to: eg_menu if started == 1; root.start_menu_2 if started == 0
 
 [? if game_achievement_womens_battalion : **Women's Battalion** - form the Women's Battalion of Death. ?]
 
-= Completed Achievements Overall
+[? if game_achievement_peace_land_bread : **Peace, Land, Bread** - sign an armistice, commence land redistribution, and reduce hunger. ?]
 
+[? if game_achievement_end_famine : **The End of Famine** - hunger has been reduced to a low level. ?]
+
+[? if game_achievement_low_inflation : **Stopping the Printers** - inflation is somewhat under control. ?]
+
+[? if game_achievement_kornilovite : **Kornilovite** - successfully launch a military coup. ?]
+
+[? if game_achievement_coup_defeated: **Kornilov Defeated** - attempt to launch a coup and fail. ?]
+
+= Completed Achievements Overall
 
 [? if achievement_dustbin : **The Dustbin of History** - defeated by the Bolshevik revolution. ?]
 
@@ -169,6 +217,15 @@ go-to: eg_menu if started == 1; root.start_menu_2 if started == 0
 
 [? if achievement_womens_battalion : **Women's Battalion** - form the Women's Battalion of Death. ?]
 
+[? if achievement_peace_land_bread : **Peace, Land, Bread** - sign an armistice, commence land redistribution, and reduce hunger. ?]
+
+[? if achievement_end_famine : **The End of Famine** - hunger has been reduced to a low level. ?]
+
+[? if achievement_low_inflation : **Stopping the Printers** - inflation is somewhat under control. ?]
+
+[? if achievement_kornilovite : **Kornilovite** - successfully launch a military coup. ?]
+
+[? if achievement_coup_defeated: **Kornilov Defeated** - attempt to launch a coup and fail. ?]
 
 = Incomplete Achievements
 
@@ -188,10 +245,19 @@ go-to: eg_menu if started == 1; root.start_menu_2 if started == 0
 
 [? if not achievement_peace : **Zimmerwald** - sign an armistice with the Central Powers. ?]
 
-
 [? if not achievement_victory : **Victory** - win at least one battle in the Great War. ?]
 
 [? if not achievement_womens_battalion : **Women's Battalion** - form the Women's Battalion of Death. ?]
+
+[? if not achievement_peace_land_bread : **Peace, Land, Bread** - sign an armistice, commence land redistribution, and reduce hunger. ?]
+
+[? if not achievement_end_famine : **The End of Famine** - hunger has been reduced to a low level. ?]
+
+[? if not achievement_low_inflation : **Stopping the Printers** - inflation is somewhat under control. ?]
+
+[? if not achievement_kornilovite : **Kornilovite** - successfully launch a military coup. ?]
+
+[? if not achievement_coup_defeated: **Kornilov Defeated** - attempt to launch a coup and fail. ?]
 
 @end_game
 game-over: true

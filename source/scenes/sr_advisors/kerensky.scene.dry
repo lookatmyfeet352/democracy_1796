@@ -19,9 +19,10 @@ Kerensky is a Duma member for the Trudovik, or Labor, faction, and is affiliated
 @civil_rights_
 title: Civil Rights
 subtitle: Kerensky is the Justice Minister.
+view-if: not womens_rights or not freedom_of_religion
 choose-if: advisor_action_timer = 0 and justice_minister = "Kerensky"
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?] [? if justice_minister != "Kerensky" : Kerensky is not the Justice Minister. ?]
-on-arrival: advisor_action_timer = 4; justice_policy_timer -= 4; last_advisor_action = 1
+on-arrival: advisor_action_timer = 4; civil_rights_timer -= 4; last_advisor_action = 1
 go-to: civil_rights
 
 @military_policy_

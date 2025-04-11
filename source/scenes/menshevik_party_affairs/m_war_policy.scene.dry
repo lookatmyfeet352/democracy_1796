@@ -43,11 +43,11 @@ subtitle: Support an immediate end to the war, even a separate peace if necessar
 unavailable-subtitle: There is not enough support for this position within the party.
 view-if: m_war_policy != 2
 choose-if: internationalist_strength >= defensist_strength + social_patriot_strength
-on-arrival: m_war_policy = 2; internationalist_strength += 5; internationalist_dissent -= 5; defensist_dissent += 20; social_patriot_dissent += 30; m_leadership = 1;
+on-arrival: m_war_policy = 2; internationalist_strength += 5; internationalist_dissent -= 5; defensist_dissent += 20; social_patriot_dissent += 30; m_leadership = 1; m_sr_relation -= 8 if sr_leadership = 0; m_k_relation -= 10;
 
 We have adopted an internationalist position, calling for an immediate end to the war.
 
-[? if defensist_dissent > 50 : The Defensists are deeply upset at this decision, and thus are splitting from the party. ?]
+[? if defensist_dissent > 55 : The Defensists are deeply upset at this decision, and thus are splitting from the party. ?]
 
 - @m_defensist_split
 
@@ -57,7 +57,7 @@ We have adopted an internationalist position, calling for an immediate end to th
 title: Increase support for an internationalist position.
 subtitle: Support an immediate end to the war, even a separate peace if necessary.
 view-if: m_war_policy != 2 and internationalist_strength < defensist_strength + social_patriot_strength
-on-arrival: internationalist_strength += 6; internationalist_dissent -= 4; defensist_dissent += 10; social_patriot_dissent += 10
+on-arrival: internationalist_strength += 6; internationalist_dissent -= 4; defensist_dissent += 10; social_patriot_dissent += 10; m_sr_relation -= 2 if sr_leadership = 0; m_k_relation -= 3;
 
 We are building up support for internationalism within the party, so that we may eventually adopt this position.
 

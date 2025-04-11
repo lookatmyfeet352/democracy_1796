@@ -19,7 +19,7 @@ title: Emergency Fundraising
 subtitle: An emergency infusion of resources.
 choose-if: advisor_action_timer = 0
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?]
-on-arrival: advisor_action_timer = 6; sr_resources += sr_dues
+on-arrival: advisor_action_timer = 4; sr_resources += sr_dues
 
 We have gained +[+ sr_dues +] resources.
 

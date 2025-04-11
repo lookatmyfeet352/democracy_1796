@@ -7,7 +7,7 @@ new-page: true
 
 = Irakli Tsereteli
 
-Irakli Tsereteli is a Georgian Menshevik revolutionary who returned from Siberian exile. In exile, he developed a nuanced position on the war, calling for a negotiated end to the war without defeatism.
+Irakli Tsereteli is a Georgian Menshevik revolutionary who returned from Siberian exile. He is widely viewed as the leader of the Mensheviks. In exile, he developed a nuanced position on the war, calling for a negotiated end to the war without defeatism, although in Petrograd he tends to support the Provisional Government's policies.
 
 # actions: fundraising, organizing workers, inter-party relations, clear the agenda
 
@@ -16,6 +16,7 @@ Irakli Tsereteli is a Georgian Menshevik revolutionary who returned from Siberia
 - @inter_party_relations
 - @support_defensism
 - @media
+- @party_discipline
 - @root: Return to main
 
 @fundraising
@@ -64,4 +65,14 @@ unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +
 on-arrival: advisor_action_timer = 4; workers_m += 4*(1-m_dissent); soldiers_m += 4*(1-m_dissent); soldiers_m -= 2 if (war_weariness >= 60 and m_war_policy <= 1);
 
 Our propaganda campaign encourages support for the Menshevik party among the workers and soldiers.
+
+@party_discipline
+title: Party Discipline
+subtitle: Reduce dissent across the party.
+choose-if: advisor_action_timer = 0
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?]
+on-arrival: advisor_action_timer = 4; defensist_dissent -= 5; internationalist_dissent -= 5; social_patriot_dissent -= 5;
+
+We have enforced party discipline to reduce dissent across all factions.
+
 

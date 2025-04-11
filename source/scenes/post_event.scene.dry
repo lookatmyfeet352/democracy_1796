@@ -455,6 +455,7 @@ if (Q.week_actions >= 1 && Q.current_player >= Q.n_players) {
             Q.best_front_ratio = Q[front + "_ratio"];
         }
     }
+    console.log("best attacking front:", Q.best_front, Q.best_front_ratio);
 
 } else if (Q.week_actions >= 0 && Q.current_player < Q.n_players) {
     // If there are more players...

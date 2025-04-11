@@ -32,7 +32,7 @@ We have increased the direction of the Soviet parties over the workers' militias
 
 @recruitment
 title: Recruit more workers into the militias.
-choose-if: workers_militia_strength <= 80 
+choose-if: workers_militia_strength <= 100 
 unavailable-subtitle: There are not enough willing workers to recruit.
 on-arrival: workers_militia_strength += 8;
 
@@ -41,9 +41,9 @@ We have increased recruitment into the workers' militias.
 @arming
 title: Increase armaments for the militias.
 subtitle: -1 resource
-choose-if: workers_militia_militancy < 0.7 and ((player_party = "m" and m_resources >= 1) or (player_party = "sr" and sr_resources >= 1) or (player_party = "b" and b_resources >= 1))
-unavailable-subtitle: [? if ((player_party = "m" and m_resources < 1) or (player_party = "sr" and sr_resources < 1) or (player_party = "b" and b_resources < 1)): We do not have enough resources. ?]
-on-arrival: workers_militia_militancy += 0.06; sr_resources -= 1 if player_party = "sr"; b_resources -= 1 if player_party = "b"; m_resources -= 1 if player_party = "m";
+choose-if: workers_militia_militancy <= 1 and ((player_party = "m" and m_resources >= 1) or (player_party = "sr" and sr_resources >= 1) or (player_party = "b" and b_resources >= 1))
+unavailable-subtitle: [? if ((player_party = "m" and m_resources < 1) or (player_party = "sr" and sr_resources < 1) or (player_party = "b" and b_resources < 1)): We do not have enough resources. ?][? if workers_militia_militancy > 1 : We cannot arm them any further. ?]
+on-arrival: workers_militia_militancy += 0.1; sr_resources -= 1 if player_party = "sr"; b_resources -= 1 if player_party = "b"; m_resources -= 1 if player_party = "m";
 
 We have spent resources on purchasing more armaments for the workers' militias.
 
@@ -53,7 +53,7 @@ subtitle: We will organize the workers' militias for the defense of the revoluti
 unavailable-subtitle: -2 resources 
 view-if: player_party = "b" and mrc = 0
 choose-if: b_resources >= 2
-on-arrival: soldiers_b += 15; workers_militia_b_loyalty += 25; mrc = 1;
+on-arrival: soldiers_b += 15; workers_militia_b_loyalty += 25; mrc = 1; b_resources -= 2
 max-visits: 1
 
 The Petrograd Soviet has formed the Military-Revolutionary Committee, a committee to organize the workers' militias and garrison troops for the defense of the revolution. This ties togethe

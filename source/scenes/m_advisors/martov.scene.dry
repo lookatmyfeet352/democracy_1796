@@ -21,7 +21,7 @@ Julius Martov is one of the founding members of the RSDLP and the Menshevik fact
 title: Adopt Internationalism as our party policy.
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?][? if m_war_policy = 2 : We already have an internationalist war policy. ?][? if internationalist_strength < defensist_strength + social_patriot_strength: There is not enough support for this position within the party. ?]
 choose-if: advisor_action_timer <= 0 and internationalist_strength >= defensist_strength + social_patriot_strength and m_war_policy != 2
-on-arrival: advisor_action_timer = 4; m_war_policy = 2; internationalist_strength += 5; internationalist_dissent -= 5; defensist_dissent += 15; social_patriot_dissent += 30
+on-arrival: advisor_action_timer = 4; m_war_policy = 2; internationalist_strength += 5; internationalist_dissent -= 5; defensist_dissent += 15; social_patriot_dissent += 30; m_leadership = 1;
 
 We have adopted an internationalist position, calling for an immediate end to the war.
 

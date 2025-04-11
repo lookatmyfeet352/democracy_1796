@@ -37,7 +37,7 @@ subtitle: +2 budget
 view-if: budget < 0
 unavailable-subtitle: Our relation with the West is not good enough.
 choose-if: west_relation >= 60
-on-arrival: west_relation -= 10; west_loans += 2; foreign_debt += 2;
+on-arrival: west_relation -= 10; west_loans += 2; foreign_debt += 2; budget += 2;
 go-to: budget_deficit_menu
 
 We have taken out more loans from the Western powers. This reduces our relations, and may impede our opportunity to take out loans again.

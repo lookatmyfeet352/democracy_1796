@@ -1,7 +1,7 @@
 title: Allied Demands
 subtitle: The Allies demand a military offensive...
 new-page: true
-view-if: month = 6 and ((player_party = "m" and war_minister_party = "Menshevik") or (player_party = "k" and war_minister_party = "Kadet") or (player_party = "sr" and war_minister_party = "SR")) and battle_count = 0 and not battle_rejected and offensive_demand_timer = 0
+view-if: month = 6 and ((player_party = "m" and war_minister_party = "Menshevik") or (player_party = "k" and war_minister = "Guchkov") or (player_party = "sr" and war_minister_party = "SR")) and battle_count = 0 and not battle_rejected and offensive_demand_timer = 0
 on-arrival: offensive_demand_timer = 1
 tags: event
 

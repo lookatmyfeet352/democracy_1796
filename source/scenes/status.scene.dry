@@ -214,7 +214,7 @@ Provisional government legitimacy: [+ prov_gov_legitimacy : legitimacy +]
 
 Chair: [+ soviet_chair +] ([+ soviet_chair_party +])
 
-Executive committee: [? if m_in_exco: Mensheviks, ?] [? if sr_in_exco: SRs ?] [? if b_in_exco: Bolsheviks ?]
+Executive committee: [? if m_in_exco: Mensheviks, ?] [? if sr_in_exco: SRs ?] [? if b_in_exco: Bolsheviks ?][? if defensist_in_exco:, Menshevik-Defensists ?][? if internationalist_in_exco:, Menshevik-Internationalists ?][? if left_sr_in_exco:, Left-SRs ?][? if right_sr_in_exco:, Right-SRs ?]
 
 Overal composition:
 Mensheviks: [+ m_soviet +]%

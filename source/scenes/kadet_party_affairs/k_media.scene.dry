@@ -24,7 +24,7 @@ What should be our strategy for newspapers and media?
 title: Support the Provisional Government.
 subtitle: -1 resource
 choose-if: k_resources >= 1
-on-arrival: prov_gov_legitimacy += 5;
+on-arrival: prov_gov_legitimacy += 5*(1-k_dissent); k_resources -= 1
 
 Our media campaign urges support for the Provisional Government, hopefully increasing the government's perceived legitimacy.
 
@@ -32,7 +32,7 @@ Our media campaign urges support for the Provisional Government, hopefully incre
 title: Support the Kadet party.
 subtitle: -1 resource
 choose-if: k_resources >= 1
-on-arrival: middle_k += 5*(1-k_dissent);
+on-arrival: middle_k += 5*(1-k_dissent); k_resources -= 1
 
 Our media campaign encourages support for the Constitutional Democrat party among the middle class.
 
@@ -40,6 +40,6 @@ Our media campaign encourages support for the Constitutional Democrat party amon
 title: Support the war effort.
 subtitle: -1 resource
 choose-if: k_resources >= 1
-on-arrival: war_weariness -= 4*(1-k_dissent); 
+on-arrival: war_weariness -= 4*(1-k_dissent);  k_resources -= 1
 
 Our newspapers print editorials in support of the war effort, hoping to reduce the war weariness.

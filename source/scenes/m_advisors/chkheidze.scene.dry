@@ -14,6 +14,7 @@ Nikolai Chkheidze is a Georgian Menshevik member of the Duma, and one of the org
 - @improve_relations
 - @prov_gov_cooperation
 - @organizing_workers
+- @soviet_election_
 - @root: Return to main
 
 @fundraising
@@ -50,3 +51,11 @@ unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +
 on-arrival: advisor_action_timer += 4; workers_m += 5*(1-m_dissent); m_workers_org += 1; workers_m -= 2 if m_in_prov_gov and prov_gov_legitimacy <= 50;
 
 We have increased our organizing among the workers. [? if m_in_prov_gov and prov_gov_legitimacy <= 50 : Our participation in the unpopular Provisional Government limits our support. ?]
+
+@soviet_election_
+title: Soviet Elections
+subtitle: Call for new elections for the Petrograd Soviet leadership.
+choose-if: advisor_action_timer <= 0
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?]
+on-arrival: advisor_action_timer = 4;
+go-to: soviet_leadership_election

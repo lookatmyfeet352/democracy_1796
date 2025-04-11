@@ -33,7 +33,7 @@ Through our party organizations and propaganda campaigns, we are tying the milit
 @recruitment
 title: Recruit more workers into the militias.
 subtitle: -1 resource
-choose-if: workers_militia_strength <= 80 and b_resources >= 1
+choose-if: workers_militia_strength <= 100 and b_resources >= 1
 unavailable-subtitle: [? if workers_militia_strength > 80 : There are not enough willing workers to recruit. ?][? if b_resources < 1 : Not enough resources. ?]
 on-arrival: workers_militia_strength += 6*(1-b_dissent); b_resources -= 1
 
@@ -42,9 +42,9 @@ We have increased recruitment into the workers' militias.
 @arming
 title: Increase armaments for the militias.
 subtitle: -1 resource
-choose-if: workers_militia_militancy < 0.7 and  b_resources >= 1
-unavailable-subtitle: [? if b_resources < 1: Not have enough resources. ?]
-on-arrival: workers_militia_militancy += 0.05; b_resources -= 1;
+choose-if: workers_militia_militancy <= 1 and  b_resources >= 1
+unavailable-subtitle: [? if b_resources < 1: Not have enough resources. ?][? if workers_militia_militancy > 1 : We cannot arm them any further. ?]
+on-arrival: workers_militia_militancy += 0.09; b_resources -= 1;
 
 We have spent resources on purchasing more armaments for the workers' militias.
 

@@ -24,7 +24,7 @@ Our policy is to maintain a capitalist ownership and management structure for no
 @supervision
 title: In addition to trade union rights, workers' councils should supervise management.
 subtitle: [? if m_industrial_policy = 1 : This is our current position. ?]
-on-arrival: social_patriot_dissent += 5 if m_industrial_policy = 0; defensist_dissent += 5 if m_industrial_policy = 0; internationalist_strength += 4 if m_industrial_policy = 0; m_industrial_policy = 1; 
+on-arrival: social_patriot_dissent += 5 if m_industrial_policy = 0; defensist_dissent += 5 if m_industrial_policy = 0; internationalist_strength += 4 if m_industrial_policy = 0; m_industrial_policy = 1; m_k_relation -= 2;
 
 Our policy is that workers' councils should have the right to supervise management decisions.
 
@@ -33,7 +33,7 @@ title: In addition to the above, workers' councils should take over management a
 choose-if: m_industrial_policy >= 1
 subtitle: [? if m_industrial_policy = 2 : This is our current position. ?]
 unavailable-subtitle: This position is currently too radical for our party.
-on-arrival: social_patriot_dissent += 10 if m_industrial_policy < 2; defensist_dissent += 8 if m_industrial_policy < 2; m_industrial_policy = 2;
+on-arrival: social_patriot_dissent += 10 if m_industrial_policy < 2; defensist_dissent += 8 if m_industrial_policy < 2; m_industrial_policy = 2; m_k_relation -= 2;
 
 Our policy is that workers' councils should take over enterprise management and ownership directly. This is a syndicalist position, which is popular among the worker grassroots but less popular among our intellectual leadership.
 
@@ -42,6 +42,6 @@ title: The state should nationalize all major industries.
 choose-if: m_industrial_policy >= 1
 subtitle: [? if m_industrial_policy = 1 : This is our current position. ?]
 unavailable-subtitle: This position is currently too radical for our party.
-on-arrival: social_patriot_dissent += 5 if m_industrial_policy < 2; defensist_dissent += 5 if m_industrial_policy < 2; m_industrial_policy = 3;
+on-arrival: social_patriot_dissent += 5 if m_industrial_policy < 2; defensist_dissent += 5 if m_industrial_policy < 2; m_industrial_policy = 3; m_k_relation -= 2;
 
 Our policy is that the state should nationalize all major industries.

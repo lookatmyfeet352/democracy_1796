@@ -1,6 +1,6 @@
 title: Inter-Party Relationships
 new-page: true
-view-if: k_inter_party_relationships_timer <= 0 and player_party = "m"
+view-if: k_inter_party_relationships_timer <= 0 and player_party = "k"
 is-card: true
 on-arrival: inter_party_relationships_timer += 4; week_actions += 1
 card-image: img/rsdlp.jpg
@@ -9,13 +9,11 @@ tags: k_party
 
 = Inter-Party Relationships
 
-We can improve our relations with the other democratic or socialist parties.
-
-According to the theory of dialectical materialism, it is the historic role of the bourgeoisie and middle class to lead the revolution and develop a liberal democracy. It is our task to assist the bourgeoisie parties, or at most oversee them along their historic path.
+We can improve our relations with the parties on our left or the right.
 
 - @sr
-- @k
-- @b
+- @m
+- @con
 - @root: We do not need to improve our relations.
 - @easy_discard
 - @cancel_advisor_action
@@ -29,18 +27,18 @@ subtitle: -1 resource
 
 We have improved our relations with the Party of Socialist-Revolutionaries.
 
-@k
-title: Improve our relations with the Kadets, the middle_class liberal party.
-on-arrival: m_k_relation += 5*(1-k_dissent); m_k_relation -= 3 if internationalist_strength >= defensist_strength + social_patriot_strength or k_prov_gov_policy >= 2 or k_war_policy >= 2; k_resources -= 1;
+@m
+title: Improve our relations with the Mensheviks.
+on-arrival: m_k_relation += 5*(1-k_dissent); m_k_relation -= 3 if internationalist_strength >= defensist_strength + social_patriot_strength; k_resources -= 1;
 choose-if: k_resources >= 1
 subtitle: -1 resource
 
-We are building our ties with the Kadets. [? if internationalist_strength >= defensist_strength + social_patriot_strength or k_war_policy >= 2 : Our support of Internationalism makes it more difficult to build relationships, as they consider our anti-war ideas to be treasonous. ?][? if k_prov_gov_policy >= 2: Our opposition to the Provisional Government makes improving relations difficult. ?]
+We are building our ties with the Mensheviks.
 
-@b
-title: Can we repair our relations with the Bolsheviks?
-on-arrival: b_k_relation += 5*(1-k_dissent); b_k_relation -= 3 if leninist_strength >= moderate_strength or k_war_policy <= 1 or k_prov_gov_policy <= 1; k_resources -= 1;
+@con
+title: Improve our relations with the conservative factions to our right.
+on-arrival: k_conservative_relation += 5*(1-k_dissent); k_conservative_relation -= 3 if left_kadet_strength > right_kadet_strength; k_resources -= 1;
 choose-if: k_resources >= 1
 subtitle: -1 resource
 
-We have attempted to build closer ties with the Bolsheviks, our wayward cousins in the RSDLP. [? if leninist_strength >= moderate_strength : The influence of Lenin makes it difficult for us to build these relationships. ?][? if k_war_policy <= 1 : Our defensist war policy makes it difficult to improve relations. ?][? if k_prov_gov_policy <= 1: Our support of the Provisional Government makes it difficult to improve relations. ?]
+The conservative and monarchist right has largely been marginalized since the revolution, but they still have important contacts within the military, church, and upper-level bureaucracy. We attempt to build our relations with them.

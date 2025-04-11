@@ -1,8 +1,8 @@
 title: Kornilov Affair
 subtitle: An attempted coup by General Lavr Kornilov?
 new-page: true
-view-if: (month >= 8 and week >= 3) and prime_minister = "Kerensky" and not b_in_prov_gov and coup_progress < 10
-on-arrival: kornilov_affair_seen += 1
+view-if: (month >= 8 and week >= 4) and prime_minister = "Kerensky" and not b_in_prov_gov and coup_progress < 10 and kornilov_affair_seen = 0
+on-arrival: kornilov_affair_seen += 1; workers_b += 8 if player_party != "b"; soldiers_b += 8 if player_party != "b";
 max-visits: 1
 face-image: img/kornilov_2.jpg
 tags: event
@@ -13,7 +13,7 @@ tags: event
 
 [? if player_party != "k": A hostile army is approaching Petrograd! Led by General Lavr Kornilov, they are threatening to destroy the Soviet and restore "order". What should we do? ?]
 
-[? if player_party = "k": According to Prime Minister Kerensky, a hostile army is approaching Petrograd. He claims that ?]
+[? if player_party = "k": According to Prime Minister Kerensky, a hostile army is approaching Petrograd. He claims that General Kornilov is launching a coup to destroy the Petrograd Soviet and the Provisional Government. What should we do, if anything? ?]
 
 # options: call a general strike, and deploy the Worker's Militias!
 # for kadets only: We will welcome Kornilov as a liberator.

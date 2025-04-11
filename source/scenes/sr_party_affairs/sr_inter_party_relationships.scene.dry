@@ -1,6 +1,6 @@
 title: Inter-Party Relationships
 new-page: true
-view-if: sr_inter_party_relationships_timer <= 0 and player_party = "m"
+view-if: sr_inter_party_relationships_timer <= 0 and player_party = "sr"
 is-card: true
 on-arrival: sr_inter_party_relationships_timer += 4; week_actions += 1
 card-image: img/sr_poster_4.jpg
