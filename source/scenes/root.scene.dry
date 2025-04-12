@@ -956,17 +956,34 @@ new-page: true
 
  - Peter Kropotkin, The Russian Revolution and the Soviet Government, 1919
 
-For more information on the politics of the Provisional Government, see the "Library" page on the top left. If this is your first time playing the game, it is strongly recommended that you read at least some of this information.
+For more information on the politics of the Provisional Government, see the "Library" page on the top left. If this is your first time playing the game, it is recommended that you read at least some of this information.
 
+- @easy_mode
 - @single_player
+- @hard_mode
 - @local_multiplayer
 #- @online_multiplayer
 
-@single_player
-title: Single Player
+@easy_mode
+title: Single Player (Easy)
+on-arrival: difficulty = -1; m_resources = 6; sr_resources = 6; k_resources = 6; b_resources = 4; m_dues = 3; sr_dues = 3; b_dues = 3; m_k_relation = 50; m_sr_relation = 62; sr_k_relation = 50;
 go-to: party_selection
 
 Select a party:
+
+@single_player
+title: Single Player (Normal)
+go-to: party_selection
+
+Select a party:
+
+@hard_mode
+title: Single Player (Hard)
+on-arrival: difficulty = 1; m_resources = 2; sr_resources = 2; k_resources = 2; b_resources = 0; b_dues = 1;
+go-to: party_selection
+
+Select a party:
+
 
 @party_selection
 

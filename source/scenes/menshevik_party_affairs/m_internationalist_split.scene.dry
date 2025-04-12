@@ -1,5 +1,6 @@
 title: Internationalist Split
 view-if: internationalist_dissent > 55
+max-visits: 1
 on-arrival: {!
 Q.internationalist_split = 1;
 Q.m_leadership = 0;

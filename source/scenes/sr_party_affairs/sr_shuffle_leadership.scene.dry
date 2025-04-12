@@ -1,6 +1,6 @@
 title: Shuffle Leadership
 new-page: true
-view-if: sr_shuffle_leadership_timer <= 0 and sr_siberians_return_seen = 1
+view-if: sr_shuffle_leadership_timer <= 0 and sr_siberians_return_seen = 1 and player_party = "sr" and difficulty > 0
 on-arrival: sr_shuffle_leadership_timer += 4; week_actions += 1
 frequency: 100
 is-card: true
@@ -205,6 +205,7 @@ choose-if: right_sr_strength < 50
 unavailable-subtitle: The Right-SR faction is too strong.
 on-arrival: kerensky = 0; right_sr_dissent += 10; sr_n_advisors -= 1
 tags: sr_rm_advisor
+go-to: rm_main
 
 Kerensky is no longer an advisor. The Right-SRs are not pleased.
 
@@ -215,6 +216,7 @@ choose-if: right_sr_strength < 50
 unavailable-subtitle: The Right-SR faction is too strong.
 on-arrival: avksentiev_advisor = 0; right_sr_dissent += 10; sr_n_advisors -= 1
 tags: sr_rm_advisor
+go-to: rm_main
 
 Avksentiev is no longer an advisor. The Right-SRs are not pleased.
 
@@ -223,6 +225,7 @@ title: Remove Zenzinov
 view-if: zenzinov_advisor = 1
 on-arrival: zenzinov_advisor = 0; right_sr_dissent += 5; sr_n_advisors -= 1
 tags: sr_rm_advisor
+go-to: rm_main
 
 Zenzinov is no longer an advisor. The Right-SRs are not pleased.
 
@@ -231,6 +234,7 @@ title: Remove Savinkov
 view-if: savinkov_advisor = 1
 on-arrival: savinkov_advisor = 0; right_sr_dissent += 5; sr_n_advisors -= 1
 tags: sr_rm_advisor
+go-to: rm_main
 
 Savinkov is no longer an advisor. The Right-SRs are not pleased.
 
@@ -239,6 +243,7 @@ title: Remove Breshkovskaya
 view-if: breshkovskaya_advisor = 1
 on-arrival: breshkovskaya_advisor = 0; right_sr_dissent += 5; sr_n_advisors -= 1
 tags: sr_rm_advisor
+go-to: rm_main
 
 Breshkovskaya is no longer an advisor. The Right-SRs are not pleased.
 
@@ -250,6 +255,7 @@ choose-if: left_sr_strength < 50
 unavailable-subtitle: The Internationalist faction is too strong.
 on-arrival: spiridonova_advisor = 0; left_sr_dissent += 10; sr_n_advisors -= 1
 tags: sr_rm_advisor
+go-to: rm_main
 
 Spiridonova is no longer an advisor. The Left-SRs are not pleased.
 
@@ -258,6 +264,7 @@ title: Remove Kamkov
 view-if: kamkov_advisor = 1
 on-arrival: kamkov_advisor = 0; left_sr_dissent += 5; sr_n_advisors -= 1
 tags: sr_rm_advisor
+go-to: rm_main
 
 Kamkov is no longer an advisor. The Left-SRs are not pleased.
 
@@ -266,6 +273,7 @@ title: Remove Natanson
 view-if: natanson_advisor = 1
 on-arrival: natanson_advisor = 0; left_sr_dissent += 5; sr_n_advisors -= 1
 tags: sr_rm_advisor
+go-to: rm_main
 
 Natanson is no longer an advisor. The Left-SRs are not pleased.
 
@@ -276,6 +284,7 @@ choose-if: 1 = 0
 unavailable-subtitle: We cannot simply remove Chernov!
 on-arrival: chernov_advisor = 0; right_sr_dissent += 10; sr_n_advisors -= 1
 tags: sr_rm_advisor
+go-to: rm_main
 
 Chernov is no longer an advisor.
 
@@ -284,6 +293,7 @@ title: Remove Kondratiev
 view-if: kondratiev_advisor = 1
 on-arrival: kondratiev_advisor = 0; right_sr_dissent += 10; sr_n_advisors -= 1
 tags: sr_rm_advisor
+go-to: rm_main
 
 Kondratiev is no longer an advisor. The Right-SRs are not pleased.
 

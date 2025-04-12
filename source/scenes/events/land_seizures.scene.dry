@@ -14,6 +14,7 @@ What should we do?
 - @initiate
 - @continue_redistribute
 - @continue_acquire_land
+- @convince_minister
 - @support
 - @suppress
 - @suppress_2
@@ -21,11 +22,19 @@ What should we do?
 
 # if in control of agricultural ministry 
 
+@convince_minister
+title: Convince the Agriculture Minister to enact land reform.
+subtitle: Agriculture Minister [+ agriculture_minister +] can be persuaded to take action.
+unavailable-subtitle: Our relations with the [+ agriculture_minister_party +] party are inadequate.
+choose-if: agriculture_minister = "Chernov" or ((player_party = "m" and m_k_relation >= 50) or (player_party = "k" and sr_k_relation >= 50) or (player_party = "sr" and sr_k_relation >= 50))
+view-if: (player_party = "m" and m_in_prov_gov and agriculture_minister_party != "Menshevik") or (player_party = "sr" and sr_in_prov_gov and agriculture_minister_party != "SR") or (player_party = "k" and k_in_prov_gov and agriculture_minister_party != "Kadet")
+go-to: initiate if land_reform = 0; continue_redistribute if land_reform_progress >= 1 and has_land; continue_acquire_land if land_reform_progress >= 1 and not has_land
+
 @initiate
 title: Initiate a program of land reform to meet peasant demands.
 subtitle: -1 budget
 view-if: land_reform = 0 and ((player_party = "m" and agriculture_minister_party = "Menshevik") or (player_party = "k" and agriculture_minister_party = "Kadet") or (player_party = "sr" and agriculture_minister_party = "SR"))
-on-arrival: land_reform += 1; budget -= 1; land_seizures_timer += 4; peasants_sr += 5*(1-sr_dissent) + sr_rural_org if player_party = "sr"; peasants_k += 2 if player_party = "k";
+on-arrival: land_reform += 1; land_reform_progress += 1; budget -= 1; land_seizures_timer += 4; peasants_sr += 5*(1-sr_dissent) + sr_rural_org if sr_in_prov_gov; peasants_k += 3*(1-k_dissent) if k_in_prov_gov;
 
 In response to the unauthorized seizures, we have formed land committees to regulate the process of redistribution and expropriation, in some cases compensating former landowners for the seized land.
 
@@ -42,7 +51,7 @@ In response to the illegal seizures, we have begun redistributing land to the pe
 title: Continue the land reform program to meet peasant demands.
 subtitle: -3 budget - Pay for seized land.
 view-if: land_reform_progress >= 1 and has_land = 0 and ((player_party = "m" and agriculture_minister_party = "Menshevik") or (player_party = "k" and (agriculture_minister_party = "Kadet" or agriculture_minister_party = "Popular Socialist")) or (player_party = "sr" and (agriculture_minister_party = "SR" or agriculture_minister_party = "Popular Socialist")))
-on-arrival: land_reform = 2; budget -= 3; peasants_sr += 5*(1-sr_dissent) if sr_in_prov_gov; peasant_unrest -= 1; land_reform_progress += 1; has_land = 1; land_seizures_timer += 4;
+on-arrival: land_reform = 2; budget -= 3; peasants_sr += 5*(1-sr_dissent) if sr_in_prov_gov; peasant_unrest -= 1; land_reform_progress += 1; has_land = 1; land_seizures_timer += 3;
 
 In response to the illegal seizures, we have compensated landowners for their land, and purchased more land to be redistrubuted later.
 

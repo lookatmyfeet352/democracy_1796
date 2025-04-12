@@ -185,7 +185,7 @@ The Mensheviks are divided regarding the war effort.
 
 @m_support_int
 go-to: intro_menu
-on-arrival: internationalist_strength += 5; internationalist_dissent -= 5; defensist_dissent += 8
+on-arrival: internationalist_strength += 5; internationalist_dissent -= 5; defensist_dissent += 8; defensist_strength -= 8
 subtitle: Support an immediate end to the war.
 
 The Internationalists are currently a minority of our party.
@@ -232,7 +232,7 @@ view-if: o1_seen = 1
 
 @1917_main
 new-page: true
-go-to: main
+go-to: main if difficulty = 0; main.main_easy if difficulty < 0; main.main_hard if difficulty > 0
 
 = Week 1, March 1917
 

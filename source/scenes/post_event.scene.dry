@@ -497,7 +497,7 @@ if (Q.player_party == "m") {
     Q.player_in_soviet = Q.k_in_soviet;
 }
 !}
-go-to: events_choice if has_event = 1; main if has_event = 0
+go-to: events_choice if has_event = 1; main if has_event = 0 and difficulty = 0; main.main_easy if has_event = 0 and difficulty < 0; main.main_hard if has_event = 0 and difficulty > 0
 
 = Week [+ week +], [+ month : month +] [+ year +]
 

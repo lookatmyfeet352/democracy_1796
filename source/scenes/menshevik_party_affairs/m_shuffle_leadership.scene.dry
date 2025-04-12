@@ -1,6 +1,6 @@
 title: Shuffle Leadership
 new-page: true
-view-if: m_shuffle_leadership_timer <= 0 and m_siberians_return_seen = 1
+view-if: m_shuffle_leadership_timer <= 0 and m_siberians_return_seen = 1 and player_party = "m" and difficulty > 0
 on-arrival: m_shuffle_leadership_timer += 4; week_actions += 1
 frequency: 100
 is-card: true
@@ -218,6 +218,7 @@ choose-if: defensist_strength < 50
 unavailable-subtitle: The Defensist faction is too strong.
 on-arrival: tsereteli_advisor = 0; defensist_dissent += 10; m_n_advisors -= 1
 tags: m_rm_advisor
+go-to: rm_main
 
 Tsereteli is no longer an advisor. The Revolutionary Defensists are not pleased.
 
@@ -228,6 +229,7 @@ choose-if: defensist_strength < 50
 unavailable-subtitle: The Defensist faction is too strong.
 on-arrival: chkheidze_advisor = 0; defensist_dissent += 10; m_n_advisors -= 1
 tags: m_rm_advisor
+go-to: rm_main
 
 Chkheidze is no longer an advisor. The Revolutionary Defensists are not pleased.
 
@@ -236,6 +238,7 @@ title: Remove Skobelev
 view-if: skobelev_advisor = 1
 on-arrival: skobelev_advisor = 0; defensist_dissent += 5; m_n_advisors -= 1
 tags: m_rm_advisor
+go-to: rm_main
 
 Skobelev is no longer an advisor. The Revolutionary Defensists are not pleased.
 
@@ -244,6 +247,7 @@ title: Remove Voitinsky
 view-if: voitinsky_advisor = 1
 on-arrival: voitinsky_advisor = 0; defensist_dissent += 5; m_n_advisors -= 1
 tags: m_rm_advisor
+go-to: rm_main
 
 Voitinsky is no longer an advisor. The Revolutionary Defensists are not pleased.
 
@@ -254,6 +258,7 @@ choose-if: internationalist_strength < 50
 unavailable-subtitle: The Internationalist faction is too strong.
 on-arrival: martov_advisor = 0; internationalist_dissent += 10; m_n_advisors -= 1
 tags: m_rm_advisor
+go-to: rm_main
 
 Martov is no longer an advisor. The Internationalists are not pleased.
 
@@ -262,6 +267,7 @@ title: Remove Sukhanov
 view-if: sukhanov_advisor = 1
 on-arrival: sukhanov_advisor = 0; internationalist_dissent += 5; m_n_advisors -= 1
 tags: m_rm_advisor
+go-to: rm_main
 
 Sukhanov is no longer an advisor. The Internationalists are not pleased.
 
@@ -270,6 +276,7 @@ title: Remove Groman
 view-if: groman_advisor = 1
 on-arrival: groman_advisor = 0; internationalist_dissent += 5; m_n_advisors -= 1
 tags: m_rm_advisor
+go-to: rm_main
 
 Groman is no longer an advisor. The Internationalists are not pleased.
 
@@ -279,6 +286,7 @@ title: Remove Axelrod
 view-if: axelrod_advisor = 1
 on-arrival: axelrod_advisor = 0; internationalist_dissent += 5; m_n_advisors -= 1
 tags: m_rm_advisor
+go-to: rm_main
 
 Axelrod is no longer an advisor. The Internationalists are not pleased.
 
@@ -289,6 +297,7 @@ choose-if: defensist_strength < 50
 unavailable-subtitle: The Defensist faction is too strong.
 on-arrival: plekhanov_advisor = 0; defensist_dissent += 10; m_n_advisors -= 1
 tags: m_rm_advisor
+go-to: rm_main
 
 Plekhanov is no longer an advisor. The Defensists are not pleased.
 
@@ -299,6 +308,7 @@ choose-if: defensist_strength < 50
 unavailable-subtitle: The Defensist faction is too strong.
 on-arrival: potresov_advisor = 0; defensist_dissent += 10; m_n_advisors -= 1
 tags: m_rm_advisor
+go-to: rm_main
 
 Potresov is no longer an advisor. The Defensists are not pleased.
 
@@ -309,5 +319,6 @@ choose-if: defensist_strength < 50
 unavailable-subtitle: The Defensist faction is too strong.
 on-arrival: zasulich_advisor = 0; defensist_dissent += 10; m_n_advisors -= 1
 tags: m_rm_advisor
+go-to: rm_main
 
 Zasulich is no longer an advisor. The Defensists are not pleased.

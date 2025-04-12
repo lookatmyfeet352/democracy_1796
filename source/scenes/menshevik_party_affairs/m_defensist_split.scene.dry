@@ -1,9 +1,11 @@
 title: Defensist Split
 view-if: defensist_dissent > 55
+max-visits: 1
 on-arrival: {!
 
 Q.defensist_split = 1;
 Q.m_leadership = 1;
+Q.m_war_policy = 2;
 Q.parties.push('defensist');
 Q.garrison_parties.push('defensist');
 

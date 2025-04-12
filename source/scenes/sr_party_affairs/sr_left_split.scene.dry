@@ -1,5 +1,6 @@
 title: Left-SR Split
-view-if: left_sr_dissent > 60
+view-if: left_sr_dissent > 55
+max-visits: 1
 on-arrival: {!
 Q.left_sr_split = 1;
 Q.sr_leadership = 0;

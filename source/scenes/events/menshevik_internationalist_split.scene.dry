@@ -1,6 +1,6 @@
 title: Menshevik-Internationalists split! 
 subtitle: The more left-leaning Mensheviks are splitting off to form a new party. 
-view-if: internationalist_dissent > 50 and not internationalist_split
+view-if: internationalist_dissent > 55 and not internationalist_split
 max-visits: 1 
 go-to: m_internationalist_split
 new-page: True 

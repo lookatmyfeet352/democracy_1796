@@ -13,10 +13,10 @@ go-to: april_days_k if player_party = "k"; april_days_m if player_party = "m"; a
 Mass protests in Petrograd! News has spread of Foreign Minister Milyukov's secret letter to the Allies assuring them of the redoubling of our war effort. This has radicalized the workers and the soldiers of the Petrograd garrison, and now they are marching against the imperialist war, and are demanding the ouster of Milyukov.
 
 @april_days_m
-go-to: enter_govt if m_k_relation >= 40; tensions if m_k_relation < 40
+go-to: enter_govt if m_k_relation >= 30; tensions if m_k_relation < 30
 
 @april_days_sr
-go-to: enter_govt if sr_k_relation >= 40; tensions if sr_k_relation < 40
+go-to: enter_govt if sr_k_relation >= 30; tensions if sr_k_relation < 30
 
 @enter_govt
 

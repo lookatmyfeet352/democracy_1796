@@ -19,8 +19,8 @@ This coalition arrangement is tolerable to all the parties.
 @agriculture
 title: Agriculture Ministry
 tags: m_mins
-choose-if: m_rural_policy != 0 and m_influence >= 10
-unavailable-subtitle: We do not have a rural policy. Viktor Chernov of the SRs is expected to take this position.
+choose-if: m_rural_policy != 0 and m_influence >= 10 and not sr_in_prov_gov
+unavailable-subtitle: [? if m_rural_policy = 0 : We do not have a rural policy. ?][? if sr_in_prov_gov: Viktor Chernov of the SRs is expected to take this position. ?]
 go-to: menu
 
 @food
