@@ -72,6 +72,20 @@ Q.m_dues = 2;
 Q.k_dues = 3;
 Q.sr_dues = 2;
 
+// difficulty-affected modifiers
+// dissent thresholds for party split
+// (this could be different between left and right factions, which will be done in the individual scenes)
+Q.m_split_threshold = 55;
+Q.sr_split_threshold = 55;
+// strength changes on supporting internationalist/defensist
+Q.m_support_change = 6;
+Q.sr_support_change = 6;
+// dissent reduction on party_disunity
+Q.m_discipline_change = 5;
+Q.sr_discipline_change = 5;
+// maximum numbers of advisors
+Q.max_advisors = 4;
+
 // the state of the party
 // overall dissent reduces every increase in party support.
 Q.b_dissent = 0.05;
@@ -958,6 +972,8 @@ new-page: true
 
 For more information on the politics of the Provisional Government, see the "Library" page on the top left. If this is your first time playing the game, it is recommended that you read at least some of this information.
 
+Difficulty affects starting resources and inter-party relations, as well as how difficult it is to change party advisors, change party ideology, and reduce dissent.
+
 - @easy_mode
 - @single_player
 - @hard_mode
@@ -966,7 +982,7 @@ For more information on the politics of the Provisional Government, see the "Lib
 
 @easy_mode
 title: Single Player (Easy)
-on-arrival: difficulty = -1; m_resources = 6; sr_resources = 6; k_resources = 6; b_resources = 4; m_dues = 3; sr_dues = 3; b_dues = 3; m_k_relation = 50; m_sr_relation = 62; sr_k_relation = 50;
+on-arrival: difficulty = -1; m_resources = 6; sr_resources = 6; k_resources = 6; b_resources = 4; m_dues = 3; sr_dues = 3; b_dues = 3; m_k_relation = 50; m_sr_relation = 62; sr_k_relation = 50; m_split_threshold = 65; sr_split_threshold = 65; m_support_change = 10; sr_support_change = 10; m_discipline_change = 8; sr_discipline_change = 8; max_advisors = 5
 go-to: party_selection
 
 Select a party:
@@ -979,7 +995,7 @@ Select a party:
 
 @hard_mode
 title: Single Player (Hard)
-on-arrival: difficulty = 1; m_resources = 2; sr_resources = 2; k_resources = 2; b_resources = 0; b_dues = 1;
+on-arrival: difficulty = 1; m_resources = 2; sr_resources = 2; k_resources = 2; b_resources = 0; b_dues = 0; m_split_threshold = 50; sr_split_threshold = 50; m_support_change = 5; sr_support_change = 5; m_discipline_change = 4; sr_discipline_change = 4; max_advisors = 3
 go-to: party_selection
 
 Select a party:

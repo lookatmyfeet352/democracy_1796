@@ -39,7 +39,7 @@ Our propaganda campaign encourages support for the SR party among the workers, s
 title: Support the ideology of revolutionary defensism - defending a defensive war effort as necessary for peace.
 subtitle: -1 resource
 choose-if: sr_resources >= 1
-on-arrival: right_sr_strength += 6*(1-sr_dissent); sr_resources -= 1
+on-arrival: right_sr_strength += (sr_support_change+1)*(1-sr_dissent); sr_resources -= 1; right_sr_dissent -= 4;
 
 Our newspapers print editorials in support of revolutionary defensism, arguing that a defensive war is necessary for a peace without annexations and indemnities. This benefits the Right-SRs.
 
@@ -47,6 +47,6 @@ Our newspapers print editorials in support of revolutionary defensism, arguing t
 title: Support the ideology of internationalism - support immediate negotiations for a peace.
 subtitle: -1 resource
 choose-if: sr_resources >= 1
-on-arrival: left_sr_strength += 6*(1-sr_dissent); left_sr_dissent -= 5*(1-sr_dissent); right_sr_dissent += 4; soldiers_sr += 3*(1-sr_dissent); sr_resources -= 1
+on-arrival: left_sr_strength += (sr_support_change+1)*(1-sr_dissent); left_sr_dissent -= 4; right_sr_dissent += 4; soldiers_sr += 3*(1-sr_dissent); sr_resources -= 1
 
 Our newspapers print editorials in support of internationalism, arguing that an immediate peace is necessary. This bolsters the internationalist Left-SR faction within the party while upsetting the defensist Right-SRs, and raises our standing with the soldiers.

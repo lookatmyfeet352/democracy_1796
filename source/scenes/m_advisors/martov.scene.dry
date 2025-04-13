@@ -31,7 +31,7 @@ title: Support Internationalism
 subtitle: Increase support for internationalism among our party.
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?][? if m_war_policy = 2 : We already have an internationalist war policy. ?]
 choose-if: advisor_action_timer <= 0 and m_war_policy != 2
-on-arrival: advisor_action_timer = 4; internationalist_strength += 6; internationalist_dissent -= 3; defensist_dissent += 5
+on-arrival: advisor_action_timer = 4; internationalist_strength += m_support_change; internationalist_dissent -= 3; defensist_dissent += 5
 
 We are building up support for internationalism within the party, so that we may eventually adopt this position.
 

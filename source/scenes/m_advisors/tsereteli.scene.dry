@@ -43,7 +43,7 @@ title: Support Revolutionary Defensism
 subtitle: Increase support for revolutionary defensism within our party.
 choose-if: advisor_action_timer <= 0
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?]
-on-arrival: advisor_action_timer = 4; defensist_strength += 5; defensist_dissent -= 5; internationalist_strength -= 4;
+on-arrival: advisor_action_timer = 4; defensist_strength += m_support_change; defensist_dissent -= 5; internationalist_strength -= 4;
 
 Tsereteli is advocating in favor of the Revolutionary Defensist position.
 
@@ -71,7 +71,7 @@ title: Party Discipline
 subtitle: Reduce dissent across the party.
 choose-if: advisor_action_timer = 0
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?]
-on-arrival: advisor_action_timer = 4; defensist_dissent -= 5; internationalist_dissent -= 5; social_patriot_dissent -= 5;
+on-arrival: advisor_action_timer = 4; defensist_dissent -= m_discipline_change; internationalist_dissent -= m_discipline_change; social_patriot_dissent -= m_discipline_change;
 
 We have enforced party discipline to reduce dissent across all factions.
 

@@ -27,7 +27,7 @@ The Menshevik party is being torn apart by internal dissent. Upset at the leader
 
 @party_discipline
 title: Enforce party discipline.
-on-arrival: internationalist_dissent -= 5; defensist_dissent -= 5; social_patriot_dissent -= 5; workers_m -= 4; soldiers_m -= 4
+on-arrival: internationalist_dissent -= m_discipline_change; defensist_dissent -= m_discipline_change; social_patriot_dissent -= 5; workers_m -= 4; soldiers_m -= 4
 
 Enforcing party discipline reduces dissent, but it leads to demoralization among our base.
 

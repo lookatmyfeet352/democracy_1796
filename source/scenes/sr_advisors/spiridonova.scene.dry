@@ -19,7 +19,7 @@ title: Support the Left-SR cause
 subtitle: Increase support for Left-SR ideology within the SRs.
 choose-if: advisor_action_timer = 0
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?]
-on-arrival: advisor_action_timer = 4; left_sr_strength += 8; left_sr_dissent -= 6; right_sr_dissent += 6
+on-arrival: advisor_action_timer = 4; left_sr_strength += sr_support_change+2; left_sr_dissent -= 6; right_sr_dissent += 6
 
 We have influenced the party towards a Left-SR position.
 

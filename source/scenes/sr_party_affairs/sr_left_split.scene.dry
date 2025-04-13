@@ -1,5 +1,5 @@
 title: Left-SR Split
-view-if: left_sr_dissent > 55
+view-if: left_sr_dissent > sr_split_threshold
 max-visits: 1
 on-arrival: {!
 Q.left_sr_split = 1;

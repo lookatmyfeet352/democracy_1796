@@ -42,7 +42,7 @@ Our propaganda campaign encourages support for the Menshevik party among the wor
 title: Support the ideology of revolutionary defensism - defending a defensive war effort as necessary for peace.
 subtitle: -1 resource
 choose-if: m_resources >= 1
-on-arrival: defensist_strength += 8*(1-m_dissent); defensist_dissent -= 8; m_resources -= 1
+on-arrival: defensist_strength += (m_support_change+2)*(1-m_dissent); defensist_dissent -= 8; m_resources -= 1
 
 Our newspapers print editorials in support of revolutionary defensism, arguing that a defensive war is necessary for a peace without annexations and indemnities.
 
@@ -50,7 +50,7 @@ Our newspapers print editorials in support of revolutionary defensism, arguing t
 title: Support the ideology of internationalism - support immediate negotiations for a peace.
 subtitle: -1 resource
 choose-if: m_resources >= 1
-on-arrival: internationalist_strength += 8*(1-m_dissent); internationalist_dissent -= 8*(1-m_dissent); social_patriot_dissent += 5; defensist_dissent += 4; soldiers_m += 3*(1-m_dissent); m_resources -= 1
+on-arrival: internationalist_strength += (m_support_change+2)*(1-m_dissent); internationalist_dissent -= 8*(1-m_dissent); social_patriot_dissent += 5; defensist_dissent += 4; soldiers_m += 3*(1-m_dissent); m_resources -= 1
 
 Our newspapers print editorials in support of internationalism, arguing that an immediate peace is necessary. This bolsters the Internationalist faction within the party while upsetting the defensists, and raises our standing with the soldiers.
 
@@ -59,6 +59,6 @@ title: Support the war effort from a social-patriot standpoint.
 unavailable-subtitle: [? if m_resources < 1: Not enough resources. ?][? if social_patriot_strength <= internationalist_strength: The Social Patriots are not strong enough. ?]
 subtitle: -1 resource
 choose-if: m_resources >= 1 and social_patriot_strength > internationalist_strength
-on-arrival: social_patriot_strength += 8*(1-m_dissent); social_patriot_dissent -= 8*(1-m_dissent); internationalist_dissent += 5; war_weariness -= 3*(1-m_dissent); m_resources -= 1
+on-arrival: social_patriot_strength += (m_support_change+2)*(1-m_dissent); social_patriot_dissent -= 8*(1-m_dissent); internationalist_dissent += 5; war_weariness -= 3*(1-m_dissent); m_resources -= 1
 
 Our newspapers print editorials in support of the war effort, without any of the revolutionary defensist conditions. This bolsters the Social Patriot faction.

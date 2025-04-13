@@ -22,7 +22,7 @@ The war is the greatest question in politics at this moment. What should be our 
 title: Continue a policy of revolutionary defensism.
 subtitle: Support an international peace without annexations or indemnities, but fight to defend the revolution in the meantime. [? if m_war_policy = 1: This is our current position. ?]
 view-if: m_war_policy = 1
-on-arrival: defensist_strength += 5; defensist_dissent -= 4; internationalist_dissent += 5
+on-arrival: defensist_strength += m_support_change; defensist_dissent -= 4; internationalist_dissent += 5
 
 We are continuing to support a policy of revolutionary defensism.
 
@@ -47,7 +47,7 @@ on-arrival: m_war_policy = 2; internationalist_strength += 10; internationalist_
 
 We have adopted an internationalist position, calling for an immediate end to the war.
 
-[? if defensist_dissent > 55 and not defensist_split : The Defensists are deeply upset at this decision, and thus are splitting from the party. ?]
+[? if defensist_dissent > m_split_threshold and not defensist_split : The Defensists are deeply upset at this decision, and thus are splitting from the party. ?]
 
 - @m_defensist_split
 
@@ -57,7 +57,7 @@ We have adopted an internationalist position, calling for an immediate end to th
 title: Increase support for an internationalist position.
 subtitle: Support an immediate end to the war, even a separate peace if necessary.
 view-if: m_war_policy != 2 and internationalist_strength < defensist_strength + social_patriot_strength
-on-arrival: internationalist_strength += 6; internationalist_dissent -= 4; defensist_dissent += 10; social_patriot_dissent += 10; m_sr_relation -= 2 if sr_leadership = 0; m_k_relation -= 3; soldiers_m += 2*(1-m_dissent);
+on-arrival: internationalist_strength += m_support_change; internationalist_dissent -= 4; defensist_dissent += 10; social_patriot_dissent += 10; m_sr_relation -= 2 if sr_leadership = 0; m_k_relation -= 3; soldiers_m += 2*(1-m_dissent);
 
 We are building up support for internationalism within the party, so that we may eventually adopt this position.
 

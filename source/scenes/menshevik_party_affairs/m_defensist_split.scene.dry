@@ -1,5 +1,5 @@
 title: Defensist Split
-view-if: defensist_dissent > 55
+view-if: defensist_dissent > m_split_threshold and not defensist_split
 max-visits: 1
 on-arrival: {!
 

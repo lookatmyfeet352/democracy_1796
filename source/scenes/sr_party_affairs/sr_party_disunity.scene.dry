@@ -25,7 +25,7 @@ The Socialist-Revolutionary Party is being torn apart by internal dissent. Upset
 
 @party_discipline
 title: Enforce party discipline.
-on-arrival: left_sr_dissent -= 5; right_sr_dissent -= 5; workers_sr -= 4; soldiers_sr -= 4
+on-arrival: left_sr_dissent -= sr_discipline_change; right_sr_dissent -= sr_discipline_change; workers_sr -= 4; soldiers_sr -= 4
 
 Enforcing party discipline reduces dissent, but it leads to demoralization among our base.
 

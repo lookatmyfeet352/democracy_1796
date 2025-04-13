@@ -22,7 +22,7 @@ The war is the greatest question in politics at this moment. What should be our 
 title: Continue a policy of revolutionary defensism.
 subtitle: Support an international peace without annexations or indemnities, but fight to defend the revolution in the meantime. [? if sr_war_policy = 1: This is our current position. ?]
 view-if: sr_war_policy = 1
-on-arrival: right_sr_strength += 5; right_sr_dissent -= 4; left_sr_dissent += 5
+on-arrival: right_sr_strength += sr_support_change; right_sr_dissent -= 4; left_sr_dissent += 5
 
 We are continuing to support a policy of revolutionary defensism.
 
@@ -55,7 +55,7 @@ We have adopted an internationalist position, calling for an immediate end to th
 title: Increase support for an internationalist position.
 subtitle: Support an immediate end to the war, even a separate peace if necessary.
 view-if: sr_war_policy != 2 and left_sr_strength < right_sr_strength
-on-arrival: left_sr_strength += 4; left_sr_dissent -= 3; right_sr_dissent += 5; sr_k_relation -= 2; soldiers_sr += 2*(1-sr_dissent);
+on-arrival: left_sr_strength += sr_support_change; left_sr_dissent -= 3; right_sr_dissent += 5; sr_k_relation -= 2; soldiers_sr += 2*(1-sr_dissent);
 
 We are building up support for internationalism within the party, so that we may eventually adopt this position.
 

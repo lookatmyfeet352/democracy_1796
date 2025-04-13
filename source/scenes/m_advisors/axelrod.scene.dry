@@ -31,7 +31,7 @@ title: Party Unity
 subtitle: Reduce dissent across the party.
 choose-if: advisor_action_timer = 0
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?]
-on-arrival: advisor_action_timer = 4; defensist_dissent -= 5; internationalist_dissent -= 5;
+on-arrival: advisor_action_timer = 4; defensist_dissent -= m_discipline_change; internationalist_dissent -= m_discipline_change;
 
 We have reduced the dissent of some of the factions.
 
