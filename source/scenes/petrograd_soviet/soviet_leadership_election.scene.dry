@@ -187,7 +187,7 @@ Defensist bloc - [? if m_leadership = 0 and sr_leadership = 0 and not m_independ
 @walk_out
 title: We must walk out of the Soviet rather than letting the Bolsheviks form their executive committee!
 view-if: revolutionary_bloc > 50 and (player_party = "m" or (player_party = "sr" and not right_sr_split))
-on-arrival: soviet_chair = "Trotsky" if trotsky_available else soviet_chair = "Kamenev"; soviet_party_chair = "Bolshevik"; in_revolutionary_coalition = 1; b_in_exco = 1; left_sr_in_exco = 1 if left_sr_split; b_threat += 1; m_b_relation -= 7 if player_party = "m"; b_sr_relation -= 7 if player_party = "sr"; m_k_relation += 5 if player_party = "m"; sr_k_relation += 5 if player_party = "sr"
+on-arrival: soviet_chair = "Trotsky" if trotsky_available else soviet_chair = "Kamenev"; soviet_chair_party = "Bolshevik"; in_revolutionary_coalition = 1; b_in_exco = 1; left_sr_in_exco = 1 if left_sr_split; b_threat += 1; m_b_relation -= 7 if player_party = "m"; b_sr_relation -= 7 if player_party = "sr"; m_k_relation += 5 if player_party = "m"; sr_k_relation += 5 if player_party = "sr"
 
 After we walk out of the Soviet, the Bolsheviks form an executive committee anyway, backed by the anarchists and some splinter leftists. [+ soviet_chair +] has been elected chairman of the Soviet.
 
@@ -196,7 +196,7 @@ After we walk out of the Soviet, the Bolsheviks form an executive committee anyw
 @revolutionary_leadership
 title: There can be a "Revolutionary Bloc" consisting solely of the Bolsheviks and their allies.
 view-if: revolutionary_bloc > 50
-on-arrival: soviet_chair = "Trotsky" if trotsky_available else soviet_chair = "Kamenev"; soviet_party_chair = "Bolshevik"; in_revolutionary_coalition = 1; b_in_exco = 1; left_sr_in_exco = 1 if left_sr_split
+on-arrival: soviet_chair = "Trotsky" if trotsky_available else soviet_chair = "Kamenev"; soviet_chair_party = "Bolshevik"; in_revolutionary_coalition = 1; b_in_exco = 1; left_sr_in_exco = 1 if left_sr_split
 
 [? if player_party = "b": We have formed an executive committee based on a revolutionary bloc of Bolsheviks and anarchists. [+ soviet_chair +] has been elected chairman of the Soviet. ?]
 [? if party != "b": The Bolsheviks have formed an executive committee backed by the anarchists and some splinter leftists. [+ soviet_chair +] has been elected chairman of the Soviet. ?]

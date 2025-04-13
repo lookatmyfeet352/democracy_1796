@@ -1,4 +1,5 @@
 title: Join the Provisional Government!
+view-if: player_party = "sr"
 go-to: menu
 
 Which ministerial positions should we take?
@@ -132,7 +133,9 @@ Nikolai Kondratiev been appointed Trade and Industry Minister.
 
 @drop_agriculture
 title: Drop the Agriculture Ministry.
+unavailable-subtitle: As SRs, we must hold the Agriculture Ministry.
 view-if: agriculture_minister_party = "SR"
+choose-if: m_rural_policy > 0
 tags: sr_drop_mins
 go-to: menu
 on-arrival: {!
@@ -164,8 +167,13 @@ view-if: justice_minister_party = "SR"
 tags: sr_drop_mins
 go-to: menu
 on-arrival: {!
-Q.justice_minister = "Tereshchenko";
-Q.justice_minister_party = "Kadet";
+if (!Q.in_socialist_coalition) {
+    Q.justice_minister = "Tereshchenko";
+    Q.justice_minister_party = "Kadet";
+} else {
+    Q.justice_minister = "Malyantovich";
+    Q.justice_minister_party = "Menshevik";
+}
 Q.sr_influence += 10;
 !}
 
@@ -178,8 +186,13 @@ view-if: labor_minister_party = "SR"
 tags: sr_drop_mins
 go-to: menu
 on-arrival: {!
-Q.labor_minister = "Konovalov";
-Q.labor_minister_party = "Progressive";
+if (!Q.in_socialist_coalition) {
+    Q.labor_minister = "Konovalov";
+    Q.labor_minister_party = "Progressive";
+} else {
+    Q.labor_minister = "Skobelev";
+    Q.labor_minister_party = "Menshevik";
+}
 Q.sr_influence += 10;
 !}
 
@@ -196,6 +209,9 @@ on-arrival: {!
 if (Q.kadets_resigned) {
     Q.interior_minister = "Kerensky";
     Q.interior_minister_party = "SR";
+} else if (Q.in_socialist_coalition) {
+    Q.interior_minister = "Tsereteli";
+    Q.interior_minister_party = "Menshevik";
 } else {
     Q.interior_minister = "Lvov";
     Q.interior_minister_party = "Independent";
@@ -232,12 +248,12 @@ view-if: war_minister_party = "SR"
 tags: sr_drop_mins
 go-to: menu
 on-arrival: {!
-if (Q.kadets_resigned) {
+if (Q.kadets_resigned || Q.in_socialist_coalition) {
     Q.war_minister = "Tereshchenko";
     Q.war_minister_party = "Kadet";
 } else {
-    Q.war_minister = "Tereshchenko";
-    Q.war_minister_party = "Kadet";
+    Q.war_minister = "Tsereteli";
+    Q.war_minister_party = "Menshevik";
 }
 Q.sr_influence += 15;
 !}
@@ -267,8 +283,13 @@ view-if: transport_minister_party = "SR"
 tags: sr_drop_mins
 go-to: menu
 on-arrival: {!
-Q.transport_minister = "Nekrasov";
-Q.transport_minister_party = "Kadet";
+if (!Q.in_socialist_coalition) {
+    Q.transport_minister = "Nekrasov";
+    Q.transport_minister_party = "Kadet";
+} else {
+    Q.transport_minister = "Plekhanov";
+    Q.transport_minister_party = "Menshevik";
+}
 Q.sr_influence += 10;
 !}
 
@@ -282,8 +303,13 @@ view-if: trade_minister_party = "SR"
 tags: sr_drop_mins
 go-to: menu
 on-arrival: {!
-Q.trade_minister = "Konovalov";
-Q.trade_minister_party = "Progressive";
+if (!Q.in_socialist_coalition) {
+    Q.trade_minister = "Konovalov";
+    Q.trade_minister_party = "Progressive";
+} else {
+    Q.trade_minister = "Groman";
+    Q.trade_minister_party = "Menshevik";
+}
 Q.sr_influence += 10;
 !}
 

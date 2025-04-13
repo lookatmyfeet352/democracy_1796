@@ -12,10 +12,15 @@ for (var c of Q.classes) {
 }
 
 if (Q.prov_gov_legitimacy < 1) Q.prov_gov_legitimacy = 1;
+if (Q.prov_gov_legitimacy > 100) Q.prov_gov_legitimacy = 100;
 if (Q.soviet_cooperation < 0.01) Q.soviet_cooperation = 0.01;
+if (Q.soviet_cooperation > 1) Q.soviet_cooperation = 1;
 if (Q.prov_gov_efficacy < 0.01) Q.prov_gov_efficacy = 0.01;
+if (Q.prov_gov_efficacy > 1) Q.prov_gov_efficacy = 1;
 if (Q.soviet_efficacy < 0.01) Q.soviet_efficacy = 0.01;
-if (Q.war_weariness >= 99) Q.war_weariness = 99;
+if (Q.soviet_efficacy > 1) Q.soviet_efficacy = 1;
+if (Q.war_weariness < 0) Q.war_weariness = 0;
+if (Q.war_weariness > 99) Q.war_weariness = 99;
 
 // round to integers...
 Q.train_capacity = Math.round(Q.train_capacity);

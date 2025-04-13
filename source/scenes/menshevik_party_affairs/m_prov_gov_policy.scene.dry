@@ -31,13 +31,15 @@ Our policy is to join the Provisional Government as part of a coalition governme
 @opposition
 title: We should be in opposition to the Provisional Government.
 subtitle: [? if m_prov_gov_policy = 2 : This is our current position. ?]
-on-arrival: social_patriot_dissent += 4 if m_prov_gov_policy < 2; defensist_dissent += 4 if m_prov_gov_policy < 2; m_prov_gov_policy = 2;
+on-arrival: social_patriot_dissent += 4 if m_prov_gov_policy < 2; defensist_dissent += 4 if m_prov_gov_policy < 2; internationalist_strength += 4 if m_prov_gov_policy < 2; m_prov_gov_policy = 2;
 
 Our policy is to act as an external opposition to the bourgeois Provisional Government, critiquing its policies.
 
 @opposition_2
 title: We should seek the formation of an all-socialist government to replace the Provisional Government.
+choose-if: internationalist_strength >= defensist_strength
+unavailable-subtitle: The Internationalist faction is not strong enough.
 subtitle: [? if m_prov_gov_policy = 3 : This is our current position. ?]
-on-arrival: defensist_dissent += 4 if m_prov_gov_policy != 3; social_patriot_dissent += 6 if m_prov_gov_policy != 3; m_prov_gov_policy = 3; 
+on-arrival: defensist_dissent += 4 if m_prov_gov_policy != 3; social_patriot_dissent += 6 if m_prov_gov_policy != 3; internationalist_strength += 4 if m_prov_gov_policy < 3; internationalist_dissent -= 3 if m_prov_gov_policy < 3; m_prov_gov_policy = 3;
 
 Our policy is to aim for the replacement of the bourgeois Provisional Government by a coalition of socialist parties.

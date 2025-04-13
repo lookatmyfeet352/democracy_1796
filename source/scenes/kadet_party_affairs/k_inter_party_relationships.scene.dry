@@ -21,23 +21,23 @@ We can improve our relations with the parties on our left or the right.
 
 @sr
 title: Improve our relations with the Socialist-Revolutionaries.
-on-arrival: sr_k_relation += 6*(1-k_dissent); k_resources -= 1;
+on-arrival: sr_k_relation += ipr_change*(1-k_dissent); k_resources -= 1; sr_k_relation -= ipr_change/2 if left_sr_strength > right_sr_strength;
 choose-if: k_resources >= 1
 subtitle: -1 resource
 
-We have improved our relations with the Party of Socialist-Revolutionaries.
+We have improved our relations with the Party of Socialist-Revolutionaries. [? if left_sr_strength > right_sr_strength: The left-wing alignment of the SRs makes it difficult to improve relations. ?]
 
 @m
 title: Improve our relations with the Mensheviks.
-on-arrival: m_k_relation += 5*(1-k_dissent); m_k_relation -= 3 if internationalist_strength >= defensist_strength + social_patriot_strength; k_resources -= 1;
+on-arrival: m_k_relation += ipr_change*(1-k_dissent); m_k_relation -= ipr_change/2 if internationalist_strength >= defensist_strength + social_patriot_strength; k_resources -= 1;
 choose-if: k_resources >= 1
 subtitle: -1 resource
 
-We are building our ties with the Mensheviks.
+We are building our ties with the Mensheviks. [? if internationalist_strength >= defensist_strength + social_patriot_strength: The internationalist alignment of the Mensheviks makes it difficult to improve relations. ?]
 
 @con
 title: Improve our relations with the conservative factions to our right.
-on-arrival: k_conservative_relation += 5*(1-k_dissent); k_conservative_relation -= 3 if left_kadet_strength > right_kadet_strength; k_resources -= 1;
+on-arrival: k_conservative_relation += (ipr_change-1)*(1-k_dissent); k_conservative_relation -= (ipr_change/2) if left_kadet_strength > right_kadet_strength; k_resources -= 1;
 choose-if: k_resources >= 1
 subtitle: -1 resource
 

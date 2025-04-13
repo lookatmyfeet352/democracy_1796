@@ -32,14 +32,16 @@ Our policy is to join the Provisional Government as part of a coalition governme
 @opposition
 title: We should be in opposition to the Provisional Government.
 subtitle: [? if sr_prov_gov_policy = 2 : This is our current position. ?]
-on-arrival: right_sr_dissent += 4 if sr_prov_gov_policy < 2; sr_prov_gov_policy = 2;
+on-arrival: right_sr_dissent += 4 if sr_prov_gov_policy < 2; left_sr_strength += 4 if sr_prov_gov_policy < 2; sr_prov_gov_policy = 2;
 
 Our policy is to act as an external opposition to the bourgeois Provisional Government, critiquing its policies.
 
 @opposition_2
 title: We should seek the formation of an all-socialist government to replace the Provisional Government.
+choose-if: left_sr_strength + center_sr_strength >= right_sr_strength
+unavailable-subtitle: The Left-SRs are not strong enough.
 subtitle: [? if sr_prov_gov_policy = 3 : This is our current position. ?]
-on-arrival: right_sr_dissent += 4 if sr_prov_gov_policy != 3; social_patriot_dissent += 6 if sr_prov_gov_policy != 3; sr_prov_gov_policy = 3; 
+on-arrival: right_sr_dissent += 4 if sr_prov_gov_policy != 3;  left_sr_strength += 4 if sr_prov_gov_policy < 3; left_sr_dissent -= 3 if sr_prov_gov_policy < 3; sr_prov_gov_policy = 3; 
 
 Our policy is to aim for the replacement of the bourgeois Provisional Government by a coalition of socialist parties.
 

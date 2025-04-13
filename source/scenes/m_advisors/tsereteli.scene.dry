@@ -17,6 +17,8 @@ Irakli Tsereteli is a Georgian Menshevik revolutionary who returned from Siberia
 - @support_defensism
 - @media
 - @party_discipline
+- @interior_
+- @shuffle_cabinet
 - @root: Return to main
 
 @fundraising
@@ -75,4 +77,21 @@ on-arrival: advisor_action_timer = 4; defensist_dissent -= m_discipline_change; 
 
 We have enforced party discipline to reduce dissent across all factions.
 
+@interior_
+title: Internal Security
+subtitle: Tsereteli is the Interior Minister.
+view-if: m_in_prov_gov
+choose-if: advisor_action_timer = 0 and interior_minister = "Tsereteli"
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?] [? if interior_minister != "Tsereteli" : Tsereteli is not the Interior Minister. ?]
+on-arrival: advisor_action_timer = 4; internal_security_timer -= 4; last_advisor_action = 1
+go-to: internal_security
+
+@shuffle_cabinet
+title: Shuffle Cabinet 
+subtitle: Change the ministers of the Provisional Government.
+view-if: prime_minister = "Tsereteli" 
+choose-if: advisor_action_timer = 0 and m_in_prov_gov 
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?] [? if not m_in_prov_gov : We are not in the Provisional Government. ?]
+on-arrival: advisor_action_timer = 4; 
+go-to: m_join_prov_gov 
 

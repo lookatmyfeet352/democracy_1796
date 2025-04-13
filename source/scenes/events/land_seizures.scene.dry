@@ -53,7 +53,7 @@ subtitle: -3 budget - Pay for seized land.
 view-if: land_reform_progress >= 1 and has_land = 0 and ((player_party = "m" and agriculture_minister_party = "Menshevik") or (player_party = "k" and (agriculture_minister_party = "Kadet" or agriculture_minister_party = "Popular Socialist")) or (player_party = "sr" and (agriculture_minister_party = "SR" or agriculture_minister_party = "Popular Socialist")))
 on-arrival: land_reform = 2; budget -= 3; peasants_sr += 5*(1-sr_dissent) if sr_in_prov_gov; peasant_unrest -= 1; land_reform_progress += 1; has_land = 1; land_seizures_timer += 3;
 
-In response to the illegal seizures, we have compensated landowners for their land, and purchased more land to be redistrubuted later.
+In response to the illegal seizures, we have compensated landowners for their land, and purchased more land to be redistributed later.
 
 
 @support

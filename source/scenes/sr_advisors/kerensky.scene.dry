@@ -13,6 +13,7 @@ Kerensky is a Duma member for the Trudovik, or Labor, faction, and is affiliated
 - @military_policy_
 - @elections_
 - @troops
+- @shuffle_cabinet
 - @root: Return to main
 
 
@@ -50,3 +51,14 @@ unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +
 on-arrival: advisor_action_timer = 4; morale += 0.1*(1-war_weariness/100);
 
 Kerensky launches a tour of the front, giving speeches to the troops to motivate them to fight for Russia. [? if war_weariness >= 50 : Our high war weariness impedes the effectiveness of Kerensky's tour. ?]
+
+@shuffle_cabinet
+title: Shuffle Cabinet
+subtitle: Change the ministers of the Provisional Government.
+view-if: prime_minister = "Kerensky"
+choose-if: advisor_action_timer = 0 and sr_in_prov_gov
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?] [? if not sr_in_prov_gov : We are not in the Provisional Government. ?]
+on-arrival: advisor_action_timer = 4;
+go-to: sr_join_prov_gov
+
+

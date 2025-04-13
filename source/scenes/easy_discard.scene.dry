@@ -6,7 +6,7 @@ Q.week_actions -= 1;
 // return card to hand
 var card = this.state.lastPlayedCard;
 card.image = card.cardImage;
-if (Q.difficulty = 0) {
+if (Q.difficulty == 0) {
     this.state.currentHands['main'].push(card);
 } else if (Q.difficulty > 0) {
     this.state.currentHands['main.main_hard'].push(card);

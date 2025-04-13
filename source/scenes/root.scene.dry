@@ -85,6 +85,8 @@ Q.m_discipline_change = 5;
 Q.sr_discipline_change = 5;
 // maximum numbers of advisors
 Q.max_advisors = 4;
+// inter-party relations changes
+Q.ipr_change = 6;
 
 // the state of the party
 // overall dissent reduces every increase in party support.
@@ -381,6 +383,8 @@ Q.defensist_in_prov_gov = 0;
 Q.conservative_in_prov_gov = 0;
 // left-kadet split - Union of Democrats
 Q.democrats_in_prov_gov = 0;
+// are we currently in an all-socialist coalition?
+Q.in_socialist_coalition = 0;
 
 Q.prime_minister = "Lvov";
 Q.prime_minister_party = "Independent"
@@ -412,6 +416,8 @@ Q.prov_gov_efficacy = 0.7;
 
 // provisional government legitimacy
 Q.prov_gov_legitimacy = 80;
+
+// provisional government formations
 
 //////////////////////// Petrograd Soviet
 // party names are shortened in these variables solely for convenience (bc they show up everywhere)
@@ -972,7 +978,7 @@ new-page: true
 
 For more information on the politics of the Provisional Government, see the "Library" page on the top left. If this is your first time playing the game, it is recommended that you read at least some of this information.
 
-Difficulty affects starting resources and inter-party relations, as well as how difficult it is to change party advisors, change party ideology, and reduce dissent.
+Difficulty affects starting resources and inter-party relations, as well as how difficult it is to change party advisors and ideology, reduce dissent, and increase relations.
 
 - @easy_mode
 - @single_player
@@ -982,7 +988,7 @@ Difficulty affects starting resources and inter-party relations, as well as how 
 
 @easy_mode
 title: Single Player (Easy)
-on-arrival: difficulty = -1; m_resources = 6; sr_resources = 6; k_resources = 6; b_resources = 4; m_dues = 3; sr_dues = 3; b_dues = 3; m_k_relation = 50; m_sr_relation = 62; sr_k_relation = 50; m_split_threshold = 65; sr_split_threshold = 65; m_support_change = 10; sr_support_change = 10; m_discipline_change = 8; sr_discipline_change = 8; max_advisors = 5
+on-arrival: difficulty = -1; m_resources = 4; sr_resources = 4; k_resources = 5; b_resources = 4; m_dues = 3; sr_dues = 3; b_dues = 3; m_k_relation = 50; m_sr_relation = 62; sr_k_relation = 50; m_split_threshold = 65; sr_split_threshold = 65; m_support_change = 10; sr_support_change = 10; m_discipline_change = 8; sr_discipline_change = 8; max_advisors = 5; ipr_change = 8;
 go-to: party_selection
 
 Select a party:
@@ -995,7 +1001,7 @@ Select a party:
 
 @hard_mode
 title: Single Player (Hard)
-on-arrival: difficulty = 1; m_resources = 2; sr_resources = 2; k_resources = 2; b_resources = 0; b_dues = 0; m_split_threshold = 50; sr_split_threshold = 50; m_support_change = 5; sr_support_change = 5; m_discipline_change = 4; sr_discipline_change = 4; max_advisors = 3
+on-arrival: difficulty = 1; m_resources = 2; sr_resources = 2; k_resources = 2; b_resources = 0; b_dues = 0; m_split_threshold = 50; sr_split_threshold = 50; m_support_change = 5; sr_support_change = 5; m_discipline_change = 4; sr_discipline_change = 4; max_advisors = 3; ipr_change = 5;
 go-to: party_selection
 
 Select a party:

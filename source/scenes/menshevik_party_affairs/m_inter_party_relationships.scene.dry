@@ -23,7 +23,7 @@ According to the theory of dialectical materialism, it is the historic role of t
 
 @sr
 title: Improve our relations with the Socialist-Revolutionaries.
-on-arrival: m_sr_relation += 7*(1-m_dissent); m_resources -= 1;
+on-arrival: m_sr_relation += ipr_change*(1-m_dissent); m_resources -= 1;
 choose-if: m_resources >= 1
 subtitle: -1 resource
 
@@ -31,7 +31,7 @@ We have improved our relations with the Party of Socialist-Revolutionaries.
 
 @k
 title: Improve our relations with the Kadets, the middle class liberal party.
-on-arrival: m_k_relation += 7*(1-m_dissent); m_k_relation -= 3 if internationalist_strength >= defensist_strength + social_patriot_strength or m_prov_gov_policy >= 2 or m_war_policy >= 2; m_resources -= 1;
+on-arrival: m_k_relation += ipr_change*(1-m_dissent); m_k_relation -= ipr_change/2 if internationalist_strength >= defensist_strength + social_patriot_strength or m_prov_gov_policy >= 2 or m_war_policy >= 2; m_resources -= 1;
 choose-if: m_resources >= 1
 subtitle: -1 resource
 
@@ -39,7 +39,7 @@ We are building our ties with the Kadets. [? if internationalist_strength >= def
 
 @b
 title: Can we repair our relations with the Bolsheviks?
-on-arrival: m_b_relation += 5*(1-m_dissent); m_b_relation -= 3 if leninist_strength >= moderate_strength or m_war_policy <= 1 or m_prov_gov_policy <= 1; m_resources -= 1;
+on-arrival: m_b_relation += (ipr_change - 1)*(1-m_dissent); m_b_relation -= (ipr_change/2) if leninist_strength >= moderate_strength or m_war_policy <= 1 or m_prov_gov_policy <= 1; m_resources -= 1;
 choose-if: m_resources >= 1
 subtitle: -1 resource
 
