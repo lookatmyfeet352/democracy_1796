@@ -11,6 +11,7 @@ tags: event
 The workers and soldiers of Petrograd are increasingly tired of the war; our recent defeats have not helped. Hundreds of thousands of workers, soldiers, and sailors have marched upon the Soviet, demanding that the Soviet take power over the Provisional Government.
 
 - @take_power
+- @demand_all_socialist
 - @negotiate
 - @nothing
 - @support
@@ -76,6 +77,10 @@ We have won! Our forces have taken control of key government locations, and arre
 
 # TODO: battle
 
+@use_negotiations
+title: Use the protests to convince the Kadets to resign from the Provisional Government, and the formation of an all-socialist government.
+view-if: (player_party = "m" and m_in_exco) or (player_party = "sr" and sr_in_exco)
+
 @negotiate
 title: We can negotiate and wait out the demonstrators.
 subtitle: The Soviet is not ready to take power right now.
@@ -86,6 +91,7 @@ After some streetfighting and arrests, the protestors eventually grow tired, and
 
 [? if kadets_resign: Due to the protests, and the earlier response to the Ukrainian Central Rada, the government of Prime Minister Lvov has resigned. Alexander Kerensky uses this as an opportunity to gather more power - he is now Prime Minister. ?]
 
+- @demand_all_socialist
 - @let_socialists
 - @shuffle_cabinet
 - @root: Continue...
@@ -112,12 +118,14 @@ After some streetfighting and arrests, the protestors eventually grow tired, and
 @support
 title: Support the protestors!
 view-if: player_party = "b" or (player_party = "sr" and not sr_in_prov_gov) or (player_party = "m" and not m_in_prov_gov)
-on-arrival: kadets_resign = 1 if prime_minister = "Lvov"; prime_minister = "Kerensky" if prime_minister = "Lvov"; prime_minister_party = "SR" if prime_minister_party = "Independent"; prime_minister_party = "Right-SR" if right_sr_split;
+on-arrival: kadets_resign = 1 if prime_minister = "Lvov"; prime_minister = "Kerensky" if prime_minister = "Lvov"; prime_minister_party = "SR" if prime_minister_party = "Independent"; prime_minister_party = "Right-SR" if right_sr_split; m_k_relation -= 8; sr_k_relation -= 8;
 
 After some streetfighting and arrests, the protestors eventually grow tired, and return to their homes and barracks.
 
 [? if kadets_resign: Due to the protests, and the earlier response to the Ukrainian Central Rada, the government of Prime Minister Lvov has resigned. Alexander Kerensky uses this as an opportunity to gather more power - he is now Prime Minister. ?]
 
+- @demand_all_socialist
+- @root: Continue...
 
 @chaos
 title: Utter chaos...
@@ -138,9 +146,9 @@ Due to the crisis, the liberals in the Provisional Government are inclined to al
 @demand_all_socialist
 title: Demand an all-socialist Provisional Government!
 subtitle: It is time for the Kadets to leave the Provisional Government, and form a government of only the socialist parties.
-unavailable-subtitle: [? if (player_party = "m" and m_prov_gov_policy = 3) or (player_party = "sr" and sr_prov_gov_policy = 3): The party does not support this. ?][? if (player_party = "m" and m_k_relation < 50) or (player_party = "sr" and sr_k_relation < 50) : Our relations with the Kadets are not good enough. ?][? if (player_party = "m" and m_sr_relation < 50) : Our relations with the SRs are not good enough. ?][? if (player_party = "sr" and m_sr_relation < 50) : Our relations with the Mensheviks are not good enough. ?]
+unavailable-subtitle: [? if (player_party = "m" and m_prov_gov_policy < 3) or (player_party = "sr" and sr_prov_gov_policy < 3): The party does not support this. ?][? if (player_party = "m" and m_k_relation < 40) or (player_party = "sr" and sr_k_relation < 40) : Our relations with the Kadets are not good enough. ?][? if (player_party = "m" and m_sr_relation < 55) : Our relations with the SRs are not good enough. ?][? if (player_party = "sr" and m_sr_relation < 55) : Our relations with the Mensheviks are not good enough. ?]
 view-if:((player_party = "m" and not m_defensist_split) or (player_party = "sr" and not right_sr_split))
-choose-if: ((player_party = "m" and m_prov_gov_policy = 3 and m_sr_relation >= 50 and sr_k_relation >= 50) or (player_party = "sr" and sr_prov_gov_policy = 3 and m_sr_relation >= 50 and sr_k_relation >= 50))
+choose-if: ((player_party = "m" and m_prov_gov_policy = 3 and m_sr_relation >= 55 and sr_k_relation >= 40) or (player_party = "sr" and sr_prov_gov_policy >= 3 and m_sr_relation >= 55 and sr_k_relation >= 40))
 on-arrival: k_in_prov_gov = 0; sr_in_prov_gov = 1; m_in_prov_gov = 1; in_socialist_coalition = 1; prime_minister = "Kerensky"; prime_minister_party = "SR"; agriculture_minister = "Chernov"; agriculture_minister_party = "SR"; justice_minister = "Kerensky"; justice_minister_party = "SR"; interior_minister = "Tsereteli"; interior_minister_party = "Menshevik"; finance_minister = "Voitinsky"; finance_minister_party = "Menshevik"; war_minister = "Verkhovsky"; war_minister_party = "SR"; foreign_minister = "Tereshchenko"; foreign_minister_party = "Independent"; transport_minister = "Plekhanov"; transport_minister_party = "Menshevik"; trade_minister = "Groman"; trade_minister_party = "Menshevik"; food_minister = "Kondratiev"; food_minister_party = "SR"; m_influence = m_sr_relation - 35; sr_influence = m_sr_relation - 45; m_k_relation -= 10; sr_k_relation -= 10; prov_gov_legitimacy += 20; workers_sr += 5*(1-sr_dissent); soldiers_sr += 8*(1-sr_dissent); workers_m += 8*(1-m_dissent); soldiers_m += 6*(1-m_dissent);
 
 We have successfully leveraged our relations with the Kadets and the [? if player_party = "sr": Mensheviks ?][? if player_party = "m": SRs ?] into forming a new government consisting solely of the socialist parties, with the Kadets being removed from power!

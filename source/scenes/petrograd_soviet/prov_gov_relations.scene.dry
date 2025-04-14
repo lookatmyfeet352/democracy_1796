@@ -20,8 +20,8 @@ The Petrograd Soviet and the Provisional Government exist as two sides of the "D
 
 @expand_cooperation
 title: Expand cooperation with the Provisional Government.
-on-arrival: prov_gov_efficacy += 0.03; prov_gov_legitimacy += 5; soviet_cooperation += 0.05; m_k_relation += 5*(1-m_dissent) if m_in_exco; sr_k_relation += 5*(1-sr_dissent) if sr_in_exco;
-choose-if: (player_party = "sr" and sr_prov_gov_policy <= 2) or (player_party = "m" and m_prov_gov_policy <= 2) or (player_party = "b" and b_prov_gov_policy <= 2)
+on-arrival: prov_gov_efficacy += 0.03; prov_gov_legitimacy += 5; soviet_cooperation += 0.05; m_k_relation += 5*(1-m_dissent) if m_in_exco; sr_k_relation += 5*(1-sr_dissent) if sr_in_exco; m_sr_relation += 5 if in_socialist_coalition
+choose-if: (player_party = "sr" and (sr_prov_gov_policy <= 2 or in_socialist_coalition)) or (player_party = "m" and (m_prov_gov_policy <= 2 or in_socialist_coalition)) or (player_party = "b" and b_prov_gov_policy <= 2)
 unavailable-subtitle: Our party's position is against this.
 
 We have expanded cooperation with the Provisional Government.

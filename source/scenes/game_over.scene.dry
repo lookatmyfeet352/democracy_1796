@@ -34,7 +34,7 @@ if (Q.ca_held) {
             this.achieve('free_russia');
         }
     }
-    if (Q.player == "m" && Q.m_leadership == 1 && Q.in_socialist_coalition && Q.is_armistice) {
+    if (Q.player_party == "m" && Q.m_leadership == 1 && Q.in_socialist_coalition && Q.is_armistice) {
         this.achieve('martovs_dream');
     }
 }
