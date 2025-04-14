@@ -29,7 +29,8 @@ if (Q.ca_held) {
     if ((Q.player_party == "m" || Q.player_party == "sr" || Q.player_party == "k")) {
         if (Q.difficulty >= 0) {
             this.achieve('constituent_assembly');
-        } else if (Q.difficulty >= 1) {
+        }
+        if (Q.difficulty >= 1) {
             this.achieve('free_russia');
         }
     }
