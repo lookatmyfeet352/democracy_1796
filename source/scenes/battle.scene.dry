@@ -30,10 +30,12 @@ if (Q.attacking) {
         Q.battle_outcome = 2;
         Q.war_weariness += 10;
         Q.victory_count += 1;
+        Q[Q.front + '_progress'] += 1;
     } else if (attack_power >= defense_power) {
         Q.battle_outcome = 1;
         Q.war_weariness += 10;
         Q.victory_count += 1;
+        Q[Q.front + '_progress'] += 1;
     } else if (attack_power > 0.5*defense_power) {
         Q.battle_outcome = -1;
         Q.war_weariness += 20;
@@ -61,10 +63,12 @@ if (Q.attacking) {
         Q.battle_outcome = -2;
         Q.war_weariness += 5;
         Q.defeat_count += 1;
+        Q[Q.front + '_progress'] -= 1;
     } else if (attack_power >= defense_power) {
         Q.battle_outcome = -1;
         Q.war_weariness += 10;
         Q.defeat_count += 1;
+        Q[Q.front + '_progress'] -= 1;
     } else if (attack_power > 0.75*defense_power) {
         Q.battle_outcome = 1;
         Q.war_weariness += 15;

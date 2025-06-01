@@ -1,4 +1,4 @@
-title: Labor Affairs
+title: Soviet Labor Affairs
 new-page: true
 view-if: labor_soviet_timer = 0 and ((player_party = "b" and b_in_exco) or (player_party = "m" and m_in_exco) or (player_party = "sr" and sr_in_exco) or (player_party = "k" and k_in_exco))
 on-arrival: week_actions += 1; labor_soviet_timer += 4

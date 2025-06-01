@@ -10,5 +10,16 @@ The Central Rada is a council of Ukrainian representatives, elected from various
 
 [? if (player_party = "m" and m_in_prov_gov) or (player_party = "k" and k_in_prov_gov) or (player_party = "sr" and sr_in_prov_gov) : Should we accept their declaration? ?]
 
+- @support_uk
+- @oppose_uk
+
+
+
 @support_uk
-title: Support the Ukrainian 
+title: Support the Central Rada's proposal.
+
+@reject_uk
+title: Reject the Central Rada's proposal.
+
+@not_in_gov
+view-if: (player_party = "m" and not m_in_prov_gov) or (player_party = "k" and not k_in_prov_gov) or (player_party = "sr" and not sr_in_prov_gov) or (player_party = "b" and not b_in_prov_gov)

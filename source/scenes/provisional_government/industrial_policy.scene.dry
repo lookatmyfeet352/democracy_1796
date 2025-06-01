@@ -168,6 +168,7 @@ if (total < 100) {
     Q.civilian_industry -= total - 100;
 }
 Q.military_industry = 0;
+Q.unemployed += 4;
 !}
 
-We are rapidly demilitarizing our industries, shifting everything to various forms of civilian production.
+We are rapidly demilitarizing our industries, shifting everything to various forms of civilian production. There are some inefficiencies involved, and many workers are laid off in the process.

@@ -57,9 +57,9 @@ We have formed a new body of rural militias to maintain order in the countryside
 @rural_militias_2
 title: Continue building up our rural militias.
 subtitle: We need to maintain order in the countryside. -1 budget
-on-arrival: rural_militia_strength += 10*prov_gov_efficacy; rural_militia_militancy += 0.01; budget -= 1
+on-arrival: rural_militia_strength += 10*prov_gov_efficacy; rural_militia_militancy += 0.1*prov_gov_efficacy; budget -= 1
 
-We have formed a new body of rural militias to maintain order in the countryside.
+We have increased the size and strength of our rural milita.
 
 @target_bolsheviks
 title: Persecute the Bolsheviks, anarchists, and other malcontents.
@@ -68,7 +68,7 @@ view-if: b_threat >= 1 and player_party != "b"
 choose-if: city_militias >= 1
 on-arrival: workers_b -= 8*prov_gov_efficacy; soldiers_b -= 8*prov_gov_efficacy; b_threat -= 1; m_b_relation -= 15 if m_in_prov_gov; b_sr_relation -= 15 if sr_in_prov_gov; b_k_relation -= 15 if k_in_prov_gov
 
-We have arrested some of the Bolsheviks who masterminded the riots, and forced some into exile.
+We have arrested some of the Bolsheviks who organized riots in the city, and forced others into exile.
 
 
 @anti_crime

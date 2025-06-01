@@ -1,6 +1,6 @@
 title: Minority Party Affairs
 new-page: true
-view-if: minority_party_soviet_timer = 0 and not player_in_exco
+view-if: minority_party_soviet_timer = 0 and ((player_party = "m" and not m_in_exco) or (player_party = "sr" and not sr_in_exco) or (player_party = "b" and not b_in_exco))
 on-arrival: week_actions += 1; minority_party_soviet_timer += 3
 tags: soviet
 is-card: true

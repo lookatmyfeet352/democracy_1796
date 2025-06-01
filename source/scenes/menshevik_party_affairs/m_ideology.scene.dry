@@ -17,7 +17,7 @@ Should we change the party's position on any of these issues?
 - @m_prov_gov_policy: The Provisional Government
 - @m_industrial_policy: Industrial policy
 - @m_rural_policy: Rural policy
-#- @m_nationalities: The nationalities
+- @m_nationalities: The nationalities
 - @root: No, we will not change any of our ideological positions.
 - @easy_discard
 

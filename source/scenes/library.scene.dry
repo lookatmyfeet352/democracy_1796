@@ -251,7 +251,7 @@ go-to: menu
 [? if player_party = "SR": Current relations: [+ sr_bolshevik_relation : relationships +] ?]
 [? if player_party = "Kadet": Current relations: [+ kadet_bolshevik_relation : relationships +] ?]
 
-**Party of Socialist-Revolutionaries (SR)** - The SRs are based in the Russian ideology of *narodism*, or populism, which is an agrarian socialism that sees the traditional Russian village (the *mir*) as the basis of a future socialist society. Their support is strongest in the peasantry, but they have substantial support among workers as well. The SRs are deeply divided between left and right wings based on their attitudes towards the war and participation in government.
+**Party of Socialist-Revolutionaries (SR)** - The SRs are based in the Russian ideology of *narodism*, or populism, which is an agrarian socialism that sees the traditional Russian village (the *obshchina*) as the basis of a future socialist society. Their support is strongest in the peasantry, but they have substantial support among workers as well. The SRs are deeply divided between left and right wings based on their attitudes towards the war and participation in government.
 
 
 [? if player_party = "Menshevik": Current relations: [+ menshevik_sr_relation : relationships +] ?]

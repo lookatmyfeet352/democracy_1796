@@ -179,14 +179,14 @@ We have added [+ sm +] divisions to the Caucasus Front.
 @demobilize
 title: Demobilize some reserve troops, returning them to civilian life.
 subtitle: If we demobilize enough soldiers, we can save some budget.
-on-arrival: reserve_soldiers -= sm; soldiers_moved += sm; soldiers_demobilized += sm; budget += 1 if soldiers_demobilized >= 30;
+on-arrival: reserve_soldiers -= sm; soldiers_moved += sm; soldiers_demobilized += sm; budget += 1 if soldiers_demobilized >= 50; unemployed += 0.3 if soldiers_demobilized >= 50; soldiers -= 1 if soldiers_demobilized >= 50; workers += 0.2 if soldiers_demobilized >= 50; peasants += 0.5 if soldiers_demobilized >= 50; unemployed += 0.3 if soldiers_demobilized >= 50; food_production += 1000 if soldiers_demobilized >= 50; industry += 0.5 if soldiers_demobilized >= 50;
 choose-if: remaining_movement_capacity > 0 and reserve_soldiers > sm
-on-departure: soldiers_demobilized = 0 if soldiers_demobilized >= 30
+on-departure: soldiers_demobilized = 0 if soldiers_demobilized >= 50
 go-to: reallocate
 
 We have demobilized [+ sm +] divisions from the reserve.
 
-[? if soldiers_demobilized >= 30 : By demobilizing so many soldiers, we have saved 1 budget. ?]
+[? if soldiers_demobilized >= 50 : By demobilizing so many soldiers, we have saved some amount of budget. Soldiers are returning to their old farms and factories as peasants and workers, although many have joined the ranks of the floating unemployed. ?]
 
 
 @prepare

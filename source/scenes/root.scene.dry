@@ -116,6 +116,9 @@ Q.leninist_split = 0;
 Q.b_war_policy = 2;
 Q.b_industrial_policy = 1;
 Q.b_prov_gov_policy = 3;
+Q.b_land_policy = 2;
+Q.b_agricultural_policy = 2;
+Q.b_nationality_policy = 2;
 // organizations among the workers and soldiers...
 Q.b_workers_org = 1;
 Q.b_soldiers_org = 1;
@@ -141,10 +144,12 @@ Q.internationalist_split = 0;
 Q.m_war_policy = 1;
 // rural policy is actually two different things: how farming should be done (communal, private, collective, state-owned) and what should be done with large estates/state property (no change, voluntary sale, compensated seizures, uncompensated seizures)
 // agricultural policy: -1 = Stolypin privatization, 0 = voluntary privatization, 1 = communal farming, 2 = state farming, 3 = collective farming
-// land policy: -1 = no change, 0 = voluntary sales, 1 = compensated seizures, 2 = uncompensated seizures
-Q.m_rural_policy = 0;
+// land policy: -2 = no policy, -1 = no change, 0 = voluntary sales, 1 = compensated seizures, 2 = uncompensated seizures
+Q.m_land_policy = -2;
+Q.m_agricultural_policy = -2;
 // nationality policies:
-Q.m_nationalities_policy = 0;
+// 0 = russian unity, 1 = national personal autonomy, 2 = federalism, 3 = self-determination
+Q.m_nationality_policy = 1;
 // -1 = laissez-faire, 0 = trade unions, 1 = worker supervision, 2 = syndicalism, 3 = state ownership
 // more is more left-wing
 Q.m_industrial_policy = 0;
@@ -169,7 +174,9 @@ Q.left_sr_split = 0;
 Q.right_sr_split = 0;
 // policies
 Q.sr_war_policy = 1;
-Q.sr_rural_policy = 2;
+Q.sr_land_policy = 2;
+Q.sr_agricultural_policy = 1;
+Q.sr_nationality_policy = 2;
 Q.sr_prov_gov_policy = 1;
 Q.sr_industrial_policy = 0;
 Q.sr_workers_org = 0;
@@ -177,6 +184,8 @@ Q.sr_soldiers_org = 1;
 Q.sr_rural_org = 1;
 
 // kadet internals
+// 0 = National liberal, 1 = Left-liberal
+Q.k_leadership = 0;
 Q.k_factions = ['left_kadet', 'right_kadet'];
 Q.left_kadet_strength = 50;
 Q.left_kadet_dissent = 5;
@@ -186,7 +195,9 @@ Q.right_kadet_dissent = 5;
 Q.k_war_policy = -1;
 Q.k_industrial_policy = -1;
 Q.k_prov_gov_policy = -1;
-
+Q.k_land_policy = 0;
+Q.k_agricultural_policy = 0;
+Q.k_nationality_policy = 0;
 
 
 // inter-party relations
@@ -207,6 +218,11 @@ Q.k_conservative_relation = 50;
 // The state of Russia/////////////////////////////////
 
 // government
+// The form of government: Prov Gov, Sov Gov, Constituent Assembly, Dictatorship
+// 0 = Provisional Government, 1 = Soviet Government, 2 = Constituent Assembly, 3 = Directorate, 4 = Dictatorship
+Q.government_form = 0;
+
+
 // Provisional government budget
 // each budget unit is ~= 1% of national income or about 120 million 1913 rubles (or about 800 million 1917 rubles)
 Q.budget = 0;
@@ -233,6 +249,12 @@ Q.bonding_capacity = 4;
 Q.monthly_inflation = 5.8;
 Q.inflation = Math.pow(1+0.01*Q.monthly_inflation, 12);
 Q.inflation = Math.round(100*(Q.inflation - 1));
+
+// nationalization + syndicalization of industries
+// percentage of industries nationalized
+Q.industries_nationalized = 10;
+// percentage of industries controlled by workers
+Q.industries_syndicalized = 10;
 
 // availability of consumer goods (out of 100 - pre-war levels)
 // TODO: this is currently unused
@@ -535,6 +557,17 @@ Q.battle_outcome = 0;
 Q.battle_count = 0;
 Q.victory_count = 0;
 Q.defeat_count = 0;
+
+// war progress/frontline
+// -1 = minor Central Powers gains
+// -2 = gains
+// -3 = major gains
+// -4 = very major gains
+Q.northern_progress = -1;
+Q.western_progress = -2;
+Q.southwestern_progress = 1;
+Q.romanian_progress = -1;
+Q.caucasus_progress = 1;
 
 // Militias
 
@@ -848,7 +881,7 @@ Q.timers = [//m_party
             //sr_party
             'sr_enemies', 'sr_fundraising', 'sr_ideology',
             'sr_prov_gov_policy', 'sr_industrial_policy',
-            'sr_war_policy',
+            'sr_war_policy', 'sr_rural_policy',
             'sr_inter_party_relationships', 'sr_media',
             'sr_organizing', 'sr_party_disunity', 'sr_shuffle_leadership',
             //b_party
@@ -882,7 +915,9 @@ Q.timers = [//m_party
             'june_offensive_conclusion',
             'war_or_peace',
             'bolshevik_soviet',
-            'advisor_action'
+            'advisor_action',
+            'constituent_assembly',
+            'military_disorder',
             ];
 Q.advisor_action_timer = 0;
 
@@ -890,6 +925,7 @@ Q.prov_gov_policies_timer = 3;
 Q.food_shortages_timer = 2;
 Q.high_inflation_timer = 2;
 Q.land_seizures_timer = 4;
+Q.military_disorder_timer = 3;
 
 // constituent assembly election
 Q.election_type = "ca";
@@ -965,10 +1001,12 @@ Q.kamenev_advisor = 0; // Lev Kamenev - April week 1
 Q.zinoviev_advisor = 0; // Grigory Zinoviev - April week 1
 Q.sverdlov_advisor = 0; // Yakov Sverdlov - April week 1
 Q.kollontai_advisor = 0; // Alexandra Kollontai - April week 1
+Q.trotsky_advisor = 0;
 
 !}
 set-bg: img/map_2.jpg
 new-page: true
+
 
 > * In general, people do not see events concretely, solidly. They think more in words than in clearly-imagined pictures, and they have absolutely no idea what a revolution is, – of those many millions of causes which have gone to give it its present form, – and they are therefore inclined to exaggerate the importance in the progress of the revolution of their personality and of that attitude which they, their friends and co-thinkers will take up in this enormous upheaval. And of course they are absolutely incapable of understanding how powerless is any individual, whatever his intelligence and experience, in this whirlpool of hundreds of thousands of forces which have been put into motion by the upheaval.*
 
@@ -1059,7 +1097,7 @@ go-to: intros
 @sr
 title: Party of Socialist-Revolutionaries (SRs)
 
-**Party of Socialist-Revolutionaries (SR)** - The SRs are based in the Russian ideology of *narodism*, or populism, which is an agrarian socialism that sees the traditional Russian village (the *mir*) as the basis of a future socialist society. Their support is strongest in the peasantry, but they have substantial support among workers as well. The SRs are deeply divided between left and right wings based on their attitudes towards the war and participation in government.
+**Party of Socialist-Revolutionaries (SR)** - The SRs are based in the Russian ideology of *narodism*, or populism, which is an agrarian socialism that sees the traditional Russian village (the *obshchina*) as the basis of a future socialist society. Their support is strongest in the peasantry, but they have substantial support among workers as well. The SRs are deeply divided between left and right wings based on their attitudes towards the war and participation in government.
 
 - @sr_2: Yes, I am a Socialist-Revolutionary!
 - @party_selection: No, select a different party.

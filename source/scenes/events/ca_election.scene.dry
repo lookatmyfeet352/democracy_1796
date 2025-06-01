@@ -2,7 +2,7 @@ title: Constituent Assembly Elections
 subtitle: Finally, the elections are held, and the results are arriving...
 new-page: true
 view-if: ((month = next_election_month and week >= next_election_week) or month > next_election_month) and ca_scheduled = 1
-on-arrival: ca_held = 1
+on-arrival: ca_election_held = 1
 set-jump: ca_election.election_results
 max-visits: 1
 tags: event
@@ -15,6 +15,8 @@ Finally, the long-awaited Constituent Assembly elections are being held!
 
 @election_results
 on-arrival: {!
+Q.constituent_assembly_timer = 8;
+
 Q.k_r = Math.round(800*Q.k_assembly_votes_dec/100);
 Q.b_r = Math.round(800*Q.b_assembly_votes_dec/100);
 Q.m_r = Math.round(800*Q.m_assembly_votes_dec/100);
@@ -208,7 +210,7 @@ if (window && d3) {
 {!<tr><td><div class="box cossack"> </div> !} Cossacks: {!</td><td>!} [+ cossacks_assembly_votes_dec +]% {!</td>!}
 {!</table>!}
 
-Now, the Provisional Government's time is coming to an end. The challenges are not over; let's hope that the Constituent Assembly is up to the task of creating a new Russia.
+Now, the newly elected members of the Constituent Assembly must travel from the far reaches of the country to gather in Petrograd. In two months, the Constituent Assembly will finally convene in order to write a new constitution for Russia, and begin a new government.
 
-- @game_over: Game Over
+# - @game_over: Game Over
 

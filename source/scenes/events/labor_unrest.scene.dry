@@ -39,14 +39,14 @@ on-arrival: monthly_inflation += 0.2; capital_flight_progress += 1; workers_m +=
 @concessions
 title: The Provisional Government should negotiate minor concessions by both sides.
 view-if: ((player_party = "k" and k_in_prov_gov) or (player_party = "m" and m_in_prov_gov) or (player_party = "sr" and sr_in_prov_gov))
-on-arrival: monthly_inflation += 0.05; workers_m += 2*(1-m_dissent) if m_in_prov_gov; workers_sr += 2*(1-sr_dissent) if sr_in_prov_gov; workers_b += 2*(1-b_dissent) if b_in_prov_gov; workers_k += 2*(1-k_dissent) if k_in_prov_gov; income += 1; labor_unrest -= 2; industry *= 1.01
+on-arrival: monthly_inflation += 0.05; workers_m += 2*(1-m_dissent) if m_in_prov_gov; workers_sr += 2*(1-sr_dissent) if sr_in_prov_gov; workers_b += 2*(1-b_dissent) if b_in_prov_gov; workers_k += 2*(1-k_dissent) if k_in_prov_gov; income += 1; labor_unrest -= 2; industry *= 1.01; unemployed += 0.1
 
 We have negotiated for minor concessions from employers, and some tactical retreat by the workers. The workers are not entirely happy about the deals, but they see us as on their side, for now.
 
 @soviet_help
 title: The Soviet should support the workers' demands for higher wages and improved working conditions.
 view-if: ((player_party = "b" and b_in_exco) or (player_party = "m" and m_in_exco) or (player_party = "sr" and sr_in_exco) or (player_party = "k" and k_in_exco))
-on-arrival: monthly_inflation += 0.1; capital_flight_progress += 1; workers_m += 5*(1-m_dissent) if m_in_exco; workers_sr += 5*(1-sr_dissent) if sr_in_exco; workers_b += 5*(1-b_dissent) if b_in_exco; m_k_relation -= 4 if m_in_exco; sr_k_relation -= 4 if sr_in_exco; prov_gov_soviet_cooperation -= 0.02; income += 1; labor_unrest -= 3;
+on-arrival: monthly_inflation += 0.1; capital_flight_progress += 1; workers_m += 5*(1-m_dissent) if m_in_exco; workers_sr += 5*(1-sr_dissent) if sr_in_exco; workers_b += 5*(1-b_dissent) if b_in_exco; m_k_relation -= 4 if m_in_exco; sr_k_relation -= 4 if sr_in_exco; prov_gov_soviet_cooperation -= 0.02; income += 1; labor_unrest -= 3; unemployed += 0.6
 
 We have supported the workers in their economic demands and their struggles with their employers. Strikes are ended with agreements favorable to workers. The employers are somewhat displeased, and higher wages without increased production can lead to more inflation.
 

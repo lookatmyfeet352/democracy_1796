@@ -1,0 +1,45 @@
+title: The Constituent Assembly
+subtitle: Finally, the new Russian government can begin to form...
+new-page: true
+view-if: ca_election_held = 1 and constituent_assembly_timer = 0 and ca_held = 0
+on-arrival: {!
+Q.ca_held = 1;
+!}
+max-visits: 1
+tags: event
+
+= The Constituent Assembly
+
+# step 1: forming a governing coalition
+
+The goal of the Constituent Assembly is to write a new constitution for Russia. First, there must be the election of a new speaker.
+
+Possible coalitions:
+
+# defensists only
+Moderate socialist coalition (Mensheviks + SRs + Minority Socialists):
+
+Internationalist socialist coalition:
+
+Democratic coalition (Kadets + Mensheviks + SRs + Minority Socialists + Minority Nationalists):
+
+Bourgeois-Nationalist coalition (Kadets + Minority Nationalists):
+
+Who should we support as the speaker of the Constituent Assembly?
+
+# each party has a default speaker choice.
+
+# then we should form a new government.
+
+@chernov
+title: Viktor Chernov (SR)
+
+@tsereteli
+title: Irakli Tsereteli (Menshevik)
+
+
+@disband
+title: Disband this Constituent Assembly!
+subtitle: The Soviets are the true organs of democracy.
+view-if: ((player_party = "b" or (player_party = "sr")) and government_form = 1)
+

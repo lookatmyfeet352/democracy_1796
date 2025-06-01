@@ -1,0 +1,24 @@
+title: Military Disorder
+subtitle: Soldiers are deserting and attacking officers.
+new-page: true
+view-if: military_disorder_timer = 0 and soldier_unrest >= 10
+on-arrival: military_disorder_timer += 6; discipline *= 0.9; morale *= 0.95
+tags: event
+
+= Military Disorder
+
+There is dissension throughout the ranks. The pent-up inequalities and resentments in the army have finally reached a boiling point with the revolution.
+
+@support_soldiers
+title: Support the soldiers' class struggle!
+view-if: player_party = "b"
+
+@councils_discipline
+title: Task the soldiers' councils to restore discipline.
+view-if: (player_party = "sr" and sr_in_exco) or (player_party = "m" and m_in_exco) or (player_party = "b" and b_in_exco)
+
+@restore_discipline
+title: Impose harsher punishments to restore discipline.
+view-if: (player_party = "sr" and sr_in_prov_gov) or (player_party = "m" and m_in_prov_gov) or (player_party = "k" and k_in_prov_gov)
+
+

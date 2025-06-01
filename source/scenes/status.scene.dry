@@ -65,7 +65,7 @@ Internal dissent:
 [? if player_party == "k": [+ k_dissent_percent : dissent +] ?]
 [? if player_party == "sr": [+ sr_dissent_percent : dissent +] ?]
 
-= Provisional Government
+= [+ government_form : government_form +]
 
 Prime Minister: [+ prime_minister +] ([+ prime_minister_party +])
 
@@ -126,12 +126,23 @@ switch (Q.player_party) {
 = Inter-party Relationships
 
 [? if player_party != "m": Mensheviks: [+ m_relation : relationships +] ?]
+{!</br>!}
+[? if player_party != "m": Menshevik leadership: [+ m_leadership : m_leadership +] ?]
 
 [? if player_party != "b": Bolsheviks: [+ b_relation : relationships +] ?]
+{!</br>!}
+[? if player_party != "b": Bolshevik leadership: [+ b_leadership : b_leadership +] ?]
+
 
 [? if player_party != "sr": SRs: [+ sr_relation : relationships +] ?]
+{!</br>!}
+[? if player_party != "m": SR leadership: [+ sr_leadership : sr_leadership +] ?]
+
 
 [? if player_party != "k": Kadets: [+ k_relation : relationships +] ?]
+{!</br>!}
+[? if player_party != "m": Kadet leadership: [+ k_leadership : k_leadership +] ?]
+
 
 = Internal factions
 
@@ -176,35 +187,39 @@ Labor policy: [? if player_party = "m": [+ m_industrial_policy : industrial_poli
 
 War policy: [? if player_party = "m": [+ m_war_policy : war_policy +]?][? if player_party = "sr": [+ sr_war_policy : war_policy +]?][? if player_party = "k": [+ k_war_policy : war_policy +]?][? if player_party = "b": [+ b_war_policy : war_policy +]?]
 
+Agricultural policy: [? if player_party = "m": [+ m_land_policy : land_policy +], [+ m_agricultural_policy : agricultural_policy +]?][? if player_party = "sr": [+ sr_land_policy : land_policy +], [+ sr_agricultural_policy : agricultural_policy +]?][? if player_party = "k": [+ k_land_policy : land_policy +], [+ k_agricultural_policy : agricultural_policy +]?][? if player_party = "b": [+ b_land_policy : land_policy +], [+ b_agricultural_policy : agricultural_policy +]?]
+
+Nationality policy: [? if player_party = "m": [+ m_nationality_policy : nationality_policy +]?][? if player_party = "sr": [+ sr_nationality_policy : nationality_policy +]?][? if player_party = "k": [+ k_nationality_policy : nationality_policy +]?][? if player_party = "b": [+ b_nationality_policy : nationality_policy +]?]
+
 @gov
 title: Government
 
-= Provisional Government
+= [+ government_form : government_form +]
 
-Prime Minister: [+ prime_minister +] ([+ prime_minister_party +])
+[+ government_form : leader +]: [+ prime_minister +] ([+ prime_minister_party +])
 
-Interior Minister: [+ interior_minister +] ([+ interior_minister_party +])
+Interior [+ government_form : minister +]: [+ interior_minister +] ([+ interior_minister_party +])
 
-Foreign Minister: [+ foreign_minister +] ([+ foreign_minister_party +])
+Foreign [+ government_form : minister +]: [+ foreign_minister +] ([+ foreign_minister_party +])
 
-War Minister: [+ war_minister +] ([+ war_minister_party +])
+War [+ government_form : minister +]: [+ war_minister +] ([+ war_minister_party +])
 
-Finance Minister: [+ finance_minister +] ([+ finance_minister_party +])
+Finance [+ government_form : minister +]: [+ finance_minister +] ([+ finance_minister_party +])
 
-Justice Minister: [+ justice_minister +] ([+ justice_minister_party +])
+Justice [+ government_form : minister +]: [+ justice_minister +] ([+ justice_minister_party +])
 
-Agriculture Minister: [+ agriculture_minister +] ([+ agriculture_minister_party +])
+Agriculture [+ government_form : minister +]: [+ agriculture_minister +] ([+ agriculture_minister_party +])
 
-Transport Minister: [+ transport_minister +] ([+ transport_minister_party +])
+Transport [+ government_form : minister +]: [+ transport_minister +] ([+ transport_minister_party +])
 
-Industry and Trade Minister: [+ trade_minister +] ([+ trade_minister_party +])
+Industry and Trade [+ government_form : minister +]: [+ trade_minister +] ([+ trade_minister_party +])
 
-Education Minister: [+ education_minister +] ([+ education_minister_party +])
+Education [+ government_form : minister +]: [+ education_minister +] ([+ education_minister_party +])
 
 
-[? if post_minister: Posts and Telegraph Minister: [+ post_minister +] ([+ post_minister_party +]) ?]
+[? if post_minister: Posts and Telegraph [+ government_form : minister +]: [+ post_minister +] ([+ post_minister_party +]) ?]
 
-[? if labor_minister: Labor Minister: [+ labor_minister +] ([+ labor_minister_party +]) ?]
+[? if labor_minister: Labor [+ government_form : minister +]: [+ labor_minister +] ([+ labor_minister_party +]) ?]
 
 Provisional government efficacy: [+ prov_gov_efficacy : efficacy +]
 

@@ -1,4 +1,4 @@
-title: Provisional Government Relations
+title: Soviet-Provisional Government Relations
 new-page: true
 view-if: prov_gov_relations_timer = 0 and ((player_party = "b" and b_in_exco) or (player_party = "m" and m_in_exco) or (player_party = "sr" and sr_in_exco) or (player_party = "k" and kadet_in_exco))
 on-arrival: week_actions += 1; prov_gov_relations_timer += 3
