@@ -17,14 +17,14 @@ There is dissension throughout the ranks. The pent-up inequities and resentments
 @support_soldiers
 title: Support the soldiers' class struggle!
 view-if: player_party = "b"
-on-arrival: m_b_relation -= 5; b_sr_relation -= 5; b_k_relation -= 10; discipline -= 2; morale -= 2;
+on-arrival: m_b_relation -= 5; b_sr_relation -= 5; b_k_relation -= 10; discipline -= 0.02; morale -= 0.02;
 
 Our propaganda is aimed at accentuating the soldiers' struggle against the aristocratic officer class! This increases the soldiers' unrest, making government actions to restore order ineffective.
 
 @councils_discipline
 title: Task the soldiers' councils to restore discipline.
 view-if: (player_party = "sr" and sr_in_exco) or (player_party = "m" and m_in_exco) or (player_party = "b" and b_in_exco)
-on-arrival: soldier_unrest -= 1; morale += 1; discipline += 1
+on-arrival: soldier_unrest -= 1; morale += 0.01; discipline += 0.01
 
 Commissars from the Petrograd Soviet have been sent to the frontlines to guide the soldiers' councils into restoring order. This is very slightly effective in restoring morale and discipline.
 
@@ -32,7 +32,7 @@ Commissars from the Petrograd Soviet have been sent to the frontlines to guide t
 @restore_discipline
 title: Impose harsher punishments to restore discipline.
 view-if: (player_party = "sr" and sr_in_gov) or (player_party = "m" and m_in_gov) or (player_party = "k" and k_in_gov)
-on-arrival: soldier_unrest -= 1; discipline += 4; morale -= 1; soldiers_m -= 5 if m_in_gov; soldiers_sr -= 5 if sr_in_gov; soldiers_k -= 5 if k_in_gov; soldiers_other -= 5; m_b_relation -= 5 if m_in_gov and not b_in_gov; b_sr_relation -= 5 if sr_in_gov and not b_in_gov; soldiers_b += 5 if not b_in_gov
+on-arrival: soldier_unrest -= 1; discipline += 0.02; morale -= 0.01; soldiers_m -= 5 if m_in_gov; soldiers_sr -= 5 if sr_in_gov; soldiers_k -= 5 if k_in_gov; soldiers_other -= 5; m_b_relation -= 5 if m_in_gov and not b_in_gov; b_sr_relation -= 5 if sr_in_gov and not b_in_gov; soldiers_b += 5 if not b_in_gov
 
 The government has imposed harsher punishments for deserters. This is effective in restoring discipline, but morale is still low, and the soldiers' political allegiances are falling towards the Bolsheviks.
 

@@ -220,9 +220,9 @@ Education [+ government_form : minister +]: [+ education_minister +] ([+ educati
 
 [? if labor_minister: Labor [+ government_form : minister +]: [+ labor_minister +] ([+ labor_minister_party +]) ?]
 
-Provisional government efficacy: [+ prov_gov_efficacy : efficacy +]
+Government efficacy: [+ prov_gov_efficacy : efficacy +]
 
-Provisional government legitimacy: [+ prov_gov_legitimacy : legitimacy +]
+Government legitimacy: [+ prov_gov_legitimacy : legitimacy +]
 
 = Petrograd Soviet
 
@@ -308,15 +308,20 @@ title: Defense
 
 = Armies and Fronts
 
-Northern Front: [+ northern_front_soldiers +] divisions, [+ northern_progress : war_progress +]
+Northern Front: [+ northern_front_soldiers +] divisions
+{!</br>!}[+ northern_progress : war_progress +]
 
-Western Front: [+ western_front_soldiers +] divisions, [+ western_progress : war_progress +]
+Western Front: [+ western_front_soldiers +] divisions
+{!</br>!}[+ western_progress : war_progress +]
 
-Southwestern Front: [+ southwestern_front_soldiers +] divisions, [+ southwestern_progress : war_progress +]
+Southwestern Front: [+ southwestern_front_soldiers +] divisions
+{!</br>!}[+ southwestern_progress : war_progress +]
 
-Romanian Front: [+ romanian_front_soldiers +] divisions, [+ romanian_progress : war_progress +]
+Romanian Front: [+ romanian_front_soldiers +] divisions
+{!</br>!}[+ romanian_progress : war_progress +]
 
-Caucasus Front: [+ caucasus_front_soldiers +] divisions, [+ caucasus_progress : war_progress +]
+Caucasus Front: [+ caucasus_front_soldiers +] divisions
+{!</br>!}[+ caucasus_progress : war_progress +]
 
 Garrisons and reserves: [+ reserve_soldiers +] divisions
 

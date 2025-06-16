@@ -1,5 +1,5 @@
 title: Cancel action.
-view-if: last_advisor_action = 1 or last_cabinet_action = 0
+view-if: last_advisor_action = 1 or last_cabinet_action = 1
 go-to: root
 on-arrival: {!
 if (Q.week_actions > 0) {
