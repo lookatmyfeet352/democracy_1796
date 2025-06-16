@@ -58,8 +58,8 @@ if (Q.labor_minister == "Skobelev") {
     Q.labor_minister_party = "Menshevik-Defensist";
     Q.m_drop_gov = 1;
 }
-if (Q.m_in_prov_gov && Q.trade_minister != "Groman" && Q.food_minister != "Groman") {
-    Q.m_in_prov_gov = 0;
+if (Q.m_in_gov && Q.trade_minister != "Groman" && Q.food_minister != "Groman") {
+    Q.m_in_gov = 0;
     Q.m_drop_gov = 1;
 } 
 // TODO: figure out the minority soviet stuff - call for new soviet elections?
@@ -82,7 +82,7 @@ if (Q.voitinsky_advisor) {
 }
 !}
 
-The defensists and social patriots are splitting to form a new party, the Menshevik-Defensists. Defensist leaders have resigned from the party's leadership. [? if m_drop_gov: Most of the Menshevik ministers in the Provisional Government are no longer affiliated with the party. ?][? if m_drop_gov and m_in_prov_gov: The remaining mainline Mensheviks still have a small presence in the Provisional Government, however. ?]
+The defensists and social patriots are splitting to form a new party, the Menshevik-Defensists. Defensist leaders have resigned from the party's leadership. [? if m_drop_gov: Most of the Menshevik ministers in the Provisional Government are no longer affiliated with the party. ?][? if m_drop_gov and m_in_gov: The remaining mainline Mensheviks still have a small presence in the Provisional Government, however. ?]
 
 This will result in a new election for Petrograd Soviet leadership.
 

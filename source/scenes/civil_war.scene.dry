@@ -74,12 +74,12 @@ Q.prov_gov_strength += Q.city_militia_strength*Q.city_militia_militancy*Q.city_m
 // Garrison support
 Q.prov_gov_strength += Q.garrison_strength*Q.garrison_militancy*Q.garrison_k_loyalty/100;
 // support from M + SRs
-if (Q.m_in_prov_gov && Q.m_prov_gov_policy <= 1) {
+if (Q.m_in_gov && Q.m_prov_gov_policy <= 1) {
     Q.prov_gov_strength += Q.city_militia_strength*Q.city_militia_militancy*Q.city_militia_m_loyalty/100;
     Q.prov_gov_strength += Q.workers_militia_strength*Q.workers_militia_militancy*Q.workers_militia_m_loyalty/100;
     Q.prov_gov_strength += Q.garrison_strength*Q.garrison_militancy*Q.garrison_m_loyalty/100;
 }
-if (Q.sr_in_prov_gov && Q.sr_prov_gov_policy <= 1) {
+if (Q.sr_in_gov && Q.sr_prov_gov_policy <= 1) {
     Q.prov_gov_strength += Q.city_militia_strength*Q.city_militia_militancy*Q.city_militia_sr_loyalty/100*Q.right_sr_strength/100;
     Q.prov_gov_strength += Q.workers_militia_strength*Q.workers_militia_militancy*Q.workers_militia_sr_loyalty/100*Q.right_sr_strength/100;
     Q.prov_gov_strength += Q.garrison_strength*Q.garrison_militancy*Q.garrison_sr_loyalty/100*Q.right_sr_strength/100;

@@ -17,14 +17,14 @@ What should our policy be with respect to the Provisional Government?
 @external_support
 title: We should provide external support to the Provisional Government, but will not take part in it.
 subtitle: [? if k_prov_gov_policy = 1 : This is our current position. ?]
-on-arrival: internationalist_dissent += 4 if k_prov_gov_policy > 1 and not k_in_prov_gov; k_prov_gov_policy = 1;
+on-arrival: internationalist_dissent += 4 if k_prov_gov_policy > 1 and not k_in_gov; k_prov_gov_policy = 1;
 
 Our policy is that we should provide external support to the Provisional Government, but will not take part in it.
 
 @take_part
 title: We should join the Provisional Government as part of a broad coalition.
-subtitle: [? if k_prov_gov_policy = 0 : This is our current position. ?][? if k_in_prov_gov and k_in_prov_gov: This is already our de facto policy. ?]
-on-arrival: internationalist_dissent += 5 if k_prov_gov_policy != 0 and not k_in_prov_gov; k_prov_gov_policy = 0;
+subtitle: [? if k_prov_gov_policy = 0 : This is our current position. ?][? if k_in_gov and k_in_gov: This is already our de facto policy. ?]
+on-arrival: internationalist_dissent += 5 if k_prov_gov_policy != 0 and not k_in_gov; k_prov_gov_policy = 0;
 
 Our policy is to join the Provisional Government as part of a coalition government that may include liberals. This policy is opposed by our left wing, who would favor an all-socialist government.
 

@@ -28,7 +28,7 @@ With the abdication of the Tsar, power in Russia has been transferred to the Pro
 
 The leaders of the Provisional Government see its role as continuing to persecute the war and maintaining stability until an elected Constituent Assembly is ready to decide Russia's final form of government.
 
-[? if m_in_prov_gov or sr_in_prov_gov: Recently, socialist parties have joined the Provisional Government as a way to shore up its stability. ?]
+[? if m_in_gov or sr_in_gov: Recently, socialist parties have joined the Provisional Government as a way to shore up its stability. ?]
 
 Prime Minister: [+ prime_minister +] ([+ prime_minister_party +])
 

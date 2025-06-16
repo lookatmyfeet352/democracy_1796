@@ -1,8 +1,8 @@
 title: Mensheviks leave the Provisional Government.
 on-arrival: {!
-Q.m_in_prov_gov = 0;
+Q.m_in_gov = 0;
 if (Q.agriculture_minister_party = "Menshevik") {
-    if (Q.sr_in_prov_gov) {
+    if (Q.sr_in_gov) {
         Q.agriculture_minister = "Chernov";
         Q.agriculture_minister_party = "SR";
     } else {

@@ -36,7 +36,7 @@ title: Soviet-Government Cooperation
 subtitle: Improve cooperation between the Petrograd Soviet and the Provisional Government.
 choose-if: advisor_action_timer <= 0
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?]
-on-arrival: advisor_action_timer = 4; soviet_cooperation += 0.05; m_k_relation += 5*(1-m_dissent) if k_in_prov_gov; soviet_efficacy += 0.01
+on-arrival: advisor_action_timer = 4; soviet_cooperation += 0.05; m_k_relation += 5*(1-m_dissent) if k_in_gov; soviet_efficacy += 0.01
 
 We have increased cooperation between the Soviet and the Provisional Government. This also improves our relations with the Kadets.
 
@@ -80,7 +80,7 @@ We have enforced party discipline to reduce dissent across all factions.
 @interior_
 title: Internal Security
 subtitle: Tsereteli is the Interior Minister.
-view-if: m_in_prov_gov
+view-if: m_in_gov
 choose-if: advisor_action_timer = 0 and interior_minister = "Tsereteli"
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?] [? if interior_minister != "Tsereteli" : Tsereteli is not the Interior Minister. ?]
 on-arrival: advisor_action_timer = 4; internal_security_timer -= 4; last_advisor_action = 1
@@ -90,8 +90,8 @@ go-to: internal_security
 title: Shuffle Cabinet 
 subtitle: Change the ministers of the Provisional Government.
 view-if: prime_minister = "Tsereteli" 
-choose-if: advisor_action_timer = 0 and m_in_prov_gov 
-unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?] [? if not m_in_prov_gov : We are not in the Provisional Government. ?]
+choose-if: advisor_action_timer = 0 and m_in_gov 
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?] [? if not m_in_gov : We are not in the Provisional Government. ?]
 on-arrival: advisor_action_timer = 4; 
 go-to: m_join_prov_gov 
 

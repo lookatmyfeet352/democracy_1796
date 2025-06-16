@@ -44,8 +44,8 @@ We hold large street demonstrations, but they fail to sway the Provisional Gover
 
 @resign
 title: Resign from the Provisional Government in protest.
-view-if: (player_party = "m" and m_in_prov_gov) or (player_party = "sr" and sr_in_prov_gov)
-on-arrival:  in_june_offensive = 1; june_offensive_conclusion_timer = 1; m_in_prov_gov = 0 if player_party = "m"; sr_in_prov_gov = 0 if player_party = "sr"; offensive_timer += 8;
+view-if: (player_party = "m" and m_in_gov) or (player_party = "sr" and sr_in_gov)
+on-arrival:  in_june_offensive = 1; june_offensive_conclusion_timer = 1; m_in_gov = 0 if player_party = "m"; sr_in_gov = 0 if player_party = "sr"; offensive_timer += 8;
 go-to: m_exit_gov if player_party = "m"; sr_exit_gov if player_party = "sr"
 
 We have resigned from the Provisional Government in protest, but nevertheless, the offensive will continue.

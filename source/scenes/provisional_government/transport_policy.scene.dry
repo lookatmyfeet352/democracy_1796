@@ -2,7 +2,7 @@ title: Transportation Policy
 new-page: true
 is-card: true
 on-arrival: transport_policy_timer += 3; week_actions += 1
-view-if: transport_policy_timer == 0 and ((player_party = "k" and k_in_prov_gov and (transport_minister_party = "Kadet" or transport_minister_party = "Independent" or transport_minister_party = "Progressive" or transport_minister_party = "Octobrist" or transport_minister_party = "Trudovik" or transport_minister_party = "Popular Socialist")) or (player_party = "sr" and sr_in_prov_gov and (transport_minister_party = "SR" or transport_minister_party = "Trudovik" or transport_minister_party = "Popular Socialist")) or (player_party = "m" and m_in_prov_gov and transport_minister_party = "Menshevik"))
+view-if: transport_policy_timer == 0 and ((player_party = "k" and k_in_gov and (transport_minister_party = "Kadet" or transport_minister_party = "Independent" or transport_minister_party = "Progressive" or transport_minister_party = "Octobrist" or transport_minister_party = "Trudovik" or transport_minister_party = "Popular Socialist")) or (player_party = "sr" and sr_in_gov and (transport_minister_party = "SR" or transport_minister_party = "Trudovik" or transport_minister_party = "Popular Socialist")) or (player_party = "m" and m_in_gov and transport_minister_party = "Menshevik"))
 card-image: img/train.jpg
 tags: prov_gov
 go-to: transport_menu

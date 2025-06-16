@@ -47,7 +47,7 @@ Q.b_is_player = 0;
 Q.k_is_player = 0;
 
 Q.player_in_exco = 1;
-Q.player_in_prov_gov = 0;
+Q.player_in_gov = 0;
 Q.player_in_soviet = 1;
 
 // multiplayer stuff
@@ -140,7 +140,7 @@ Q.internationalist_dissent = 35;
 Q.defensist_split = 0;
 Q.internationalist_split = 0;
 // -1 = expansionist, 0 = social patriot, 1 = revolutionary defensist, 2 = internationalist, 3 = revolutionary defeatist
-// less is more anti-war
+// less is more pro-war
 Q.m_war_policy = 1;
 // rural policy is actually two different things: how farming should be done (communal, private, collective, state-owned) and what should be done with large estates/state property (no change, voluntary sale, compensated seizures, uncompensated seizures)
 // agricultural policy: -1 = Stolypin privatization, 0 = voluntary privatization, 1 = communal farming, 2 = state farming, 3 = collective farming
@@ -219,7 +219,7 @@ Q.k_conservative_relation = 50;
 
 // government
 // The form of government: Prov Gov, Sov Gov, Constituent Assembly, Dictatorship
-// 0 = Provisional Government, 1 = Soviet Government, 2 = Constituent Assembly, 3 = Directorate, 4 = Dictatorship
+// 0 = Provisional Government, 1 = Soviet Government, 2 = Constitutional Government, 3 = Directorate, 4 = Dictatorship, 5 = One-Party Soviet Government
 Q.government_form = 0;
 
 
@@ -390,21 +390,22 @@ if (Q.soldier_hunger < 0) {
 
 ////////////////////// Provisional government
 // party names are shortened in these variables solely for convenience (bc they show up everywhere)
-Q.k_in_prov_gov = 1;
-Q.m_in_prov_gov = 0;
-Q.sr_in_prov_gov = 0;
-Q.b_in_prov_gov = 0;
+// governments don't necessarily have to be the provisional government
+Q.k_in_gov = 1;
+Q.m_in_gov = 0;
+Q.sr_in_gov = 0;
+Q.b_in_gov = 0;
 // splinter parties - Left-SR and Right-SR
-Q.left_sr_in_prov_gov = 0;
-Q.right_sr_in_prov_gov = 0;
+Q.left_sr_in_gov = 0;
+Q.right_sr_in_gov = 0;
 // Social-Democratic Internationalists (left-Menshevik/right-Bolshevik split)
-Q.internationalist_in_prov_gov = 0;
+Q.internationalist_in_gov = 0;
 // Menshevik-Defensists
-Q.defensist_in_prov_gov = 0;
+Q.defensist_in_gov = 0;
 // right-kadet split - National-Liberals
-Q.conservative_in_prov_gov = 0;
+Q.conservative_in_gov = 0;
 // left-kadet split - Union of Democrats
-Q.democrats_in_prov_gov = 0;
+Q.democrats_in_gov = 0;
 // are we currently in an all-socialist coalition?
 Q.in_socialist_coalition = 0;
 
@@ -535,7 +536,9 @@ Q.caucasus_enemy_soldiers = 50;
 Q.caucasus_enemy_morale = 0.5;
 Q.caucasus_enemy_discipline = 0.5;
 Q.caucasus_enemy_supply_quality = 0.5;
-Q.caucasus_enemy_defense_bonus = 5;
+Q.caucasus_enemy_defense_bonus = 8;
+
+Q.total_enemy_reinforcements = 0;
 
 Q.enemy_war_weariness = 30;
 
@@ -568,7 +571,8 @@ Q.western_progress = -2;
 Q.southwestern_progress = 1;
 Q.romanian_progress = -1;
 Q.caucasus_progress = 1;
-
+Q.war_progress = Q.northern_progress + Q.western_progress + Q.southwestern_progress + Q.romani
+an_progress + Q.caucasus_progress;
 // Militias
 
 // 100k
@@ -744,7 +748,7 @@ Q.workers_m = 50;
 Q.workers_sr = 30;
 Q.workers_k = 2;
 Q.workers_conservative = 1;
-Q.workers_popular_socialist = 3;
+Q.workers_popular_socialist = 2;
 Q.workers_anarchist = 5;
 Q.workers_other = 3;
 Q.workers_none = 10;
@@ -758,10 +762,10 @@ Q.middle_m = 10;
 Q.middle_sr = 10;
 Q.middle_k = 40;
 Q.middle_conservative = 10;
-Q.middle_popular_socialist = 10;
+Q.middle_popular_socialist = 5;
 Q.middle_anarchist = 1;
 Q.middle_other = 15;
-Q.middle_none = 5;
+Q.middle_none = 10;
 
 Q.middle_pro_prov_gov = 85;
 Q.middle_pro_soviet = 40;
@@ -918,6 +922,9 @@ Q.timers = [//m_party
             'advisor_action',
             'constituent_assembly',
             'military_disorder',
+            'crime_wave',
+            'enemy_reinforcements',
+            'german_offensive',
             ];
 Q.advisor_action_timer = 0;
 
@@ -926,6 +933,8 @@ Q.food_shortages_timer = 2;
 Q.high_inflation_timer = 2;
 Q.land_seizures_timer = 4;
 Q.military_disorder_timer = 3;
+Q.crime_wave_timer = 5;
+Q.enemy_reinforcements_timer = 0
 
 // constituent assembly election
 Q.election_type = "ca";
@@ -1075,7 +1084,7 @@ unavailable-subtitle: Complete the game as one of the other parties first.
 - @party_selection: No, select a different party.
 
 @bolsheviks_2
-on-arrival: player_party_name = "Bolshevik"; player_party = "b"; b_is_player = 1; m_is_player = 0; player_in_soviet = 1; player_in_exco = 0; player_in_prov_gov = 0;
+on-arrival: player_party_name = "Bolshevik"; player_party = "b"; b_is_player = 1; m_is_player = 0; player_in_soviet = 1; player_in_exco = 0; player_in_gov = 0;
 go-to: intros
 
 
@@ -1089,7 +1098,7 @@ title: Russian Social-Democratic Labor Party (Menshevik)
 
 
 @mensheviks_2
-on-arrival: player_party_name = "Menshevik"; player_party = "m"; m_is_player = 1; player_in_soviet = 1; player_in_exco = 1; player_in_prov_gov = 0;
+on-arrival: player_party_name = "Menshevik"; player_party = "m"; m_is_player = 1; player_in_soviet = 1; player_in_exco = 1; player_in_gov = 0;
 go-to: intros
 
 
@@ -1104,7 +1113,7 @@ title: Party of Socialist-Revolutionaries (SRs)
 
 
 @sr_2
-on-arrival: player_party = "sr"; player_party_name = "SR"; sr_is_player = 1; m_is_player = 0; player_in_soviet = 1; player_in_exco = 1; player_in_prov_gov = 0;
+on-arrival: player_party = "sr"; player_party_name = "SR"; sr_is_player = 1; m_is_player = 0; player_in_soviet = 1; player_in_exco = 1; player_in_gov = 0;
 go-to: intros
 
 @kadets
@@ -1117,6 +1126,6 @@ title: Constitutional Democratic Party (Kadets)
 
 
 @kadets_2
-on-arrival: player_party = "k"; player_party_name = "Kadet"; k_is_player = 1; m_is_player = 0; player_in_soviet = 0; player_in_prov_gov = 1; player_in_exco = 0;
+on-arrival: player_party = "k"; player_party_name = "Kadet"; k_is_player = 1; m_is_player = 0; player_in_soviet = 0; player_in_gov = 1; player_in_exco = 0;
 go-to: intros
 

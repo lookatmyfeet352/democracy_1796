@@ -29,7 +29,7 @@ We have used some of our party resources to send "bag-men" to purchase grain dir
 
 @agitate
 title: We must agitate against the Provisional Government for failing to address the food supply!
-view-if: player_party = "b" and not b_in_prov_gov
+view-if: player_party = "b" and not b_in_gov
 on-arrival: workers_b += 4*(1-b_dissent); prov_gov_legitimacy -= 2;
 
 We publish articles and make speeches about the Provisional Government's failure to provide bread. The propaganda is effective in turning the workers against the bourgeois government, and it creates an impression that the Bolshevik party is the only party taking the problem seriously.
@@ -41,12 +41,12 @@ go-to: root
 @grain_monopoly
 title: Create a state monopoly for grain purchasing.
 subtitle: -2 budget
-view-if: player_in_prov_gov and grain_monopoly = 0
+view-if: player_in_gov and grain_monopoly = 0
 go-to: food_policy.state_buyer
 
 
 @increase_price
 title: Increase the price of grain paid out to farmers.
 subtitle: -2 budget
-view-if: grain_monopoly = 1 and player_in_prov_gov
+view-if: grain_monopoly = 1 and player_in_gov
 go-to: food_policy.increase_price

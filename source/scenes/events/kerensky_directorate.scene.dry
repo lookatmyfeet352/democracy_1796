@@ -1,5 +1,7 @@
 title: Kerensky's Directorate
-subtitle: How do we 
+subtitle: In the wake of the Kornilov Affair, harsher measures are taken...
 on-arrival: {!
 // set Kerensky to no longer be an SR advisor, if he currently is one.
 !}
+
+# TODO

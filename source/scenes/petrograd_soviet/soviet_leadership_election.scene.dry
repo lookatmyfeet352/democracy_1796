@@ -191,6 +191,7 @@ on-arrival: soviet_chair = "Trotsky" if trotsky_available else soviet_chair = "K
 
 After we walk out of the Soviet, the Bolsheviks form an executive committee anyway, backed by the anarchists and some splinter leftists. [+ soviet_chair +] has been elected chairman of the Soviet.
 
+- @bolshevik_soviet_government
 
 
 @revolutionary_leadership
@@ -199,7 +200,9 @@ view-if: revolutionary_bloc > 50
 on-arrival: soviet_chair = "Trotsky" if trotsky_available else soviet_chair = "Kamenev"; soviet_chair_party = "Bolshevik"; in_revolutionary_coalition = 1; b_in_exco = 1; left_sr_in_exco = 1 if left_sr_split
 
 [? if player_party = "b": We have formed an executive committee based on a revolutionary bloc of Bolsheviks and anarchists. [+ soviet_chair +] has been elected chairman of the Soviet. ?]
-[? if party != "b": The Bolsheviks have formed an executive committee backed by the anarchists and some splinter leftists. [+ soviet_chair +] has been elected chairman of the Soviet. ?]
+[? if player_party != "b": The Bolsheviks have formed an executive committee backed by the anarchists and some splinter leftists. [+ soviet_chair +] has been elected chairman of the Soviet. ?]
+
+- @bolshevik_soviet_government
 
 
 @defensist_leadership
@@ -207,7 +210,11 @@ title: The Defensists will lead.
 view-if: defensist_bloc >= internationalist_bloc
 on-arrival: soviet_chair = "Chkheidze"; soviet_chair_party = "Menshevik" if m_leadership = 0 else soviet_chair_party = "Menshevik-Defensist"; m_in_exco = 1 if m_leadership = 0 and not m_independent; sr_in_exco = 1 if sr_leadership = 0 and not sr_independent; defensist_in_exco = 1 if defensist_split; right_sr_in_exco = 1 if right_sr_split; in_defensist_coalition = 1
 
-The Defensist bloc will be the leaders of the Soviet. Nikolai Chkheidze, a Menshevik Defensist, has become the Soviet chairman.
+The Defensist bloc will be the leaders of the Soviet. Who should be appointed the Chair of the Soviet?
+
+- @tsereteli_chair
+- @chkheidze_chair
+- @kerensky_chair
 
 
 @internationalist_leadership
@@ -238,15 +245,39 @@ on-arrival: m_in_exco = 1; sr_in_exco = 1 if not right_sr_split; defensist_in_ex
 
 We have formed a "grand coalition" of all the non-Bolshevik-aligned forces in the Soviet! Who should be appointed the Soviet chair?
 
+- @tsereteli_chair
 - @chkheidze_chair
 - @martov_chair
 - @sukhanov_chair
+
+@tsereteli_chair
+title: Irakli Tsereteli, the Menshevik Defensist.
+on-arrival: soviet_chair = "Tsereteli"; soviet_chair_party = "Menshevik" if not defensist_split else soviet_chair_party = "Menshevik-Defensist"
+view-if: in_soviet_government = 1
+
+Irakli Tsereteli, a Menshevik, has been elected as the chair of the Petrograd Soviet.
+
+- @soviet_government_formation
+
+
 
 @chkheidze_chair
 title: Nikolai Chkheidze, the Menshevik Defensist.
 on-arrival: soviet_chair = "Chkheidze"; soviet_chair_party = "Menshevik" if not defensist_split else soviet_chair_party = "Menshevik-Defensist"
 
-Nikolai Chkheidze, a Menshevik, as been elected as the chair of the Petrograd Soviet.
+Nikolai Chkheidze, a Menshevik, has been elected as the chair of the Petrograd Soviet.
+
+- @soviet_government_formation
+
+@kerensky_chair
+title: Alexander Kerensky, the Right-SR.
+on-arrival: soviet_chair = "Kerensky"; soviet_chair_party = "SR" if not right_sr_split else soviet_chair_party = "Right-SR"
+view-if: in_soviet_government = 1
+
+Alexander Kerensky has been elected as the chair of the Petrograd Soviet.
+
+- @soviet_government_formation
+
 
 
 @choose_i_chair
@@ -258,12 +289,18 @@ Who should be the Soviet chair?
 - @sukhanov_chair: Nikolai Sukhanov, the Social Democratic Internationalist.
 - @spiridonova_chair: Maria Spiridonova, the Left-SR.
 
+# TODO: if government_form = 1, we should also re-organize the government, choose ministries and so on.
+
 @trotsky_chair
 title: Leon Trotsky, the Bolshevik.
 view-if: b_in_exco = 1 and trotsky_available = 1
 on-arrival: soviet_chair = "Trotsky"; soviet_chair_party = "Bolshevik";
 
 Leon Trotsky, a Bolshevik, has been elected as chair of the Petrograd Soviet.
+
+- @soviet_government_formation
+- @bolshevik_soviet_government
+
 
 @martov_chair
 title: Julius Martov, the Menshevik Internationalist
@@ -272,17 +309,23 @@ on-arrival: soviet_chair = "Martov"; soviet_chair_party = "Menshevik"; soviet_ch
 
 Julius Martov, a Menshevik Internationalist, has been elected as chair of the Petrograd Soviet.
 
+- @soviet_government_formation
+
 @sukhanov_chair
 title: Nikolai Sukhanov, the Social Democratic Internationalist.
 on-arrival: soviet_chair = "Sukhanov"; soviet_chair_party = "Menshevik"; soviet_chair_party = "Menshevik-Internationalist" if m_leadership = 0
 
 Nikolai Sukhanov, a Menshevik-aligned Social Democratic Internationalist, has been elected as chair of the Petrograd Soviet.
 
+- @soviet_government_formation
+
 @spiridonova_chair
 view-if: spiridonova_available = 1
 on-arrival: soviet_chair = "Spiridonova"; soviet_chair_party = "SR"; soviet_chair_party = "Left-SR" if sr_leadership = 0
 
 Maria Spiridonova, a Left-SR, has been elected as chair of the Petrograd Soviet.
+
+- @soviet_government_formation
 
 
 @switch_positions

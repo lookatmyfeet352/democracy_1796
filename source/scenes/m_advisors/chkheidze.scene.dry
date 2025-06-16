@@ -39,7 +39,7 @@ title: Soviet-Government Cooperation
 subtitle: Improve cooperation between the Petrograd Soviet and the Provisional Government.
 choose-if: advisor_action_timer <= 0
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?]
-on-arrival: advisor_action_timer = 4; soviet_cooperation += 0.05; m_k_relation += 5*(1-m_dissent) if k_in_prov_gov; soviet_efficacy += 0.01
+on-arrival: advisor_action_timer = 4; soviet_cooperation += 0.05; m_k_relation += 5*(1-m_dissent) if k_in_gov; soviet_efficacy += 0.01
 
 We have increased cooperation between the Soviet and the Provisional Government. This also improves our relations with the Kadets.
 
@@ -48,9 +48,9 @@ title: Organizing Workers
 subtitle: Build up our factory organizations.
 choose-if: advisor_action_timer <= 0
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?]
-on-arrival: advisor_action_timer += 4; workers_m += 5*(1-m_dissent); m_workers_org += 1; workers_m -= 2 if m_in_prov_gov and prov_gov_legitimacy <= 50;
+on-arrival: advisor_action_timer += 4; workers_m += 5*(1-m_dissent); m_workers_org += 1; workers_m -= 2 if m_in_gov and prov_gov_legitimacy <= 50;
 
-We have increased our organizing among the workers. [? if m_in_prov_gov and prov_gov_legitimacy <= 50 : Our participation in the unpopular Provisional Government limits our support. ?]
+We have increased our organizing among the workers. [? if m_in_gov and prov_gov_legitimacy <= 50 : Our participation in the unpopular Provisional Government limits our support. ?]
 
 @soviet_election_
 title: Soviet Elections

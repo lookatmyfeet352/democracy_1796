@@ -212,6 +212,10 @@ go-to: eg_menu if started == 1; root.start_menu_2 if started == 0
 
 [? if game_achievement_peace : **Циммервальд (Zimmerwald)** - sign an armistice with the Central Powers. ?]
 
+[? if game_achievement_no_peace_no_war: **Ни мира, ни войны (No peace, no war)** - sign an armistice, and then let the Central Powers declare war again. ?]
+
+[? if game_achievement_peace_2: **Брест-Литовск (Brest-Litovsk)** - sign a permanent peace treaty with the Central Powers. ?] 
+
 [? if game_achievement_victory : **Прорыв (Breakthrough)** - win at least one battle in the Great War. ?]
 
 [? if game_achievement_womens_battalion : **Женские батальоны смерти (Women's Battalion of Death)** - form the Women's Battalion of Death. ?]
@@ -250,6 +254,10 @@ go-to: eg_menu if started == 1; root.start_menu_2 if started == 0
 
 [? if achievement_peace : **Циммервальд (Zimmerwald)** - sign an armistice with the Central Powers. ?]
 
+[? if achievement_no_peace_no_war: **Ни мира, ни войны (No peace, no war)** - sign an armistice, and then let the Central Powers declare war again. ?]
+
+[? if achievement_peace_2: **Брест-Литовск (Brest-Litovsk)** - sign a permanent peace treaty with the Central Powers. ?] 
+
 [? if achievement_victory : **Прорыв (Breakthrough)** - win at least one battle in the Great War. ?]
 
 [? if achievement_womens_battalion : **Женские батальоны смерти (Women's Battalion of Death)** - form the Women's Battalion of Death. ?]
@@ -287,6 +295,10 @@ go-to: eg_menu if started == 1; root.start_menu_2 if started == 0
 [? if not achievement_constitutional_democracy : **Народная Свобода (People's Freedom)** - reach the end of the game as the Kadets. ?]
 
 [? if not achievement_peace : **Циммервальд (Zimmerwald)** - sign an armistice with the Central Powers. ?]
+
+[? if not achievement_no_peace_no_war: **Ни мира, ни войны (No peace, no war)** - sign an armistice, and then let the Central Powers declare war again. ?]
+
+[? if not achievement_peace_2: **Брест-Литовск (Brest-Litovsk)** - sign a permanent peace treaty with the Central Powers. ?] 
 
 [? if not achievement_victory : **Прорыв (Breakthrough)** - win at least one battle in the Great War. ?]
 

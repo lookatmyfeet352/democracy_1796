@@ -37,8 +37,8 @@ go-to: military_policy
 @elections_
 title: Preparing for Constituent Assembly Elections
 subtitle: We should prepare to hold Constituent Assembly elections soon.
-choose-if: advisor_action_timer = 0 and (war_minister = "Kerensky" or justice_minister = "Kerensky" or prime_minister = "Kerensky" or sr_in_prov_gov)
-unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?] [? if not sr_in_prov_gov : We are not in the Provisional Government. ?]
+choose-if: advisor_action_timer = 0 and (war_minister = "Kerensky" or justice_minister = "Kerensky" or prime_minister = "Kerensky" or sr_in_gov)
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?] [? if not sr_in_gov : We are not in the Provisional Government. ?]
 on-arrival: advisor_action_timer = 4; prepare_ca_timer -= 4; last_advisor_action = 1
 go-to: prepare_ca
 
@@ -56,8 +56,8 @@ Kerensky launches a tour of the front, giving speeches to the troops to motivate
 title: Shuffle Cabinet
 subtitle: Change the ministers of the Provisional Government.
 view-if: prime_minister = "Kerensky"
-choose-if: advisor_action_timer = 0 and sr_in_prov_gov
-unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?] [? if not sr_in_prov_gov : We are not in the Provisional Government. ?]
+choose-if: advisor_action_timer = 0 and sr_in_gov
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?] [? if not sr_in_gov : We are not in the Provisional Government. ?]
 on-arrival: advisor_action_timer = 4;
 go-to: sr_join_prov_gov
 

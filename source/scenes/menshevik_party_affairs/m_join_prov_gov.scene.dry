@@ -20,8 +20,8 @@ This coalition arrangement is tolerable to all the parties.
 @agriculture
 title: Agriculture Ministry
 tags: m_mins
-choose-if: m_rural_policy != 0 and m_influence >= 10 and not sr_in_prov_gov
-unavailable-subtitle: [? if m_rural_policy = 0 : We do not have a rural policy. ?][? if sr_in_prov_gov: Viktor Chernov of the SRs is expected to take this position. ?]
+choose-if: m_rural_policy != 0 and m_influence >= 10 and not sr_in_gov
+unavailable-subtitle: [? if m_rural_policy = 0 : We do not have a rural policy. ?][? if sr_in_gov: Viktor Chernov of the SRs is expected to take this position. ?]
 go-to: menu
 
 @food
@@ -33,7 +33,7 @@ view-if: food_minister_party != "Menshevik"
 on-arrival: m_influence -= 10; food_minister = "Groman"; food_minister_party = "Menshevik"
 go-to: menu
 
-Vladimir Groman, a Menshevik-affiliated economist, has been appointed Food Minister.
+Vladimir Groman, a Menshevik-affiliated economist, has been appointed Food [+ government_form : minister +].
 
 @justice
 title: Justice Ministry
@@ -43,7 +43,7 @@ view-if: justice_minister_party != "Menshevik"
 go-to: menu
 on-arrival: m_influence -= 10; justice_minister = "Malyantovich"; justice_minister_party = "Menshevik"
 
-Pavel Malyantovich has been appointed Justice Minister.
+Pavel Malyantovich has been appointed Justice [+ government_form : minister +].
 
 @labor
 title: Labor Ministry
@@ -54,7 +54,7 @@ view-if: labor_minister_party != "Menshevik"
 on-arrival: m_influence -= 10; labor_minister = "Skobelev"; labor_minister_party = "Menshevik"
 go-to: menu
 
-Matvey Skobelev, a Menshevik Duma member, has been appointed Labor Minister.
+Matvey Skobelev, a Menshevik Duma member, has been appointed Labor [+ government_form : minister +].
 
 @interior
 title: Interior Ministry
@@ -65,7 +65,7 @@ view-if: interior_minister_party != "Menshevik"
 go-to: menu
 on-arrival: m_influence -= 15; interior_minister = "Tsereteli"; interior_minister_party = "Menshevik"
 
-Irakli Tsereteli has been appointed Interior Minister.
+Irakli Tsereteli has been appointed Interior [+ government_form : minister +].
 
 @finance
 title: Finance Ministry
@@ -76,7 +76,7 @@ view-if: finance_minister_party != "Menshevik"
 go-to: menu
 on-arrival: m_influence -= 15; finance_minister = "Voitinsky"; finance_minister_party = "Menshevik"
 
-Vladimir Voitinsky has been appointed Finance Minister.
+Vladimir Voitinsky has been appointed Finance [+ government_form : minister +].
 
 @war
 title: War Ministry
@@ -87,7 +87,7 @@ view-if: war_minister_party != "Menshevik"
 go-to: menu
 on-arrival: m_influence -= 15; war_minister = "Tsereteli"; war_minister_party = "Menshevik"
 
-Irakli Tsereteli has been appointed War Minister.
+Irakli Tsereteli has been appointed War [+ government_form : minister +].
 
 
 
@@ -100,7 +100,7 @@ view-if: foreign_minister_party != "Menshevik"
 go-to: menu
 on-arrival: m_influence -= 15; foreign_minister = "Tsereteli" if not defensist_split; foreign_minister = "Martov" if defensist_split; foreign_minister_party = "Menshevik"
 
-[? if not defensist_split : Irakli Tsereteli ?][? if defensist_split: Julius Martov ?] has been appointed Foreign Minister.
+[? if not defensist_split : Irakli Tsereteli ?][? if defensist_split: Julius Martov ?] has been appointed Foreign [+ government_form : minister +].
 
 
 @transport
@@ -112,7 +112,7 @@ view-if: transport_minister_party != "Menshevik"
 go-to: menu
 on-arrival: m_influence -= 10; transport_minister = "Plekhanov"; transport_minister_party = "Menshevik"
 
-Georgi Plekhanov has been appointed Transportation Minister.
+Georgi Plekhanov has been appointed Transportation [+ government_form : minister +].
 
 
 @trade
@@ -124,7 +124,7 @@ view-if: trade_minister_party != "Menshevik"
 go-to: menu
 on-arrival: m_influence -= 10; trade_minister = "Groman"; trade_minister_party = "Menshevik"
 
-Vladimir Groman has been appointed Trade and Industry Minister.
+Vladimir Groman has been appointed Trade and Industry [+ government_form : minister +].
 
 
 
@@ -134,7 +134,7 @@ view-if: agriculture_minister_party = "Menshevik"
 tags: m_drop_mins
 go-to: menu
 on-arrival: {!
-if (Q.sr_in_prov_gov) {
+if (Q.sr_in_gov) {
     Q.agriculture_minister = "Chernov";
     Q.agriculture_minister_party = "SR";
 } else {

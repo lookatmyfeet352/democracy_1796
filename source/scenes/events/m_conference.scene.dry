@@ -8,8 +8,9 @@ if (Q.defensist_strength > Q.internationalist_strength + 10 && Q.internationalis
 } else if (Q.internationalist_strength > Q.defensist_strength && Q.defensist_dissent < 50) {
 }
 !}
-
 # tags: event
+
+# Source: The Menshevik leaders in the Russian Revolution by Ziva Galili y Garcia
 
 = RSDLP(M) Party Convention
 

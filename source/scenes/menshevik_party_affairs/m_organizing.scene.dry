@@ -30,9 +30,9 @@ We have increased our organizing among the soldiers. [? if (war_weariness >= 50 
 subtitle: -1 resource
 choose-if: m_resources >= 1
 unavailable-subtitle: Not enough resources.
-on-arrival: m_resources -= 1; workers_m += 5*(1-m_dissent); m_workers_org += 1; workers_m -= 2 if m_in_prov_gov and prov_gov_legitimacy <= 40; workers_m -= 2 if prov_gov_legitimacy <= 40 and m_industrial_policy <= 0
+on-arrival: m_resources -= 1; workers_m += 5*(1-m_dissent); m_workers_org += 1; workers_m -= 2 if m_in_gov and prov_gov_legitimacy <= 40; workers_m -= 2 if prov_gov_legitimacy <= 40 and m_industrial_policy <= 0
 
-We have increased our organizing among the workers. [? if m_in_prov_gov and prov_gov_legitimacy <= 40 : Our participation in the unpopular Provisional Government limits our support. ?][? if prov_gov_legitimacy <= 40 and m_industrial_policy <= 0 : The workers demand a more radical industrial policy than what we are able to provide, limiting our appeal. ?]
+We have increased our organizing among the workers. [? if m_in_gov and prov_gov_legitimacy <= 40 : Our participation in the unpopular Provisional Government limits our support. ?][? if prov_gov_legitimacy <= 40 and m_industrial_policy <= 0 : The workers demand a more radical industrial policy than what we are able to provide, limiting our appeal. ?]
 
 @middle_class
 subtitle: -1 resource - the middle class is not part of our base.

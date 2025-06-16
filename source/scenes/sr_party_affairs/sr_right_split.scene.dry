@@ -79,8 +79,8 @@ if (Q.food_minister_party == "Kondratiev") {
     Q.food_minister_party = "Right-SR";
     Q.sr_drop_gov = 1;
 }
-if (Q.sr_in_prov_gov && Q.agriculture_minister != "Chernov") {
-    Q.sr_in_prov_gov = 0;
+if (Q.sr_in_gov && Q.agriculture_minister != "Chernov") {
+    Q.sr_in_gov = 0;
     Q.sr_drop_gov = 1;
 }
 
@@ -108,7 +108,7 @@ if (Q.savinkov_advisor) {
 }
 !}
 
-The Right-SRs are splitting to form a new party. Right-SR leaders have resigned from the party's leadership, and their supporters will follow them. [? if sr_drop_gov: Most of the SR-affiliated ministers in the Provisional Government are no longer affiliated with the party. ?][? if sr_drop_gov and sr_in_prov_gov: The SRs still have a small presence in the Provisional Government via Chernov, however. ?]
+The Right-SRs are splitting to form a new party. Right-SR leaders have resigned from the party's leadership, and their supporters will follow them. [? if sr_drop_gov: Most of the SR-affiliated ministers in the Provisional Government are no longer affiliated with the party. ?][? if sr_drop_gov and sr_in_gov: The SRs still have a small presence in the Provisional Government via Chernov, however. ?]
 
 This will result in a new election for the Petrograd Soviet leadership.
 

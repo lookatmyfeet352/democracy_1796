@@ -45,8 +45,8 @@ go-to: b_ideology.support_leninist if leninist_strength <= 40; b_ideology.adopt_
 @agitation
 title: Agitation
 subtitle: Organize the soldiers and workers of Petrograd against the existing order.
-unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?][? if b_in_prov_gov: We are in the government now, so we cannot do this. ?]
-choose-if: advisor_action_timer <= 0 and not b_in_prov_gov
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?][? if b_in_gov: We are in the government now, so we cannot do this. ?]
+choose-if: advisor_action_timer <= 0 and not b_in_gov
 on-arrival: advisor_action_timer = 4; workers_m -= 2; soldiers_m -= 2; workers_sr -= 2; soldiers_sr -= 2; workers_b += 3*(1-b_dissent); soldiers_b += 3*(1-b_dissent); prov_gov_legitimacy -= 4; soviet_cooperation -= 0.04; war_weariness += 5; b_threat += 1
 
 Trotsky spends his time giving speeches and arguing that the existing order must be destroyed. Given the present crises, he finds a receptive audience.

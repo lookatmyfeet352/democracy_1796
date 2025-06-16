@@ -6,10 +6,10 @@ Q.position = "";
 if (Q.player_party == 'm') {
     if (Q.m_in_exco) {
         Q.position = 'Soviet Executive Committee';
-        if (Q.m_in_prov_gov) {
+        if (Q.m_in_gov) {
             Q.position += ', in government';
         }
-    } else if (Q.m_in_prov_gov) {
+    } else if (Q.m_in_gov) {
         Q.position = 'in government';
     } else {
         Q.position = 'in opposition';
@@ -17,10 +17,10 @@ if (Q.player_party == 'm') {
 } else if (Q.player_party == 'b') {
     if (Q.b_in_exco) {
         Q.position = 'Soviet Executive Committee';
-        if (Q.b_in_prov_gov) {
+        if (Q.b_in_gov) {
             Q.position += ', in government';
         }
-    } else if (Q.b_in_prov_gov) {
+    } else if (Q.b_in_gov) {
         Q.position = 'in government';
     } else {
         Q.position = 'in opposition';
@@ -28,16 +28,16 @@ if (Q.player_party == 'm') {
 } else if (Q.player_party == 'sr') {
     if (Q.sr_in_exco) {
         Q.position = 'Soviet Executive Committee';
-        if (Q.sr_in_prov_gov) {
+        if (Q.sr_in_gov) {
             Q.position += ', in government';
         }
-    } else if (Q.sr_in_prov_gov) {
+    } else if (Q.sr_in_gov) {
         Q.position = 'in government';
     } else {
         Q.position = 'in opposition';
     }
 } else if (Q.player_party == 'k') {
-    if (Q.k_in_prov_gov) {
+    if (Q.k_in_gov) {
         Q.position += 'in government';
     } else {
         Q.position = 'in oppsition';
@@ -71,7 +71,9 @@ Prime Minister: [+ prime_minister +] ([+ prime_minister_party +])
 
 Budget: [+ budget +]
 
-Constituent Assembly elections: [? if ca_scheduled: [+ next_election_month : month +] [+ next_election_year +] ?] [? if not ca_scheduled: Not scheduled ?]
+[? if not ca_election_held: Constituent Assembly elections: [? if ca_scheduled: Week [+ next_election_week +], [+ next_election_month : month +] [+ next_election_year +] ?] [? if not ca_scheduled: Not scheduled ?] ?]
+
+[? if ca_election_held: Constituent Assembly convocation: Week [+ ca_week +], [+ ca_month : month +] [+ ca_year +] ?]
 
 = Economy and Society
 
@@ -126,22 +128,18 @@ switch (Q.player_party) {
 = Inter-party Relationships
 
 [? if player_party != "m": Mensheviks: [+ m_relation : relationships +] ?]
-{!</br>!}
-[? if player_party != "m": Menshevik leadership: [+ m_leadership : m_leadership +] ?]
+[? if player_party != "m": </br> Leadership: [+ m_leadership : m_leadership +] ?]
 
 [? if player_party != "b": Bolsheviks: [+ b_relation : relationships +] ?]
-{!</br>!}
-[? if player_party != "b": Bolshevik leadership: [+ b_leadership : b_leadership +] ?]
+[? if player_party != "b": </br> Leadership: [+ b_leadership : b_leadership +] ?]
 
 
 [? if player_party != "sr": SRs: [+ sr_relation : relationships +] ?]
-{!</br>!}
-[? if player_party != "m": SR leadership: [+ sr_leadership : sr_leadership +] ?]
+[? if player_party != "sr": </br> Leadership: [+ sr_leadership : sr_leadership +] ?]
 
 
 [? if player_party != "k": Kadets: [+ k_relation : relationships +] ?]
-{!</br>!}
-[? if player_party != "m": Kadet leadership: [+ k_leadership : k_leadership +] ?]
+[? if player_party != "k": </br> Leadership: [+ k_leadership : k_leadership +] ?]
 
 
 = Internal factions
@@ -187,7 +185,7 @@ Labor policy: [? if player_party = "m": [+ m_industrial_policy : industrial_poli
 
 War policy: [? if player_party = "m": [+ m_war_policy : war_policy +]?][? if player_party = "sr": [+ sr_war_policy : war_policy +]?][? if player_party = "k": [+ k_war_policy : war_policy +]?][? if player_party = "b": [+ b_war_policy : war_policy +]?]
 
-Agricultural policy: [? if player_party = "m": [+ m_land_policy : land_policy +], [+ m_agricultural_policy : agricultural_policy +]?][? if player_party = "sr": [+ sr_land_policy : land_policy +], [+ sr_agricultural_policy : agricultural_policy +]?][? if player_party = "k": [+ k_land_policy : land_policy +], [+ k_agricultural_policy : agricultural_policy +]?][? if player_party = "b": [+ b_land_policy : land_policy +], [+ b_agricultural_policy : agricultural_policy +]?]
+Land/agricultural policy: [? if player_party = "m": [+ m_land_policy : land_policy +], [+ m_agricultural_policy : agricultural_policy +]?][? if player_party = "sr": [+ sr_land_policy : land_policy +], [+ sr_agricultural_policy : agricultural_policy +]?][? if player_party = "k": [+ k_land_policy : land_policy +], [+ k_agricultural_policy : agricultural_policy +]?][? if player_party = "b": [+ b_land_policy : land_policy +], [+ b_agricultural_policy : agricultural_policy +]?]
 
 Nationality policy: [? if player_party = "m": [+ m_nationality_policy : nationality_policy +]?][? if player_party = "sr": [+ sr_nationality_policy : nationality_policy +]?][? if player_party = "k": [+ k_nationality_policy : nationality_policy +]?][? if player_party = "b": [+ b_nationality_policy : nationality_policy +]?]
 
@@ -214,6 +212,7 @@ Transport [+ government_form : minister +]: [+ transport_minister +] ([+ transpo
 
 Industry and Trade [+ government_form : minister +]: [+ trade_minister +] ([+ trade_minister_party +])
 
+# there is no content for the education minister for now.
 Education [+ government_form : minister +]: [+ education_minister +] ([+ education_minister_party +])
 
 
@@ -309,15 +308,15 @@ title: Defense
 
 = Armies and Fronts
 
-Northern Front: [+ northern_front_soldiers +] divisions
+Northern Front: [+ northern_front_soldiers +] divisions, [+ northern_progress : war_progress +]
 
-Western Front: [+ western_front_soldiers +] divisions
+Western Front: [+ western_front_soldiers +] divisions, [+ western_progress : war_progress +]
 
-Southwestern Front: [+ southwestern_front_soldiers +] divisions
+Southwestern Front: [+ southwestern_front_soldiers +] divisions, [+ southwestern_progress : war_progress +]
 
-Romanian Front: [+ romanian_front_soldiers +] divisions
+Romanian Front: [+ romanian_front_soldiers +] divisions, [+ romanian_progress : war_progress +]
 
-Caucasus Front: [+ caucasus_front_soldiers +] divisions
+Caucasus Front: [+ caucasus_front_soldiers +] divisions, [+ caucasus_progress : war_progress +]
 
 Garrisons and reserves: [+ reserve_soldiers +] divisions
 

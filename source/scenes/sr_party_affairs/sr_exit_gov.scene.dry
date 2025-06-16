@@ -1,6 +1,6 @@
 title: SRs leave the Provisional Government.
 on-arrival: {!
-Q.sr_in_prov_gov = 0;
+Q.sr_in_gov = 0;
 if (Q.agriculture_minister_party = "SR") {
     Q.agriculture_minister = "Shingarev";
     Q.agriculture_minister_party = "Kadet";

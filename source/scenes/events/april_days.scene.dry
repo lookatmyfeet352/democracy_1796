@@ -29,7 +29,7 @@ The Kadets in the Provisional Government are ready to be rid of Milyukov and all
 
 @join_govt_m
 view-if: player_party = "m"
-on-arrival: m_influence = m_k_relation/2 + 5; m_in_prov_gov = 1; sr_in_prov_gov = 1; agriculture_minister = "Chernov"; agriculture_minister_party = "SR"; war_minister = "Kerensky"; war_minister_party = "SR"; post_minister = "Tsereteli"; post_minister_party = "Menshevik"; foreign_minister = "Tereshchenko"; m_prov_gov_policy = 0;
+on-arrival: m_influence = m_k_relation/2 + 5; m_in_gov = 1; sr_in_gov = 1; agriculture_minister = "Chernov"; agriculture_minister_party = "SR"; war_minister = "Kerensky"; war_minister_party = "SR"; post_minister = "Tsereteli"; post_minister_party = "Menshevik"; foreign_minister = "Tereshchenko"; m_prov_gov_policy = 0;
 
 # TODO: event to join cabinet
 
@@ -41,13 +41,13 @@ We have accepted the Kadets' offer to join the Provisional Government, as have t
 title: We will only join if socialists can have a leading role - we must have the position of Prime Minister!
 choose-if: m_k_relation >= 60
 unavailable-subtitle: They are unwilling to give us the role.
-on-arrival: prime_minister = "Tsereteli"; prime_minister_party = "Menshevik"; m_influence = m_k_relation; m_in_prov_gov = 1; sr_in_prov_gov = 1; agriculture_minister = "Chernov"; agriculture_minister_party = "SR"; war_minister = "Kerensky"; war_minister_party = "SR"; post_minister = "Tsereteli"; post_minister_party = "Menshevik"; foreign_minister = "Tereshchenko";
+on-arrival: prime_minister = "Tsereteli"; prime_minister_party = "Menshevik"; m_influence = m_k_relation; m_in_gov = 1; sr_in_gov = 1; agriculture_minister = "Chernov"; agriculture_minister_party = "SR"; war_minister = "Kerensky"; war_minister_party = "SR"; post_minister = "Tsereteli"; post_minister_party = "Menshevik"; foreign_minister = "Tereshchenko";
 
 - @m_join_prov_gov: We should choose our ministries.
 
 @join_govt_sr
 view-if: player_party = "sr"
-on-arrival: sr_influence = sr_k_relation/2 + 5; sr_in_prov_gov = 1; m_in_prov_gov = 1; labor_minister = "Skobelev"; labor_minister_party = "Menshevik"; post_minister = "Tsereteli"; post_minister_party = "Menshevik"; foreign_minister = "Tereshchenko"; sr_prov_gov_policy = 0; left_sr_dissent += 8;
+on-arrival: sr_influence = sr_k_relation/2 + 5; sr_in_gov = 1; m_in_gov = 1; labor_minister = "Skobelev"; labor_minister_party = "Menshevik"; post_minister = "Tsereteli"; post_minister_party = "Menshevik"; foreign_minister = "Tereshchenko"; sr_prov_gov_policy = 0; left_sr_dissent += 8;
 
 We have accepted the Kadets' offer to join the Provisional Government, as have the Mensheviks. Milyukov has resigned, replaced by Tereshchenko, also Kadet-aligned. The Menshevik leader Irakli Tsereteli has been given the Ministry of Posts and Telegraph.
 
@@ -64,7 +64,7 @@ Are we sure about this? Is this the best choice for the revolution?
 - @no_join_m_2: Yes, we are sure.
 
 @no_join_m_2
-on-arrival: defensist_dissent += 8; social_patriot_dissent += 8; m_k_relation -= 10; prov_gov_legitimacy -= 5; sr_in_prov_gov = 1; m_sr_relation -= 6; m_b_relation += 6; internationalist_dissent -= 5; internationalist_strength += 5; sr_in_prov_gov = 1; agriculture_minister = "Chernov"; agriculture_minister_party = "SR"; war_minister = "Kerensky"; war_minister_party = "SR"; foreign_minister = "Tereshchenko";
+on-arrival: defensist_dissent += 8; social_patriot_dissent += 8; m_k_relation -= 10; prov_gov_legitimacy -= 5; sr_in_gov = 1; m_sr_relation -= 6; m_b_relation += 6; internationalist_dissent -= 5; internationalist_strength += 5; sr_in_gov = 1; agriculture_minister = "Chernov"; agriculture_minister_party = "SR"; war_minister = "Kerensky"; war_minister_party = "SR"; foreign_minister = "Tereshchenko";
 
 We have decided against joining the Provisional Government. This increases dissent among the defensist factions of our party, hurts our relations with the Kadets, and reduces the legitimacy of the Provisional Government.
 
@@ -79,7 +79,7 @@ Are we sure about this? Is this the best choice for the revolution?
 - @no_join_sr_2: Yes, we are sure.
 
 @no_join_sr_2
-on-arrival: right_sr_dissent += 8; sr_k_relation -= 10; left_sr_strength += 8; left_sr_dissent -= 6; prov_gov_legitimacy -= 5; m_in_prov_gov = 1; post_minister = "Tsereteli"; post_minister_party = "Menshevik"; labor_minister = "Skobelev"; labor_minister_party = "Menshevik";
+on-arrival: right_sr_dissent += 8; sr_k_relation -= 10; left_sr_strength += 8; left_sr_dissent -= 6; prov_gov_legitimacy -= 5; m_in_gov = 1; post_minister = "Tsereteli"; post_minister_party = "Menshevik"; labor_minister = "Skobelev"; labor_minister_party = "Menshevik";
 
 We have decided against joining the Provisional Government. This increases dissent among the defensist factions of our party, hurts our relations with the Kadets, and reduces the legitimacy of the Provisional Government.
 
@@ -102,7 +102,7 @@ Some in the Kadets are ready to be rid of Milyukov, if it would ease the tension
 - @refuse: Do not let the socialists join the government.
 
 @let_join
-on-arrival: right_kadet_dissent += 8; defensist_strength += 5; right_sr_strength += 5; sr_in_prov_gov = 1; m_in_prov_gov = 1; war_minister = "Kerensky"; war_minister_party = "SR"; labor_minister = "Skobelev"; labor_minister_party = "Menshevik"; agriculture_minister = "Chernov"; agriculture_minister_party = "SR"; post_minister = "Tsereteli"; post_minister_party = "Menshevik"; foreign_minister = "Tereshchenko"; finance_minister = "Shingarev"; finance_minister_party = "Kadet";
+on-arrival: right_kadet_dissent += 8; defensist_strength += 5; right_sr_strength += 5; sr_in_gov = 1; m_in_gov = 1; war_minister = "Kerensky"; war_minister_party = "SR"; labor_minister = "Skobelev"; labor_minister_party = "Menshevik"; agriculture_minister = "Chernov"; agriculture_minister_party = "SR"; post_minister = "Tsereteli"; post_minister_party = "Menshevik"; foreign_minister = "Tereshchenko"; finance_minister = "Shingarev"; finance_minister_party = "Kadet";
 
 The Mensheviks and Socialist-Revolutionaries have joined the Provisional Government! For the SRs, Viktor Chernov is Minister of Agriculture and Alexander Kerensky is Minister of War. For the Mensheviks, Irakli Tsereteli is Minister of Posts and Telegraph and Matvey Skobelev is Minister of Labor. Milyukov has resigned, and the position of Foreign Minister is filled by Mikhail Tereshchenko.
 
@@ -115,7 +115,7 @@ Eventually, the protests die down on their own, but the Provisional Government's
 
 
 @april_days_b
-on-arrival: defensist_strength += 5; right_sr_strength += 5; sr_in_prov_gov = 1; m_in_prov_gov = 1; war_minister = "Kerensky"; war_minister_party = "SR"; labor_minister = "Skobelev"; labor_minister_party = "Menshevik"; agriculture_minister = "Chernov"; agriculture_minister_party = "SR"; post_minister = "Tsereteli"; post_minister_party = "Menshevik"; foreign_minister = "Tereshchenko"; finance_minister = "Shingarev"; finance_minister_party = "Kadet";
+on-arrival: defensist_strength += 5; right_sr_strength += 5; sr_in_gov = 1; m_in_gov = 1; war_minister = "Kerensky"; war_minister_party = "SR"; labor_minister = "Skobelev"; labor_minister_party = "Menshevik"; agriculture_minister = "Chernov"; agriculture_minister_party = "SR"; post_minister = "Tsereteli"; post_minister_party = "Menshevik"; foreign_minister = "Tereshchenko"; finance_minister = "Shingarev"; finance_minister_party = "Kadet";
 
 In response to the protests, the Kadets have let the bourgeois socialists, the Mensheviks and SRs, join the government. For the SRs, Viktor Chernov is Minister of Agriculture and Alexander Kerensky is Minister of War. For the Mensheviks, Irakli Tsereteli is Minister of Posts and Telegraph and Matvey Skobelev is Minister of Labor. Milyukov has resigned, and the position of Foreign Minister is filled by Mikhail Tereshchenko.
 

@@ -1,7 +1,7 @@
 title: Bolshevik Uprising
 subtitle: All the government needs to collapse is a slight topple...
 new-page: True
-view-if: player_party != "b" and month >= 9 and prov_gov_legitimacy < 40 and workers_b >= 25 and soldiers_b >= 25 and b_in_exco and mrc = 1 and bolshevik_coup_timer = 0
+view-if: player_party != "b" and month >= 9 and prov_gov_legitimacy < 40 and workers_b >= 25 and soldiers_b >= 25 and b_in_exco and mrc = 1 and bolshevik_coup_timer = 0 and not b_in_gov
 tags: event
 on-arrival: rev_progress += 1;
 max-visits: 1

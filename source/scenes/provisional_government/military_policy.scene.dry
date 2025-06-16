@@ -2,7 +2,7 @@ title: Military Policy
 new-page: true
 is-card: true
 on-arrival: military_policy_timer += 3; week_actions += 1; remaining_movement_capacity = movement_capacity - soldiers_moved; 
-view-if: military_policy_timer == 0 and ((player_party = "k" and k_in_prov_gov and (war_minister_party = "Kadet" or war_minister_party = "Independent" or war_minister_party = "Progressive" or war_minister_party = "Octobrist" or war_minister_party = "Trudovik" or war_minister_party = "Popular Socialist")) or (player_party = "sr" and sr_in_prov_gov and (war_minister_party = "SR" or war_minister_party = "Trudovik" or war_minister_party = "Popular Socialist")) or (player_party = "m" and m_in_prov_gov and war_minister_party = "Menshevik"))
+view-if: military_policy_timer == 0 and ((player_party = "k" and k_in_gov and (war_minister_party = "Kadet" or war_minister_party = "Independent" or war_minister_party = "Progressive" or war_minister_party = "Octobrist" or war_minister_party = "Trudovik" or war_minister_party = "Popular Socialist")) or (player_party = "sr" and sr_in_gov and (war_minister_party = "SR" or war_minister_party = "Trudovik" or war_minister_party = "Popular Socialist")) or (player_party = "m" and m_in_gov and war_minister_party = "Menshevik"))
 card-image: img/army_1.jpg
 tags: prov_gov
 
@@ -319,7 +319,7 @@ We have built up our defenses along all fronts.
 
 @restore_discipline
 title: Restore military discipline.
-on-arrival: discipline += 0.05; morale -= 0.03; soldiers_m -= 5 if m_in_prov_gov; soldiers_k -= 5 if k_in_prov_gov; soldiers_sr -= 5 if sr_in_prov_gov
+on-arrival: discipline += 0.05; morale -= 0.03; soldiers_m -= 5 if m_in_gov; soldiers_k -= 5 if k_in_gov; soldiers_sr -= 5 if sr_in_gov
 
 We have restored some measure of military discipline to the ranks. This can raise discipline, but lowers morale slightly, and angers the soldiers.
 

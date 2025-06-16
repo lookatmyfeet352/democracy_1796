@@ -30,9 +30,9 @@ We have increased our campaigning among the soldiers. [? if (war_weariness >= 50
 subtitle: -1 resource
 choose-if: k_resources >= 1
 unavailable-subtitle: Not enough resources.
-on-arrival: k_resources -= 1; workers_k += 3*(1-k_dissent); k_workers_org += 1; workers_k -= 2 if k_in_prov_gov and prov_gov_legitimacy <= 50;
+on-arrival: k_resources -= 1; workers_k += 3*(1-k_dissent); k_workers_org += 1; workers_k -= 2 if k_in_gov and prov_gov_legitimacy <= 50;
 
-We have increased our campaigning among the workers. [? if k_in_prov_gov and prov_gov_legitimacy <= 50 : Our participation in the unpopular Provisional Government limits our support. ?]
+We have increased our campaigning among the workers. [? if k_in_gov and prov_gov_legitimacy <= 50 : Our participation in the unpopular Provisional Government limits our support. ?]
 
 @middle_class
 subtitle: -1 resource

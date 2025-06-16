@@ -21,6 +21,16 @@ Q.k_r = Math.round(800*Q.k_assembly_votes_dec/100);
 Q.b_r = Math.round(800*Q.b_assembly_votes_dec/100);
 Q.m_r = Math.round(800*Q.m_assembly_votes_dec/100);
 if (Q.internationalist_assembly_votes_dec) {
+    Q.internationalist_r = Math.round(800*Q.internationalist_assembly_votes_dec/100);
+}
+if (Q.defensist_assembly_votes_dec) {
+    Q.defensist_r = Math.round(800*Q.defensist_assembly_votes_dec/100);
+}
+if (Q.left_sr_assembly_votes_dec) {
+    Q.left_sr_r = Math.round(800*Q.left_sr_assembly_votes_dec/100);
+}
+if (Q.right_sr_assembly_votes_dec) {
+    Q.right_sr_r = Math.round(800*Q.right_sr_assembly_votes_dec/100);
 }
 Q.sr_r = Math.round(800*Q.sr_assembly_votes_dec/100);
 Q.ukrainian_sr_r = Math.round(800*Q.ukrainian_sr_assembly_votes_dec/100);
@@ -31,8 +41,17 @@ Q.conservative_r = Math.round(800*Q.conservative_assembly_votes_dec/100);
 Q.other_r = Math.round(800*Q.other_assembly_votes_dec/100);
 Q.muslim_national_assembly_votes_dec = Math.round(10*(Q.musavat_assembly_votes_dec + Q.alash_assembly_votes_dec + Q.turkic_muslim_parties_assembly_votes_dec))/10;
 Q.muslim_national_r = Math.round(800*(Q.musavat_assembly_votes_dec + Q.alash_assembly_votes_dec + Q.turkic_muslim_parties_assembly_votes_dec)/100);
-Q.dashnaks_r = Math.round(800*Q.dashnak_assembly_votes_dec/100);
-Q.jewish_national_r = Math.round(Q.jewish_national_assembly_votes_dec/100);
+Q.dashnak_r = Math.round(800*Q.dashnak_assembly_votes_dec/100);
+Q.jewish_national_r = Math.round(Q.jewish_national_list_assembly_votes_dec/100);
+
+// set constituent assembly convocation time
+Q.ca_week = Q.week + (Q.constituent_assembly_timer % 4);
+Q.ca_month = Q.month + (Q.constituent_assembly_timer / 4);
+Q.ca_year = Q.year;
+if (Q.ca_month >= 13) {
+    Q.ca_month = Q.ca_month % 12;
+    Q.ca_year = Q.year + 1;
+}
 !}
 on-display: {!
 // do the graphs
@@ -211,6 +230,8 @@ if (window && d3) {
 {!</table>!}
 
 Now, the newly elected members of the Constituent Assembly must travel from the far reaches of the country to gather in Petrograd. In two months, the Constituent Assembly will finally convene in order to write a new constitution for Russia, and begin a new government.
+
+- @root: The Constituent Assembly will convene in two months.
 
 # - @game_over: Game Over
 

@@ -19,7 +19,7 @@ The workers and soldiers of Petrograd are increasingly tired of the war; our rec
 
 @take_power
 title: This is an opportunity to finally take power for the Soviet!
-unavailable-subtitle: [? if (player_party = "b" and b_prov_gov_policy >= 4) or (player_party = "m" and m_in_exco and m_prov_gov_policy >= 4) or (player_party = "sr" and sr_in_exco and sr_prov_gov_policy >= 4): Our party does not support this. ?][? if player_party = "b" and not b_in_exco: We must be in the Soviet executive committee. ?]
+unavailable-subtitle: [? if (player_party = "b" and b_prov_gov_policy < 4) or (player_party = "m" and m_in_exco and m_prov_gov_policy < 4) or (player_party = "sr" and sr_in_exco and sr_prov_gov_policy < 4): Our party does not support the armed overthrow of the government. ?][? if not player_in_exco: We must be in the Soviet Executive Committee. ?]
 view-if: (player_party = "b") or (player_party = "m" and m_in_exco) or (player_party = "sr" and sr_in_exco)
 choose-if: (player_party = "b" and b_in_exco and b_prov_gov_policy >= 4) or (player_party = "m" and m_in_exco and m_prov_gov_policy >= 4) or (player_party = "sr" and sr_in_exco and sr_prov_gov_policy >= 4)
 
@@ -75,8 +75,8 @@ We have won! Our forces have taken control of key government locations, and arre
 - @game_over
 
 
-# TODO: battle
 
+# TODO: have some nonviolent paths to forming an all-socialist government that do not rely on Kadet relationships
 @use_negotiations
 title: Use the protests to convince the Kadets to resign from the Provisional Government, and the formation of an all-socialist government.
 view-if: (player_party = "m" and m_in_exco) or (player_party = "sr" and sr_in_exco)
@@ -98,14 +98,14 @@ After some streetfighting and arrests, the protestors eventually grow tired, and
 
 @let_socialists
 title: Let the socialists enter the government to alleviate the crisis.
-view-if: player_party = "k" and k_in_prov_gov
+view-if: player_party = "k" and k_in_gov
 on-arrival: kadets_resign = 1 if prime_minister = "Lvov"; prime_minister = "Kerensky" if prime_minister = "Lvov"; prime_minister_party = "SR" if prime_minister_party = "Independent"; prov_gov_legitimacy += 8; m_k_relation += 5*(1-k_dissent); sr_k_relation += 5*(1-k_dissent); soviet_cooperation += 0.1; agriculture_minister = "Chernov" if agriculture_minister_party = "Kadet"; agriculture_minister_party = "SR" if agriculture_minister_party = "Kadet"; interior_minister = "Tsereteli" if interior_minister = "Lvov"; interior_minister_party = "Menshevik" if interior_minister_party = "Independent"; labor_minister = "Skobelev" if labor_minister_party != "Menshevik" and labor_minister_party != "SR"; labor_minister_party = "Menshevik" if labor_minister_party != "Menshevik" and labor_minister_party != "SR"
 
 [? if kadets_resign: Due to the protests, and the earlier response to the Ukrainian Central Rada, the government of Prime Minister Lvov has resigned. Alexander Kerensky uses this as an opportunity to gather more power - he is now Prime Minister. In addition, some Mensheviks and SRs have joined the Provisional Government as ministers. Hopefully this will restore the government's legitimacy and renew relations with the Soviet and the working class. ?]
 
 @nothing
 title: We are paralyzed by indecision!
-view-if: player_party = "b" or (player_party = "sr" and not sr_in_prov_gov) or (player_party = "m" and not m_in_prov_gov)
+view-if: player_party = "b" or (player_party = "sr" and not sr_in_gov) or (player_party = "m" and not m_in_gov)
 on-arrival: kadets_resign = 1 if prime_minister = "Lvov"; prime_minister = "Kerensky" if prime_minister = "Lvov"; prime_minister_party = "SR" if prime_minister_party = "Independent"; prime_minister_party = "Right-SR" if right_sr_split;
 
 After some streetfighting and arrests, the protestors eventually grow tired, and return to their homes and barracks.
@@ -117,7 +117,7 @@ After some streetfighting and arrests, the protestors eventually grow tired, and
 
 @support
 title: Support the protestors!
-view-if: player_party = "b" or (player_party = "sr" and not sr_in_prov_gov) or (player_party = "m" and not m_in_prov_gov)
+view-if: player_party = "b" or (player_party = "sr" and not sr_in_gov) or (player_party = "m" and not m_in_gov)
 on-arrival: kadets_resign = 1 if prime_minister = "Lvov"; prime_minister = "Kerensky" if prime_minister = "Lvov"; prime_minister_party = "SR" if prime_minister_party = "Independent"; prime_minister_party = "Right-SR" if right_sr_split; m_k_relation -= 8; sr_k_relation -= 8;
 
 After some streetfighting and arrests, the protestors eventually grow tired, and return to their homes and barracks.
@@ -129,16 +129,16 @@ After some streetfighting and arrests, the protestors eventually grow tired, and
 
 @chaos
 title: Utter chaos...
-view-if: player_party = "k" and not k_in_prov_gov
-on-arrival: kadets_resign = 1 if prime_minister = "Lvov"; prime_minister = "Kerensky" if prime_minister = "Lvov"; prime_minister_party = "SR" if prime_minister_party = "Independent"; prov_gov_legitimacy -= 8; workers_militia_strength -= 5;
+view-if: player_party = "k" and not k_in_gov
+on-arrival: kadets_resign = 1 if prime_minister = "Lvov"; prime_minister = "Kerensky" if prime_minister = "Lvov"; prime_minister_party = "SR" if prime_minister_party = "Independent"; prov_gov_legitimacy -= 10; workers_militia_strength -= 5;
 
-After some streetfighting and arrests, the protestors eventually grow tired, and return to their homes and barracks.
+After some streetfighting and arrests, the protestors eventually grow tired, and return to their homes and barracks. The legitimacy and stability of the government is shaken, however, and the spectre of an uprising from the left remains.
 
 
 @shuffle_cabinet
 title: We can use this opportunity to increase our participation in the Provisional Government...
 view-if: prime_minister = "Kerensky" and (player_party = "sr" or (player_party = "m" and m_sr_relation >= 50))
-on-arrival: m_influence += 15; sr_influence += 15; m_in_prov_gov = 1; sr_in_prov_gov = 1;
+on-arrival: m_influence += 15; sr_influence += 15; m_in_gov = 1; sr_in_gov = 1;
 go-to: sr_join_prov_gov if player_party = "sr"; m_join_prov_gov if player_party = "m"
 
 Due to the crisis, the liberals in the Provisional Government are inclined to allow the socialist parties greater participation the government. They hope that socialists can stabilize the relation between the government and the streets.
@@ -146,14 +146,27 @@ Due to the crisis, the liberals in the Provisional Government are inclined to al
 @demand_all_socialist
 title: Demand an all-socialist Provisional Government!
 subtitle: It is time for the Kadets to leave the Provisional Government, and form a government of only the socialist parties.
-unavailable-subtitle: [? if (player_party = "m" and m_prov_gov_policy < 3) or (player_party = "sr" and sr_prov_gov_policy < 3): The party does not support this. ?][? if (player_party = "m" and m_k_relation < 40) or (player_party = "sr" and sr_k_relation < 40) : Our relations with the Kadets are not good enough. ?][? if (player_party = "m" and m_sr_relation < 55) : Our relations with the SRs are not good enough. ?][? if (player_party = "sr" and m_sr_relation < 55) : Our relations with the Mensheviks are not good enough. ?]
+unavailable-subtitle: [? if (player_party = "m" and m_prov_gov_policy < 3) or (player_party = "sr" and sr_prov_gov_policy < 3): The party does not support the formation of an all-socialist government. ?][? if (player_party = "m" and m_k_relation < 40) or (player_party = "sr" and sr_k_relation < 40) : Our relations with the Kadets are not good enough. ?][? if (player_party = "m" and m_sr_relation < 55) : Our relations with the SRs are not good enough. ?][? if (player_party = "sr" and m_sr_relation < 55) : Our relations with the Mensheviks are not good enough. ?][? if not player_in_exco: We must be in the Soviet Executive Committee. ?]
 view-if:((player_party = "m" and not m_defensist_split) or (player_party = "sr" and not right_sr_split))
-choose-if: ((player_party = "m" and m_prov_gov_policy = 3 and m_sr_relation >= 55 and sr_k_relation >= 40) or (player_party = "sr" and sr_prov_gov_policy >= 3 and m_sr_relation >= 55 and sr_k_relation >= 40))
-on-arrival: k_in_prov_gov = 0; sr_in_prov_gov = 1; m_in_prov_gov = 1; in_socialist_coalition = 1; prime_minister = "Kerensky"; prime_minister_party = "SR"; agriculture_minister = "Chernov"; agriculture_minister_party = "SR"; justice_minister = "Kerensky"; justice_minister_party = "SR"; interior_minister = "Tsereteli"; interior_minister_party = "Menshevik"; finance_minister = "Voitinsky"; finance_minister_party = "Menshevik"; war_minister = "Verkhovsky"; war_minister_party = "SR"; foreign_minister = "Tereshchenko"; foreign_minister_party = "Independent"; transport_minister = "Plekhanov"; transport_minister_party = "Menshevik"; trade_minister = "Groman"; trade_minister_party = "Menshevik"; food_minister = "Kondratiev"; food_minister_party = "SR"; m_influence = m_sr_relation - 35; sr_influence = m_sr_relation - 45; m_k_relation -= 10; sr_k_relation -= 10; prov_gov_legitimacy += 20; workers_sr += 5*(1-sr_dissent); soldiers_sr += 8*(1-sr_dissent); workers_m += 8*(1-m_dissent); soldiers_m += 6*(1-m_dissent);
+choose-if: (player_party = "m" and m_prov_gov_policy >= 3 and m_sr_relation >= 55 and m_k_relation >= 40 and m_in_exco) or (player_party = "sr" and sr_prov_gov_policy >= 3 and m_sr_relation >= 55 and sr_k_relation >= 40 and sr_in_exco)
+on-arrival: k_in_gov = 0; sr_in_gov = 1; m_in_gov = 1; in_socialist_coalition = 1; prime_minister = "Kerensky"; prime_minister_party = "SR"; agriculture_minister = "Chernov"; agriculture_minister_party = "SR"; justice_minister = "Kerensky"; justice_minister_party = "SR"; interior_minister = "Tsereteli"; interior_minister_party = "Menshevik"; finance_minister = "Voitinsky"; finance_minister_party = "Menshevik"; war_minister = "Verkhovsky"; war_minister_party = "SR"; foreign_minister = "Tereshchenko"; foreign_minister_party = "Independent"; transport_minister = "Plekhanov"; transport_minister_party = "Menshevik"; trade_minister = "Groman"; trade_minister_party = "Menshevik"; food_minister = "Kondratiev"; food_minister_party = "SR"; m_influence = m_sr_relation - 35; sr_influence = m_sr_relation - 45; m_k_relation -= 10; sr_k_relation -= 10; prov_gov_legitimacy += 20; workers_sr += 5*(1-sr_dissent); soldiers_sr += 8*(1-sr_dissent); workers_m += 8*(1-m_dissent); soldiers_m += 6*(1-m_dissent);
 
 We have successfully leveraged our relations with the Kadets and the [? if player_party = "sr": Mensheviks ?][? if player_party = "m": SRs ?] into forming a new government consisting solely of the socialist parties, with the Kadets being removed from power!
 
 There is celebration among the workers and soldiers that their representatives are entering power. However, we must make sure to not squander our opportunity, or else the forces of reaction and extremism may take advantage.
+
+What should be the form of the all-socialist government?
+
+- @sov_gov: The government should be based in the Soviets!
+- @parliament: We should maintain the parliamentary structure of the Provisional Government.
+
+@sov_gov
+on-arrival: government_form = 1; prov_gov_legitimacy += 10; m_k_relation -= 10; sr_k_relation -= 10; m_b_relation += 5; b_sr_relation += 5; workers_m += 8*(1-m_dissent); workers_sr += 8*(1-sr_dissent);
+go-to: soviet_government_formation
+
+@parliament
+
+We will maintain the parliamentary and bourgeois trappings of the Provisional Government. Without the full development of capitalism, there can be no dictatorship of the proletariat.
 
 - @demand_tsereteli
 - @m_join_prov_gov: We must choose our ministries.

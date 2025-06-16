@@ -48,8 +48,8 @@ The Bolsheviks and Mensheviks have been arguing over Marxist politics for the pa
 @radicalization
 title: Radicalization
 subtitle: Whip up rage against the incompetence of the bourgeois parties and so-called "socialists."
-unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?][? if b_in_prov_gov: We are in the government now, so we cannot do this. ?]
-choose-if: advisor_action_timer <= 0 and not b_in_prov_gov
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?][? if b_in_gov: We are in the government now, so we cannot do this. ?]
+choose-if: advisor_action_timer <= 0 and not b_in_gov
 on-arrival: advisor_action_timer = 4; workers_m -= 3; soldiers_m -= 3; workers_sr -= 2; soldiers_sr -= 2; prov_gov_legitimacy -= 4; soviet_cooperation -= 0.04; war_weariness += 5; b_threat += 1
 
 Lenin is arguing that the entire established order must be destroyed. Given the present crises, he finds a receptive audience.

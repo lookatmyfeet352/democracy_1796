@@ -2,7 +2,7 @@ title: Internal Security
 new-page: true
 is-card: true
 on-arrival: internal_security_timer += 4; week_actions += 1
-view-if: internal_security_timer == 0 and ((player_party = "k" and k_in_prov_gov and (interior_minister_party = "Kadet" or interior_minister_party = "Independent" or interior_minister_party = "Progressive" or interior_minister_party = "Octobrist" or interior_minister_party = "Trudovik" or interior_minister_party = "Popular Socialist")) or (player_party = "sr" and sr_in_prov_gov and (interior_minister_party = "SR" or interior_minister_party = "Trudovik" or interior_minister_party = "Popular Socialist")) or (player_party = "m" and m_in_prov_gov and interior_minister_party = "Menshevik"))
+view-if: internal_security_timer == 0 and ((player_party = "k" and k_in_gov and (interior_minister_party = "Kadet" or interior_minister_party = "Independent" or interior_minister_party = "Progressive" or interior_minister_party = "Octobrist" or interior_minister_party = "Trudovik" or interior_minister_party = "Popular Socialist")) or (player_party = "sr" and sr_in_gov and (interior_minister_party = "SR" or interior_minister_party = "Trudovik" or interior_minister_party = "Popular Socialist")) or (player_party = "m" and m_in_gov and interior_minister_party = "Menshevik"))
 card-image: img/militias.jpg
 tags: prov_gov
 
@@ -43,7 +43,7 @@ We have further strengthened the city militias.
 @militia_efficacy
 title: Improve the effectiveness and loyalty of the city militias.
 view-if: city_militias >= 1 and city_militias <= 10
-on-arrival: city_militias += 1; city_militia_k_loyalty += 6*prov_gov_efficacy if k_in_prov_gov; city_militia_sr_loyalty += 4*prov_gov_efficacy if sr_in_prov_gov; city_militia_m_loyalty += 4*prov_gov_efficacy if m_in_prov_gov; city_militia_militancy += 0.02*prov_gov_efficacy
+on-arrival: city_militias += 1; city_militia_k_loyalty += 6*prov_gov_efficacy if k_in_gov; city_militia_sr_loyalty += 4*prov_gov_efficacy if sr_in_gov; city_militia_m_loyalty += 4*prov_gov_efficacy if m_in_gov; city_militia_militancy += 0.02*prov_gov_efficacy
 
 We are trying to make the city militias more effective, and more responsive to the Provisional Government.
 
@@ -66,7 +66,7 @@ title: Persecute the Bolsheviks, anarchists, and other malcontents.
 unavailable-subtitle: Our city militias are not effective enough.
 view-if: b_threat >= 1 and player_party != "b"
 choose-if: city_militias >= 1
-on-arrival: workers_b -= 8*prov_gov_efficacy; soldiers_b -= 8*prov_gov_efficacy; b_threat -= 1; m_b_relation -= 15 if m_in_prov_gov; b_sr_relation -= 15 if sr_in_prov_gov; b_k_relation -= 15 if k_in_prov_gov
+on-arrival: workers_b -= 8*prov_gov_efficacy; soldiers_b -= 8*prov_gov_efficacy; b_threat -= 1; m_b_relation -= 15 if m_in_gov; b_sr_relation -= 15 if sr_in_gov; b_k_relation -= 15 if k_in_gov
 
 We have arrested some of the Bolsheviks who organized riots in the city, and forced others into exile.
 

@@ -23,9 +23,9 @@ What can we do?
 title: Suppress the labor unrest, with force if needed!
 subtitle: Use the city militias and loyal troops if we must. This will be dangerous.
 unavailable-subtitle: The city militias are not strong enough.
-view-if: ((player_party = "k" and k_in_prov_gov) or (player_party = "m" and m_in_prov_gov) or (player_party = "sr" and sr_in_prov_gov))
+view-if: ((player_party = "k" and k_in_gov) or (player_party = "m" and m_in_gov) or (player_party = "sr" and sr_in_gov))
 choose-if: loyal_troops_strength + city_militia_strength > workers_militia_strength
-on-arrival: workers_m -= 8 if m_in_prov_gov; workers_sr -= 5 if sr_in_prov_gov; workers_k -= 15; workers_b += 8*(1-b_dissent); labor_unrest -= 5; city_militia_independent += 10; city_militia_strength *= 0.65; prov_gov_legitimacy -= 10; industry *= 1.01
+on-arrival: workers_m -= 8 if m_in_gov; workers_sr -= 5 if sr_in_gov; workers_k -= 15; workers_b += 8*(1-b_dissent); labor_unrest -= 5; city_militia_independent += 10; city_militia_strength *= 0.65; prov_gov_legitimacy -= 10; industry *= 1.01
 
 We have given the order to suppress the strikes with force if necessary. And force was used. This is a dark day in Russian history, another Bloody Sunday, an action that one would think only the Tsars would commit.
 
@@ -33,13 +33,13 @@ Many members of the city militia have chosen to resign rather than commit anothe
 
 @8_hour
 title: The Provisional Government should legislate the 8-hour workday.
-view-if: ((player_party = "k" and k_in_prov_gov) or (player_party = "m" and m_in_prov_gov) or (player_party = "sr" and sr_in_prov_gov)) and workday = 0
+view-if: ((player_party = "k" and k_in_gov) or (player_party = "m" and m_in_gov) or (player_party = "sr" and sr_in_gov)) and workday = 0
 on-arrival: monthly_inflation += 0.2; capital_flight_progress += 1; workers_m += 5*(1-m_dissent) if m_in_exco; workers_sr += 5*(1-sr_dissent) if sr_in_exco; workers_b += 5*(1-b_dissent) if b_in_exco; m_k_relation -= 4 if m_in_exco; sr_k_relation -= 4 if sr_in_exco; prov_gov_soviet_cooperation -= 0.02; income += 1; labor_unrest -= 3;
 
 @concessions
 title: The Provisional Government should negotiate minor concessions by both sides.
-view-if: ((player_party = "k" and k_in_prov_gov) or (player_party = "m" and m_in_prov_gov) or (player_party = "sr" and sr_in_prov_gov))
-on-arrival: monthly_inflation += 0.05; workers_m += 2*(1-m_dissent) if m_in_prov_gov; workers_sr += 2*(1-sr_dissent) if sr_in_prov_gov; workers_b += 2*(1-b_dissent) if b_in_prov_gov; workers_k += 2*(1-k_dissent) if k_in_prov_gov; income += 1; labor_unrest -= 2; industry *= 1.01; unemployed += 0.1
+view-if: ((player_party = "k" and k_in_gov) or (player_party = "m" and m_in_gov) or (player_party = "sr" and sr_in_gov))
+on-arrival: monthly_inflation += 0.05; workers_m += 2*(1-m_dissent) if m_in_gov; workers_sr += 2*(1-sr_dissent) if sr_in_gov; workers_b += 2*(1-b_dissent) if b_in_gov; workers_k += 2*(1-k_dissent) if k_in_gov; income += 1; labor_unrest -= 2; industry *= 1.01; unemployed += 0.1
 
 We have negotiated for minor concessions from employers, and some tactical retreat by the workers. The workers are not entirely happy about the deals, but they see us as on their side, for now.
 

@@ -30,9 +30,9 @@ We have increased our organizing among the soldiers. [? if (war_weariness >= 50 
 subtitle: -1 resource
 choose-if: b_resources >= 1
 unavailable-subtitle: Not enough resources.
-on-arrival: b_resources -= 1; workers_b += 6*(1-b_dissent); b_workers_org += 1; workers_b -= 2 if b_in_prov_gov and prov_gov_legitimacy <= 50;
+on-arrival: b_resources -= 1; workers_b += 6*(1-b_dissent); b_workers_org += 1; workers_b -= 2 if b_in_gov and prov_gov_legitimacy <= 50;
 
-We have increased our organizing among the workers. [? if b_in_prov_gov and prov_gov_legitimacy <= 50 : Our participation in the unpopular Provisional Government limits our support. ?]
+We have increased our organizing among the workers. [? if b_in_gov and prov_gov_legitimacy <= 50 : Our participation in the unpopular Provisional Government limits our support. ?]
 
 @middle_class
 subtitle: -1 resource - the middle class is not part of our base.

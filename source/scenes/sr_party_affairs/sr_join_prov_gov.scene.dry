@@ -25,7 +25,7 @@ view-if: agriculture_minister_party != "SR"
 on-arrival: sr_influence -= 10; agriculture_minister = "Chernov"; agriculture_minister_party = "SR"
 go-to: menu
 
-Viktor Chernov has been appointed Agriculture Minister.
+Viktor Chernov has been appointed Agriculture [+ government_form : minister +].
 
 @food
 title: Food Ministry
@@ -36,7 +36,7 @@ view-if: food_minister_party != "SR"
 on-arrival: sr_influence -= 10; food_minister = "Kondratiev"; food_minister_party = "SR"
 go-to: menu
 
-Nokolai Kondratiev has been appointed Food Minister.
+Nikolai Kondratiev has been appointed Food [+ government_form : minister +].
 
 @justice
 title: Justice Ministry
@@ -46,7 +46,7 @@ view-if: justice_minister_party != "SR"
 go-to: menu
 on-arrival: sr_influence -= 10; justice_minister = "Kerensky"; justice_minister_party = "SR"
 
-Alexander Kerensky has been appointed Justice Minister.
+Alexander Kerensky has been appointed Justice [+ government_form : minister +].
 
 @labor
 title: Labor Ministry
@@ -56,7 +56,7 @@ view-if: labor_minister_party != "SR"
 on-arrival: sr_influence -= 10; labor_minister = "Gots"; labor_minister_party = "SR"
 go-to: menu
 
-Abram Gots has been appointed Labor Minister.
+Abram Gots has been appointed Labor [+ government_form : minister +].
 
 @interior
 title: Interior Ministry
@@ -67,7 +67,7 @@ view-if: interior_minister_party != "SR"
 go-to: menu
 on-arrival: sr_influence -= 15; interior_minister = "Avksentiev"; interior_minister_party = "SR"
 
-Nikolai Avksentiev has been appointed Interior Minister.
+Nikolai Avksentiev has been appointed Interior [+ government_form : minister +].
 
 @finance
 title: Finance Ministry
@@ -77,7 +77,7 @@ view-if: finance_minister_party != "SR"
 go-to: menu
 on-arrival: sr_influence -= 15; finance_minister = "Kondratiev"; finance_minister_party = "SR"
 
-Nikolai Kondratiev has been appointed Finance Minister.
+Nikolai Kondratiev has been appointed Finance [+ government_form : minister +].
 
 # lol basically I don't have suitable ministers so it's just Kerensky appointing himself to everything
 
@@ -89,7 +89,7 @@ view-if: war_minister_party != "SR"
 go-to: menu
 on-arrival: sr_influence -= 15; war_minister = "Kerensky"; war_minister_party = "SR"
 
-Alexander Kerensky has been appointed War Minister.
+Alexander Kerensky has been appointed War [+ government_form : minister +].
 
 # TODO: Verkhovsky should have this under circumstances
 
@@ -102,7 +102,7 @@ view-if: foreign_minister_party != "SR"
 go-to: menu
 on-arrival: sr_influence -= 15; foreign_minister = "Kerensky"; foreign_minister_party = "SR"
 
-Alexander Kerensky has been appointed Foreign Minister.
+Alexander Kerensky has been appointed Foreign [+ government_form : minister +].
 
 
 @transport
@@ -114,7 +114,7 @@ view-if: transport_minister_party != "SR"
 go-to: menu
 on-arrival: sr_influence -= 10; transport_minister = "Kerensky"; transport_minister_party = "SR"
 
-Alexander Kerensky has been appointed Transportation Minister.
+Alexander Kerensky has been appointed Transportation [+ government_form : minister +].
 
 
 @trade
@@ -127,7 +127,7 @@ choose-if: sr_influence >= 10
 go-to: menu
 on-arrival: sr_influence -= 10; trade_minister = "Kondratiev"; trade_minister_party = "SR"
 
-Nikolai Kondratiev been appointed Trade and Industry Minister.
+Nikolai Kondratiev been appointed Trade and Industry [+ government_form : minister +].
 
 
 

@@ -30,7 +30,7 @@ We use the influence of the Soviet to coordinate action on prices.
 @price_controls
 title: Impose price controls and rationing on basic necessities.
 subtitle: This may simply push trade to the black market.
-view-if: (player_party = "m" and m_in_prov_gov) or (player_party = "sr" and sr_in_prov_gov) or (player_party = "k" and k_in_prov_gov)
+view-if: (player_party = "m" and m_in_gov) or (player_party = "sr" and sr_in_gov) or (player_party = "k" and k_in_gov)
 on-arrival: monthly_inflation -= 0.4 if prov_gov_efficacy >= 0.7; monthly_inflation -= 0.2 if prov_gov_efficacy < 0.7; food_sold -= 0.001;
 
 Price controls and rationing can reduce prices for some goods, but it only further depresses the amount of grain sold by peasants.
@@ -39,7 +39,7 @@ Price controls and rationing can reduce prices for some goods, but it only furth
 @austerity
 title: Impose a program of austerity.
 subtitle: Raise taxes, cut government spending.
-view-if: (player_party = "m" and m_in_prov_gov) or (player_party = "sr" and sr_in_prov_gov) or (player_party = "k" and k_in_prov_gov)
+view-if: (player_party = "m" and m_in_gov) or (player_party = "sr" and sr_in_gov) or (player_party = "k" and k_in_gov)
 on-arrival: budget += 2; middle_none += 5; workers_none += 5; soldiers_none += 5;  workers_m -= 3; workers_sr -= 3; workers_k -= 3; middle_m -= 3; middle_sr -= 3; middle_k -= 3; soldiers_m -= 5; soldiers_sr -= 5; soldiers_k -= 5; train_capacity *= 0.999; morale -= 0.04; benefits -= 1; monthly_inflation -= 0.5 if monthly_inflation >= 5; monthly_inflation -= 0.4 if monthly_inflation >= 4; prov_gov_efficacy -= 0.06; labor_unrest += 1
 
 Our program of austerity severely hurts the workers, middle class, and soldiers.
