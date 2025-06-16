@@ -127,7 +127,6 @@ on-arrival: peace_terms = 0;
 There are no indemnities in the treaty. Poland and Finland will become independent states, but there are few other territorial changes. [? if caucasus_progress > 0 : There will be some beneficial border adjustments with the Ottoman Empire in the Caucasus region. ?]
 
 - @sign_treaty_neutral: Sign the peace treaty!
-- @refuse_treaty
 - @renegotiate: Can we renegotiate the peace treaty?
 
 @sign_treaty_neutral
@@ -152,6 +151,7 @@ The treaty involves a loss of territory to the Central Powers, but no indemnitie
 
 - @sign_treaty_bad
 - @renegotiate
+- @refuse_treaty
 
 
 @sign_treaty_bad
@@ -180,6 +180,7 @@ Many Russians view the treaty as humiliating, but some see it as necessary to ac
 
 - @sign_treaty_harsh
 - @renegotiate
+- @refuse_treaty
 
 
 @sign_treaty_harsh
@@ -242,5 +243,3 @@ on-arrival: is_peace = 0; is_armistice = 0; central_negotiations = 0; refuse_tre
 achievement: no_peace_no_war
 
 We have refused to sign the treaty. War has resumed with the Central Powers.
-
-# TODO: forced negotiations...

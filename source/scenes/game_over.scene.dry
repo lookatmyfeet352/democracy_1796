@@ -34,7 +34,7 @@ if (Q.ca_held) {
             this.achieve('free_russia');
         }
     }
-    if (Q.player_party == "m" && Q.m_leadership == 1 && Q.in_socialist_coalition && Q.is_armistice) {
+    if (Q.player_party == "m" && Q.m_leadership == 1 && Q.in_socialist_coalition && (Q.is_armistice || Q.is_peace)) {
         this.achieve('martovs_dream');
     }
 }
@@ -43,7 +43,7 @@ if (Q.hunger < 11) {
     this.achieve('end_famine');
 }
 
-if (Q.is_armistice && Q.hunger < 20 && Q.land_reform_progress >= 3) {
+if ((Q.is_armistice || Q.is_peace) && Q.hunger < 20 && Q.land_reform_progress >= 3) {
     this.achieve('peace_land_bread');
 }
 
@@ -141,11 +141,19 @@ Over the course of the war and revolution, the problem of hunger has worsened.
 
 @hunger_abated
 title: Hunger has been abated somewhat.
-view-if: hunger < 20
+view-if: hunger < 20 and hunger >= 11
 tags: endings
 go-to: eg_menu
 
-There is still a long way to go, but we have successfully ameliorated the food shortages.
+There is still a long way to go, but we have somewhat ameliorated the food shortages.
+
+@hunger_abated_2
+title: Hunger has been abated greatly!
+view-if: hunger < 11
+tags: endings
+go-to: eg_menu
+
+We have successfully ameliorated the hunger crisis, despite the war and ongoing crises!
 
 @inflation_lowered
 title: Inflation has been lowered.
@@ -153,12 +161,12 @@ view-if: monthly_inflation < 3
 tags: endings
 go-to: eg_menu
 
-Inflation is still far too high, but it has been successfully reduced.
+Inflation is still far too high, but it has been successfully reduced from its peak.
 
 
 @peace_land_bread
 title: Peace, land, bread
-view-if: is_armistice and hunger < 20 and land_reform_progress >= 3
+view-if: (is_armistice or is_peace) and hunger < 20 and land_reform_progress >= 3
 tags: endings
 go-to: eg_menu
 
@@ -181,6 +189,13 @@ go-to: eg_menu
 
 We attempted to launch a coup with General Kornilov, but our attempt has failed. The Kadets are no longer a functional party in Russia.
 
+@total_defeat
+title: A Total Defeat
+view-if: total_defeat = 1
+tags: endings
+go-to: eg_menu
+
+The Germans have taken over Petrograd. The revolution is over. We have lost.
 
 
 @achievements

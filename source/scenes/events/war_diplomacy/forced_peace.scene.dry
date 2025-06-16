@@ -34,6 +34,7 @@ Are we sure about rejecting the treaty? The Germans will overrun Petrograd very 
 - @reject_treaty_2: Yes, we are sure!
 
 @reject_treaty_2
+on-arrival: total_defeat = 1
 
 With barely any resistance, the Germans have entered Petrograd, and declared the government overthrown. The revolution is over. We have lost.
 
