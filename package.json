@@ -1,0 +1,24 @@
+{
+  "name": "petrograd_1917",
+  "version": "0.4.0",
+  "description": "Building the game:",
+  "main": "out/html/index.html",
+  "scripts": {
+    "dendrynexus": "dendrynexus"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://aucchen@github.com/aucchen/petrograd_1917.git"
+  },
+  "keywords": [],
+  "author": "Autumn Chen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aucchen/petrograd_1917/issues"
+  },
+  "homepage": "https://github.com/aucchen/petrograd_1917",
+  "dependencies": {
+    "dendrynexus": "github:aucchen/dendrynexus",
+    "parliament-svg": "^3.0.0"
+  }
+}
