@@ -118,7 +118,7 @@ data = data.concat([
   "id": "cossack",
   "legend": "Cossack",
   "name": "Cossack",
-  "seats": Q.cossaks_r
+  "seats": Q.cossacks_r
 },
 ]);
 if (window && d3) {
