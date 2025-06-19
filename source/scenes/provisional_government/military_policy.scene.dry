@@ -2,7 +2,7 @@ title: Military Policy
 new-page: true
 is-card: true
 on-arrival: military_policy_timer += 3; week_actions += 1; remaining_movement_capacity = movement_capacity - soldiers_moved; 
-view-if: military_policy_timer == 0 and ((player_party = "k" and k_in_gov and (war_minister_party = "Kadet" or war_minister_party = "Independent" or war_minister_party = "Progressive" or war_minister_party = "Octobrist" or war_minister_party = "Trudovik" or war_minister_party = "Popular Socialist")) or (player_party = "sr" and sr_in_gov and (war_minister_party = "SR" or war_minister_party = "Trudovik" or war_minister_party = "Popular Socialist")) or (player_party = "m" and m_in_gov and war_minister_party = "Menshevik"))
+view-if: military_policy_timer == 0 and ((player_party = "k" and k_in_gov and (war_minister_party = "Kadet" or war_minister_party = "Independent" or war_minister_party = "Progressive" or war_minister_party = "Octobrist" or war_minister_party = "Trudovik" or war_minister_party = "Popular Socialist")) or (player_party = "sr" and sr_in_gov and (war_minister_party = "SR" or war_minister_party = "Trudovik" or war_minister_party = "Popular Socialist")) or (player_party = "m" and m_in_gov and war_minister_party = "Menshevik") or (player_party = "b" and b_in_gov and war_minister_party = "Bolshevik"))
 card-image: img/army_1.jpg
 tags: prov_gov
 
@@ -75,7 +75,6 @@ Garrisons and reserves: [+ reserve_soldiers +] divisions
 Movement capacity: [+ remaining_movement_capacity +] divisions
 
 # movement capacity depends on trains
-# demobilize
 - @remove_northern
 - @remove_western
 - @remove_southwestern
@@ -179,7 +178,7 @@ We have added [+ sm +] divisions to the Caucasus Front.
 @demobilize
 title: Demobilize some reserve troops, returning them to civilian life.
 subtitle: If we demobilize enough soldiers, we can save some budget.
-on-arrival: reserve_soldiers -= sm; soldiers_moved += sm; soldiers_demobilized += sm; budget += 1 if soldiers_demobilized >= 50; unemployed += 0.3 if soldiers_demobilized >= 50; soldiers -= 1 if soldiers_demobilized >= 50; workers += 0.2 if soldiers_demobilized >= 50; peasants += 0.5 if soldiers_demobilized >= 50; unemployed += 0.3 if soldiers_demobilized >= 50; food_production += 1000 if soldiers_demobilized >= 50; industry += 0.5 if soldiers_demobilized >= 50;
+on-arrival: reserve_soldiers -= sm; soldiers_moved += sm; soldiers_demobilized += sm; budget += 2 if soldiers_demobilized >= 50; unemployed += 0.3 if soldiers_demobilized >= 50; soldiers -= 1 if soldiers_demobilized >= 50; workers += 0.2 if soldiers_demobilized >= 50; peasants += 0.5 if soldiers_demobilized >= 50; unemployed += 0.3 if soldiers_demobilized >= 50; food_production += 1000 if soldiers_demobilized >= 50; industry += 0.5 if soldiers_demobilized >= 50;
 choose-if: remaining_movement_capacity > 0 and reserve_soldiers > sm
 on-departure: soldiers_demobilized = 0 if soldiers_demobilized >= 50
 go-to: reallocate

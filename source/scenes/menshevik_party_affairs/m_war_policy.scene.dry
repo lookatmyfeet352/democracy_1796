@@ -1,7 +1,7 @@
 title: War Policy
 choose-if: m_war_policy_timer = 0
 unavailable-subtitle: It is too early to change this policy again.
-on-arrival: m_war_policy_timer = 6;
+on-arrival: m_war_policy_timer = 4;
 
 # maybe this should be a subset of questions of ideology
 

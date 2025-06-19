@@ -11,6 +11,7 @@ Pavel Milyukov is the leader of the Constitutional Democrats. He worked as a his
 
 - @foreign
 - @adopt_positions
+- @clear_agenda
 - @root: Return to main
 
 @foreign
@@ -40,4 +41,21 @@ on-arrival: advisor_action_timer = 4; k_conservative_relation += 5*(1-k_dissent)
 
 The conservative and monarchist right has largely been marginalized since the revolution, but they still have important contacts within the military, church, and upper-level bureaucracy. We attempt to build our relations with them.
 
+@clear_agenda
+title: Clear the agenda
+subtitle: Removes all cards from the hand.
+choose-if: advisor_action_timer = 0
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+on-arrival: {!
+Q.advisor_action_timer = 4;
+if (Q.difficulty == 0) {
+    window.dendryUI.dendryEngine.state.currentHands['main'] = [];
+} else if (Q.difficulty < 0) {
+    window.dendryUI.dendryEngine.state.currentHands['main.main_easy'] = [];
+} else {
+    window.dendryUI.dendryEngine.state.currentHands['main.main_hard'] = [];
+}
+!}
+
+All items from our agenda have been cleared.
 

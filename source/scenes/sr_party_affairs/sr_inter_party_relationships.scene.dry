@@ -35,7 +35,7 @@ view-if: sr_leadership = 1 and m_leadership = 0
 # TODO
 
 @k
-title: Improve our relations with the Kadets, the middle_class liberal party.
+title: Improve our relations with the Kadets, the middle class liberal party.
 on-arrival: sr_k_relation += ipr_change*(1-sr_dissent); sr_k_relation -= (ipr_change/2)*(1-sr_dissent) if internationalist_strength >= defensist_strength + social_patriot_strength or sr_prov_gov_policy >= 2 or sr_war_policy >= 2; sr_resources -= 1;
 choose-if: sr_resources >= 1
 subtitle: -1 resource

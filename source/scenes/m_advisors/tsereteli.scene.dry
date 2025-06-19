@@ -12,6 +12,7 @@ Irakli Tsereteli is a Georgian Menshevik revolutionary who returned from Siberia
 # actions: fundraising, organizing workers, inter-party relations, clear the agenda
 
 - @fundraising
+- @clear_agenda
 - @prov_gov_cooperation
 - @inter_party_relations
 - @support_defensism
@@ -29,6 +30,24 @@ on-arrival: advisor_action_timer = 4; m_resources += m_dues
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] weeks before next advisor action. ?]
 
 We have gained [+ m_dues +] additional resources.
+
+@clear_agenda
+title: Clear the agenda
+subtitle: Removes all cards from the hand.
+choose-if: advisor_action_timer = 0
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+on-arrival: {!
+Q.advisor_action_timer = 4;
+if (Q.difficulty == 0) {
+    window.dendryUI.dendryEngine.state.currentHands['main'] = [];
+} else if (Q.difficulty < 0) {
+    window.dendryUI.dendryEngine.state.currentHands['main.main_easy'] = [];
+} else {
+    window.dendryUI.dendryEngine.state.currentHands['main.main_hard'] = [];
+} 
+!}
+
+All items from our agenda have been cleared.
 
 
 @prov_gov_cooperation

@@ -304,7 +304,7 @@ title: Defense
 
 [? if is_armistice and not is_peace: An armistice with the Central Powers has been signed. ?]
 
-[? if is_peace: An peace treaty with the Central Powers has been signed. ?]
+[? if is_peace: A peace treaty with the Central Powers has been signed. ?]
 
 = Armies and Fronts
 

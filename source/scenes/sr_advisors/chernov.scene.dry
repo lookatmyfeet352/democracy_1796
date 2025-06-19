@@ -12,6 +12,7 @@ Chernov is one of the founders of the Socialist-Revolutionary Party, and has bee
 - @emergency_fundraising
 - @ag_
 - @party_unity
+- @clear_agenda
 - @root: Return to main
 
 @emergency_fundraising
@@ -41,3 +42,21 @@ unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +
 on-arrival: advisor_action_timer = 4; left_sr_dissent -= sr_discipline_change+1; right_sr_dissent -= sr_discipline_change+1; center_sr_dissent -= sr_discipline_change+4;
 
 With Chernov's help, we have reduced dissent across the party.
+
+@clear_agenda
+title: Clear the agenda
+subtitle: Removes all cards from the hand.
+choose-if: advisor_action_timer = 0
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+on-arrival: {!
+Q.advisor_action_timer = 4;
+if (Q.difficulty == 0) {
+    window.dendryUI.dendryEngine.state.currentHands['main'] = [];
+} else if (Q.difficulty < 0) {
+    window.dendryUI.dendryEngine.state.currentHands['main.main_easy'] = [];
+} else {
+    window.dendryUI.dendryEngine.state.currentHands['main.main_hard'] = [];
+} 
+!}
+
+All items from our agenda have been cleared.

@@ -15,6 +15,7 @@ Vladimir Lenin is the undisputed leader of the Bolshevik party, and its chief th
 - @organize_soldiers
 - @polemics
 - @radicalization
+- @clear_agenda
 - @root: Return to main
 
 @support_leninist
@@ -54,3 +55,20 @@ on-arrival: advisor_action_timer = 4; workers_m -= 3; soldiers_m -= 3; workers_s
 
 Lenin is arguing that the entire established order must be destroyed. Given the present crises, he finds a receptive audience.
 
+@clear_agenda
+title: Clear the agenda
+subtitle: Removes all cards from the hand.
+choose-if: advisor_action_timer = 0
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+on-arrival: {!
+Q.advisor_action_timer = 4;
+if (Q.difficulty == 0) {
+    window.dendryUI.dendryEngine.state.currentHands['main'] = [];
+} else if (Q.difficulty < 0) {
+    window.dendryUI.dendryEngine.state.currentHands['main.main_easy'] = [];
+} else {
+    window.dendryUI.dendryEngine.state.currentHands['main.main_hard'] = [];
+} 
+!}
+
+All items from our agenda have been cleared.
