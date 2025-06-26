@@ -23,9 +23,8 @@ on-arrival: {!
 Q.started = 1;
 // time elapsed (in months)
 Q.time = 1;
-Q.year = 1917;
-Q.month = 3;
-Q.week = 1;
+Q.year = 1796;
+Q.month = 1;
 // how many actions have been taken this week?
 Q.week_actions = 0;
 // how many actions have been taken this month?
@@ -62,27 +61,23 @@ Q.player3_party = "";
 Q.player4_party = "";
 
 // party resources
-Q.b_resources = 2;
-Q.m_resources = 2;
-Q.k_resources = 3;
-Q.sr_resources = 2;
+Q.r_resources = 2;
+Q.f_resources = 2;
 // party dues
-Q.b_dues = 2;
-Q.m_dues = 2;
-Q.k_dues = 3;
-Q.sr_dues = 2;
+Q.r_dues = 2;
+Q.f_dues = 2;
 
 // difficulty-affected modifiers
 // dissent thresholds for party split
 // (this could be different between left and right factions, which will be done in the individual scenes)
-Q.m_split_threshold = 55;
-Q.sr_split_threshold = 55;
+Q.f_split_threshold = 55;
+Q.r_split_threshold = 55;
 // strength changes on supporting internationalist/defensist
-Q.m_support_change = 6;
-Q.sr_support_change = 6;
+Q.f_support_change = 6;
+Q.r_support_change = 6;
 // dissent reduction on party_disunity
-Q.m_discipline_change = 5;
-Q.sr_discipline_change = 5;
+Q.f_discipline_change = 5;
+Q.r_discipline_change = 5;
 // maximum numbers of advisors
 Q.max_advisors = 4;
 // inter-party relations changes
@@ -100,64 +95,33 @@ Q.sr_dissent = 0.15;
 Q.sr_dissent_percent = 15;
 
 // factions
-// bolshevik internals
-// leadership: 1 = moderate internationalists, 2 = leninists
-Q.b_leadership = 1;
-Q.b_factions = ['leninist', 'center', 'moderate'];
-Q.leninist_strength = 20;
-Q.leninist_dissent = 10;
-Q.center_strength = 60;
-Q.center_dissent = 0;
-Q.moderate_strength = 20;
-Q.moderate_dissent = 10;
-Q.moderate_split = 0;
-Q.leninist_split = 0;
-// moderates can't split unless Menshevik-Internationalists are leading, but Leninists can split to become the Communist Party.
-Q.b_war_policy = 2;
-Q.b_industrial_policy = 1;
-Q.b_prov_gov_policy = 3;
-Q.b_land_policy = 2;
-Q.b_agricultural_policy = 2;
-Q.b_nationality_policy = 2;
-// organizations among the workers and soldiers...
-Q.b_workers_org = 1;
-Q.b_soldiers_org = 1;
 
-// menshevik internals
-Q.m_factions = ['social_patriot', 'defensist', 'internationalist'];
+// republican internals
+Q.r_factions = ['jeffersonian', 'radical' ];
 // unity is the group led by Plekhanov, the "social patriots"
 // leadership for all soviet parties can be either internationalist or defensist.
 // defensist = 0, internationalist = 1
-Q.m_leadership = 0;
+Q.r_leadership = 0;
 // taking a nonaligned position...
-Q.m_independent = 0;
-Q.social_patriot_strength = 20;
-Q.social_patriot_dissent = 30;
-Q.defensist_strength = 80;
-Q.defensist_dissent = 10;
-Q.internationalist_strength = 30;
-Q.internationalist_dissent = 35;
-Q.defensist_split = 0;
-Q.internationalist_split = 0;
-// -1 = expansionist, 0 = social patriot, 1 = revolutionary defensist, 2 = internationalist, 3 = revolutionary defeatist
+Q.r_independent = 0;
+Q.jeffersonian_strength = 50;
+Q.jeffersonian_dissent = 20;
+Q.radical_strength = 20;
+Q.radical_dissent = 30;
+// -1 = pro Britan, 0 = neutralist , 1 = favor france , 2 = pro france 
 // less is more pro-war
-Q.m_war_policy = 1;
+Q.r_war_policy = 0;
 // rural policy is actually two different things: how farming should be done (communal, private, collective, state-owned) and what should be done with large estates/state property (no change, voluntary sale, compensated seizures, uncompensated seizures)
 // agricultural policy: -1 = Stolypin privatization, 0 = voluntary privatization, 1 = communal farming, 2 = state farming, 3 = collective farming
 // land policy: -2 = no policy, -1 = no change, 0 = voluntary sales, 1 = compensated seizures, 2 = uncompensated seizures
-Q.m_land_policy = -2;
-Q.m_agricultural_policy = -2;
-// nationality policies:
-// 0 = russian unity, 1 = national personal autonomy, 2 = federalism, 3 = self-determination
-Q.m_nationality_policy = 1;
+Q.r_land_policy = -2;
+Q.r_agricultural_policy = -2;
+// slavery policies:
+// -2 = unrestricted slavery, -1 = abolition of the 3/5 compromise, 0 = no policy, 1 = gradual abolition, 2 = radical abolition, 
+Q.r_slavery_policy = 1;
 // -1 = laissez-faire, 0 = trade unions, 1 = worker supervision, 2 = syndicalism, 3 = state ownership
 // more is more left-wing
-Q.m_industrial_policy = 0;
-// -1 = liberal coalition, 0 = democratic coalition, 1 = external support, 2 = opposition, 3 = socialist coalition, 4 = armed overthrow
-Q.m_prov_gov_policy = 1;
-Q.m_workers_org = 1;
-Q.m_soldiers_org = 0;
-
+Q.r_industrial_policy = 0;
 // sr internals
 // sr leadership is defensist
 Q.sr_leadership = 0;
@@ -1074,23 +1038,8 @@ unavailable-subtitle: Not yet implemented
 
 TODO
 
-@bolsheviks
-title: Russian Social-Democratic Labor Party (Bolshevik)
-choose-if: achievement_game_completed
-unavailable-subtitle: Complete the game as one of the other parties first.
-
-**Russian Social-Democratic Labor Party (Bolsheviks)** - The "majority" faction of the RSDLP is in fact the smaller party. Established by Vladimir Lenin's arguments in the various RSDLP congresses, the Bolsheviks are seen as more radical than the Mensheviks. They are a disciplined and centralized party of professional revolutionaries who aim to act as the vanguard of a proletarian revolution. During Lenin's exile, the remaining members in Russia have become more moderate and accommodating.
-
-- @bolsheviks_2: Yes, I am a Bolshevik!
-- @party_selection: No, select a different party.
-
-@bolsheviks_2
-on-arrival: player_party_name = "Bolshevik"; player_party = "b"; b_is_player = 1; m_is_player = 0; player_in_soviet = 1; player_in_exco = 0; player_in_gov = 0;
-go-to: intros
-
-
-@mensheviks
-title: Russian Social-Democratic Labor Party (Menshevik)
+@republican party
+title: Democratic-Republican party
 
 **Russian Social-Democratic Labor Party (Mensheviks)** - The "minority" faction of the RSDLP, the Mensheviks emerged from party splits, reunifications, and further splits in the 1900s. It is in fact the larger party, seeking to organize a mass party among the working class. A social-democratic party based on the teachings of Karl Marx, the party argues that the current revolution is the "bourgeois" revolution. The task of socialists is to achieve a democratic republic and gain political and economic rights for workers. The Mensheviks are deeply divided on their attitudes towards the war and participation in a bourgeois government.
 
@@ -1099,13 +1048,13 @@ title: Russian Social-Democratic Labor Party (Menshevik)
 
 
 @mensheviks_2
-on-arrival: player_party_name = "Menshevik"; player_party = "m"; m_is_player = 1; player_in_soviet = 1; player_in_exco = 1; player_in_gov = 0;
+on-arrival: player_party_name = "republican"; player_party = "r"; r_is_player = 1; player_in_gov = 0;
 go-to: intros
 
 
 
-@sr
-title: Party of Socialist-Revolutionaries (SRs)
+@federalist
+title: Federalist Party
 
 **Party of Socialist-Revolutionaries (SR)** - The SRs are based in the Russian ideology of *narodism*, or populism, which is an agrarian socialism that sees the traditional Russian village (the *obshchina*) as the basis of a future socialist society. Their support is strongest in the peasantry, but they have substantial support among workers as well. The SRs are deeply divided between left and right wings based on their attitudes towards the war and participation in government.
 
@@ -1114,19 +1063,7 @@ title: Party of Socialist-Revolutionaries (SRs)
 
 
 @sr_2
-on-arrival: player_party = "sr"; player_party_name = "SR"; sr_is_player = 1; m_is_player = 0; player_in_soviet = 1; player_in_exco = 1; player_in_gov = 0;
+on-arrival: player_party = "f"; player_party_name = "Federalist"; f_is_player = 1; m_is_player = 0; player_in_gov = 1;
 go-to: intros
 
-@kadets
-title: Constitutional Democratic Party (Kadets)
-
-**Constitutional Democratic Party (Kadets)** - The Kadets were formerly on the left of the political spectrum, but they have moved to the center-right following the revolution. They are a liberal party whose goal is to establish a democratic republic or constitutional monarchy with moderate social reforms, while winning the war. They consider themselves a party representing all of Russian society, but are predominantly based in the middle class.
-
-- @kadets_2: Yes, I am a Kadet!
-- @party_selection: No, select a different party.
-
-
-@kadets_2
-on-arrival: player_party = "k"; player_party_name = "Kadet"; k_is_player = 1; m_is_player = 0; player_in_soviet = 0; player_in_gov = 1; player_in_exco = 0;
-go-to: intros
 
