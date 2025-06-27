@@ -54,16 +54,13 @@ Party: [+ player_party_name +]
 [+ player_party_name +] position: [+ position +]
 
 Party resources available:
-[? if player_party == "b": [+ b_resources +] ?]
-[? if player_party == "m": [+ m_resources +] ?]
-[? if player_party == "k": [+ k_resources +] ?]
-[? if player_party == "sr": [+ sr_resources +] ?]
+[? if player_party == "f": [+ f_resources +] ?]
+[? if player_party == "r": [+ r_resources +] ?]
+
 
 Internal dissent:
-[? if player_party == "b": [+ b_dissent_percent : dissent +] ?]
-[? if player_party == "m": [+ m_dissent_percent : dissent +] ?]
-[? if player_party == "k": [+ k_dissent_percent : dissent +] ?]
-[? if player_party == "sr": [+ sr_dissent_percent : dissent +] ?]
+[? if player_party == "f": [+ f_dissent_percent : dissent +] ?]
+[? if player_party == "r": [+ r_dissent_percent : dissent +] ?]
 
 = [+ government_form : government_form +]
 
@@ -91,34 +88,16 @@ War weariness: [+ war_weariness : war_weariness +]
 @politics
 title: Politics
 on-arrival: {!
-Q.m_relation = 0;
-Q.b_relation = 0;
-Q.sr_relation = 0;
-Q.k_relation = 0;
+Q.r_relation = 0;
+Q.f_relation = 0;
 switch (Q.player_party) {
-    case 'b':
-        Q.b_relation = -1;
-        Q.m_relation = Q.m_b_relation;
-        Q.k_relation = Q.b_k_relation;
-        Q.sr_relation = Q.b_sr_relation;
+    case 'f':
+        Q.f_relation = -1;
+        Q.r_relation = Q.f_r_relation;
         break;
-    case 'm':
-        Q.m_relation = -1;
-        Q.b_relation = Q.m_b_relation;
-        Q.k_relation = Q.m_k_relation;
-        Q.sr_relation = Q.m_sr_relation;
-        break;
-    case 'sr':
-        Q.sr_relation = -1;
-        Q.b_relation = Q.b_sr_relation;
-        Q.m_relation = Q.m_b_relation;
-        Q.k_relation = Q.sr_k_relation;
-        break;
-    case 'k':
-        Q.k_relation = -1;
-        Q.b_relation = Q.b_k_relation;
-        Q.m_relation = Q.m_k_relation;
-        Q.sr_relation = Q.sr_k_relation;
+    case 'r':
+        Q.r_relation = -1;
+        Q.f_relation = Q.f_r_relation;
         break;
 }
 !}
@@ -144,38 +123,17 @@ switch (Q.player_party) {
 
 = Internal factions
 
-[? if player_party == "b": Moderate ?]
-[? if player_party == "b": dissent: [+ moderate_dissent : dissent +], strength: [+ moderate_strength : strength_2 +]?]
+[? if player_party == "f": Adamite ?]
+[? if player_party == "f": dissent: [+ adamite_dissent : dissent +], strength: [+ adamite_strength : strength_2 +]?]
 
-[? if player_party == "b": Center ?]
-[? if player_party == "b": dissent: [+ center_dissent : dissent +], strength: [+ center_strength : strength_2 +]?]
+[? if player_party == "f": Hamiltonian ?]
+[? if player_party == "f": dissent: [+ hamiltonian_dissent : dissent +], strength: [+ hamiltonian_strength : strength_2 +]?]
 
-[? if player_party == "b": Leninist ?]
-[? if player_party == "b": dissent: [+ leninist_dissent : dissent +], strength: [+ leninist_strength : strength_2 +]?]
+[? if player_party == "r": Jeffersonian ?]
+[? if player_party == "r": dissent: [+ jeffersonian_dissent : dissent +], strength: [+ jeffersonian_strength : strength_2 +]?]
 
-[? if player_party == "m": Social Patriot ?]
-[? if player_party == "m": dissent: [+ social_patriot_dissent : dissent +], strength: [+ social_patriot_strength : strength_2 +]?]
-
-[? if player_party == "m": Revolutionary Defensist  ?]
-[? if player_party == "m": dissent: [+ defensist_dissent : dissent +], strength: [+ defensist_strength : strength_2 +]?]
-
-[? if player_party == "m": Internationalist ?]
-[? if player_party == "m": dissent: [+ internationalist_dissent : dissent +], strength: [+ internationalist_strength : strength_2 +]?]
-
-[? if player_party == "k": Right-Kadet ?]
-[? if player_party == "k": dissent: [+ right_kadet_dissent : dissent +], strength: [+ right_kadet_strength : strength_2 +]?]
-
-[? if player_party == "k": Left-Kadet ?]
-[? if player_party == "k": dissent: [+ left_kadet_dissent : dissent +], strength: [+ left_kadet_strength : strength_2 +]?]
-
-[? if player_party == "sr": Right-SR ?]
-[? if player_party == "sr": dissent: [+ right_sr_dissent : dissent +], strength: [+ right_sr_strength : strength_2 +]?]
-
-[? if player_party == "sr": Center-SR ?]
-[? if player_party == "sr": dissent: [+ center_sr_dissent : dissent +], strength: [+ center_sr_strength : strength_2 +]?]
-
-[? if player_party == "sr": Left-SR ?]
-[? if player_party == "sr": dissent: [+ left_sr_dissent : dissent +], strength: [+ left_sr_strength : strength_2 +]?]
+[? if player_party == "r": Radical ?]
+[? if player_party == "r": dissent: [+ radical_patriot_dissent : dissent +], strength: [+ radical_patriot_strength : strength_2 +]?]
 
 = [+ player_party_name +] Party Positions
 
