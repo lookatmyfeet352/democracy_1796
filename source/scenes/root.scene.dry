@@ -122,64 +122,30 @@ Q.r_slavery_policy = 1;
 // -1 = laissez-faire, 0 = trade unions, 1 = worker supervision, 2 = syndicalism, 3 = state ownership
 // more is more left-wing
 Q.r_industrial_policy = 0;
+
 // sr internals
 // sr leadership is defensist
-Q.sr_leadership = 0;
+Q.f_leadership = 0;
 // taking a nonaligned position...
-Q.sr_independent = 0;
-Q.sr_factions = ['left_sr', 'center_sr', 'right_sr'];
-Q.left_sr_strength = 20;
-Q.left_sr_dissent = 40;
-Q.center_sr_strength = 30;
-Q.center_sr_dissent = 20;
-Q.right_sr_strength = 50;
-Q.right_sr_dissent = 10;
-Q.left_sr_split = 0;
-Q.right_sr_split = 0;
+Q.f_factions = ['adamite, 'hamiltonian',];
+Q.adamite_strength = 40;
+Q.adamite_dissent = 10;
+Q.hamiltonian_strength = 20;
+Q.hamiltonian_dissent = 30;
 // policies
-Q.sr_war_policy = 1;
+Q.f_war_policy = 0;
 Q.sr_land_policy = 2;
 Q.sr_agricultural_policy = 1;
-Q.sr_nationality_policy = 2;
-Q.sr_prov_gov_policy = 1;
-Q.sr_industrial_policy = 0;
-Q.sr_workers_org = 0;
-Q.sr_soldiers_org = 1;
-Q.sr_rural_org = 1;
-
-// kadet internals
-// 0 = National liberal, 1 = Left-liberal
-Q.k_leadership = 0;
-Q.k_factions = ['left_kadet', 'right_kadet'];
-Q.left_kadet_strength = 50;
-Q.left_kadet_dissent = 5;
-Q.right_kadet_strength = 50;
-Q.right_kadet_dissent = 5;
-// 3 = expansionist/annexationist
-Q.k_war_policy = -1;
-Q.k_industrial_policy = -1;
-Q.k_prov_gov_policy = -1;
-Q.k_land_policy = 0;
-Q.k_agricultural_policy = 0;
-Q.k_nationality_policy = 0;
-
+Q.f_slavery_policy = 0;
 
 // inter-party relations
 // triangle:
 // m -> b -> sr -> k
-Q.m_b_relation = 40;
-Q.m_sr_relation = 55;
-Q.m_k_relation = 40;
-Q.b_sr_relation = 35;
-Q.b_k_relation = 20;
-Q.sr_k_relation = 40;
+Q.f_r_relation = 40;
 
-// only kadets have relations with the conservative factions
-Q.k_conservative_relation = 50;
 
-// minor parties: popular_socialists, trudoviks, octobrists, 
 
-// The state of Russia/////////////////////////////////
+
 
 // government
 // The form of government: Prov Gov, Sov Gov, Constituent Assembly, Dictatorship
